@@ -1,6 +1,15 @@
 {
-  "regions": ["sfo1"],
+  "regions": [
+    "sfo1"
+  ],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/index?__path=:path*" }
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index?__path=:path*"
+    }
   ]
 }

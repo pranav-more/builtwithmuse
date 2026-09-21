@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Built with muse moderation</title>
+    <style>
+      :root { color-scheme: light; --ink: #1b1b1f; --muted: #6b6b76; --line: #e4e4ea; --bg: #f7f7fa; --card: #ffffff; --accent: #4f46e5; --danger: #b42318; --ok: #067647; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
+      header { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; background: var(--card); border-bottom: 1px solid var(--line); }
+      header h1 { margin: 0; font-size: 16px; font-weight: 600; }
+      header .who { color: var(--muted); font-size: 13px; }
+      main { max-width: 1200px; margin: 0 auto; padding: 20px 24px 60px; }
+      .signin { max-width: 420px; margin: 80px auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; text-align: center; }
+      .signin p { color: var(--muted); }
+      .tabs { display: flex; gap: 6px; margin: 0 0 16px; flex-wrap: wrap; }
+      .tabs button { border: 1px solid var(--line); background: var(--card); padding: 8px 14px; border-radius: 999px; cursor: pointer; font: inherit; }
+      .tabs button[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+      .panel { display: none; }
+      .panel.active { display: block; }
+      .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+      .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+      .card .n { font-size: 26px; font-weight: 600; }
+      .card .l { color: var(--muted); font-size: 12px; }
+      table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+      th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 13px; }
+      th { background: #fafafe; color: var(--muted); font-weight: 600; }
+      tr:last-child td { border-bottom: 0; }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+      .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+      input[type="search"], select, textarea { font: inherit; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+      textarea { width: 100%; min-height: 90px; }
+      .btn { font: inherit; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); cursor: pointer; }
+      .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+      .btn.danger { color: var(--danger); }
+      .btn:disabled { opacity: 0.5; cursor: default; }
+      .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: #eef; }
+      .pill.ok { background: #e6f4ea; color: var(--ok); }
+      .pill.warn { background: #fdf0e6; color: #b54708; }
+      .pill.bad { background: #fee4e2; color: var(--danger); }
+      .muted { color: var(--muted); }
+      .status { min-height: 20px; color: var(--muted); font-size: 13px; margin: 8px 0; }
+      .wrap { overflow-x: auto; }
+      .actions { white-space: nowrap; }
+      .actions .btn { padding: 4px 8px; font-size: 12px; margin-right: 4px; }
+      .hidden { display: none !important; }
+    </style>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Built with muse moderation</h1>
+      <div>
+        <span class="who" id="who"></span>
+        <button class="btn hidden" id="logout" type="button">Sign out</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="signin" id="signin">
+        <h2>Moderator sign in</h2>
+        <p>Google sign in only. Only listed moderator accounts can enter.</p>
+        <div id="google-button"></div>
+        <div class="status" id="signin-status"></div>
+      </section>
+
+      <section id="dash" class="hidden">
+        <div class="tabs" role="tablist">
+          <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+          <button role="tab" data-tab="codes">Codes</button>
+          <button role="tab" data-tab="claims">Claims</button>
+          <button role="tab" data-tab="reports">Reports</button>
+          <button role="tab" data-tab="waitlist">Waitlist</button>
+        </div>
+        <div class="status" id="status"></div>
+
+        <div class="panel active" id="panel-overview">
+          <div class="cards" id="cards"></div>
+          <h3>Latest activity</h3>
+          <div class="wrap"><table id="activity"><thead><tr><th>When</th><th>What</th><th>Code</th><th>Who</th><th>Detail</th></tr></thead><tbody></tbody></table></div>
+        </div>
+
+        <div class="panel" id="panel-codes">
+          <div class="toolbar">
+            <select id="code-status">
+              <option value="all">All codes</option>
+              <option value="available">Available</option>
+              <option value="used">Fully used</option>
+              <option value="retired">Retired</option>
+            </select>
+            <input type="search" id="code-q" placeholder="Search code" />
+            <button class="btn" id="code-refresh" type="button">Refresh</button>
+            <a class="btn" id="export-codes" href="/api/admin/export.csv?table=codes">Export CSV</a>
+          </div>
+          <details style="margin-bottom: 12px">
+            <summary>Add codes to the pool</summary>
+            <textarea id="add-codes" placeholder="One code per line, or separated by spaces or commas"></textarea>
+            <div class="toolbar"><button class="btn primary" id="add-codes-btn" type="button">Add codes</button><span class="muted" id="add-codes-status"></span></div>
+          </details>
+          <div class="wrap"><table id="codes"><thead><tr><th>Code</th><th>State</th><th>Given out</th><th>Reports</th><th>Source</th><th>Invite link</th><th>Added</th><th>Last claim</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+        </div>
+
+        <div class="panel" id="panel-claims">
+          <div class="toolbar"><button class="btn" data-refresh="claims" type="button">Refresh</button><a class="btn" href="/api/admin/export.csv?table=claims">Export CSV</a></div>
+          <div class="wrap"><table id="claims"><thead><tr><th>When</th><th>Code</th><th>Device</th><th>IP hash</th><th>Code state</th></tr></thead><tbody></tbody></table></div>
+        </div>
+
+        <div class="panel" id="panel-reports">
+          <div class="toolbar"><button class="btn" data-refresh="reports" type="button">Refresh</button><a class="btn" href="/api/admin/export.csv?table=reports">Export CSV</a></div>
+          <div class="wrap"><table id="reports"><thead><tr><th>When</th><th>Code</th><th>Device</th><th>IP hash</th><th>Code state</th></tr></thead><tbody></tbody></table></div>
+        </div>
+
+        <div class="panel" id="panel-waitlist">
+          <div class="toolbar"><button class="btn" data-refresh="waitlist" type="button">Refresh</button><a class="btn" href="/api/admin/export.csv?table=waitlist">Export CSV</a></div>
+          <div class="wrap"><table id="waitlist"><thead><tr><th>When</th><th>Email</th><th>Country</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const $ = (id) => document.getElementById(id);
+        const status = $("status");
+        let refreshTimer = null;
+
+        async function api(path, options = {}) {
+          const response = await fetch(path, {
+            method: options.method || "GET",
+            credentials: "same-origin",
+            headers: { "X-Requested-With": "fetch", ...(options.body ? { "Content-Type": "application/json" } : {}) },
+            body: options.body ? JSON.stringify(options.body) : undefined,
+          });
+          let result = null;
+          try { result = await response.json(); } catch (_) { result = null; }
+          if (response.status === 401) { showSignin(); throw new Error("signed_out"); }
+          if (!response.ok || !result || !result.ok) throw new Error((result && result.error) || String(response.status));
+          return result;
+        }
+
+        function when(value) {
+          if (!value) return "";
+          const d = new Date(value);
+          return d.toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+        }
+        function esc(value) {
+          return String(value === null || value === undefined ? "" : value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        }
+        function codeState(row) {
+          if (row.retired_at) return '<span class="pill bad">Retired</span>';
+          if (row.claims >= row.max_claims) return '<span class="pill warn">Fully used</span>';
+          return '<span class="pill ok">Available</span>';
+        }
+
+        function showSignin() {
+          $("signin").classList.remove("hidden");
+          $("dash").classList.add("hidden");
+          $("logout").classList.add("hidden");
+          $("who").textContent = "";
+          clearInterval(refreshTimer);
+        }
+        function showDash(email) {
+          $("signin").classList.add("hidden");
+          $("dash").classList.remove("hidden");
+          $("logout").classList.remove("hidden");
+          $("who").textContent = email;
+          loadTab(currentTab());
+          clearInterval(refreshTimer);
+          refreshTimer = setInterval(() => { if (currentTab() === "overview") loadOverview(); }, 30000);
+        }
+        function currentTab() {
+          return document.querySelector('[role="tab"][aria-selected="true"]').dataset.tab;
+        }
+
+        async function loadOverview() {
+          const d = await api("/api/admin/overview");
+          const cards = [
+            ["Available codes", d.available], ["Fully used", d.used_up], ["Retired", d.retired], ["Codes total", d.total_codes],
+            ["Codes added, 24h", d.codes_24h], ["Claims, last hour", d.claims_1h], ["Claims, 24h", d.claims_24h], ["Claims total", d.claims_total],
+            ["Devices, 24h", d.devices_24h], ["Reports, 24h", d.reports_24h], ["Reports total", d.reports_total], ["Waitlist", d.waitlist], ["Waitlist, 24h", d.waitlist_24h],
+          ];
+          $("cards").innerHTML = cards.map(([l, n]) => `<div class="card"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div></div>`).join("");
+          const labels = { claim: "Code given out", report: "Code reported", code: "Code submitted", waitlist: "Joined waitlist" };
+          $("activity").querySelector("tbody").innerHTML = d.activity.map((a) => `<tr><td>${esc(when(a.created_at))}</td><td>${esc(labels[a.kind] || a.kind)}</td><td><code>${esc(a.code || "")}</code></td><td class="muted">${esc(a.who || "")}</td><td class="muted">${esc(a.detail || "")}</td></tr>`).join("") || '<tr><td colspan="5" class="muted">Nothing yet</td></tr>';
+        }
+
+        async function loadCodes() {
+          const params = new URLSearchParams({ status: $("code-status").value, q: $("code-q").value.trim() });
+          const d = await api("/api/admin/codes?" + params);
+          $("codes").querySelector("tbody").innerHTML = d.codes.map((c) => `<tr>
+            <td><code>${esc(c.code)}</code></td>
+            <td>${codeState(c)}</td>
+            <td>${esc(c.claims)} of ${esc(c.max_claims)}</td>
+            <td>${esc(c.reports)}</td>
+            <td class="muted">${esc(c.source)}</td>
+            <td class="muted">${c.invite_link ? `<a href="${esc(c.invite_link)}" target="_blank" rel="noopener noreferrer">${esc(c.invite_link.replace(/^https?:\/\//, "").slice(0, 40))}</a>` : ""}</td>
+            <td class="muted">${esc(when(c.created_at))}</td>
+            <td class="muted">${esc(when(c.last_claim_at))}</td>
+            <td class="actions">
+              ${c.retired_at ? `<button class="btn" data-act="restore" data-code="${esc(c.code)}">Restore</button>` : `<button class="btn" data-act="retire" data-code="${esc(c.code)}">Retire</button>`}
+              <button class="btn danger" data-act="delete" data-id="${esc(c.id)}" data-code="${esc(c.code)}">Delete</button>
+            </td></tr>`).join("") || '<tr><td colspan="9" class="muted">No codes match</td></tr>';
+        }
+
+        async function loadList(kind) {
+          const d = await api(`/api/admin/${kind}`);
+          const tbody = $(kind).querySelector("tbody");
+          if (kind === "waitlist") {
+            tbody.innerHTML = d.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td>${esc(r.email)}</td><td>${esc(r.country)}</td><td class="actions"><button class="btn danger" data-act="delete-waitlist" data-id="${esc(r.id)}" data-email="${esc(r.email)}">Remove</button></td></tr>`).join("") || '<tr><td colspan="4" class="muted">Nobody yet</td></tr>';
+            return;
+          }
+          tbody.innerHTML = d.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><code>${esc(r.code)}</code></td><td class="muted">${esc(r.device)}</td><td class="muted">${esc(r.ip)}</td><td>${r.retired_at ? '<span class="pill bad">Retired</span>' : '<span class="pill ok">Live</span>'}</td></tr>`).join("") || '<tr><td colspan="5" class="muted">Nothing yet</td></tr>';
+        }
+
+        async function loadTab(tab) {
+          status.textContent = "Loading...";
+          try {
+            if (tab === "overview") await loadOverview();
+            else if (tab === "codes") await loadCodes();
+            else await loadList(tab);
+            status.textContent = "Updated " + new Date().toLocaleTimeString();
+          } catch (error) {
+            if (error.message !== "signed_out") status.textContent = "Could not load: " + error.message;
+          }
+        }
+
+        document.querySelectorAll('[role="tab"]').forEach((button) => {
+          button.addEventListener("click", () => {
+            document.querySelectorAll('[role="tab"]').forEach((b) => b.setAttribute("aria-selected", String(b === button)));
+            document.querySelectorAll(".panel").forEach((p) => p.classList.toggle("active", p.id === "panel-" + button.dataset.tab));
+            loadTab(button.dataset.tab);
+          });
+        });
+        document.querySelectorAll("[data-refresh]").forEach((b) => b.addEventListener("click", () => loadTab(b.dataset.refresh)));
+        $("code-refresh").addEventListener("click", () => loadTab("codes"));
+        $("code-status").addEventListener("change", () => loadTab("codes"));
+        $("code-q").addEventListener("keydown", (e) => { if (e.key === "Enter") loadTab("codes"); });
+
+        $("add-codes-btn").addEventListener("click", async () => {
+          const codes = $("add-codes").value.split(/[\s,]+/).map((c) => c.trim()).filter(Boolean);
+          if (!codes.length) return;
+          $("add-codes-btn").disabled = true;
+          try {
+            const r = await api("/api/admin/codes", { method: "POST", body: { codes, source: "moderator" } });
+            $("add-codes-status").textContent = `Added ${r.added} of ${r.received}`;
+            $("add-codes").value = "";
+            loadTab("codes");
+          } catch (error) {
+            $("add-codes-status").textContent = "Failed: " + error.message;
+          } finally {
+            $("add-codes-btn").disabled = false;
+          }
+        });
+
+        document.body.addEventListener("click", async (event) => {
+          const button = event.target.closest("[data-act]");
+          if (!button) return;
+          const act = button.dataset.act;
+          try {
+            if (act === "retire") await api("/api/admin/codes/retire", { method: "POST", body: { code: button.dataset.code } });
+            if (act === "restore") await api("/api/admin/codes/restore", { method: "POST", body: { code: button.dataset.code } });
+            if (act === "delete") {
+              if (!confirm(`Delete code ${button.dataset.code} and its history?`)) return;
+              await api(`/api/admin/codes/${button.dataset.id}`, { method: "DELETE" });
+            }
+            if (act === "delete-waitlist") {
+              if (!confirm(`Remove ${button.dataset.email} from the waitlist?`)) return;
+              await api(`/api/admin/waitlist/${button.dataset.id}`, { method: "DELETE" });
+            }
+            loadTab(currentTab());
+          } catch (error) {
+            status.textContent = "Action failed: " + error.message;
+          }
+        });
+
+        $("logout").addEventListener("click", async () => {
+          try { await api("/api/admin/logout", { method: "POST", body: {} }); } catch (_) {}
+          showSignin();
+        });
+
+        async function onCredential(response) {
+          $("signin-status").textContent = "Checking...";
+          try {
+            const r = await api("/api/admin/login", { method: "POST", body: { credential: response.credential } });
+            showDash(r.email);
+          } catch (error) {
+            $("signin-status").textContent = error.message === "not_a_moderator" ? "That Google account is not a moderator." : "Sign in failed: " + error.message;
+          }
+        }
+
+        async function initGoogle() {
+          const config = await api("/api/admin/config");
+          if (!config.clientId) { $("signin-status").textContent = "Google sign in is not configured yet."; return; }
+          const start = () => {
+            if (!window.google || !google.accounts) return setTimeout(start, 100);
+            google.accounts.id.initialize({ client_id: config.clientId, callback: onCredential, ux_mode: "popup", auto_select: false });
+            google.accounts.id.renderButton($("google-button"), { theme: "outline", size: "large", text: "signin_with", shape: "pill" });
+          };
+          start();
+        }
+
+        (async () => {
+          try {
+            const me = await api("/api/admin/me");
+            showDash(me.email || "token session");
+          } catch (_) {
+            showSignin();
+            initGoogle().catch((error) => { $("signin-status").textContent = "Could not load sign in: " + error.message; });
+          }
+        })();
+      })();
+    </script>
+  </body>
+</html>

@@ -5,6 +5,7 @@ Community site for sharing free Muse invite codes. Live at https://builtwithmuse
 ## Structure
 
 - `public/index.html`: the whole site, one static page.
+- `public/admin.html`: the moderator page, served at `/admin`.
 - `api/index.js` and `lib/api.js`: the API, a Vercel serverless function backed by Postgres on Supabase. Every `/api/*` path is rewritten to it (see `vercel.json`).
 - `server.js`: local development server that serves `public/` and the same API code. Not used in production.
 
@@ -28,6 +29,8 @@ Environment variables on Vercel (production and preview):
 - `SUPABASE_DB_URL`: transaction pooler connection string (port 6543).
 - `DEVICE_SECRET`: signs the device cookie. Changing it logs every browser out of its device identity.
 - `ADMIN_TOKEN`: bearer token for the admin endpoints.
+- `GOOGLE_CLIENT_ID`: OAuth client for moderator sign in.
+- `ADMIN_EMAILS` (optional): comma separated moderator emails; see Moderation.
 
 ## How codes are handed out
 
@@ -43,14 +46,26 @@ Environment variables on Vercel (production and preview):
 - Limits are kept in the database, per device and per IP: claims 3 per hour and 6 per day per device, 8 per hour and 20 per day per IP; submissions and waitlist joins 5 per hour and 20 per day per IP. Vercel sets the client IP headers itself, so they cannot be spoofed.
 - Obvious non-browser user agents are refused. Both forms carry a honeypot field. Codes are never present in the HTML.
 
-## Admin
+## Moderation
 
-All admin calls need `Authorization: Bearer <ADMIN_TOKEN>`.
+https://builtwithmuse.com/admin is the moderator page: Google sign in only, for the emails in `ADMIN_EMAILS` (default: pranavmore.psm, polostudio.brand and jayeshmarathe2000jm at gmail.com). It shows live counts and activity, every code with its state, claims, reports and the waitlist, and can add, retire, restore or delete codes and remove waitlist entries.
+
+Sign in uses the Google Cloud project `built-with-muse` (owned by polostudio.brand@gmail.com), OAuth client "builtwithmuse admin", client id in `GOOGLE_CLIENT_ID` on Vercel. The consent screen is in testing mode, so only its listed test users can sign in at all; add a new moderator both there (Google Auth Platform, Audience) and in `ADMIN_EMAILS`. Sessions are a signed cookie valid for seven days.
+
+## Admin API
+
+Scripts use `Authorization: Bearer <ADMIN_TOKEN>`; the moderator page uses its session cookie.
 
 ```
 GET    /api/admin/export.csv?table=codes|claims|waitlist|reports
 POST   /api/admin/codes            {"codes": ["ABC123", "..."], "source": "admin"}
 POST   /api/admin/codes/retire     {"code": "ABC123"}
+POST   /api/admin/codes/restore    {"code": "ABC123"}
+GET    /api/admin/overview
+GET    /api/admin/codes?status=all|available|used|retired&q=
+GET    /api/admin/claims
+GET    /api/admin/reports
+GET    /api/admin/waitlist
 DELETE /api/admin/codes/:id
 DELETE /api/admin/waitlist/:id
 GET    /api/admin/whoami

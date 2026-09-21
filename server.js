@@ -15,7 +15,7 @@ const ROOT = path.join(__dirname, "public");
 const TYPES = { ".html": "text/html; charset=utf-8", ".txt": "text/plain; charset=utf-8", ".xml": "application/xml", ".png": "image/png", ".svg": "image/svg+xml", ".ico": "image/x-icon", ".webmanifest": "application/manifest+json" };
 
 function serveStatic(req, res, url) {
-  const file = url.pathname === "/" ? "/index.html" : decodeURIComponent(url.pathname);
+  const file = url.pathname === "/" ? "/index.html" : url.pathname === "/admin" ? "/admin.html" : decodeURIComponent(url.pathname);
   if (file.includes("..")) { res.writeHead(404); return res.end("Not found"); }
   const full = path.join(ROOT, file);
   fs.stat(full, (err, stat) => {

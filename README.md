@@ -20,7 +20,7 @@ Vercel project `builtwithmuse` (personal account of pranavmore.psm@gmail.com) au
 
 Domains:
 - builtwithmuse.com (primary). Registered at GoDaddy, nameservers point at Vercel (ns1 and ns2.vercel-dns.com), so DNS records live in the Vercel project. www redirects to the apex with a 308.
-- getmusecode.com (301 forwards to builtwithmuse.com, including www). Forwarding is done by GoDaddy and does not involve Vercel.
+- getmusecode.com and www.getmusecode.com are domains of the same Vercel project. GoDaddy keeps the nameservers and holds two A records (@ and www) pointing at Vercel's 76.76.21.21. The redirect itself is the host scoped rule in `vercel.json`: every path on either host answers a 301 to https://builtwithmuse.com/ and keeps the query string, so deep links and UTM links land on the invite code page. The old GoDaddy forwarding was removed on 2026-09-21 because it only handled the bare root, dropped query strings and answered HEAD with a 405.
 
 Moved off Netlify on 2026-09-21; the old Netlify site is deleted and its DNS zone can go after 2026-09-23.
 
@@ -121,5 +121,5 @@ Then open http://localhost:3000.
 - GitHub: pranav-more (jayeshmark has write access; the original repo under jayeshmark is no longer deployed)
 - Vercel: pranavmore.psm@gmail.com, project `builtwithmuse`
 - Supabase: jayeshmarathe2000jm@gmail.com, organization "Built with muse"
-- GoDaddy: domain registration for both domains and the getmusecode.com forwarding (jayeshmarathe2000jm@gmail.com)
+- GoDaddy: domain registration for both domains and the getmusecode.com A records (jayeshmarathe2000jm@gmail.com)
 - Google, polostudio.brand@gmail.com: Analytics, Search Console, Microsoft Clarity

@@ -14,7 +14,7 @@ Community site for sharing free Muse invite codes. Live at https://builtwithmuse
 
 No build step.
 
-Trust pages: `public/about.html` (/about: community pool, not Meta, who runs it) and `public/privacy.html` (/privacy: what is stored and why). Every page carries "Independent community project. Not affiliated with Meta." under the logo and About, Privacy and Contact (mailto polostudio.brand@gmail.com) links in the footer. The Workflows view on the home page links to the two live use cases and out to usesundog.com/muse rather than hosting a workflow library.
+Trust pages: `public/about.html` (/about: community pool, not Meta, who runs it) and `public/privacy.html` (/privacy: what is stored and why). Every page carries the "Independent community project. Not affiliated with or endorsed by Meta." pill at the bottom of the footer (Pranav rejected having it under the logo) and About, Privacy and Contact (mailto polostudio.brand@gmail.com) links in the footer. The Workflows view on the home page links to the two live use cases and out to usesundog.com/muse rather than hosting a workflow library.
 
 ## Deploy
 

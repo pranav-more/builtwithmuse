@@ -6,6 +6,7 @@ Community site for sharing free Muse invite codes. Live at https://builtwithmuse
 
 - `public/index.html`: the whole site, one static page.
 - `public/admin.html`: the moderator page, served at `/admin`.
+- `public/blog/`: the blog. `index.html` lists posts; each post is its own file, served without the `.html` (Vercel `cleanUrls`). Add a post by copying an existing one and adding a card to the index.
 - `api/index.js` and `lib/api.js`: the API, a Vercel serverless function backed by Postgres on Supabase. Every `/api/*` path is rewritten to it (see `vercel.json`).
 - `server.js`: local development server that serves `public/` and the same API code. Not used in production.
 

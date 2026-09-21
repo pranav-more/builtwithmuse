@@ -126,6 +126,15 @@
         background: var(--surface-2);
         color: var(--ink);
       }
+      .nav a {
+        display: inline-block;
+        border-radius: 10px;
+        padding: 9px 14px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+      }
 
       .view { display: none; }
       .view.active { display: block; }
@@ -513,6 +522,7 @@
           <button type="button" data-view="share" aria-selected="false">Share yours</button>
           <button type="button" data-view="workflows" aria-selected="false">Workflows</button>
           <button type="button" data-view="waitlist" aria-selected="false">Waitlist</button>
+          <a href="/blog">Blog</a>
         </nav>
       </header>
 

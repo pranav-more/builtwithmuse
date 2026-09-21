@@ -347,7 +347,7 @@
             <td><code>${esc(c.code)}</code></td>
             <td>${codeState(c)}</td>
             <td>${esc(c.claims)} of ${esc(c.max_claims)}</td>
-            <td>${c.reports ? `<span class="pill flag">${esc(c.reports)}</span>` : "0"}</td>
+            <td>${c.reports ? `<span class="pill flag">${esc(c.reports)}</span>` : "0"}${c.redeemed ? ` <span class="pill ok" title="Confirmed working by ${esc(c.redeemed)}">Verified</span>` : ""}</td>
             <td class="muted">${esc(c.source)}</td>
             <td>${esc(place(c))}</td>
             <td class="muted">${c.invite_link ? `<a href="${esc(c.invite_link)}" target="_blank" rel="noopener noreferrer">${esc(c.invite_link.replace(/^https?:\/\//, "").slice(0, 36))}</a>` : ""}</td>

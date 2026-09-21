@@ -444,6 +444,36 @@
       }
       .case-note svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--teal); }
 
+      .pool { margin-top: 72px; }
+      .pool-head { max-width: 640px; }
+      .pool-head h2 { margin: 0 0 12px; font-size: clamp(30px, 4.6vw, 46px); line-height: 1.06; }
+      .pool-head p { color: var(--muted); font-size: 17px; line-height: 1.55; margin: 0 0 22px; }
+      .pool-summary { font-size: 15px; font-weight: 600; margin-top: 18px; }
+      .pool-title { margin: 44px 0 6px; font-size: 24px; }
+      .pool-note { color: var(--muted); margin: 0 0 18px; }
+      .pool-list { border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: var(--shadow); overflow: hidden; }
+      .pool-row { display: grid; grid-template-columns: 96px 1fr auto; align-items: center; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+      .pool-row:last-child { border-bottom: 0; }
+      .pool-code { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.12em; }
+      .pool-slots { display: flex; flex-wrap: wrap; gap: 6px; }
+      .pool-slots i { display: block; width: 34px; height: 16px; border-radius: 5px; background: var(--surface-2); }
+      .pool-slots i.open { background: var(--teal); }
+      .pool-slots i.pulled { background: transparent; border: 1.5px solid var(--danger); }
+      .pool-tags { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+      .pool-tag { border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 700; background: var(--surface-2); color: var(--ink); white-space: nowrap; }
+      .pool-tag.open { background: var(--teal-soft); color: var(--teal); }
+      .pool-tag.pulled { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger); }
+      .pool-empty { padding: 26px 22px; color: var(--muted); }
+      .pool-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; color: var(--muted); font-size: 14px; font-weight: 600; }
+      .pool-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; background: var(--surface-2); margin-right: 8px; vertical-align: -1px; }
+      .pool-legend i.open { background: var(--teal); }
+      .pool-legend i.pulled { background: transparent; border: 1.5px solid var(--danger); }
+      @media (max-width: 640px) {
+        .pool { margin-top: 52px; }
+        .pool-row { grid-template-columns: 1fr; gap: 10px; padding: 16px 18px; }
+        .pool-tags { justify-content: flex-start; }
+      }
+
       .preview-strip {
         width: max-content;
         max-width: calc(100% - 24px);
@@ -561,6 +591,22 @@
               </div>
             </div>
           </div>
+
+          <section class="pool" id="pool-section" aria-labelledby="pool-heading">
+            <div class="pool-head">
+              <h2 id="pool-heading">Invite codes with room left</h2>
+              <p>Claim a code, join Muse within 48 hours, then tell us whether it worked. Full or broken codes leave the pool on their own.</p>
+              <button class="button" type="button" id="get-code-2">
+                Get a code
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p class="pool-summary" id="pool-summary">Checking the pool.</p>
+            </div>
+            <h3 class="pool-title">The pool right now</h3>
+            <p class="pool-note">Codes stay hidden until you claim one, so scrapers cannot grab the slots.</p>
+            <div class="pool-list" id="pool-list" aria-live="polite"></div>
+            <div class="pool-legend"><span><i class="open"></i>Open</span><span><i class="used"></i>Used</span><span><i class="pulled"></i>Pulled</span></div>
+          </section>
         </section>
 
         <section class="view" id="view-claim">
@@ -608,9 +654,9 @@
                   <small>Check every letter and number before adding it.</small>
                 </div>
                 <div class="field">
-                  <label for="invite-link">Your invite link</label>
-                  <input id="invite-link" name="invite-link" type="url" required inputmode="url" autocomplete="url" placeholder="https://…" />
-                  <small>We verify every link to help keep fake codes out.</small>
+                  <label for="invite-link">Your invite link (optional)</label>
+                  <input id="invite-link" name="invite-link" type="url" inputmode="url" autocomplete="url" placeholder="https://…" />
+                  <small>Adding the link helps us keep fake codes out, but the code alone is fine.</small>
                   <div class="error" id="share-error" aria-live="polite"></div>
                 </div>
                 <button class="button full" id="share-submit" type="submit">Add my code</button>
@@ -800,6 +846,7 @@
             setCode(result.code);
             status.textContent = statusText;
             startTimer();
+            loadPool();
           } catch (error) {
             setCode("");
             status.textContent = claimMessage(error.code);
@@ -813,14 +860,39 @@
 
         assertDashFreeVisibleCopy();
 
+        async function loadPool() {
+          const summary = document.getElementById("pool-summary");
+          const list = document.getElementById("pool-list");
+          try {
+            const response = await fetch(API + "/api/pool", { credentials: "same-origin" });
+            const data = await response.json();
+            if (!data.ok) throw new Error("pool");
+            summary.textContent = data.openSlots
+              ? `${data.openSlots} open ${data.openSlots === 1 ? "slot" : "slots"} across ${data.openCodes} ${data.openCodes === 1 ? "code" : "codes"}. You hold one code at a time.`
+              : "The pool is empty right now. Add your code or join the waitlist.";
+            list.innerHTML = data.rows.length ? data.rows.map((row) => {
+              const slots = Array.from({ length: row.seats }, (_, i) => `<i class="${row.state === "pulled" ? "pulled" : i < row.used ? "used" : "open"}"></i>`).join("");
+              const left = row.seats - row.used;
+              const tag = row.state === "pulled" ? '<span class="pool-tag pulled">Pulled</span>'
+                : row.state === "full" ? '<span class="pool-tag">Full</span>'
+                : `<span class="pool-tag open">${left} open</span>`;
+              const verified = row.verified ? '<span class="pool-tag">Verified</span>' : "";
+              return `<div class="pool-row"><code class="pool-code">${row.label}</code><div class="pool-slots">${slots}</div><div class="pool-tags">${verified}${tag}</div></div>`;
+            }).join("") : '<div class="pool-empty">No codes in the pool yet. Be the first to add one.</div>';
+          } catch (_) {
+            summary.textContent = "The pool is taking a moment to load.";
+          }
+        }
+        loadPool();
+
         document.querySelectorAll("[data-view]").forEach((button) => {
           button.addEventListener("click", () => showView(button.dataset.view));
         });
 
-        document.getElementById("get-code").addEventListener("click", () => {
+        document.querySelectorAll("#get-code, #get-code-2").forEach((button) => button.addEventListener("click", () => {
           showView("claim");
           showNextCode();
-        });
+        }));
 
         document.getElementById("copy-code").addEventListener("click", async () => {
           const code = currentCode;
@@ -849,6 +921,7 @@
         });
 
         document.getElementById("redeemed").addEventListener("click", () => {
+          if (currentCode) api("/api/redeemed", { code: currentCode }).catch(() => {});
           showView("share");
           setTimeout(() => document.getElementById("share-code").focus(), 250);
         });
@@ -869,8 +942,8 @@
             input.focus();
             return;
           }
-          if (!inviteLink.validity.valid || !/^https?:\/\//i.test(link)) {
-            error.textContent = "Enter the full invite link, starting with http:// or https://.";
+          if (link && (!inviteLink.validity.valid || !/^https?:\/\//i.test(link))) {
+            error.textContent = "Enter the full invite link, starting with http:// or https://, or leave it empty.";
             inviteLink.focus();
             return;
           }

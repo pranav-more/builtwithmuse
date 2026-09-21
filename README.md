@@ -40,6 +40,9 @@ Environment variables on Vercel (production and preview):
 - A device that reloads within 15 minutes gets the same code back rather than a new one. "Try another code" and "This code didn't work" ask for a fresh one; a device never gets the same code twice.
 - "Not working" flags the code (visible as Flagged in the dashboard) and hands the visitor the latest available code; two flags from different people retire the code.
 - When the pool is empty the page says so and points to sharing and the waitlist.
+- "I redeemed it" records a confirmation from the holder; such codes show as Verified on the home page pool and in the dashboard.
+- The home page shows the pool itself through `GET /api/pool`: masked codes (first letter only), seat squares, open counts, Full and Pulled states. Never a code.
+- The invite link on the share form is optional; the code alone is accepted.
 
 ## Scraper controls
 
@@ -88,6 +91,10 @@ DATABASE_URL=postgres://localhost/builtwithmuse_dev DEVICE_SECRET=dev ADMIN_TOKE
 ```
 
 Then open http://localhost:3000.
+
+## Search
+
+`public/sitemap.xml` lists the home page and the blog; `public/robots.txt` points at it and blocks `/api/`. The moderator page relies on its `noindex` meta tag. Add new blog posts to the sitemap.
 
 ## Analytics
 

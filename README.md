@@ -14,6 +14,8 @@ Community site for sharing free Muse invite codes. Live at https://builtwithmuse
 
 No build step.
 
+Trust pages: `public/about.html` (/about: community pool, not Meta, who runs it) and `public/privacy.html` (/privacy: what is stored and why). Every page carries "Independent community project. Not affiliated with Meta." under the logo and About, Privacy and Contact (mailto polostudio.brand@gmail.com) links in the footer. The Workflows view on the home page links to the two live use cases and out to usesundog.com/muse rather than hosting a workflow library.
+
 ## Deploy
 
 Vercel project `builtwithmuse` (personal account of pranavmore.psm@gmail.com) auto deploys the `main` branch of github.com/pranav-more/builtwithmuse. Every push to `main` goes live. Functions run in `sfo1`, next to the database.
@@ -39,12 +41,13 @@ Environment variables on Vercel (production and preview):
 
 - A visitor clicks "Get a code". The page calls `POST /api/claim`, which picks the newest available code and increments its counter in one statement (`FOR UPDATE SKIP LOCKED`), so concurrent visitors never receive the same code past its limit.
 - Each code is handed to at most two people, then the next one is used. Newest submissions go first.
-- A device that reloads within 15 minutes gets the same code back rather than a new one. "Try another code" and "This code didn't work" ask for a fresh one; a device never gets the same code twice.
-- "Not working" flags the code (visible as Flagged in the dashboard) and hands the visitor the latest available code; two flags from different people retire the code.
+- One code per person: a device keeps the code it was given (`CLAIM_REUSE_MINUTES`, default 30 days). Reloading or pressing "Get a code" again returns the same code, and if the holder already pressed "I redeemed it" the page restores the success state. There is no countdown and no "codes go fast" copy; the claim card says the code is theirs until they flag it.
+- "Not working" is the only way to get a different code. It flags the current one (visible as Flagged in the dashboard), shows a "Flagged" panel, and hands out the newest code with room left; a device never gets the same code twice, and two flags from different people retire a code. The per device claim limits (3 an hour, 6 a day) cap how much churn one person can cause.
+- "I redeemed it" records a confirmation, marks the code Verified in the pool and the dashboard, and switches the card to a success state with one "Try this first" button (the recipe reel use case) and an "Add your invite" button.
 - When the pool is empty the page says so and points to sharing and the waitlist.
-- After a visitor copies a code or presses any button on the code screen (or after 30 quiet seconds), a "Pay it forward" modal asks for their own invite code, with a form that posts to the same endpoint as the share page. It appears once per browser session.
-- "I redeemed it" records a confirmation from the holder; such codes show as Verified on the home page pool and in the dashboard.
-- The home page shows the pool itself through `GET /api/pool`: masked codes (first letter only), seat squares, open counts, Full and Pulled states. Never a code.
+- After a visitor copies a code or presses a button on the code screen (or after 30 quiet seconds), a "Pay it forward" modal asks for their own invite code, with a form that posts to the same endpoint as the share page. It appears once per browser session.
+- The home page shows the pool itself through `GET /api/pool`: masked codes (first letter only), seat squares, Full and Broken states, and three health counts (codes open, used up, broken). Never a code.
+- The referral mechanic is stated once, in plain words, on the share view and in the modal: when someone joins with your invite and redeems it in Settings within 48 hours, Muse credits tokens to both people, amount set by Muse (source: Muse's announcement on X, linked from the page). No token amount is ever quoted.
 - The invite link on the share form is optional; the code alone is accepted.
 
 ## Scraper controls

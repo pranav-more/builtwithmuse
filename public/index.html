@@ -83,6 +83,7 @@
         .topbar.scrolled { background: rgba(26,86,255,.28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
       }
       .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+      .brand small { display: block; margin-top: 5px; max-width: 250px; font: 600 11px/1.3 "IBM Plex Sans", system-ui, sans-serif; letter-spacing: 0; text-transform: none; color: var(--muted-2); white-space: normal; }
       .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
       .nav::-webkit-scrollbar { display: none; }
       .nav button, .nav a {
@@ -147,6 +148,12 @@
       .pool-head h2 { margin: 0 0 12px; font-size: clamp(30px, 4.6vw, 52px); line-height: 1; font-weight: 900; text-transform: uppercase; }
       .pool-head p { color: var(--muted); font-size: 17px; line-height: 1.55; margin: 0 0 22px; }
       .pool-summary { font-size: 15px; font-weight: 700; margin-top: 18px; }
+      .pool-health { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 14px; color: var(--muted); font-size: 14px; font-weight: 600; }
+      .pool-health span { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--line-soft); border-radius: 999px; background: rgba(255,255,255,.06); }
+      .pool-health b { color: var(--ink); font-variant-numeric: tabular-nums; }
+      .pool-health i { width: 10px; height: 10px; border-radius: 50%; background: var(--muted-2); }
+      .pool-health i.open { background: var(--mint); }
+      .pool-health i.broken { background: #ff8f8f; }
       .pool-title { margin: 44px 0 6px; font-size: 22px; font-weight: 700; }
       .pool-note { color: var(--muted); margin: 0 0 18px; }
       .pool-list { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(6,16,48,.55); overflow: hidden; }
@@ -172,9 +179,8 @@
       .section-head p { color: var(--muted); font-size: 17px; line-height: 1.55; margin: 0; }
 
       .workflow-card { max-width: 720px; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
-      .timer-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--line-soft); margin-bottom: 20px; }
-      .timer-label { color: var(--muted); font-size: 14px; }
-      .timer { color: var(--mint); font: 800 20px "JetBrains Mono", monospace; font-variant-numeric: tabular-nums; }
+      .hold-row { display: flex; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid var(--line-soft); margin-bottom: 20px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+      .hold-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px rgba(125,255,198,.2); flex: 0 0 auto; }
       .assigned-code { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.06); }
       .assigned-code code { font: 700 clamp(26px, 5vw, 38px)/1 "JetBrains Mono", monospace; letter-spacing: 0.16em; overflow-wrap: anywhere; }
       .icon-button { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--blue-deep); }
@@ -186,6 +192,13 @@
       .card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
       .issue-panel { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 8px; background: rgba(255,143,143,.14); border: 1px solid rgba(255,143,143,.4); color: var(--ink); font-size: 14px; line-height: 1.5; }
       .issue-panel.visible { display: block; }
+      .action-status { min-height: 0; margin-top: 10px; color: var(--muted); font-size: 14px; font-weight: 600; }
+      .action-status:empty { display: none; }
+      .success-panel { display: none; margin-top: 16px; padding: 16px 18px; border-radius: 8px; background: rgba(125,255,198,.12); border: 1px solid rgba(125,255,198,.45); }
+      .success-panel.visible { display: block; }
+      .success-panel strong { display: block; color: var(--ink); line-height: 1.4; }
+      .success-panel p { margin: 6px 0 14px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+      .success-panel a.button { text-decoration: none; }
 
       .form-stack { display: grid; gap: 18px; }
       .field { display: grid; gap: 8px; }
@@ -210,6 +223,11 @@
       .case-study p { color: var(--paper-muted); line-height: 1.55; margin: 0 0 18px; }
       .case-note { display: flex; align-items: center; gap: 10px; padding-top: 16px; border-top: 1px solid var(--paper-line); color: var(--paper-muted); font-size: 14px; }
       .case-note svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--blue); }
+      .case-list { display: grid; gap: 18px; }
+      .case-link { display: inline-flex; align-items: center; gap: 8px; padding: 11px 16px; border-radius: 8px; background: var(--blue); color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; }
+      .case-link:hover { background: var(--blue-deep); }
+      .case-link.quiet { background: transparent; color: var(--blue-deep); border: 1px solid var(--paper-line); }
+      .case-link.quiet:hover { background: #eaf0ff; }
       .use-cases-link { margin-top: 18px; }
       .benefits { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; color: var(--muted); }
       .benefits li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
@@ -241,7 +259,6 @@
       .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
       .footer-links a:hover { color: var(--ink); }
       @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .button.discord { width: 100%; } }
-      .preview-strip { width: max-content; max-width: calc(100% - 24px); margin: 40px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: rgba(6,16,48,.6); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
 
       @media (max-width: 900px) {
         .hero, .workflows-layout, .waitlist-layout { grid-template-columns: 1fr; gap: 28px; }
@@ -257,8 +274,6 @@
         .pool { padding-top: 32px; }
         .pool-row { grid-template-columns: 1fr; gap: 10px; padding: 14px 16px; }
         .pool-tags { justify-content: flex-start; }
-        .timer-row { flex-direction: column; align-items: flex-start; gap: 6px; }
-        .preview-strip { white-space: normal; }
       }
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button { transition: none; } }
       .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.08); padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
@@ -292,7 +307,7 @@
   <body>
     <div class="shell">
       <header class="topbar">
-        <a class="brand" href="/">Built with Muse</a>
+        <a class="brand" href="/">Built with Muse<small>Independent community project. Not affiliated with Meta.</small></a>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
         <nav class="nav" id="site-nav" aria-label="Page sections">
           <button type="button" data-view="home" aria-selected="true">Get a code</button>
@@ -310,7 +325,7 @@
             <div>
               <div class="eyebrow">Community powered access</div>
               <h1>Get a free Muse invite code.</h1>
-              <p class="lead">Take one from the pool. Share yours. Everyone earns.</p>
+              <p class="lead">Take one from the pool. Once you are in, add your own invite: when someone redeems it, Muse credits tokens to both of you.</p>
               <div class="actions">
                 <button class="button" type="button" id="get-code">
                   Get a code
@@ -343,9 +358,10 @@
               <p class="pool-summary" id="pool-summary">Checking the pool.</p>
             </div>
             <h3 class="pool-title">The pool right now</h3>
+            <div class="pool-health" id="pool-health" aria-live="polite"><span><i class="open"></i><b id="health-open">0</b> open</span><span><i class="used"></i><b id="health-used">0</b> used</span><span><i class="broken"></i><b id="health-broken">0</b> broken</span></div>
             <p class="pool-note">Codes stay hidden until you claim one, so scrapers cannot grab the slots.</p>
             <div class="pool-list" id="pool-list" aria-live="polite"></div>
-            <div class="pool-legend"><span><i class="open"></i>Open</span><span><i></i>Used</span><span><i class="pulled"></i>Pulled</span></div>
+            <div class="pool-legend"><span><i class="open"></i>Open</span><span><i></i>Used</span><span><i class="pulled"></i>Broken</span></div>
           </section>
         </section>
 
@@ -353,10 +369,10 @@
           <div class="section-head">
             <div class="eyebrow">Your code is ready</div>
             <h2>Here’s your code.</h2>
-            <p>Copy it, then open Muse → Settings → Redeem token. You have 48 hours from joining to redeem.</p>
+            <p>Copy it, then open Muse → Settings → Redeem token. Muse gives you 48 hours after joining to redeem it.</p>
           </div>
           <div class="workflow-card">
-            <div class="timer-row"><span class="timer-label">Codes go fast. Redeem yours in the next 15 minutes.</span><span class="timer" id="timer">15:00</span></div>
+            <div class="hold-row"><span class="hold-dot" aria-hidden="true"></span><span class="hold-label">This code is yours. Reload any time and the same one comes back. It stays with you until you tell us it failed.</span></div>
             <div class="assigned-code">
               <code id="assigned-code">......</code>
               <button class="icon-button" id="copy-code" type="button" aria-label="Copy referral code">
@@ -365,24 +381,32 @@
             </div>
             <div class="copy-status" id="copy-status" aria-live="polite"></div>
             <ol class="instructions">
-              <li>Open Muse and go to <strong>Settings</strong>.</li>
-              <li>Find <strong>Redeem invite code</strong> and paste the code.</li>
-              <li>Return here and add your own invite for the next person.</li>
+              <li><strong>Copy</strong> the code above.</li>
+              <li>Open Muse, go to <strong>Settings</strong>, then <strong>Redeem token</strong>, and paste it.</li>
+              <li><strong>Come back</strong>, press I redeemed it, and add your own invite for the next person.</li>
             </ol>
             <div class="card-actions">
               <button class="button" type="button" id="redeemed">I redeemed it</button>
-              <button class="button ghost" type="button" id="another-code">Try another code</button>
               <button class="button ghost" type="button" id="report-issue">Not working</button>
             </div>
-            <div class="issue-panel" id="issue-panel" aria-live="polite"><strong>Thanks for flagging it.</strong> That code is marked as not working. Here is the latest available code from the pool.</div>
+            <div class="action-status" id="action-status" aria-live="polite"></div>
+            <div class="issue-panel" id="issue-panel" aria-live="polite"><strong>Flagged.</strong> That code is now marked as not working. One more flag from anyone and it leaves the pool. The newest code with room left is above.</div>
+            <div class="success-panel" id="success-panel" aria-live="polite">
+              <strong>You are in. This code now shows as verified for the next person.</strong>
+              <p>Do one real thing with Muse before you close the tab, then add your own invite so the pool keeps moving.</p>
+              <div class="card-actions">
+                <a class="button" href="/use-cases/recipe-reel-to-groceries">Try this first: recipe reel to grocery list</a>
+                <button class="button ghost" type="button" id="success-share">Add your invite</button>
+              </div>
+            </div>
           </div>
         </section>
 
         <section class="view" id="view-share">
           <div class="section-head">
-            <div class="eyebrow">Earn when others join</div>
-            <h2>Share your invite. Earn tokens.</h2>
-            <p>Every time someone uses your code, you earn. Add yours to the pool and let strangers do the work.</p>
+            <div class="eyebrow">Pay it forward</div>
+            <h2>Add your invite to the pool.</h2>
+            <p>Here is the actual mechanic: when someone joins Muse with your invite and redeems it in Settings within 48 hours of joining, Muse credits tokens to both of you, inside the app. The amount is set by Muse and changes, so we do not quote one. Source: <a href="https://x.com/Muse/status/2100268557229531376" target="_blank" rel="noopener noreferrer">Muse's own announcement</a>.</p>
           </div>
           <div class="workflow-card">
             <form id="share-form" novalidate>
@@ -410,20 +434,30 @@
         <section class="view" id="view-workflows">
           <div class="workflows-layout">
             <div>
-              <div class="eyebrow">Useful, not advertorial</div>
-              <h2>What people build with Muse.</h2>
-              <p class="lead">Practical workflows that pair Muse with the tools needed to finish the job. Partner features will always be clearly labeled.</p>
+              <div class="eyebrow">After you are in</div>
+              <h2>Need a code? Stay here. Have access? Go build.</h2>
+              <p class="lead">This site does one job: get you a working invite. Once you are in, these are the places to spend your first hour. The workflow library itself lives on Sundog, and we link out rather than copy it.</p>
             </div>
-            <article class="case-study">
-              <span class="case-tag">Partner workflow concept</span>
-              <h3>Muse makes the calls. ElevenLabs gives it a voice.</h3>
-              <p>A practical guide to pairing Muse with an ElevenLabs voice agent for appointment reminders, from setup to the finished workflow.</p>
-              <div class="case-note">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5 9 16l10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Planned for phase two. No partnership is implied.
-              </div>
-            </article>
-            <a class="button secondary use-cases-link" href="/use-cases">See all use cases</a>
+            <div class="case-list">
+              <article class="case-study">
+                <span class="case-tag">Live use case</span>
+                <h3>Turn an Instagram recipe reel into a grocery list.</h3>
+                <p>Save a reel, and Muse turns it into a grocery list, skips what you already own, and can order the rest for delivery. The strongest first win we know of.</p>
+                <a class="case-link" href="/use-cases/recipe-reel-to-groceries">Open the workflow</a>
+              </article>
+              <article class="case-study">
+                <span class="case-tag">Live use case</span>
+                <h3>Plan a dinner party in one conversation.</h3>
+                <p>Muse plans the menu around everyone's dietary restrictions, builds the shopping list and prep timeline, and drafts the invites.</p>
+                <a class="case-link" href="/use-cases/dinner-party-planner">Open the workflow</a>
+              </article>
+              <article class="case-study">
+                <span class="case-tag">Workflow community</span>
+                <h3>Everything else people build with Muse.</h3>
+                <p>Sundog collects guides by task, country pages and hundreds of community workflows for Muse. Have access? That is where to go next.</p>
+                <a class="case-link quiet" href="https://usesundog.com/muse" target="_blank" rel="noopener noreferrer">Browse workflows on Sundog</a>
+              </article>
+            </div>
           </div>
         </section>
 
@@ -492,7 +526,7 @@
           </button>
           <div class="eyebrow">Pay it forward</div>
           <h2 id="nudge-title">Got your code? Add yours next.</h2>
-          <p>When you join Muse you get an invite code of your own, and every person who uses it earns you more tokens. Drop it here and the pool keeps flowing for the next person.</p>
+          <p>Once you are in, Muse gives you an invite code of your own. When someone joins with it and redeems it within 48 hours, Muse credits tokens to both of you. Drop it here and the pool keeps flowing for the next person.</p>
           <form id="nudge-form" novalidate>
             <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="form-stack">
@@ -534,10 +568,12 @@
           <a href="/">Get a code</a>
           <a href="/use-cases">Use cases</a>
           <a href="/blog">Blog</a>
+          <a href="/about">About</a>
+          <a href="/privacy">Privacy</a>
+          <a href="mailto:polostudio.brand@gmail.com">Contact</a>
           <a href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">Discord</a>
         </nav>
       </div>
-      <div class="preview-strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
     </footer>
     </div>
 
@@ -546,8 +582,6 @@
         const API = "";
         const views = ["home", "claim", "share", "workflows", "waitlist"];
         const navButtons = [...document.querySelectorAll(".nav [data-view]")];
-        let timerId = null;
-        let remaining = 15 * 60;
         let currentCode = "";
         const forbiddenDash = /[\u002D\u058A\u05BE\u1400\u1806\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2E17\u2E1A\u2E3A\u2E3B\u2E40\u2E5D\u301C\u3030\u30A0\uFE31\uFE32\uFE58\uFE63\uFF0D]/;
 
@@ -570,23 +604,6 @@
           views.forEach((view) => document.getElementById(`view-${view}`).classList.toggle("active", view === name));
           navButtons.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.view === name || (name === "claim" && button.dataset.view === "home"))));
           window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-
-        function renderTimer() {
-          const minutes = Math.floor(remaining / 60).toString().padStart(2, "0");
-          const seconds = (remaining % 60).toString().padStart(2, "0");
-          document.getElementById("timer").textContent = `${minutes}:${seconds}`;
-        }
-
-        function startTimer() {
-          clearInterval(timerId);
-          remaining = 15 * 60;
-          renderTimer();
-          timerId = setInterval(() => {
-            if (remaining > 0) remaining -= 1;
-            renderTimer();
-            if (remaining === 0) clearInterval(timerId);
-          }, 1000);
         }
 
         async function api(path, payload) {
@@ -633,20 +650,39 @@
           }
         }
 
+        function resetActions() {
+          const redeemedButton = document.getElementById("redeemed");
+          redeemedButton.disabled = false;
+          redeemedButton.textContent = "I redeemed it";
+          document.getElementById("report-issue").hidden = false;
+          document.getElementById("success-panel").classList.remove("visible");
+          document.getElementById("issue-panel").classList.remove("visible");
+          document.getElementById("action-status").textContent = "";
+        }
+
+        function showSuccess() {
+          const redeemedButton = document.getElementById("redeemed");
+          redeemedButton.disabled = true;
+          redeemedButton.textContent = "Redeemed";
+          document.getElementById("report-issue").hidden = true;
+          document.getElementById("issue-panel").classList.remove("visible");
+          document.getElementById("success-panel").classList.add("visible");
+        }
+
         async function showNextCode(statusText = "", fresh = false) {
           const status = document.getElementById("copy-status");
           status.textContent = "Finding a code for you...";
+          resetActions();
           try {
             const result = await claim(fresh);
             setCode(result.code);
-            status.textContent = statusText;
-            startTimer();
+            status.textContent = result.redeemed ? "You already redeemed this one. It stays yours." : statusText;
+            if (result.redeemed) showSuccess();
             loadPool();
             armNudge();
           } catch (error) {
             setCode("");
             status.textContent = claimMessage(error.code);
-            clearInterval(timerId);
           }
         }
 
@@ -663,13 +699,16 @@
             const response = await fetch(API + "/api/pool", { credentials: "same-origin" });
             const data = await response.json();
             if (!data.ok) throw new Error("pool");
+            document.getElementById("health-open").textContent = data.openCodes;
+            document.getElementById("health-used").textContent = data.usedCodes || 0;
+            document.getElementById("health-broken").textContent = data.brokenCodes || 0;
             summary.textContent = data.openSlots
-              ? `${data.openSlots} open ${data.openSlots === 1 ? "slot" : "slots"} across ${data.openCodes} ${data.openCodes === 1 ? "code" : "codes"}. You hold one code at a time.`
+              ? `${data.openSlots} open ${data.openSlots === 1 ? "slot" : "slots"} across ${data.openCodes} ${data.openCodes === 1 ? "code" : "codes"}. One code per person. Yours stays yours until you flag it as not working.`
               : "The pool is empty right now. Add your code or join the waitlist.";
             list.innerHTML = data.rows.length ? data.rows.map((row) => {
               const slots = Array.from({ length: row.seats }, (_, i) => `<i class="${row.state === "pulled" ? "pulled" : i < row.used ? "used" : "open"}"></i>`).join("");
               const left = row.seats - row.used;
-              const tag = row.state === "pulled" ? '<span class="pool-tag pulled">Pulled</span>'
+              const tag = row.state === "pulled" ? '<span class="pool-tag pulled">Broken</span>'
                 : row.state === "full" ? '<span class="pool-tag">Full</span>'
                 : `<span class="pool-tag open">${left} open</span>`;
               const verified = row.verified ? '<span class="pool-tag">Verified</span>' : "";
@@ -761,25 +800,34 @@
           setTimeout(openNudge, 900);
         });
 
-        document.getElementById("another-code").addEventListener("click", async () => {
-          document.getElementById("issue-panel").classList.remove("visible");
-          await showNextCode("Here’s another code from the pool", true);
-          setTimeout(openNudge, 600);
-        });
-
         document.getElementById("report-issue").addEventListener("click", async () => {
           const reported = currentCode;
-          if (reported) {
-            try { await api("/api/report", { code: reported }); } catch (_) { /* a failed report should not block the next code */ }
-          }
+          const button = document.getElementById("report-issue");
+          const status = document.getElementById("action-status");
+          if (!reported) return;
+          button.disabled = true;
+          status.textContent = "Flagging that code...";
+          try { await api("/api/report", { code: reported }); } catch (_) { /* a failed report should not block the next code */ }
+          button.disabled = false;
+          await showNextCode("Here is another code from the pool", true);
           document.getElementById("issue-panel").classList.add("visible");
-          await showNextCode("", true);
           setTimeout(openNudge, 600);
         });
 
-        document.getElementById("redeemed").addEventListener("click", () => {
-          if (currentCode) api("/api/redeemed", { code: currentCode }).catch(() => {});
-          if (!nudgeShown) { openNudge(); return; }
+        document.getElementById("redeemed").addEventListener("click", async () => {
+          if (!currentCode) return;
+          const button = document.getElementById("redeemed");
+          const status = document.getElementById("action-status");
+          button.disabled = true;
+          status.textContent = "Marking your code as working...";
+          try { await api("/api/redeemed", { code: currentCode }); } catch (_) { /* the pool refresh below shows the real state */ }
+          status.textContent = "";
+          showSuccess();
+          loadPool();
+          setTimeout(openNudge, 1500);
+        });
+
+        document.getElementById("success-share").addEventListener("click", () => {
           showView("share");
           setTimeout(() => document.getElementById("share-code").focus(), 250);
         });

@@ -57,6 +57,7 @@
       .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
       .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
       .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
       .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
       .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 40px; align-items: end; padding: 12px 0 44px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
       .hero h1 { font-size: clamp(36px, 6vw, 76px); line-height: .98; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
@@ -65,6 +66,16 @@
       .hero-aside { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
       .hero-aside .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
       .hero-aside p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+
+      .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+      .post { display: flex; flex-direction: column; text-decoration: none; padding: 26px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--navy); box-shadow: var(--shadow); min-height: 240px; }
+      .post:hover { border-color: var(--mint); }
+      .post h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.12; }
+      .post p { margin: 0 0 16px; color: var(--muted); line-height: 1.55; flex: 1; }
+      .post .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mint); margin-bottom: 12px; }
+      .post .when { color: var(--muted-2); font-size: 13px; font-weight: 600; }
+      .post .more { color: var(--ink); font-weight: 700; font-size: 14px; margin-top: 10px; }
+
       .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
       article { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 48px); box-shadow: var(--shadow); min-width: 0; }
       article > * { max-width: 72ch; }
@@ -77,18 +88,28 @@
       article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
       article li { margin-bottom: 8px; }
       article a { color: var(--mint); }
+      .table-wrap { overflow-x: auto; margin: 0 0 24px; }
+      table.cmp { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+      .cmp th, .cmp td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line-soft); color: var(--muted); line-height: 1.45; }
+      .cmp tbody th { color: var(--ink); font-weight: 700; width: 26%; }
+      .cmp thead th { color: var(--mint); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; border-bottom: 1px solid var(--line); }
+      .verdict { border-left: 3px solid var(--mint); padding-left: 14px; }
       .callout { padding: 18px 22px; border: 1px solid rgba(125,255,198,.45); border-radius: 8px; background: rgba(125,255,198,.1); margin: 28px 0; color: var(--ink); }
       .callout strong { display: block; margin-bottom: 4px; }
       .faq dt { font-weight: 700; color: var(--ink); margin-top: 18px; font-size: 17px; }
       .faq dd { margin: 6px 0 0; color: var(--muted); line-height: 1.65; font-size: 16px; }
       .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--paper); color: var(--blue-deep); text-decoration: none; font-weight: 700; }
       .cta:hover { background: #eaf0ff; }
+      .back { display: inline-block; margin-top: 36px; color: var(--muted-2); font-weight: 600; }
       .rail { position: sticky; top: 92px; display: grid; gap: 16px; }
       .rail-box { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
       .rail-box .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .rail-box h3 { margin: 0 0 8px; font-size: 20px; }
+      .rail-box p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; font-size: 15px; }
       .rail-box ol { margin: 0; padding: 0; list-style: none; color: var(--muted); line-height: 1.6; font-size: 14px; display: grid; gap: 6px; }
       .rail-box ol a { color: var(--ink); text-decoration: none; }
       .rail-box ol a:hover { color: var(--mint); }
+      .rail-box .cta { width: 100%; justify-content: center; margin-top: 4px; }
       .rail-box .link { display: block; color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 14px; }
       .rail-box .link:hover { color: var(--mint); }
       .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
@@ -116,6 +137,17 @@
       }
       @media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
     </style>
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ylnjyde5d9");
+    </script>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
   </head>
   <body>
     <div class="shell">
@@ -147,6 +179,7 @@
           <p>Here is my playbook for finding work as a full stack developer. I do not start on job boards. I start on X, in the week a startup announces funding, when the founder is excited, hiring, and actually reading replies.</p>
           <p>Muse watches for those moments. It scans recent posts for founders announcing a fundraise and mentioning open roles, then hands me a short list: the company, what they do, the founder, the post, and one genuine thing I can congratulate them on. Then I do the human part myself.</p>
           <p><strong>The short version:</strong> catch the hiring wave the week it starts, not three months later on a job board.</p>
+
           <h2 id="how-it-works">How it works</h2>
           <ol>
             <li><strong>Tell Muse your profile in one line.</strong> Full stack developer, what you build, what you are looking for.</li>
@@ -154,14 +187,18 @@
             <li><strong>You get a short list.</strong> Each one: the company, what they do, the founder's name, a link to the post, and one specific thing worth congratulating them on.</li>
             <li><strong>You reply with the genuine congrats, then send a short DM.</strong> Who you are, what you build, one line on why their company, ask about the role. You write it and you send it. That part is yours.</li>
           </ol>
+
           <h2 id="the-exact-prompt">The exact prompt to try</h2>
           <blockquote><p>"Find posts on X from the last seven days where startup founders announced a fundraise and mentioned they are hiring engineers. I am a full stack developer. For each one, give me the company, what they do, the founder's name, a link to the post, and one genuine thing I can congratulate them on."</p></blockquote>
+
           <div class="callout">
             <strong>The congrats has to be specific</strong>
             A generic congrats gets ignored. Referencing something specific from their post or their work gets a reply. The specific detail is the whole game.
           </div>
+
           <h2 id="approval-gates">Where you will hit approval gates</h2>
           <p><strong>Reality check:</strong> Muse drafts, you send. Every reply and every DM goes out under your name, written or at least rewritten by you. Founders can smell a bot from a mile away, and one robotic message burns the bridge for good. Never automate outreach.</p>
+
           <h2 id="why-it-beats">Why it beats the old way</h2>
           <ul>
             <li>Timing: you arrive in the hiring week, not three months later</li>
@@ -169,14 +206,17 @@
             <li>Specific: your congrats references their actual work, not a template</li>
             <li>Short: the whole workflow is one scan and a few messages, not forty applications</li>
           </ul>
+
           <h2 id="faq">FAQ</h2>
           <dl class="faq"><dt>Is this not just spam with extra steps?</dt><dd>It is spam if the message is generic. The rule is simple: if you cannot name one specific thing you genuinely liked about their work, do not message them.</dd><dt>Does Muse apply to jobs for me?</dt><dd>No, and you would not want it to. It finds the moment. You have the conversation.</dd><dt>I am not a developer. Does this still work?</dt><dd>Yes. Designers, marketers, ops, anyone. Change the role in the prompt and the same wave applies.</dd><dt>Do I need an invite code to try Muse?</dt><dd>Take one from the pool on our homepage. If Muse has not launched in your country yet, join the waitlist and we will email you a fresh code on launch day.</dd></dl>
+
           <div class="callout">
             <strong>Independent, not official</strong>
             Built with Muse is an independent community project, not affiliated with or endorsed by Meta.
           </div>
           <p>Want to catch the next hiring wave the week it starts?</p>
           <a class="cta" href="/">Grab a free Muse invite code</a>
+
           </article>
           <aside class="rail">
             <div class="rail-box">

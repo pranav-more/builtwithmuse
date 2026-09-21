@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#1a56ff" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>I Stopped Reading Newsletters. Muse Reads Them for Me. | Built with Muse</title>
+    <meta name="description" content="I subscribe to more newsletters than I can read. Every morning Muse scans them and hands me the three things actually worth my time." />
+    <link rel="canonical" href="https://builtwithmuse.com/use-cases/newsletter-briefing-with-muse" />
+    <meta property="og:title" content="I Stopped Reading Newsletters. Muse Reads Them for Me. | Built with Muse" />
+    <meta property="og:description" content="I subscribe to more newsletters than I can read. Every morning Muse scans them and hands me the three things actually worth my time." />
+    <meta property="og:url" content="https://builtwithmuse.com/use-cases/newsletter-briefing-with-muse" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://builtwithmuse.com/og/use-cases/newsletter-briefing-with-muse.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://builtwithmuse.com/og/use-cases/newsletter-briefing-with-muse.png" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "I Stopped Reading Newsletters. Muse Reads Them for Me.", "description": "I subscribe to more newsletters than I can read. Every morning Muse scans them and hands me the three things actually worth my time.", "datePublished": "2026-09-21", "dateModified": "2026-09-21", "author": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com"}, "publisher": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com", "logo": {"@type": "ImageObject", "url": "https://builtwithmuse.com/apple-touch-icon.png"}}, "mainEntityOfPage": "https://builtwithmuse.com/use-cases/newsletter-briefing-with-muse", "image": "https://builtwithmuse.com/og/use-cases/newsletter-briefing-with-muse.png", "articleSection": "Use cases"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does Muse read my whole inbox?", "acceptedAnswer": {"@type": "Answer", "text": "No. You connect Gmail and point it at the newsletters. It scans what you tell it to scan, nothing more."}}, {"@type": "Question", "name": "What if nothing is worth reading?", "acceptedAnswer": {"@type": "Answer", "text": "Then it says so. Nothing stood out today is a valid result, and honestly one of the best parts. No filler just to look busy."}}, {"@type": "Question", "name": "Can I change the filter?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, that is the first thing to customize. My bar is frameworks, real numbers, and uncommon insights. Yours might be deals, job posts, or research papers. Tell Muse your version."}}, {"@type": "Question", "name": "Do I need an invite code to try Muse?", "acceptedAnswer": {"@type": "Answer", "text": "Take one from the pool on our homepage. If Muse has not launched in your country yet, join the waitlist and we will email you a fresh code on launch day."}}]}</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C94847V6DS');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
+    <style>
+      :root { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --navy: #0d1b3d; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --shadow: 0 30px 60px rgba(0,0,0,.35); --radius: 10px; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; color: var(--ink); background-color: var(--blue);
+        background-image: linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px), linear-gradient(45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%), linear-gradient(-45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%);
+        background-size: 48px 48px, 48px 48px, 6px 6px, 6px 6px; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+      a { color: inherit; }
+      h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
+      .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: transparent; transition: background .25s ease, backdrop-filter .25s ease, box-shadow .25s ease; }
+      .topbar.scrolled { background: rgba(26,86,255,.5); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); box-shadow: 0 10px 30px rgba(6,16,48,.18); }
+      .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; }
+      .brand .mark { width: 22px; height: 22px; flex: 0 0 auto; }
+      .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav a { flex: 0 0 auto; border: 1px solid transparent; border-radius: 8px; padding: 9px 13px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+      .nav a:hover { color: var(--ink); border-color: var(--line); }
+      .nav a[aria-current="page"] { background: rgba(255,255,255,.14); color: var(--ink); border-color: var(--line); }
+      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.08); padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
+      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
+      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 40px; align-items: end; padding: 12px 0 44px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .hero h1 { font-size: clamp(36px, 6vw, 76px); line-height: .98; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
+      .hero .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0; }
+      .hero .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 18px; }
+      .hero-aside { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .hero-aside .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .hero-aside p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+      .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+      .post { display: flex; flex-direction: column; text-decoration: none; padding: 26px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--navy); box-shadow: var(--shadow); min-height: 240px; }
+      .post:hover { border-color: var(--mint); }
+      .post h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.12; }
+      .post p { margin: 0 0 16px; color: var(--muted); line-height: 1.55; flex: 1; }
+      .post .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mint); margin-bottom: 12px; }
+      .post .when { color: var(--muted-2); font-size: 13px; font-weight: 600; }
+      .post .more { color: var(--ink); font-weight: 700; font-size: 14px; margin-top: 10px; }
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
+      article { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 48px); box-shadow: var(--shadow); min-width: 0; }
+      article > * { max-width: 72ch; }
+      article p, article li { font-size: 17px; line-height: 1.7; color: var(--muted); }
+      article p strong, article li strong { color: var(--ink); }
+      article p { margin: 0 0 20px; }
+      article h2 { font-size: 28px; margin: 40px 0 12px; color: var(--ink); }
+      article h2:first-child { margin-top: 0; }
+      article h3 { font-size: 20px; margin: 28px 0 8px; color: var(--ink); }
+      article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
+      article li { margin-bottom: 8px; }
+      article a { color: var(--mint); }
+      .table-wrap { overflow-x: auto; margin: 0 0 24px; }
+      table.cmp { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+      .cmp th, .cmp td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line-soft); color: var(--muted); line-height: 1.45; }
+      .cmp tbody th { color: var(--ink); font-weight: 700; width: 26%; }
+      .cmp thead th { color: var(--mint); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; border-bottom: 1px solid var(--line); }
+      .verdict { border-left: 3px solid var(--mint); padding-left: 14px; }
+      .callout { padding: 18px 22px; border: 1px solid rgba(125,255,198,.45); border-radius: 8px; background: rgba(125,255,198,.1); margin: 28px 0; color: var(--ink); }
+      .callout strong { display: block; margin-bottom: 4px; }
+      .faq dt { font-weight: 700; color: var(--ink); margin-top: 18px; font-size: 17px; }
+      .faq dd { margin: 6px 0 0; color: var(--muted); line-height: 1.65; font-size: 16px; }
+      .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--paper); color: var(--blue-deep); text-decoration: none; font-weight: 700; }
+      .cta:hover { background: #eaf0ff; }
+      .back { display: inline-block; margin-top: 36px; color: var(--muted-2); font-weight: 600; }
+      .rail { position: sticky; top: 92px; display: grid; gap: 16px; }
+      .rail-box { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .rail-box .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .rail-box h3 { margin: 0 0 8px; font-size: 20px; }
+      .rail-box p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; font-size: 15px; }
+      .rail-box ol { margin: 0; padding: 0; list-style: none; color: var(--muted); line-height: 1.6; font-size: 14px; display: grid; gap: 6px; }
+      .rail-box ol a { color: var(--ink); text-decoration: none; }
+      .rail-box ol a:hover { color: var(--mint); }
+      .rail-box .cta { width: 100%; justify-content: center; margin-top: 4px; }
+      .rail-box .link { display: block; color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 14px; }
+      .rail-box .link:hover { color: var(--mint); }
+      .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
+      .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
+      .footer-cta h2 { margin: 0 0 8px; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.05; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+      .footer-cta p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 52ch; }
+      .footer-cta .eyebrow { margin-bottom: 10px; }
+      .cta.discord { white-space: nowrap; margin: 0; }
+      .cta.discord svg { width: 20px; height: 20px; }
+      .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 8px; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+      .footer-links a:hover { color: var(--ink); }
+      .strip { width: max-content; max-width: calc(100% - 24px); margin: 44px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: rgba(6,16,48,.6); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+      @media (max-width: 640px) { .strip { white-space: normal; } }
+      @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .cta.discord { width: 100%; } }
+      @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .rail { position: static; } .hero { grid-template-columns: 1fr; } }
+      @media (max-width: 640px) {
+        .shell { width: calc(100% - 32px); }
+        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px calc(50vw - 50%); margin: 0 calc(50% - 50vw) 28px; }
+        .menu-toggle { display: flex; }
+        .nav { display: none; flex-direction: column; width: 100%; flex-basis: 100%; margin: 4px 0 0; padding: 8px 0 4px; border-top: 1px solid var(--line-soft); overflow: visible; }
+        .topbar.open .nav { display: flex; }
+        .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+      }
+      @media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
+    </style>
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ylnjyde5d9");
+    </script>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <nav class="nav" id="site-nav" aria-label="Site">
+          <a href="/">Get a code</a>
+          <a href="/use-cases" aria-current="page">Use cases</a>
+          <a href="/blog">Blog</a>
+        </nav>
+      </header>
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">Productivity</div>
+            <h1>I Stopped Reading Newsletters. Muse Reads Them for Me.</h1>
+            <p class="lead">Newsletters pile into my Gmail every week. I read almost none of them. So I put Muse on the job: every morning it reads everything and tells me what actually mattered.</p>
+            <div class="meta">September 2026 · 3 minute read</div>
+          </div>
+          <aside class="hero-aside">
+            <div class="k">Need a code?</div>
+            <p>The pool hands out community invite codes for free. Take one, redeem it, then add yours.</p>
+            <a class="cta" href="/">Get a code from the pool</a>
+          </aside>
+        </section>
+        <div class="layout">
+          <article>
+          <p>I have a newsletter problem. Every time someone recommends a good one, I subscribe. Then it joins the pile. At last count I had a pile of them hitting my Gmail every week, and I was reading maybe two of them. The rest just sat there making me feel guilty.</p>
+          <p>So I gave the job to Muse. Every morning it goes through the last 24 hours of newsletters in my inbox and hands me a short brief: the few things actually worth my time, and why. Everything else gets skipped without me ever seeing it.</p>
+          <p><strong>The short version:</strong> Muse reads the whole pile so I can read three paragraphs.</p>
+          <h2 id="how-it-works">How it works</h2>
+          <ol>
+            <li><strong>Newsletters pile into Gmail all week.</strong> I changed nothing. Subscribe freely, zero guilt.</li>
+            <li><strong>Every morning at 8, Muse scans the last 24 hours</strong> of newsletters in my inbox.</li>
+            <li><strong>It applies one ruthless filter.</strong> Only three kinds of things make the cut: a named framework, a case study with real numbers, or a genuinely uncommon insight.</li>
+            <li><strong>I get a short brief.</strong> Each item gets a one paragraph summary, why it matters, and a link to the full piece. On slow news days it just says nothing stood out today, and I move on with my morning.</li>
+          </ol>
+          <h2 id="the-exact-prompt">The exact prompt to try</h2>
+          <blockquote><p>"Go through the newsletters in my Gmail from the last 24 hours. Pull out only what is worth my time: a named framework, a case study with real numbers, or a genuinely uncommon insight. For each one, give me a one paragraph summary, why it matters, and the link. If nothing clears the bar, just say so."</p></blockquote>
+          <div class="callout">
+            <strong>The filter is the whole trick</strong>
+            Most people ask AI to summarize everything, which just gives you shorter versions of things you did not need to read. The filter decides what deserves your attention in the first place.
+          </div>
+          <h2 id="approval-gates">Where you will hit approval gates</h2>
+          <p><strong>Reality check:</strong> Muse needs access to your Gmail to do this, and you decide exactly what it can read. It only scans the newsletters, and every link in the brief opens the original piece so you can verify anything that sounds off.</p>
+          <h2 id="why-it-beats">Why it beats the old way</h2>
+          <ul>
+            <li>No more skimming a pile of newsletters over coffee</li>
+            <li>The filter is stricter than my willpower ever was</li>
+            <li>Slow news days cost me zero minutes</li>
+            <li>I actually read the good stuff now instead of saving it for later</li>
+          </ul>
+          <h2 id="faq">FAQ</h2>
+          <dl class="faq"><dt>Does Muse read my whole inbox?</dt><dd>No. You connect Gmail and point it at the newsletters. It scans what you tell it to scan, nothing more.</dd><dt>What if nothing is worth reading?</dt><dd>Then it says so. Nothing stood out today is a valid result, and honestly one of the best parts. No filler just to look busy.</dd><dt>Can I change the filter?</dt><dd>Yes, that is the first thing to customize. My bar is frameworks, real numbers, and uncommon insights. Yours might be deals, job posts, or research papers. Tell Muse your version.</dd><dt>Do I need an invite code to try Muse?</dt><dd>Take one from the pool on our homepage. If Muse has not launched in your country yet, join the waitlist and we will email you a fresh code on launch day.</dd></dl>
+          <div class="callout">
+            <strong>Independent, not official</strong>
+            Built with Muse is an independent community project, not affiliated with or endorsed by Meta.
+          </div>
+          <p>Want Muse reading your newsletters tomorrow morning?</p>
+          <a class="cta" href="/">Grab a free Muse invite code</a>
+          </article>
+          <aside class="rail">
+            <div class="rail-box">
+              <div class="k">In this post</div>
+              <ol><li><a href="#how-it-works">How it works</a></li><li><a href="#the-exact-prompt">The exact prompt to try</a></li><li><a href="#approval-gates">Where you will hit approval gates</a></li><li><a href="#why-it-beats">Why it beats the old way</a></li><li><a href="#faq">FAQ</a></li></ol>
+            </div>
+            <div class="rail-box">
+              <div class="k">Read next</div><a class="link" href="/use-cases/instagram-without-doomscrolling">I Get the Best of Instagram Without Opening Instagram</a><a class="link" href="/use-cases/startup-jobs-on-x-with-muse">How I Find Startup Jobs on X Before They Hit Job Boards</a><a class="link" href="/use-cases/recipe-reel-to-groceries">Turn an Instagram Recipe Reel into a Grocery List with Muse</a><a class="link" href="/blog/how-to-use-meta-muse-outside-us">How to Use Meta Muse Outside the US</a><a class="link" href="/use-cases">See what people build with Muse</a></div>
+          </aside>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer-cta">
+          <div>
+            <div class="eyebrow">Join the community</div>
+            <h2>See what other people are building with Muse.</h2>
+            <p>Trade codes, swap workflows and get help from people who are already inside.</p>
+          </div>
+          <a class="cta discord" href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 5.6A16.3 16.3 0 0 0 15.5 4.3l-.5 1a15 15 0 0 0-4 0l-.5-1a16.2 16.2 0 0 0-4.1 1.3C3.8 9.5 3.1 13.3 3.4 17a16.5 16.5 0 0 0 5 2.5l1-1.6a10.6 10.6 0 0 1-1.7-.8l.4-.3a11.7 11.7 0 0 0 9.8 0l.4.3-1.7.8 1 1.6a16.4 16.4 0 0 0 5-2.5c.4-4.3-.7-8-3-11.4zM9.3 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm5.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+            Join the Discord
+          </a>
+        </div>
+        <div class="footer-row">
+          <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="/">Get a code</a>
+            <a href="/use-cases">Use cases</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+            <a href="/privacy">Privacy</a>
+            <a href="mailto:polostudio.brand@gmail.com">Contact</a>
+            <a href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">Discord</a>
+          </nav>
+        </div>
+        <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+      </footer>
+    </div>
+    <script>
+      (() => {
+        const bar = document.querySelector(".topbar");
+        const toggle = document.getElementById("menu-toggle");
+        if (!bar || !toggle) return;
+        const set = (open) => { bar.classList.toggle("open", open); toggle.setAttribute("aria-expanded", String(open)); toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+        toggle.addEventListener("click", () => set(!bar.classList.contains("open")));
+        bar.querySelectorAll(".nav button, .nav a").forEach((item) => item.addEventListener("click", () => set(false)));
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape") set(false); });
+        const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#1a56ff" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>How I Find Startup Jobs on X Before They Hit Job Boards | Built with Muse</title>
+    <meta name="description" content="I am a full stack developer. Muse watches X for founders announcing fresh funding and hiring, so I can reach them while the window is open." />
+    <link rel="canonical" href="https://builtwithmuse.com/use-cases/startup-jobs-on-x-with-muse" />
+    <meta property="og:title" content="How I Find Startup Jobs on X Before They Hit Job Boards | Built with Muse" />
+    <meta property="og:description" content="I am a full stack developer. Muse watches X for founders announcing fresh funding and hiring, so I can reach them while the window is open." />
+    <meta property="og:url" content="https://builtwithmuse.com/use-cases/startup-jobs-on-x-with-muse" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://builtwithmuse.com/og/use-cases/startup-jobs-on-x-with-muse.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://builtwithmuse.com/og/use-cases/startup-jobs-on-x-with-muse.png" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How I Find Startup Jobs on X Before They Hit Job Boards", "description": "I am a full stack developer. Muse watches X for founders announcing fresh funding and hiring, so I can reach them while the window is open.", "datePublished": "2026-09-21", "dateModified": "2026-09-21", "author": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com"}, "publisher": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com", "logo": {"@type": "ImageObject", "url": "https://builtwithmuse.com/apple-touch-icon.png"}}, "mainEntityOfPage": "https://builtwithmuse.com/use-cases/startup-jobs-on-x-with-muse", "image": "https://builtwithmuse.com/og/use-cases/startup-jobs-on-x-with-muse.png", "articleSection": "Use cases"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this not just spam with extra steps?", "acceptedAnswer": {"@type": "Answer", "text": "It is spam if the message is generic. The rule is simple: if you cannot name one specific thing you genuinely liked about their work, do not message them."}}, {"@type": "Question", "name": "Does Muse apply to jobs for me?", "acceptedAnswer": {"@type": "Answer", "text": "No, and you would not want it to. It finds the moment. You have the conversation."}}, {"@type": "Question", "name": "I am not a developer. Does this still work?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Designers, marketers, ops, anyone. Change the role in the prompt and the same wave applies."}}, {"@type": "Question", "name": "Do I need an invite code to try Muse?", "acceptedAnswer": {"@type": "Answer", "text": "Take one from the pool on our homepage. If Muse has not launched in your country yet, join the waitlist and we will email you a fresh code on launch day."}}]}</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C94847V6DS');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
+    <style>
+      :root { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --navy: #0d1b3d; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --shadow: 0 30px 60px rgba(0,0,0,.35); --radius: 10px; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; color: var(--ink); background-color: var(--blue);
+        background-image: linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px), linear-gradient(45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%), linear-gradient(-45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%);
+        background-size: 48px 48px, 48px 48px, 6px 6px, 6px 6px; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+      a { color: inherit; }
+      h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
+      .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: transparent; transition: background .25s ease, backdrop-filter .25s ease, box-shadow .25s ease; }
+      .topbar.scrolled { background: rgba(26,86,255,.5); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); box-shadow: 0 10px 30px rgba(6,16,48,.18); }
+      .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; }
+      .brand .mark { width: 22px; height: 22px; flex: 0 0 auto; }
+      .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav a { flex: 0 0 auto; border: 1px solid transparent; border-radius: 8px; padding: 9px 13px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+      .nav a:hover { color: var(--ink); border-color: var(--line); }
+      .nav a[aria-current="page"] { background: rgba(255,255,255,.14); color: var(--ink); border-color: var(--line); }
+      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.08); padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
+      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
+      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 40px; align-items: end; padding: 12px 0 44px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .hero h1 { font-size: clamp(36px, 6vw, 76px); line-height: .98; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
+      .hero .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0; }
+      .hero .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 18px; }
+      .hero-aside { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .hero-aside .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .hero-aside p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
+      article { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 48px); box-shadow: var(--shadow); min-width: 0; }
+      article > * { max-width: 72ch; }
+      article p, article li { font-size: 17px; line-height: 1.7; color: var(--muted); }
+      article p strong, article li strong { color: var(--ink); }
+      article p { margin: 0 0 20px; }
+      article h2 { font-size: 28px; margin: 40px 0 12px; color: var(--ink); }
+      article h2:first-child { margin-top: 0; }
+      article h3 { font-size: 20px; margin: 28px 0 8px; color: var(--ink); }
+      article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
+      article li { margin-bottom: 8px; }
+      article a { color: var(--mint); }
+      .callout { padding: 18px 22px; border: 1px solid rgba(125,255,198,.45); border-radius: 8px; background: rgba(125,255,198,.1); margin: 28px 0; color: var(--ink); }
+      .callout strong { display: block; margin-bottom: 4px; }
+      .faq dt { font-weight: 700; color: var(--ink); margin-top: 18px; font-size: 17px; }
+      .faq dd { margin: 6px 0 0; color: var(--muted); line-height: 1.65; font-size: 16px; }
+      .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--paper); color: var(--blue-deep); text-decoration: none; font-weight: 700; }
+      .cta:hover { background: #eaf0ff; }
+      .rail { position: sticky; top: 92px; display: grid; gap: 16px; }
+      .rail-box { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .rail-box .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .rail-box ol { margin: 0; padding: 0; list-style: none; color: var(--muted); line-height: 1.6; font-size: 14px; display: grid; gap: 6px; }
+      .rail-box ol a { color: var(--ink); text-decoration: none; }
+      .rail-box ol a:hover { color: var(--mint); }
+      .rail-box .link { display: block; color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 14px; }
+      .rail-box .link:hover { color: var(--mint); }
+      .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
+      .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
+      .footer-cta h2 { margin: 0 0 8px; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.05; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+      .footer-cta p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 52ch; }
+      .footer-cta .eyebrow { margin-bottom: 10px; }
+      .cta.discord { white-space: nowrap; margin: 0; }
+      .cta.discord svg { width: 20px; height: 20px; }
+      .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 8px; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+      .footer-links a:hover { color: var(--ink); }
+      .strip { width: max-content; max-width: calc(100% - 24px); margin: 44px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: rgba(6,16,48,.6); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+      @media (max-width: 640px) { .strip { white-space: normal; } }
+      @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .cta.discord { width: 100%; } }
+      @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .rail { position: static; } .hero { grid-template-columns: 1fr; } }
+      @media (max-width: 640px) {
+        .shell { width: calc(100% - 32px); }
+        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px calc(50vw - 50%); margin: 0 calc(50% - 50vw) 28px; }
+        .menu-toggle { display: flex; }
+        .nav { display: none; flex-direction: column; width: 100%; flex-basis: 100%; margin: 4px 0 0; padding: 8px 0 4px; border-top: 1px solid var(--line-soft); overflow: visible; }
+        .topbar.open .nav { display: flex; }
+        .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+      }
+      @media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <nav class="nav" id="site-nav" aria-label="Site">
+          <a href="/">Get a code</a>
+          <a href="/use-cases" aria-current="page">Use cases</a>
+          <a href="/blog">Blog</a>
+        </nav>
+      </header>
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">Career</div>
+            <h1>How I Find Startup Jobs on X Before They Hit Job Boards</h1>
+            <p class="lead">Job boards are where open roles go to collect five hundred applicants. The real window is the week a startup raises money and the founder posts that they are hiring. Muse helps me catch that week.</p>
+            <div class="meta">September 2026 · 4 minute read</div>
+          </div>
+          <aside class="hero-aside">
+            <div class="k">Need a code?</div>
+            <p>The pool hands out community invite codes for free. Take one, redeem it, then add yours.</p>
+            <a class="cta" href="/">Get a code from the pool</a>
+          </aside>
+        </section>
+        <div class="layout">
+          <article>
+          <p>Here is my playbook for finding work as a full stack developer. I do not start on job boards. I start on X, in the week a startup announces funding, when the founder is excited, hiring, and actually reading replies.</p>
+          <p>Muse watches for those moments. It scans recent posts for founders announcing a fundraise and mentioning open roles, then hands me a short list: the company, what they do, the founder, the post, and one genuine thing I can congratulate them on. Then I do the human part myself.</p>
+          <p><strong>The short version:</strong> catch the hiring wave the week it starts, not three months later on a job board.</p>
+          <h2 id="how-it-works">How it works</h2>
+          <ol>
+            <li><strong>Tell Muse your profile in one line.</strong> Full stack developer, what you build, what you are looking for.</li>
+            <li><strong>It scans X for the last seven days</strong> for founders announcing a fundraise and mentioning they are hiring.</li>
+            <li><strong>You get a short list.</strong> Each one: the company, what they do, the founder's name, a link to the post, and one specific thing worth congratulating them on.</li>
+            <li><strong>You reply with the genuine congrats, then send a short DM.</strong> Who you are, what you build, one line on why their company, ask about the role. You write it and you send it. That part is yours.</li>
+          </ol>
+          <h2 id="the-exact-prompt">The exact prompt to try</h2>
+          <blockquote><p>"Find posts on X from the last seven days where startup founders announced a fundraise and mentioned they are hiring engineers. I am a full stack developer. For each one, give me the company, what they do, the founder's name, a link to the post, and one genuine thing I can congratulate them on."</p></blockquote>
+          <div class="callout">
+            <strong>The congrats has to be specific</strong>
+            A generic congrats gets ignored. Referencing something specific from their post or their work gets a reply. The specific detail is the whole game.
+          </div>
+          <h2 id="approval-gates">Where you will hit approval gates</h2>
+          <p><strong>Reality check:</strong> Muse drafts, you send. Every reply and every DM goes out under your name, written or at least rewritten by you. Founders can smell a bot from a mile away, and one robotic message burns the bridge for good. Never automate outreach.</p>
+          <h2 id="why-it-beats">Why it beats the old way</h2>
+          <ul>
+            <li>Timing: you arrive in the hiring week, not three months later</li>
+            <li>Warm: a real conversation beats applicant number 487</li>
+            <li>Specific: your congrats references their actual work, not a template</li>
+            <li>Short: the whole workflow is one scan and a few messages, not forty applications</li>
+          </ul>
+          <h2 id="faq">FAQ</h2>
+          <dl class="faq"><dt>Is this not just spam with extra steps?</dt><dd>It is spam if the message is generic. The rule is simple: if you cannot name one specific thing you genuinely liked about their work, do not message them.</dd><dt>Does Muse apply to jobs for me?</dt><dd>No, and you would not want it to. It finds the moment. You have the conversation.</dd><dt>I am not a developer. Does this still work?</dt><dd>Yes. Designers, marketers, ops, anyone. Change the role in the prompt and the same wave applies.</dd><dt>Do I need an invite code to try Muse?</dt><dd>Take one from the pool on our homepage. If Muse has not launched in your country yet, join the waitlist and we will email you a fresh code on launch day.</dd></dl>
+          <div class="callout">
+            <strong>Independent, not official</strong>
+            Built with Muse is an independent community project, not affiliated with or endorsed by Meta.
+          </div>
+          <p>Want to catch the next hiring wave the week it starts?</p>
+          <a class="cta" href="/">Grab a free Muse invite code</a>
+          </article>
+          <aside class="rail">
+            <div class="rail-box">
+              <div class="k">In this post</div>
+              <ol><li><a href="#how-it-works">How it works</a></li><li><a href="#the-exact-prompt">The exact prompt to try</a></li><li><a href="#approval-gates">Where you will hit approval gates</a></li><li><a href="#faq">FAQ</a></li></ol>
+            </div>
+            <div class="rail-box">
+              <div class="k">Read next</div><a class="link" href="/use-cases/recipe-reel-to-groceries">Turn an Instagram Recipe Reel into a Grocery List with Muse</a><a class="link" href="/blog/how-to-use-meta-muse-outside-us">How to Use Meta Muse Outside the US</a><a class="link" href="/use-cases">See what people build with Muse</a></div>
+          </aside>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer-cta">
+          <div>
+            <div class="eyebrow">Join the community</div>
+            <h2>See what other people are building with Muse.</h2>
+            <p>Trade codes, swap workflows and get help from people who are already inside.</p>
+          </div>
+          <a class="cta discord" href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 5.6A16.3 16.3 0 0 0 15.5 4.3l-.5 1a15 15 0 0 0-4 0l-.5-1a16.2 16.2 0 0 0-4.1 1.3C3.8 9.5 3.1 13.3 3.4 17a16.5 16.5 0 0 0 5 2.5l1-1.6a10.6 10.6 0 0 1-1.7-.8l.4-.3a11.7 11.7 0 0 0 9.8 0l.4.3-1.7.8 1 1.6a16.4 16.4 0 0 0 5-2.5c.4-4.3-.7-8-3-11.4zM9.3 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm5.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+            Join the Discord
+          </a>
+        </div>
+        <div class="footer-row">
+          <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="/">Get a code</a>
+            <a href="/use-cases">Use cases</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+            <a href="/privacy">Privacy</a>
+            <a href="mailto:polostudio.brand@gmail.com">Contact</a>
+            <a href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">Discord</a>
+          </nav>
+        </div>
+        <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+      </footer>
+    </div>
+    <script>
+      (() => {
+        const bar = document.querySelector(".topbar");
+        const toggle = document.getElementById("menu-toggle");
+        if (!bar || !toggle) return;
+        const set = (open) => { bar.classList.toggle("open", open); toggle.setAttribute("aria-expanded", String(open)); toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+        toggle.addEventListener("click", () => set(!bar.classList.contains("open")));
+        bar.querySelectorAll(".nav button, .nav a").forEach((item) => item.addEventListener("click", () => set(false)));
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape") set(false); });
+        const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
+  </body>
+</html>

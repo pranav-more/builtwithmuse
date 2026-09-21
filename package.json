@@ -1,0 +1,16 @@
+{
+  "name": "builtwithmuse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Community site for sharing free Muse invite codes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}

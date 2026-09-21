@@ -491,18 +491,8 @@
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
       }
-    </style>
-    <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "ylnjyde5d9");
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
+        .hp { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
+  </style>
   </head>
   <body>
     <div class="shell">
@@ -539,7 +529,7 @@
               <div class="offset-card"></div>
               <div class="code-card">
                 <div class="card-label"><span>Your invite</span><span class="live-tag">Ready</span></div>
-                <div class="preview-code blurred">PJEJV1</div>
+                <div class="preview-code blurred">XXXXXX</div>
                 <p class="preview-text">Reveal a community code and redeem it in Muse before moving on.</p>
                 <div class="divider"></div>
                 <div class="mini-flow">
@@ -561,7 +551,7 @@
           <div class="workflow-card">
             <div class="timer-row"><span class="timer-label">Codes go fast. Redeem yours in the next 15 minutes.</span><span class="timer" id="timer">15:00</span></div>
             <div class="assigned-code">
-              <code id="assigned-code">PJEJV1</code>
+              <code id="assigned-code">......</code>
               <button class="icon-button" id="copy-code" type="button" aria-label="Copy referral code">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               </button>
@@ -590,6 +580,7 @@
           <div class="workflow-card">
             <form id="share-form" novalidate>
               <div class="form-stack">
+                <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="field">
                   <label for="share-code">Your invite code</label>
                   <input id="share-code" name="share-code" type="text" required autocomplete="off" placeholder="Enter your Muse code" maxlength="40" />
@@ -642,6 +633,7 @@
             </div>
             <div class="workflow-card">
               <form id="waitlist-form" novalidate>
+                <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="form-stack">
                   <div class="field">
                     <label for="country">Country</label>
@@ -689,19 +681,12 @@
 
     <script>
       (() => {
-        const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbz8-KKhA3XP6REX4Fuu4G4ToNIJHkG83r75eVjULjMbqIqp7mV0hmx59JCIdOY0CJui/exec";
+        const API = "";
         const views = ["home", "claim", "share", "workflows", "waitlist"];
         const navButtons = [...document.querySelectorAll(".nav [data-view]")];
-        const inviteCodes = [
-          "PJEJV1", "0OZ856", "M68AR4", "FGYZLT", "9D6HT8",
-          "5QK6LV", "XT9K8D", "IKT505", "GHJLEO", "DXEO25",
-          "YRGJSB", "8YOX0D", "UN31VI", "SF1FEC", "2HK7UT",
-          "ZCW7R9", "9SAO21", "JUV8BB", "1G0QTX", "70Z09F",
-          "TCJ8QG", "11H8SA", "X5UKYU", "GB2PY8", "KR9GBK"
-        ];
         let timerId = null;
         let remaining = 15 * 60;
-        let codeIndex = -1;
+        let currentCode = "";
         const forbiddenDash = /[\u002D\u058A\u05BE\u1400\u1806\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2E17\u2E1A\u2E3A\u2E3B\u2E40\u2E5D\u301C\u3030\u30A0\uFE31\uFE32\uFE58\uFE63\uFF0D]/;
 
         function assertDashFreeVisibleCopy() {
@@ -742,24 +727,53 @@
           }, 1000);
         }
 
-        function showNextCode(statusText = "") {
-          codeIndex = (codeIndex + 1) % inviteCodes.length;
-          document.getElementById("assigned-code").textContent = inviteCodes[codeIndex];
-          document.getElementById("copy-status").textContent = statusText;
-          startTimer();
+        async function api(path, payload) {
+          const response = await fetch(API + path, {
+            method: "POST",
+            credentials: "same-origin",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload || {})
+          });
+          let result = null;
+          try { result = await response.json(); } catch (_) { result = null; }
+          if (!response.ok || !result || !result.ok) {
+            const error = new Error((result && result.error) || "request_failed");
+            error.code = (result && result.error) || String(response.status);
+            throw error;
+          }
+          return result;
         }
 
-        async function postForm(payload) {
-          const response = await fetch(FORM_ENDPOINT, {
-            method: "POST",
-            redirect: "follow",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify(payload)
-          });
-          if (!response.ok) throw new Error("Request failed");
-          const result = await response.json();
-          if (!result.ok) throw new Error(result.error || "Save failed");
-          return result;
+        function setCode(code) {
+          currentCode = code;
+          document.getElementById("assigned-code").textContent = code || "......";
+          document.getElementById("copy-code").disabled = !code;
+        }
+
+        function claimMessage(code) {
+          if (code === "no_codes") return "The pool is empty right now. Add your own code or join the waitlist.";
+          if (code === "rate_limited") return "You have taken a few codes already. Try again in an hour.";
+          if (code === "no_device" || code === "forbidden") return "Please reload the page and try again.";
+          return "We could not fetch a code. Please try again.";
+        }
+
+        async function showNextCode(statusText = "", fresh = false) {
+          const status = document.getElementById("copy-status");
+          status.textContent = "Finding a code for you...";
+          try {
+            const result = await api("/api/claim", { fresh });
+            setCode(result.code);
+            status.textContent = statusText;
+            startTimer();
+          } catch (error) {
+            setCode("");
+            status.textContent = claimMessage(error.code);
+            clearInterval(timerId);
+          }
+        }
+
+        async function postForm(path, payload) {
+          return api(path, payload);
         }
 
         assertDashFreeVisibleCopy();
@@ -769,13 +783,14 @@
         });
 
         document.getElementById("get-code").addEventListener("click", () => {
-          showNextCode();
           showView("claim");
+          showNextCode();
         });
 
         document.getElementById("copy-code").addEventListener("click", async () => {
-          const code = document.getElementById("assigned-code").textContent;
+          const code = currentCode;
           const status = document.getElementById("copy-status");
+          if (!code) return;
           try {
             await navigator.clipboard.writeText(code);
             status.textContent = "Copied to clipboard";
@@ -785,13 +800,17 @@
         });
 
         document.getElementById("another-code").addEventListener("click", () => {
-          showNextCode("Here’s another code from the pool");
           document.getElementById("issue-panel").classList.remove("visible");
+          showNextCode("Here’s another code from the pool", true);
         });
 
-        document.getElementById("report-issue").addEventListener("click", () => {
-          showNextCode();
+        document.getElementById("report-issue").addEventListener("click", async () => {
+          const reported = currentCode;
+          if (reported) {
+            try { await api("/api/report", { code: reported }); } catch (_) { /* a failed report should not block the next code */ }
+          }
           document.getElementById("issue-panel").classList.add("visible");
+          showNextCode("", true);
         });
 
         document.getElementById("redeemed").addEventListener("click", () => {
@@ -825,7 +844,7 @@
           shareSubmit.disabled = true;
           shareSubmit.textContent = "Adding your code...";
           try {
-            await postForm({ form: "code_submission", code, inviteLink: link });
+            await postForm("/api/codes", { code, inviteLink: link, website: shareForm.elements.website.value });
             shareForm.reset();
             message.classList.add("visible");
             shareSubmit.textContent = "Code added";
@@ -860,7 +879,7 @@
           waitlistSubmit.disabled = true;
           waitlistSubmit.textContent = "Joining...";
           try {
-            await postForm({ form: "waitlist", email: email.value.trim(), country: country.value });
+            await postForm("/api/waitlist", { email: email.value.trim(), country: country.value, website: waitlistForm.elements.website.value });
             waitlistForm.reset();
             message.classList.add("visible");
             waitlistSubmit.textContent = "Joined";

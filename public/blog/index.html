@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#1a56ff" />
     <link rel="icon" href="data:," />
     <title>Blog | Built with Muse</title>
     <meta name="description" content="Short guides about Muse, invite codes and how the community pool works." />
@@ -19,46 +20,54 @@
       gtag('js', new Date());
       gtag('config', 'G-C94847V6DS');
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
-      :root {
-        color-scheme: light dark;
-        --bg: #f6f8f6; --surface: #ffffff; --surface-2: #edf2ef; --ink: #14221d; --muted: #5c6964; --line: #d7dfdb;
-        --accent: #e45d35; --accent-hover: #c84b28; --accent-soft: #fff0ea; --teal: #0c766b; --teal-soft: #e2f3ef;
-        --shadow: 0 22px 54px rgba(23, 46, 38, 0.12);
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #101714; --surface: #17211d; --surface-2: #202d28; --ink: #f2f6f4; --muted: #aab8b2; --line: #34443e;
-          --accent: #f07850; --accent-hover: #ff8a65; --accent-soft: #3b241c; --teal: #5cc7b8; --teal-soft: #183b34;
-          --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
-        }
-      }
+      :root { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --navy: #0d1b3d; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --paper: #ffffff; --shadow: 0 30px 60px rgba(0,0,0,.35); --radius: 10px; }
       * { box-sizing: border-box; }
-      body {
-        margin: 0; min-height: 100vh; color: var(--ink);
-        background: radial-gradient(circle at 92% 10%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 28rem), var(--bg);
-        font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased;
-      }
+      body { margin: 0; min-height: 100vh; color: var(--ink); background-color: var(--blue);
+        background-image: linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%), linear-gradient(-45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%);
+        background-size: 48px 48px, 48px 48px, 6px 6px, 6px 6px; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
       a { color: inherit; }
-      .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 28px 0 48px; }
-      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 48px; }
-      .brand { font-family: "Manrope", sans-serif; font-weight: 800; letter-spacing: -0.03em; text-decoration: none; font-size: 18px; }
-      .nav { display: flex; gap: 6px; padding: 5px; border: 1px solid var(--line); border-radius: 14px; background: color-mix(in srgb, var(--surface) 82%, transparent); }
-      .nav a { border-radius: 10px; padding: 9px 14px; color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 700; }
-      .nav a[aria-current="page"] { background: var(--surface-2); color: var(--ink); }
-      h1, h2, h3 { font-family: "Manrope", sans-serif; letter-spacing: -0.035em; }
-      h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.02; margin: 0 0 12px; }
-      .eyebrow { color: var(--teal); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
-      .lead { color: var(--muted); font-size: 18px; max-width: 60ch; margin: 0 0 40px; }
-      .posts { display: grid; gap: 18px; max-width: 760px; }
-      .post { display: block; text-decoration: none; padding: 26px 28px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: var(--shadow); }
-      .post:hover { border-color: var(--accent); }
-      .post h2 { margin: 0 0 8px; font-size: 24px; }
-      .post p { margin: 0 0 12px; color: var(--muted); }
-      .post .meta { color: var(--muted); font-size: 13px; font-weight: 600; }
-      .strip { width: max-content; max-width: calc(100% - 24px); margin: 56px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
-      @media (max-width: 720px) { .topbar { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 32px; } }
+      h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
+      .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+      .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav a { flex: 0 0 auto; border: 1px solid transparent; border-radius: 8px; padding: 9px 13px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+      .nav a:hover { color: var(--ink); border-color: var(--line); }
+      .nav a[aria-current="page"] { background: rgba(255,255,255,.14); color: var(--ink); border-color: var(--line); }
+      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+      h1 { font-size: clamp(34px, 5.6vw, 64px); line-height: 1; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
+      .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0 0 36px; }
+      .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 30px; }
+      .posts { display: grid; gap: 16px; max-width: 800px; }
+      .post { display: block; text-decoration: none; padding: 26px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--navy); box-shadow: var(--shadow); }
+      .post:hover { border-color: var(--mint); }
+      .post h2 { margin: 0 0 8px; font-size: 24px; line-height: 1.15; }
+      .post p { margin: 0 0 12px; color: var(--muted); line-height: 1.55; }
+      .post .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mint); margin-bottom: 12px; }
+      .post .when { color: var(--muted-2); font-size: 13px; font-weight: 600; }
+      article { max-width: 760px; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 44px); box-shadow: var(--shadow); }
+      article p, article li { font-size: 17px; line-height: 1.7; color: var(--muted); }
+      article p strong, article li strong { color: var(--ink); }
+      article p { margin: 0 0 20px; }
+      article h2 { font-size: 26px; margin: 40px 0 12px; color: var(--ink); }
+      article h3 { font-size: 20px; margin: 28px 0 8px; color: var(--ink); }
+      article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
+      article li { margin-bottom: 8px; }
+      article a { color: var(--mint); }
+      .callout { padding: 18px 22px; border: 1px solid rgba(125,255,198,.45); border-radius: 8px; background: rgba(125,255,198,.1); margin: 28px 0; color: var(--ink); }
+      .callout strong { display: block; margin-bottom: 4px; }
+      .faq dt { font-weight: 700; color: var(--ink); margin-top: 18px; font-size: 17px; }
+      .faq dd { margin: 6px 0 0; color: var(--muted); line-height: 1.65; font-size: 16px; }
+      .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--paper); color: var(--blue-deep); text-decoration: none; font-weight: 700; }
+      .cta:hover { background: #eaf0ff; }
+      .back { display: inline-block; margin-top: 36px; color: var(--muted-2); font-weight: 600; }
+      .strip { width: max-content; max-width: calc(100% - 24px); margin: 44px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: rgba(6,16,48,.6); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+      @media (max-width: 640px) { .shell { width: calc(100% - 32px); } .topbar { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 0; margin-bottom: 28px; } .nav { margin: 0 -16px; padding: 0 16px; } .strip { white-space: normal; } }
     </style>
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -81,21 +90,25 @@
           <a href="/blog" aria-current="page">Blog</a>
         </nav>
       </header>
-
       <main>
         <div class="eyebrow">Blog</div>
         <h1>Notes on Muse and invite codes.</h1>
         <p class="lead">Short, practical reads from the community running the invite pool. New posts land here as we learn more.</p>
-
         <div class="posts">
+          <a class="post" href="/blog/how-to-use-muse-if-not-available-in-your-country">
+            <span class="tag">Guides</span>
+            <h2>How to use Muse if it is not available in your country (2026 guide)</h2>
+            <p>Age verification, the country block, whether a VPN works and which browser to use, answered step by step.</p>
+            <span class="when">September 2026 · 5 minute read</span>
+          </a>
           <a class="post" href="/blog/what-is-meta-muse">
+            <span class="tag">Getting started</span>
             <h2>What is Muse, and how do invite codes work?</h2>
             <p>A plain introduction to Meta's Muse, why access currently runs on invites, and how the community pool helps you get in and give back.</p>
-            <span class="meta">September 2026 · 4 minute read</span>
+            <span class="when">September 2026 · 4 minute read</span>
           </a>
         </div>
       </main>
-
       <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
     </div>
   </body>

@@ -6,7 +6,7 @@ Community site for sharing free Muse invite codes. Live at https://builtwithmuse
 
 - `public/index.html`: the whole site, one static page.
 - `public/admin.html`: the moderator page, served at `/admin`.
-- `public/blog/`: the blog. `index.html` lists posts; each post is its own file, served without the `.html` (Vercel `cleanUrls`). Add a post by copying an existing one and adding a card to the index.
+- `public/blog/`: the blog. `index.html` lists posts; each post is its own file, served without the `.html` (Vercel `cleanUrls`). Add a post by copying an existing one, adding a card to the index and a line to `sitemap.xml`. Guides with a FAQ carry FAQPage JSON-LD.
 - `api/index.js` and `lib/api.js`: the API, a Vercel serverless function backed by Postgres on Supabase. Every `/api/*` path is rewritten to it (see `vercel.json`).
 - `server.js`: local development server that serves `public/` and the same API code. Not used in production.
 
@@ -102,6 +102,10 @@ Then open http://localhost:3000.
 - Microsoft Clarity project `ylnjyde5d9` ("Built with muse", under polostudio.brand@gmail.com); the tag is in `<head>`.
 - Google Analytics 4 measurement ID: G-C94847V6DS (GA account "Built With Muse", administered by polostudio.brand@gmail.com)
 - Search Console property https://builtwithmuse.com/ is owned by polostudio.brand@gmail.com, verified via the meta tag in `<head>`. Do not remove that tag.
+
+## Design
+
+"Carbon Blue", chosen 2026-09-21 from eight directions: bright blue `#1a56ff` ground with a carbon weave and a 48px grid drawn in CSS, white uppercase Archivo headlines, IBM Plex Sans body, JetBrains Mono for codes, navy `#0d1b3d` cards, mint `#7dffc6` for anything open or live, coral `#ff8f8f` for pulled or failed. Single theme by design. The blog uses the same tokens; the moderator page keeps its own neutral dashboard look. Public pages are laid out for phones first (stacked hero, scrollable nav, full width buttons under 640px).
 
 ## Copy rules
 

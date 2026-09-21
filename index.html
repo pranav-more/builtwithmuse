@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Free Muse invite codes from the community</title>
+    <meta name="description" content="Get a free Muse invite code, share your own, or join the country waitlist." />
+    <meta name="google-site-verification" content="mr1el4vIl7MBsTUgIKymHEf10RALgLvAN8f3c7UPYvU" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C94847V6DS');
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f8f6;
+        --surface: #ffffff;
+        --surface-2: #edf2ef;
+        --ink: #14221d;
+        --muted: #5c6964;
+        --line: #d7dfdb;
+        --accent: #e45d35;
+        --accent-hover: #c84b28;
+        --accent-soft: #fff0ea;
+        --teal: #0c766b;
+        --teal-soft: #e2f3ef;
+        --dark: #152b25;
+        --shadow: 0 22px 54px rgba(23, 46, 38, 0.12);
+        --danger: #b43a2a;
+        --success: #17705e;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #101714;
+          --surface: #17211d;
+          --surface-2: #202d28;
+          --ink: #f2f6f4;
+          --muted: #aab8b2;
+          --line: #34443e;
+          --accent: #f07850;
+          --accent-hover: #ff8a65;
+          --accent-soft: #3b241c;
+          --teal: #5cc7b8;
+          --teal-soft: #183b34;
+          --dark: #e4f2ed;
+          --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+          --danger: #ff8c7e;
+          --success: #6ad1bd;
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html { min-width: 0; background: var(--bg); }
+      body {
+        margin: 0;
+        min-width: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 92% 10%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 28rem),
+          var(--bg);
+        font-family: "DM Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      button, input, select { font: inherit; }
+      button { cursor: pointer; }
+      a { color: inherit; }
+
+      .shell {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 28px 0 48px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+
+      .availability {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .availability::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--teal);
+        box-shadow: 0 0 0 4px var(--teal-soft);
+      }
+
+      .nav {
+        display: flex;
+        gap: 6px;
+        padding: 5px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--surface) 82%, transparent);
+      }
+      .nav button {
+        border: 0;
+        border-radius: 10px;
+        padding: 9px 14px;
+        color: var(--muted);
+        background: transparent;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .nav button[aria-selected="true"] {
+        background: var(--surface-2);
+        color: var(--ink);
+      }
+
+      .view { display: none; }
+      .view.active { display: block; }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(340px, .78fr);
+        align-items: center;
+        gap: clamp(48px, 8vw, 104px);
+        min-height: 540px;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+        color: var(--teal);
+        font-size: 14px;
+        font-weight: 800;
+      }
+      h1, h2, h3, p { margin-top: 0; }
+      h1, h2, h3 { font-family: "Manrope", sans-serif; letter-spacing: -0.035em; }
+      h1 {
+        max-width: 710px;
+        margin-bottom: 22px;
+        font-size: clamp(43px, 6vw, 73px);
+        line-height: .99;
+        font-weight: 800;
+      }
+      .lead {
+        max-width: 620px;
+        margin-bottom: 30px;
+        color: var(--muted);
+        font-size: clamp(18px, 2vw, 21px);
+        line-height: 1.55;
+      }
+      .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 48px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        padding: 12px 18px;
+        background: var(--accent);
+        color: white;
+        font-weight: 800;
+        text-decoration: none;
+        transition: background .18s ease, transform .18s ease;
+      }
+      .button:hover { background: var(--accent-hover); }
+      .button:active { transform: translateY(1px); }
+      .button.secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
+      .button.secondary:hover { background: var(--surface-2); }
+      .button.ghost { background: transparent; color: var(--muted); border-color: var(--line); }
+      .button.full { width: 100%; }
+      .button svg { width: 18px; height: 18px; }
+
+      .trust-note {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-top: 20px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .trust-note svg { width: 17px; height: 17px; color: var(--teal); flex: 0 0 auto; }
+
+      .preview-wrap { position: relative; }
+      .offset-card {
+        position: absolute;
+        inset: 22px -18px -18px 24px;
+        border-radius: 24px;
+        background: var(--teal-soft);
+        transform: rotate(2.5deg);
+      }
+      .code-card {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 30px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+      .card-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 28px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .live-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-radius: 999px;
+        padding: 6px 9px;
+        background: var(--teal-soft);
+        color: var(--teal);
+      }
+      .live-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+      .preview-code {
+        margin-bottom: 12px;
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(26px, 3.5vw, 38px);
+        font-weight: 800;
+        letter-spacing: .04em;
+      }
+      .blurred { filter: blur(7px); user-select: none; opacity: .6; }
+      .preview-text { color: var(--muted); line-height: 1.55; }
+      .divider { height: 1px; margin: 25px 0; background: var(--line); }
+      .mini-flow { display: grid; gap: 15px; }
+      .mini-row { display: grid; grid-template-columns: 28px 1fr; align-items: start; gap: 12px; }
+      .mini-number {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--surface-2);
+        color: var(--teal);
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .mini-row strong { display: block; margin-bottom: 2px; font-size: 15px; }
+      .mini-row span { color: var(--muted); font-size: 13px; }
+
+      .section-head { max-width: 680px; margin: 12px auto 34px; text-align: center; }
+      .section-head h2 { margin-bottom: 12px; font-size: clamp(33px, 5vw, 52px); line-height: 1.08; }
+      .section-head p { color: var(--muted); font-size: 18px; line-height: 1.55; }
+
+      .workflow-card {
+        width: min(660px, 100%);
+        margin: 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: clamp(22px, 5vw, 38px);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+      .timer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+      .timer-label { color: var(--muted); font-size: 14px; font-weight: 700; }
+      .timer { color: var(--accent); font-family: "Manrope", sans-serif; font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+      .assigned-code {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 12px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 17px 18px;
+        background: var(--surface-2);
+      }
+      .assigned-code code {
+        overflow-wrap: anywhere;
+        color: var(--ink);
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(21px, 5vw, 30px);
+        font-weight: 800;
+        letter-spacing: .045em;
+      }
+      .icon-button {
+        display: inline-grid;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        background: var(--surface);
+        color: var(--ink);
+      }
+      .icon-button svg { width: 19px; height: 19px; }
+      .copy-status { min-height: 22px; margin-bottom: 22px; color: var(--success); font-size: 14px; font-weight: 700; }
+      .instructions { margin: 0 0 26px; padding: 0; list-style: none; counter-reset: steps; }
+      .instructions li {
+        position: relative;
+        margin-bottom: 16px;
+        padding-left: 43px;
+        color: var(--muted);
+        line-height: 1.5;
+        counter-increment: steps;
+      }
+      .instructions li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 0;
+        top: -2px;
+        display: grid;
+        width: 29px;
+        height: 29px;
+        place-items: center;
+        border-radius: 9px;
+        background: var(--teal-soft);
+        color: var(--teal);
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .quiet-link {
+        display: block;
+        margin: 18px auto 0;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        font-size: 14px;
+      }
+      .issue-panel {
+        display: none;
+        margin-top: 18px;
+        border-radius: 14px;
+        padding: 16px;
+        background: var(--accent-soft);
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 14px;
+      }
+      .issue-panel.visible { display: block; }
+      .issue-panel strong { color: var(--ink); }
+
+      .form-stack { display: grid; gap: 18px; }
+      .field label { display: block; margin-bottom: 8px; font-weight: 800; font-size: 14px; }
+      .field small { display: block; margin-top: 7px; color: var(--muted); line-height: 1.4; }
+      input, select {
+        width: 100%;
+        height: 52px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0 14px;
+        background: var(--bg);
+        color: var(--ink);
+        outline: none;
+      }
+      input:focus, select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-soft); }
+      .form-note { margin: -3px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+      .message {
+        display: none;
+        margin-top: 18px;
+        border-radius: 14px;
+        padding: 16px;
+        background: var(--teal-soft);
+        color: var(--ink);
+        line-height: 1.5;
+      }
+      .message.visible { display: block; }
+      .message strong { display: block; margin-bottom: 3px; color: var(--teal); }
+      .error { min-height: 20px; margin-top: 7px; color: var(--danger); font-size: 13px; }
+
+      .waitlist-layout {
+        display: grid;
+        grid-template-columns: minmax(0, .82fr) minmax(360px, .62fr);
+        gap: clamp(42px, 8vw, 100px);
+        align-items: center;
+        min-height: 540px;
+      }
+      .waitlist-layout h2 { margin-bottom: 18px; font-size: clamp(39px, 6vw, 66px); line-height: 1.02; }
+      .waitlist-layout .lead { margin-bottom: 25px; }
+      .benefits { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+      .benefits li { display: flex; gap: 11px; align-items: flex-start; color: var(--muted); }
+      .benefits svg { width: 20px; height: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--teal); }
+
+      .workflows-layout {
+        display: grid;
+        grid-template-columns: minmax(0, .72fr) minmax(420px, .9fr);
+        gap: clamp(42px, 8vw, 96px);
+        align-items: center;
+        min-height: 540px;
+      }
+      .workflows-layout h2 { margin-bottom: 16px; font-size: clamp(39px, 6vw, 66px); line-height: 1.02; }
+      .workflows-layout .lead { margin-bottom: 0; }
+      .case-study {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: clamp(24px, 5vw, 38px);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+      .case-tag {
+        display: inline-flex;
+        margin-bottom: 24px;
+        border-radius: 999px;
+        padding: 7px 10px;
+        background: var(--teal-soft);
+        color: var(--teal);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .case-study h3 { margin-bottom: 14px; font-size: clamp(28px, 4vw, 40px); line-height: 1.08; }
+      .case-study p { margin-bottom: 24px; color: var(--muted); font-size: 17px; line-height: 1.6; }
+      .case-note {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .case-note svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--teal); }
+
+      .preview-strip {
+        width: max-content;
+        max-width: calc(100% - 24px);
+        margin: -34px auto 18px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 13px;
+        background: color-mix(in srgb, var(--surface) 92%, transparent);
+        box-shadow: 0 8px 24px rgba(0,0,0,.1);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 780px) {
+        .shell { width: min(100% - 28px, 640px); padding-top: 18px; }
+        .topbar { align-items: flex-start; margin-bottom: 28px; }
+        .availability { padding-top: 9px; }
+        .nav { max-width: 58%; flex-wrap: wrap; justify-content: flex-end; }
+        .nav button { padding: 8px 10px; }
+        .hero, .waitlist-layout, .workflows-layout { grid-template-columns: 1fr; min-height: 0; gap: 46px; }
+        .hero { padding: 20px 0 70px; }
+        h1 { font-size: clamp(43px, 13vw, 60px); }
+        .preview-wrap { margin: 0 7px; }
+        .offset-card { inset: 14px -7px -12px 16px; }
+        .code-card { padding: 24px; }
+        .section-head { text-align: left; margin-top: 20px; }
+        .workflow-card { border-radius: 20px; }
+        .waitlist-layout, .workflows-layout { padding: 20px 0 70px; }
+      }
+
+      @media (max-width: 480px) {
+        .topbar { display: block; }
+        .availability { margin-bottom: 14px; }
+        .nav { max-width: none; width: 100%; justify-content: stretch; }
+        .nav button { flex: 1 1 30%; }
+        .actions { align-items: stretch; flex-direction: column; }
+        .actions .button { width: 100%; }
+        .card-actions { grid-template-columns: 1fr; }
+        .assigned-code { align-items: center; padding: 14px; }
+        .assigned-code code { font-size: 21px; }
+        .preview-strip {
+          position: static;
+          width: calc(100% - 28px);
+          max-width: 390px;
+          margin: -26px auto 18px;
+          transform: none;
+          white-space: normal;
+          text-align: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <nav class="nav" aria-label="Page sections">
+          <button type="button" data-view="home" aria-selected="true">Get a code</button>
+          <button type="button" data-view="share" aria-selected="false">Share yours</button>
+          <button type="button" data-view="workflows" aria-selected="false">Workflows</button>
+          <button type="button" data-view="waitlist" aria-selected="false">Waitlist</button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="view active" id="view-home">
+          <div class="hero">
+            <div>
+              <div class="eyebrow">Community powered access</div>
+              <h1>Get a free Muse invite code.</h1>
+              <p class="lead">Take one from the pool. Share yours. Everyone earns.</p>
+              <div class="actions">
+                <button class="button" type="button" id="get-code">
+                  Get a code
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="button secondary" type="button" data-view="share">I already have a code</button>
+              </div>
+              <div class="trust-note">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Free to use. No sign in. Codes are first come, first served.
+              </div>
+            </div>
+
+            <div class="preview-wrap" aria-hidden="true">
+              <div class="offset-card"></div>
+              <div class="code-card">
+                <div class="card-label"><span>Your invite</span><span class="live-tag">Ready</span></div>
+                <div class="preview-code blurred">PJEJV1</div>
+                <p class="preview-text">Reveal a community code and redeem it in Muse before moving on.</p>
+                <div class="divider"></div>
+                <div class="mini-flow">
+                  <div class="mini-row"><span class="mini-number">1</span><div><strong>Claim</strong><span>Receive one available code.</span></div></div>
+                  <div class="mini-row"><span class="mini-number">2</span><div><strong>Redeem</strong><span>Use it in your Muse settings.</span></div></div>
+                  <div class="mini-row"><span class="mini-number">3</span><div><strong>Pass it on</strong><span>Add your own invite for the next person.</span></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-claim">
+          <div class="section-head">
+            <div class="eyebrow">Your code is ready</div>
+            <h2>Here’s your code.</h2>
+            <p>Copy it, then open Muse → Settings → Redeem token. You have 48 hours from joining to redeem.</p>
+          </div>
+          <div class="workflow-card">
+            <div class="timer-row"><span class="timer-label">Codes go fast. Redeem yours in the next 15 minutes.</span><span class="timer" id="timer">15:00</span></div>
+            <div class="assigned-code">
+              <code id="assigned-code">PJEJV1</code>
+              <button class="icon-button" id="copy-code" type="button" aria-label="Copy referral code">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+            <div class="copy-status" id="copy-status" aria-live="polite"></div>
+            <ol class="instructions">
+              <li>Open Muse and go to <strong>Settings</strong>.</li>
+              <li>Find <strong>Redeem invite code</strong> and paste the code.</li>
+              <li>Return here and add your own invite for the next person.</li>
+            </ol>
+            <div class="card-actions">
+              <button class="button" type="button" id="redeemed">I redeemed it</button>
+              <button class="button ghost" type="button" id="another-code">Try another code</button>
+            </div>
+            <button class="quiet-link" type="button" id="report-issue">This code didn't work</button>
+            <div class="issue-panel" id="issue-panel" aria-live="polite"><strong>Thanks for flagging it.</strong> Here is another available code from the pool.</div>
+          </div>
+        </section>
+
+        <section class="view" id="view-share">
+          <div class="section-head">
+            <div class="eyebrow">Earn when others join</div>
+            <h2>Share your invite. Earn tokens.</h2>
+            <p>Every time someone uses your code, you earn. Add yours to the pool and let strangers do the work.</p>
+          </div>
+          <div class="workflow-card">
+            <form id="share-form" novalidate>
+              <div class="form-stack">
+                <div class="field">
+                  <label for="share-code">Your invite code</label>
+                  <input id="share-code" name="share-code" type="text" required autocomplete="off" placeholder="Enter your Muse code" maxlength="40" />
+                  <small>Check every letter and number before adding it.</small>
+                </div>
+                <div class="field">
+                  <label for="invite-link">Your invite link</label>
+                  <input id="invite-link" name="invite-link" type="url" required inputmode="url" autocomplete="url" placeholder="https://…" />
+                  <small>We verify every link to help keep fake codes out.</small>
+                  <div class="error" id="share-error" aria-live="polite"></div>
+                </div>
+                <button class="button full" id="share-submit" type="submit">Add my code</button>
+                <p class="form-note"><strong>New codes get shown first, so yours won’t get buried.</strong> By adding yours, you confirm the code and link are available to use.</p>
+              </div>
+            </form>
+            <div class="message" id="share-message" aria-live="polite"><strong>Your code is in.</strong> Thanks for adding it to the community pool.</div>
+          </div>
+        </section>
+
+        <section class="view" id="view-workflows">
+          <div class="workflows-layout">
+            <div>
+              <div class="eyebrow">Useful, not advertorial</div>
+              <h2>What people build with Muse.</h2>
+              <p class="lead">Practical workflows that pair Muse with the tools needed to finish the job. Partner features will always be clearly labeled.</p>
+            </div>
+            <article class="case-study">
+              <span class="case-tag">Partner workflow concept</span>
+              <h3>Muse makes the calls. ElevenLabs gives it a voice.</h3>
+              <p>A practical guide to pairing Muse with an ElevenLabs voice agent for appointment reminders, from setup to the finished workflow.</p>
+              <div class="case-note">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5 9 16l10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Planned for phase two. No partnership is implied.
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-waitlist">
+          <div class="waitlist-layout">
+            <div>
+              <div class="eyebrow">Country waitlist</div>
+              <h2>Muse isn’t in your country yet.</h2>
+              <p class="lead">Join the waitlist. We’ll email you the day it launches with a fresh invite code so you can claim free tokens.</p>
+              <ul class="benefits">
+                <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A fresh invite code for free tokens</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No referral code needed to join</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No weekly newsletter or extra noise</span></li>
+              </ul>
+            </div>
+            <div class="workflow-card">
+              <form id="waitlist-form" novalidate>
+                <div class="form-stack">
+                  <div class="field">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required autocomplete="country-name">
+                      <option value="">Choose your country</option>
+                      <option>Australia</option>
+                      <option>Brazil</option>
+                      <option>Canada</option>
+                      <option>France</option>
+                      <option>Germany</option>
+                      <option>India</option>
+                      <option>Indonesia</option>
+                      <option>Italy</option>
+                      <option>Japan</option>
+                      <option>Mexico</option>
+                      <option>Netherlands</option>
+                      <option>New Zealand</option>
+                      <option>Philippines</option>
+                      <option>Singapore</option>
+                      <option>South Africa</option>
+                      <option>South Korea</option>
+                      <option>Spain</option>
+                      <option>United Arab Emirates</option>
+                      <option>United Kingdom</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="email">Email address</label>
+                    <input id="email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="you@example.com" />
+                    <div class="error" id="waitlist-error" aria-live="polite"></div>
+                  </div>
+                  <button class="button full" id="waitlist-submit" type="submit">Join the waitlist</button>
+                  <p class="form-note">We’ll only use this to notify you when Muse reaches your country and send your fresh invite code.</p>
+                </div>
+              </form>
+              <div class="message" id="waitlist-message" aria-live="polite"><strong>You’re on the waitlist.</strong> We’ll email you with a fresh invite code when Muse reaches your country.</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="preview-strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+
+    <script>
+      (() => {
+        const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbz8-KKhA3XP6REX4Fuu4G4ToNIJHkG83r75eVjULjMbqIqp7mV0hmx59JCIdOY0CJui/exec";
+        const views = ["home", "claim", "share", "workflows", "waitlist"];
+        const navButtons = [...document.querySelectorAll(".nav [data-view]")];
+        const inviteCodes = [
+          "PJEJV1", "0OZ856", "M68AR4", "FGYZLT", "9D6HT8",
+          "5QK6LV", "XT9K8D", "IKT505", "GHJLEO", "DXEO25",
+          "YRGJSB", "8YOX0D", "UN31VI", "SF1FEC", "2HK7UT",
+          "ZCW7R9", "9SAO21", "JUV8BB", "1G0QTX", "70Z09F",
+          "TCJ8QG", "11H8SA", "X5UKYU", "GB2PY8", "KR9GBK"
+        ];
+        let timerId = null;
+        let remaining = 15 * 60;
+        let codeIndex = -1;
+        const forbiddenDash = /[\u002D\u058A\u05BE\u1400\u1806\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2E17\u2E1A\u2E3A\u2E3B\u2E40\u2E5D\u301C\u3030\u30A0\uFE31\uFE32\uFE58\uFE63\uFF0D]/;
+
+        function assertDashFreeVisibleCopy() {
+          document.querySelectorAll("body *:not(script):not(style)").forEach((node) => {
+            for (const child of node.childNodes) {
+              if (child.nodeType === Node.TEXT_NODE && forbiddenDash.test(child.textContent)) {
+                throw new Error("Visible copy contains forbidden punctuation.");
+              }
+            }
+            for (const attribute of ["aria-label", "alt", "placeholder", "title", "value"]) {
+              if (node.hasAttribute(attribute) && forbiddenDash.test(node.getAttribute(attribute))) {
+                throw new Error("Visible copy contains forbidden punctuation.");
+              }
+            }
+          });
+        }
+
+        function showView(name) {
+          views.forEach((view) => document.getElementById(`view-${view}`).classList.toggle("active", view === name));
+          navButtons.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.view === name || (name === "claim" && button.dataset.view === "home"))));
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function renderTimer() {
+          const minutes = Math.floor(remaining / 60).toString().padStart(2, "0");
+          const seconds = (remaining % 60).toString().padStart(2, "0");
+          document.getElementById("timer").textContent = `${minutes}:${seconds}`;
+        }
+
+        function startTimer() {
+          clearInterval(timerId);
+          remaining = 15 * 60;
+          renderTimer();
+          timerId = setInterval(() => {
+            if (remaining > 0) remaining -= 1;
+            renderTimer();
+            if (remaining === 0) clearInterval(timerId);
+          }, 1000);
+        }
+
+        function showNextCode(statusText = "") {
+          codeIndex = (codeIndex + 1) % inviteCodes.length;
+          document.getElementById("assigned-code").textContent = inviteCodes[codeIndex];
+          document.getElementById("copy-status").textContent = statusText;
+          startTimer();
+        }
+
+        async function postForm(payload) {
+          const response = await fetch(FORM_ENDPOINT, {
+            method: "POST",
+            redirect: "follow",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+          });
+          if (!response.ok) throw new Error("Request failed");
+          const result = await response.json();
+          if (!result.ok) throw new Error(result.error || "Save failed");
+          return result;
+        }
+
+        assertDashFreeVisibleCopy();
+
+        document.querySelectorAll("[data-view]").forEach((button) => {
+          button.addEventListener("click", () => showView(button.dataset.view));
+        });
+
+        document.getElementById("get-code").addEventListener("click", () => {
+          showNextCode();
+          showView("claim");
+        });
+
+        document.getElementById("copy-code").addEventListener("click", async () => {
+          const code = document.getElementById("assigned-code").textContent;
+          const status = document.getElementById("copy-status");
+          try {
+            await navigator.clipboard.writeText(code);
+            status.textContent = "Copied to clipboard";
+          } catch (_) {
+            status.textContent = "Select the code and copy it manually";
+          }
+        });
+
+        document.getElementById("another-code").addEventListener("click", () => {
+          showNextCode("Here’s another code from the pool");
+          document.getElementById("issue-panel").classList.remove("visible");
+        });
+
+        document.getElementById("report-issue").addEventListener("click", () => {
+          showNextCode();
+          document.getElementById("issue-panel").classList.add("visible");
+        });
+
+        document.getElementById("redeemed").addEventListener("click", () => {
+          showView("share");
+          setTimeout(() => document.getElementById("share-code").focus(), 250);
+        });
+
+        const shareForm = document.getElementById("share-form");
+        const shareSubmit = document.getElementById("share-submit");
+        shareForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const input = document.getElementById("share-code");
+          const inviteLink = document.getElementById("invite-link");
+          const error = document.getElementById("share-error");
+          const message = document.getElementById("share-message");
+          const code = input.value.trim();
+          const link = inviteLink.value.trim();
+          message.classList.remove("visible");
+          if (code.length < 5) {
+            error.textContent = "Enter a complete referral code to continue.";
+            input.focus();
+            return;
+          }
+          if (!inviteLink.validity.valid || !/^https?:\/\//i.test(link)) {
+            error.textContent = "Enter the full invite link, starting with http:// or https://.";
+            inviteLink.focus();
+            return;
+          }
+
+          error.textContent = "";
+          shareSubmit.disabled = true;
+          shareSubmit.textContent = "Adding your code...";
+          try {
+            await postForm({ form: "code_submission", code, inviteLink: link });
+            shareForm.reset();
+            message.classList.add("visible");
+            shareSubmit.textContent = "Code added";
+          } catch (_) {
+            error.textContent = "We could not add your code. Please try again.";
+            shareSubmit.disabled = false;
+            shareSubmit.textContent = "Add my code";
+          }
+        });
+
+        const waitlistForm = document.getElementById("waitlist-form");
+        const waitlistSubmit = document.getElementById("waitlist-submit");
+        waitlistForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const country = document.getElementById("country");
+          const email = document.getElementById("email");
+          const error = document.getElementById("waitlist-error");
+          const message = document.getElementById("waitlist-message");
+          message.classList.remove("visible");
+          if (!country.value) {
+            error.textContent = "Choose your country to continue.";
+            country.focus();
+            return;
+          }
+          if (!email.validity.valid || !email.value.trim()) {
+            error.textContent = "Enter a valid email address.";
+            email.focus();
+            return;
+          }
+
+          error.textContent = "";
+          waitlistSubmit.disabled = true;
+          waitlistSubmit.textContent = "Joining...";
+          try {
+            await postForm({ form: "waitlist", email: email.value.trim(), country: country.value });
+            waitlistForm.reset();
+            message.classList.add("visible");
+            waitlistSubmit.textContent = "Joined";
+          } catch (_) {
+            error.textContent = "We could not save your place. Please try again.";
+            waitlistSubmit.disabled = false;
+            waitlistSubmit.textContent = "Join the waitlist";
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

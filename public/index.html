@@ -493,6 +493,10 @@
       }
         .hp { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
   </style>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
   </head>
   <body>
     <div class="shell">
@@ -757,11 +761,25 @@
           return "We could not fetch a code. Please try again.";
         }
 
+        let sessionReady = api("/api/session").catch(() => null);
+
+        async function claim(fresh) {
+          await sessionReady;
+          try {
+            return await api("/api/claim", { fresh });
+          } catch (error) {
+            if (error.code !== "no_device") throw error;
+            sessionReady = api("/api/session").catch(() => null);
+            await sessionReady;
+            return api("/api/claim", { fresh });
+          }
+        }
+
         async function showNextCode(statusText = "", fresh = false) {
           const status = document.getElementById("copy-status");
           status.textContent = "Finding a code for you...";
           try {
-            const result = await api("/api/claim", { fresh });
+            const result = await claim(fresh);
             setCode(result.code);
             status.textContent = statusText;
             startTimer();

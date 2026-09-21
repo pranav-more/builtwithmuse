@@ -4,25 +4,74 @@ Community site for sharing free Muse invite codes. Live at https://builtwithmuse
 
 ## Structure
 
-Single static page: `index.html`. No build step, no backend.
+- `public/index.html`: the whole site, one static page.
+- `api/index.js` and `lib/api.js`: the API, a Vercel serverless function backed by Postgres on Supabase. Every `/api/*` path is rewritten to it (see `vercel.json`).
+- `server.js`: local development server that serves `public/` and the same API code. Not used in production.
+
+No build step.
 
 ## Deploy
 
-Vercel project `builtwithmuse` (personal account of pranavmore.psm@gmail.com) auto deploys the `main` branch of github.com/pranav-more/builtwithmuse. Every push to `main` goes live. No build step: framework preset "Other", output directory is the repo root.
+Vercel project `builtwithmuse` (personal account of pranavmore.psm@gmail.com) auto deploys the `main` branch of github.com/pranav-more/builtwithmuse. Every push to `main` goes live. Functions run in `sfo1`, next to the database.
 
 Domains:
 - builtwithmuse.com (primary). Registered at GoDaddy, nameservers point at Vercel (ns1 and ns2.vercel-dns.com), so DNS records live in the Vercel project. www redirects to the apex with a 308.
 - getmusecode.com (301 forwards to builtwithmuse.com, including www). Forwarding is done by GoDaddy and does not involve Vercel.
 
-Moved off Netlify on 2026-09-21; the old Netlify site and DNS zone were deleted.
+Moved off Netlify on 2026-09-21; the old Netlify site is deleted and its DNS zone can go after 2026-09-23.
 
-## Adding invite codes
+## Database
 
-Edit the `inviteCodes` array near the bottom of `index.html` and push. New codes appear in the pool immediately.
+Supabase project `ixifjltslrhelbtzelkf` ("builtwithmuse", organization "Built with muse", Free plan) under jayeshmarathe2000jm@gmail.com, region West US (North California). The Data API is off; only Postgres is used. Tables: `codes`, `claims`, `reports`, `submissions`, `waitlist`. The function creates them on first use (`CREATE TABLE IF NOT EXISTS`).
 
-## Forms
+Environment variables on Vercel (production and preview):
+- `SUPABASE_DB_URL`: transaction pooler connection string (port 6543).
+- `DEVICE_SECRET`: signs the device cookie. Changing it logs every browser out of its device identity.
+- `ADMIN_TOKEN`: bearer token for the admin endpoints.
 
-Waitlist and code submissions POST to a Google Apps Script webhook that saves them to a Google Sheet. Waitlist entries go to the first sheet, code submissions go to the `code_submissions` sheet. The endpoint is the `FORM_ENDPOINT` constant in `index.html`.
+## How codes are handed out
+
+- A visitor clicks "Get a code". The page calls `POST /api/claim`, which picks the newest available code and increments its counter in one statement (`FOR UPDATE SKIP LOCKED`), so concurrent visitors never receive the same code past its limit.
+- Each code is handed to at most two people, then the next one is used. Newest submissions go first.
+- A device that reloads within 15 minutes gets the same code back rather than a new one. "Try another code" and "This code didn't work" ask for a fresh one; a device never gets the same code twice.
+- Two reports from people who were handed a code retire it.
+- When the pool is empty the page says so and points to sharing and the waitlist.
+
+## Scraper controls
+
+- A signed HttpOnly device cookie from `POST /api/session` is required for claims and reports.
+- Limits are kept in the database, per device and per IP: claims 3 per hour and 6 per day per device, 8 per hour and 20 per day per IP; submissions and waitlist joins 5 per hour and 20 per day per IP. Vercel sets the client IP headers itself, so they cannot be spoofed.
+- Obvious non-browser user agents are refused. Both forms carry a honeypot field. Codes are never present in the HTML.
+
+## Admin
+
+All admin calls need `Authorization: Bearer <ADMIN_TOKEN>`.
+
+```
+GET    /api/admin/export.csv?table=codes|claims|waitlist|reports
+POST   /api/admin/codes            {"codes": ["ABC123", "..."], "source": "admin"}
+POST   /api/admin/codes/retire     {"code": "ABC123"}
+DELETE /api/admin/codes/:id
+DELETE /api/admin/waitlist/:id
+GET    /api/admin/whoami
+```
+
+Adding codes in bulk:
+
+```
+curl -X POST https://builtwithmuse.com/api/admin/codes \
+  -H "Authorization: Bearer $ADMIN_TOKEN" -H "Content-Type: application/json" \
+  -d '{"codes":["ABC123","DEF456"]}'
+```
+
+## Local development
+
+```
+createdb builtwithmuse_dev
+DATABASE_URL=postgres://localhost/builtwithmuse_dev DEVICE_SECRET=dev ADMIN_TOKEN=dev node server.js
+```
+
+Then open http://localhost:3000.
 
 ## Analytics
 
@@ -39,8 +88,8 @@ Waitlist and code submissions POST to a Google Apps Script webhook that saves th
 
 ## Accounts
 
-- GitHub: pranav-more (the original repo under jayeshmark is no longer deployed)
+- GitHub: pranav-more (jayeshmark has write access; the original repo under jayeshmark is no longer deployed)
 - Vercel: pranavmore.psm@gmail.com, project `builtwithmuse`
+- Supabase: jayeshmarathe2000jm@gmail.com, organization "Built with muse"
 - GoDaddy: domain registration for both domains and the getmusecode.com forwarding (jayeshmarathe2000jm@gmail.com)
-- Google, polostudio.brand@gmail.com: Analytics, Search Console
-- Google, jayeshmarathe2000jm@gmail.com: Apps Script webhook and the Sheet it writes to
+- Google, polostudio.brand@gmail.com: Analytics, Search Console, Microsoft Clarity

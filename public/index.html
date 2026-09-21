@@ -333,10 +333,6 @@
               <h1 class="hero-click" id="hero-h1" role="button" tabindex="0">Get a free Muse invite code.</h1>
               <p class="lead">Take one from the pool. Once you are in, add your own invite: when someone redeems it, Muse credits tokens to both of you.</p>
               <button class="button hero-cta" type="button" id="hero-cta">Get a code <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="actions">
-                <button class="button" type="button" id="get-code">
-                  Get a code
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
                 <button class="button secondary" type="button" data-view="share">I already have a code</button>
               </div>
               <p class="fine"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free to use. No sign in. Codes are first come, first served.</p>
@@ -731,10 +727,10 @@
           button.addEventListener("click", () => showView(button.dataset.view));
         });
 
-        /* Clarity: hero CTA button and H1 scroll to the pool section. */ const poolSection = document.getElementById("pool-section"); const scrollToPool = () => { if (poolSection) poolSection.scrollIntoView({ behavior: "smooth", block: "start" }); }; const heroCta = document.getElementById("hero-cta"); if (heroCta) heroCta.addEventListener("click", scrollToPool); const heroH1 = document.getElementById("hero-h1"); if (heroH1) { heroH1.addEventListener("click", scrollToPool); heroH1.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); scrollToPool(); } }); } document.querySelectorAll("#get-code, #get-code-2").forEach((button) => button.addEventListener("click", () => {
+        /* Clarity: hero CTA button and H1 scroll to the pool section. */ const poolSection = document.getElementById("pool-section"); const scrollToPool = () => { if (poolSection) poolSection.scrollIntoView({ behavior: "smooth", block: "start" }); }; const heroCta = document.getElementById("hero-cta"); if (heroCta) heroCta.addEventListener("click", scrollToPool); const heroH1 = document.getElementById("hero-h1"); if (heroH1) { heroH1.addEventListener("click", scrollToPool); heroH1.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); scrollToPool(); } }); } document.getElementById("get-code-2").addEventListener("click", () => {
           showView("claim");
           showNextCode();
-        }));
+        });
 
         const nudge = document.getElementById("nudge");
         let nudgeTimer = null;

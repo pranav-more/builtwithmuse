@@ -55,8 +55,8 @@
         color: var(--ink);
         background-color: var(--blue);
         background-image:
-          linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px),
+          linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px),
           linear-gradient(45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%),
           linear-gradient(-45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%);
         background-size: 48px 48px, 48px 48px, 6px 6px, 6px 6px;
@@ -101,8 +101,21 @@
       .button svg { width: 18px; height: 18px; }
       .button:hover { background: #eaf0ff; }
       .button:active { transform: translateY(1px); }
-      .button.secondary, .button.ghost { background: transparent; color: var(--ink); border-color: rgba(255,255,255,.7); }
-      .button.secondary:hover, .button.ghost:hover { background: rgba(255,255,255,.12); }
+      .button.ghost { background: transparent; color: var(--ink); border-color: rgba(255,255,255,.7); }
+      .button.ghost:hover { background: rgba(255,255,255,.12); }
+      /* Secondary call to action: no solid outline, just a faint gradient edge that catches light at the top left. */
+      .button.secondary {
+        color: var(--ink);
+        border: 2px solid transparent;
+        background:
+          linear-gradient(#1f55e8, #1f55e8) padding-box,
+          linear-gradient(135deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.1) 45%, rgba(255,255,255,.06) 70%, rgba(255,255,255,.22) 100%) border-box;
+      }
+      .button.secondary:hover {
+        background:
+          linear-gradient(#2560f4, #2560f4) padding-box,
+          linear-gradient(135deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,.14) 45%, rgba(255,255,255,.08) 70%, rgba(255,255,255,.3) 100%) border-box;
+      }
       .button.full { width: 100%; }
       .button:disabled { opacity: .6; cursor: default; }
       .fine { display: flex; align-items: center; gap: 8px; margin-top: 18px; color: var(--muted); font-size: 13px; }

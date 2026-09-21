@@ -26,6 +26,7 @@ Waitlist and code submissions POST to a Google Apps Script webhook that saves th
 
 ## Analytics
 
+- Vercel Web Analytics is enabled on the project; the snippet at the end of `<head>` loads `/_vercel/insights/script.js`. Keep it.
 - Google Analytics 4 measurement ID: G-C94847V6DS (GA account "Built With Muse", administered by polostudio.brand@gmail.com)
 - Search Console property https://builtwithmuse.com/ is owned by polostudio.brand@gmail.com, verified via the meta tag in `<head>`. Do not remove that tag.
 

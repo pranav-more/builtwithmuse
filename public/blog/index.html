@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
     <style>
-      :root { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --navy: #0d1b3d; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --paper: #ffffff; --shadow: 0 30px 60px rgba(0,0,0,.35); --radius: 10px; }
+      :root { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --navy: #0d1b3d; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --shadow: 0 30px 60px rgba(0,0,0,.35); --radius: 10px; }
       * { box-sizing: border-box; }
       body { margin: 0; min-height: 100vh; color: var(--ink); background-color: var(--blue);
         background-image: linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%), linear-gradient(-45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%);
@@ -32,29 +32,48 @@
       h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
       .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
       .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      @media (min-width: 641px) {
+        .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: rgba(26,86,255,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+      }
       .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
       .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
       .nav::-webkit-scrollbar { display: none; }
       .nav a { flex: 0 0 auto; border: 1px solid transparent; border-radius: 8px; padding: 9px 13px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
       .nav a:hover { color: var(--ink); border-color: var(--line); }
       .nav a[aria-current="page"] { background: rgba(255,255,255,.14); color: var(--ink); border-color: var(--line); }
-      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.08); padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
+      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
+      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
       .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
-      h1 { font-size: clamp(34px, 5.6vw, 64px); line-height: 1; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
-      .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0 0 36px; }
-      .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 30px; }
-      .posts { display: grid; gap: 16px; max-width: 800px; }
-      .post { display: block; text-decoration: none; padding: 26px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--navy); box-shadow: var(--shadow); }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 40px; align-items: end; padding: 12px 0 44px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .hero h1 { font-size: clamp(36px, 6vw, 76px); line-height: .98; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
+      .hero .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0; }
+      .hero .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 18px; }
+      .hero-aside { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .hero-aside .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .hero-aside p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+
+      .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+      .post { display: flex; flex-direction: column; text-decoration: none; padding: 26px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--navy); box-shadow: var(--shadow); min-height: 240px; }
       .post:hover { border-color: var(--mint); }
-      .post h2 { margin: 0 0 8px; font-size: 24px; line-height: 1.15; }
-      .post p { margin: 0 0 12px; color: var(--muted); line-height: 1.55; }
+      .post h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.12; }
+      .post p { margin: 0 0 16px; color: var(--muted); line-height: 1.55; flex: 1; }
       .post .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mint); margin-bottom: 12px; }
       .post .when { color: var(--muted-2); font-size: 13px; font-weight: 600; }
-      article { max-width: 760px; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 44px); box-shadow: var(--shadow); }
+      .post .more { color: var(--ink); font-weight: 700; font-size: 14px; margin-top: 10px; }
+
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
+      article { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 48px); box-shadow: var(--shadow); min-width: 0; }
+      article > * { max-width: 72ch; }
       article p, article li { font-size: 17px; line-height: 1.7; color: var(--muted); }
       article p strong, article li strong { color: var(--ink); }
       article p { margin: 0 0 20px; }
-      article h2 { font-size: 26px; margin: 40px 0 12px; color: var(--ink); }
+      article h2 { font-size: 28px; margin: 40px 0 12px; color: var(--ink); }
+      article h2:first-child { margin-top: 0; }
       article h3 { font-size: 20px; margin: 28px 0 8px; color: var(--ink); }
       article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
       article li { margin-bottom: 8px; }
@@ -66,20 +85,39 @@
       .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--paper); color: var(--blue-deep); text-decoration: none; font-weight: 700; }
       .cta:hover { background: #eaf0ff; }
       .back { display: inline-block; margin-top: 36px; color: var(--muted-2); font-weight: 600; }
+      .rail { position: sticky; top: 92px; display: grid; gap: 16px; }
+      .rail-box { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .rail-box .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .rail-box h3 { margin: 0 0 8px; font-size: 20px; }
+      .rail-box p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; font-size: 15px; }
+      .rail-box ol { margin: 0; padding: 0; list-style: none; color: var(--muted); line-height: 1.6; font-size: 14px; display: grid; gap: 6px; }
+      .rail-box ol a { color: var(--ink); text-decoration: none; }
+      .rail-box ol a:hover { color: var(--mint); }
+      .rail-box .cta { width: 100%; justify-content: center; margin-top: 4px; }
+      .rail-box .link { display: block; color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 14px; }
+      .rail-box .link:hover { color: var(--mint); }
+      .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
+      .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
+      .footer-cta h2 { margin: 0 0 8px; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.05; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+      .footer-cta p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 52ch; }
+      .footer-cta .eyebrow { margin-bottom: 10px; }
+      .cta.discord { white-space: nowrap; margin: 0; }
+      .cta.discord svg { width: 20px; height: 20px; }
+      .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 8px; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+      .footer-links a:hover { color: var(--ink); }
+      @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .cta.discord { width: 100%; } }
       .strip { width: max-content; max-width: calc(100% - 24px); margin: 44px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: rgba(6,16,48,.6); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
-      @media (max-width: 640px) { .shell { width: calc(100% - 32px); } .topbar { padding: 14px 0; margin-bottom: 28px; } .strip { white-space: normal; } }
-      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.08); padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
-      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
-      .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
-      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
-      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .rail { position: static; } .hero { grid-template-columns: 1fr; } }
       @media (max-width: 640px) {
-        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+        .shell { width: calc(100% - 32px); }
+        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px 0; margin-bottom: 28px; }
         .menu-toggle { display: flex; }
         .nav { display: none; flex-direction: column; width: 100%; flex-basis: 100%; margin: 4px 0 0; padding: 8px 0 4px; border-top: 1px solid var(--line-soft); overflow: visible; }
         .topbar.open .nav { display: flex; }
-        .nav button, .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+        .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+        .strip { white-space: normal; }
       }
       @media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
     </style>
@@ -106,25 +144,57 @@
         </nav>
       </header>
       <main>
-        <div class="eyebrow">Blog</div>
-        <h1>Notes on Muse and invite codes.</h1>
-        <p class="lead">Short, practical reads from the community running the invite pool. New posts land here as we learn more.</p>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">Blog</div>
+            <h1>Notes on Muse and invite codes.</h1>
+            <p class="lead">Short, practical reads from the community running the invite pool. New posts land here as we learn more.</p>
+          </div>
+          <aside class="hero-aside">
+            <div class="k">Need a code?</div>
+            <p>The pool hands out community invite codes for free. Take one, redeem it, then add yours.</p>
+            <a class="cta" href="/">Get a code from the pool</a>
+          </aside>
+        </section>
         <div class="posts">
           <a class="post" href="/blog/how-to-use-muse-if-not-available-in-your-country">
             <span class="tag">Guides</span>
             <h2>How to use Muse if it is not available in your country (2026 guide)</h2>
             <p>Age verification, the country block, whether a VPN works and which browser to use, answered step by step.</p>
             <span class="when">September 2026 · 5 minute read</span>
+            <span class="more">Read the guide</span>
           </a>
           <a class="post" href="/blog/what-is-meta-muse">
             <span class="tag">Getting started</span>
             <h2>What is Muse, and how do invite codes work?</h2>
             <p>A plain introduction to Meta's Muse, why access currently runs on invites, and how the community pool helps you get in and give back.</p>
             <span class="when">September 2026 · 4 minute read</span>
+            <span class="more">Read the post</span>
           </a>
         </div>
       </main>
-      <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+      <footer class="footer">
+        <div class="footer-cta">
+          <div>
+            <div class="eyebrow">Join the community</div>
+            <h2>See what other people are building with Muse.</h2>
+            <p>Trade codes, swap workflows and get help from people who are already inside.</p>
+          </div>
+          <a class="cta discord" href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 5.6A16.3 16.3 0 0 0 15.5 4.3l-.5 1a15 15 0 0 0-4 0l-.5-1a16.2 16.2 0 0 0-4.1 1.3C3.8 9.5 3.1 13.3 3.4 17a16.5 16.5 0 0 0 5 2.5l1-1.6a10.6 10.6 0 0 1-1.7-.8l.4-.3a11.7 11.7 0 0 0 9.8 0l.4.3-1.7.8 1 1.6a16.4 16.4 0 0 0 5-2.5c.4-4.3-.7-8-3-11.4zM9.3 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm5.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+            Join the Discord
+          </a>
+        </div>
+        <div class="footer-row">
+          <a class="brand" href="/">Built with Muse</a>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="/">Get a code</a>
+            <a href="/blog">Blog</a>
+            <a href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">Discord</a>
+          </nav>
+        </div>
+        <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+      </footer>
     </div>
     <script>
       (() => {

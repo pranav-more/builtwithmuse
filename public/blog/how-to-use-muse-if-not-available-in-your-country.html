@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
     <style>
-      :root { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --navy: #0d1b3d; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --paper: #ffffff; --shadow: 0 30px 60px rgba(0,0,0,.35); --radius: 10px; }
+      :root { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --navy: #0d1b3d; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --shadow: 0 30px 60px rgba(0,0,0,.35); --radius: 10px; }
       * { box-sizing: border-box; }
       body { margin: 0; min-height: 100vh; color: var(--ink); background-color: var(--blue);
         background-image: linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%), linear-gradient(-45deg, rgba(0,0,0,.14) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.14) 50%, rgba(0,0,0,.14) 75%, transparent 75%);
@@ -34,29 +34,48 @@
       h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
       .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
       .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      @media (min-width: 641px) {
+        .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: rgba(26,86,255,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+      }
       .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
       .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
       .nav::-webkit-scrollbar { display: none; }
       .nav a { flex: 0 0 auto; border: 1px solid transparent; border-radius: 8px; padding: 9px 13px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
       .nav a:hover { color: var(--ink); border-color: var(--line); }
       .nav a[aria-current="page"] { background: rgba(255,255,255,.14); color: var(--ink); border-color: var(--line); }
-      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.08); padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
+      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
+      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
       .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
-      h1 { font-size: clamp(34px, 5.6vw, 64px); line-height: 1; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
-      .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0 0 36px; }
-      .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 30px; }
-      .posts { display: grid; gap: 16px; max-width: 800px; }
-      .post { display: block; text-decoration: none; padding: 26px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--navy); box-shadow: var(--shadow); }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 40px; align-items: end; padding: 12px 0 44px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .hero h1 { font-size: clamp(36px, 6vw, 76px); line-height: .98; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
+      .hero .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0; }
+      .hero .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 18px; }
+      .hero-aside { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .hero-aside .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .hero-aside p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+
+      .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+      .post { display: flex; flex-direction: column; text-decoration: none; padding: 26px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--navy); box-shadow: var(--shadow); min-height: 240px; }
       .post:hover { border-color: var(--mint); }
-      .post h2 { margin: 0 0 8px; font-size: 24px; line-height: 1.15; }
-      .post p { margin: 0 0 12px; color: var(--muted); line-height: 1.55; }
+      .post h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.12; }
+      .post p { margin: 0 0 16px; color: var(--muted); line-height: 1.55; flex: 1; }
       .post .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mint); margin-bottom: 12px; }
       .post .when { color: var(--muted-2); font-size: 13px; font-weight: 600; }
-      article { max-width: 760px; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 44px); box-shadow: var(--shadow); }
+      .post .more { color: var(--ink); font-weight: 700; font-size: 14px; margin-top: 10px; }
+
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
+      article { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 48px); box-shadow: var(--shadow); min-width: 0; }
+      article > * { max-width: 72ch; }
       article p, article li { font-size: 17px; line-height: 1.7; color: var(--muted); }
       article p strong, article li strong { color: var(--ink); }
       article p { margin: 0 0 20px; }
-      article h2 { font-size: 26px; margin: 40px 0 12px; color: var(--ink); }
+      article h2 { font-size: 28px; margin: 40px 0 12px; color: var(--ink); }
+      article h2:first-child { margin-top: 0; }
       article h3 { font-size: 20px; margin: 28px 0 8px; color: var(--ink); }
       article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
       article li { margin-bottom: 8px; }
@@ -68,20 +87,39 @@
       .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--paper); color: var(--blue-deep); text-decoration: none; font-weight: 700; }
       .cta:hover { background: #eaf0ff; }
       .back { display: inline-block; margin-top: 36px; color: var(--muted-2); font-weight: 600; }
+      .rail { position: sticky; top: 92px; display: grid; gap: 16px; }
+      .rail-box { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .rail-box .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .rail-box h3 { margin: 0 0 8px; font-size: 20px; }
+      .rail-box p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; font-size: 15px; }
+      .rail-box ol { margin: 0; padding: 0; list-style: none; color: var(--muted); line-height: 1.6; font-size: 14px; display: grid; gap: 6px; }
+      .rail-box ol a { color: var(--ink); text-decoration: none; }
+      .rail-box ol a:hover { color: var(--mint); }
+      .rail-box .cta { width: 100%; justify-content: center; margin-top: 4px; }
+      .rail-box .link { display: block; color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 14px; }
+      .rail-box .link:hover { color: var(--mint); }
+      .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
+      .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
+      .footer-cta h2 { margin: 0 0 8px; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.05; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+      .footer-cta p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 52ch; }
+      .footer-cta .eyebrow { margin-bottom: 10px; }
+      .cta.discord { white-space: nowrap; margin: 0; }
+      .cta.discord svg { width: 20px; height: 20px; }
+      .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 8px; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+      .footer-links a:hover { color: var(--ink); }
+      @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .cta.discord { width: 100%; } }
       .strip { width: max-content; max-width: calc(100% - 24px); margin: 44px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: rgba(6,16,48,.6); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
-      @media (max-width: 640px) { .shell { width: calc(100% - 32px); } .topbar { padding: 14px 0; margin-bottom: 28px; } .strip { white-space: normal; } }
-      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.08); padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
-      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
-      .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
-      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
-      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .rail { position: static; } .hero { grid-template-columns: 1fr; } }
       @media (max-width: 640px) {
-        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+        .shell { width: calc(100% - 32px); }
+        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px 0; margin-bottom: 28px; }
         .menu-toggle { display: flex; }
         .nav { display: none; flex-direction: column; width: 100%; flex-basis: 100%; margin: 4px 0 0; padding: 8px 0 4px; border-top: 1px solid var(--line-soft); overflow: visible; }
         .topbar.open .nav { display: flex; }
-        .nav button, .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+        .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+        .strip { white-space: normal; }
       }
       @media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
     </style>
@@ -108,19 +146,29 @@
         </nav>
       </header>
       <main>
-        <article>
-          <div class="eyebrow">Guides</div>
-          <h1>How to use Muse if it is not available in your country (2026 guide)</h1>
-          <div class="meta">September 2026 · 5 minute read</div>
-
+        <section class="hero">
+          <div>
+            <div class="eyebrow">Guides</div>
+            <h1>How to use Muse if it is not available in your country (2026 guide)</h1>
+            <p class="lead">Muse not available in your country? Here is how to use Muse with a VPN, get past the age verification screen, and redeem an invite code, step by step, in this 2026 guide.</p>
+            <div class="meta">September 2026 · 5 minute read</div>
+          </div>
+          <aside class="hero-aside">
+            <div class="k">Need a code?</div>
+            <p>The pool hands out community invite codes for free. Take one, redeem it, then add yours.</p>
+            <a class="cta" href="/">Get a code from the pool</a>
+          </aside>
+        </section>
+        <div class="layout">
+          <article>
           <p>Muse has not launched everywhere yet, and the number one question we hear is simple: "It has not launched in my country, so what do I do now?"</p>
           <p>A creator who regularly posts Muse walkthroughs answered the four questions his viewers ask the most: age verification getting stuck, Muse showing as unavailable in their country, whether a VPN actually works, and which browser to use. This guide puts his answers into plain, step by step words.</p>
 
-          <h2>1. Age verification keeps popping up</h2>
+          <h2 id="1-age-verification-keeps-popping-up">1. Age verification keeps popping up</h2>
           <p><strong>You can skip it.</strong></p>
           <p>If the age verification screen appears and you do not want to complete it, just leave it and continue. It does not block you from using Muse. Plenty of users get past this screen by simply moving on; it will not lock you out of your account.</p>
 
-          <h2>2. Muse says "not available in my country"</h2>
+          <h2 id="2-muse-says-not-available-in-my-country">2. Muse says "not available in my country"</h2>
           <p><strong>Use a VPN. That is the full answer.</strong></p>
           <p>Connect to a country where Muse is live (the United States or Canada work) and then open Muse in your browser. In the creator's video he uses a free VPN extension inside Chrome, so you do not need a paid VPN app to try this.</p>
           <p>Here is the exact setup:</p>
@@ -133,11 +181,11 @@
           </ol>
           <p>Once you are connected through a supported country, Muse loads and works the way it does for everyone else.</p>
 
-          <h2>3. Which browser should I use?</h2>
+          <h2 id="3-which-browser-should-i-use">3. Which browser should I use?</h2>
           <p><strong>Chrome.</strong></p>
           <p>The creator does the entire walkthrough in Chrome with the VPN extension installed, and everything works there. Any modern browser should technically be fine, but Chrome is the tested, proven path. If you run into trouble in another browser, switch to Chrome first before troubleshooting anything else.</p>
 
-          <h2>4. What do you get once you are in?</h2>
+          <h2 id="4-what-do-you-get-once-you-are-in">4. What do you get once you are in?</h2>
           <p>From the settings walkthrough in the video, here is how the Muse plan works:</p>
           <ul>
             <li><strong>The free plan has a weekly usage limit.</strong> It resets every week, so you get a fresh allowance regularly. Pace your heavier sessions and you will rarely hit the wall.</li>
@@ -150,12 +198,12 @@
             Skip the age check, turn on a free VPN set to a supported country, open muse.ai in Chrome, and redeem an invite code. That is the whole setup the creator demonstrates.
           </div>
 
-          <h2>Get started</h2>
+          <h2 id="get-started">Get started</h2>
           <p>Need an invite code? Take one from the pool on our home page. Invite codes are claimed fast, so grab yours and redeem it under Settings in the Muse app or at muse.ai.</p>
           <p>Rather wait for the official launch in your country? <a href="/">Join the waitlist</a> and we will email you a fresh code on launch day.</p>
           <a class="cta" href="/">Get a code from the pool</a>
 
-          <h2>FAQ</h2>
+          <h2 id="faq">FAQ</h2>
           <dl class="faq">
             <dt>Can I use Muse if it is not launched in my country?</dt>
             <dd>Yes. The most common workaround is a VPN: connect to a supported country such as the United States or Canada, then open muse.ai in Chrome. This is the method demonstrated in the creator&#x27;s walkthrough.</dd>
@@ -170,11 +218,43 @@
             <dt>Where do I redeem a Muse invite code?</dt>
             <dd>Under Settings in the Muse app, or on the web at muse.ai.</dd>
           </dl>
-
-          <p class="back"><a href="/blog">Back to the blog</a></p>
-        </article>
+        
+          </article>
+          <aside class="rail">
+            <div class="rail-box">
+              <div class="k">In this post</div>
+              <ol><li><a href="#1-age-verification-keeps-popping-up">1. Age verification keeps popping up</a></li><li><a href="#2-muse-says-not-available-in-my-country">2. Muse says &quot;not available in my country&quot;</a></li><li><a href="#3-which-browser-should-i-use">3. Which browser should I use?</a></li><li><a href="#4-what-do-you-get-once-you-are-in">4. What do you get once you are in?</a></li><li><a href="#get-started">Get started</a></li><li><a href="#faq">FAQ</a></li></ol>
+            </div>
+            <div class="rail-box">
+              <div class="k">Read next</div>
+              <a class="link" href="/blog/what-is-meta-muse">What is Muse, and how do invite codes work?</a>
+              <a class="link" href="/blog">All posts</a>
+            </div>
+          </aside>
+        </div>
       </main>
-      <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+      <footer class="footer">
+        <div class="footer-cta">
+          <div>
+            <div class="eyebrow">Join the community</div>
+            <h2>See what other people are building with Muse.</h2>
+            <p>Trade codes, swap workflows and get help from people who are already inside.</p>
+          </div>
+          <a class="cta discord" href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 5.6A16.3 16.3 0 0 0 15.5 4.3l-.5 1a15 15 0 0 0-4 0l-.5-1a16.2 16.2 0 0 0-4.1 1.3C3.8 9.5 3.1 13.3 3.4 17a16.5 16.5 0 0 0 5 2.5l1-1.6a10.6 10.6 0 0 1-1.7-.8l.4-.3a11.7 11.7 0 0 0 9.8 0l.4.3-1.7.8 1 1.6a16.4 16.4 0 0 0 5-2.5c.4-4.3-.7-8-3-11.4zM9.3 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm5.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+            Join the Discord
+          </a>
+        </div>
+        <div class="footer-row">
+          <a class="brand" href="/">Built with Muse</a>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="/">Get a code</a>
+            <a href="/blog">Blog</a>
+            <a href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">Discord</a>
+          </nav>
+        </div>
+        <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+      </footer>
     </div>
     <script>
       (() => {

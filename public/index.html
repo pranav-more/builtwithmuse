@@ -71,6 +71,9 @@
       .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
 
       .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      @media (min-width: 641px) {
+        .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: rgba(26,86,255,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+      }
       .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
       .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
       .nav::-webkit-scrollbar { display: none; }
@@ -190,6 +193,18 @@
       .benefits li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
       .benefits svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--mint); margin-top: 3px; }
 
+      .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
+      .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
+      .footer-cta h2 { margin: 0 0 8px; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.05; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+      .footer-cta p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 52ch; }
+      .footer-cta .eyebrow { margin-bottom: 10px; }
+      .button.discord { white-space: nowrap; }
+      .button.discord svg { width: 20px; height: 20px; }
+      .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 8px; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+      .footer-links a:hover { color: var(--ink); }
+      @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .button.discord { width: 100%; } }
       .preview-strip { width: max-content; max-width: calc(100% - 24px); margin: 40px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: rgba(6,16,48,.6); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
 
       @media (max-width: 900px) {
@@ -429,9 +444,30 @@
           </div>
         </section>
       </main>
-    </div>
 
-    <div class="preview-strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+    <footer class="footer">
+      <div class="footer-cta">
+        <div>
+          <div class="eyebrow">Join the community</div>
+          <h2>See what other people are building with Muse.</h2>
+          <p>Trade codes, swap workflows and get help from people who are already inside.</p>
+        </div>
+        <a class="button discord" href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 5.6A16.3 16.3 0 0 0 15.5 4.3l-.5 1a15 15 0 0 0-4 0l-.5-1a16.2 16.2 0 0 0-4.1 1.3C3.8 9.5 3.1 13.3 3.4 17a16.5 16.5 0 0 0 5 2.5l1-1.6a10.6 10.6 0 0 1-1.7-.8l.4-.3a11.7 11.7 0 0 0 9.8 0l.4.3-1.7.8 1 1.6a16.4 16.4 0 0 0 5-2.5c.4-4.3-.7-8-3-11.4zM9.3 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm5.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+          Join the Discord
+        </a>
+      </div>
+      <div class="footer-row">
+        <a class="brand" href="/">Built with Muse</a>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/">Get a code</a>
+          <a href="/blog">Blog</a>
+          <a href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">Discord</a>
+        </nav>
+      </div>
+      <div class="preview-strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+    </footer>
+    </div>
 
     <script>
       (() => {

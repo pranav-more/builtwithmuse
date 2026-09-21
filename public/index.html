@@ -72,7 +72,8 @@
 
       .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
       @media (min-width: 641px) {
-        .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: rgba(26,86,255,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: transparent; transition: background .2s ease, backdrop-filter .2s ease; }
+        .topbar.scrolled { background: rgba(26,86,255,.28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
       }
       .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
       .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
@@ -205,6 +206,20 @@
       .benefits { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; color: var(--muted); }
       .benefits li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
       .benefits svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--mint); margin-top: 3px; }
+
+      .nudge { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 20px; }
+      .nudge[hidden] { display: none; }
+      .nudge-backdrop { position: absolute; inset: 0; background: rgba(4, 12, 40, .72); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+      .nudge-card { position: relative; width: min(520px, 100%); max-height: calc(100vh - 40px); overflow: auto; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); animation: nudge-in .18s ease-out; }
+      .nudge-card h2 { margin: 0 0 10px; font-size: clamp(24px, 3.4vw, 32px); line-height: 1.02; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; padding-right: 36px; }
+      .nudge-card > p { margin: 0 0 20px; color: var(--muted); line-height: 1.55; }
+      .nudge-x { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.06); color: var(--ink); }
+      .nudge-x svg { width: 18px; height: 18px; }
+      .nudge-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+      .nudge-actions .button { flex: 1 1 160px; }
+      @keyframes nudge-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+      @media (prefers-reduced-motion: reduce) { .nudge-card { animation: none; } }
+      @media (max-width: 640px) { .nudge { padding: 12px; align-items: end; } .nudge-card { padding: 22px; } }
 
       .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
       .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
@@ -458,6 +473,38 @@
         </section>
       </main>
 
+      <div class="nudge" id="nudge" hidden>
+        <div class="nudge-backdrop" data-nudge-close></div>
+        <div class="nudge-card" role="dialog" aria-modal="true" aria-labelledby="nudge-title">
+          <button class="nudge-x" type="button" aria-label="Close" data-nudge-close>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="eyebrow">Pay it forward</div>
+          <h2 id="nudge-title">Got your code? Add yours next.</h2>
+          <p>When you join Muse you get an invite code of your own, and every person who uses it earns you more tokens. Drop it here and the pool keeps flowing for the next person.</p>
+          <form id="nudge-form" novalidate>
+            <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="form-stack">
+              <div class="field">
+                <label for="nudge-code">Your invite code</label>
+                <input id="nudge-code" name="nudge-code" type="text" autocomplete="off" placeholder="Enter your Muse code" maxlength="40" />
+              </div>
+              <div class="field">
+                <label for="nudge-link">Your invite link (optional)</label>
+                <input id="nudge-link" name="nudge-link" type="url" inputmode="url" autocomplete="url" placeholder="https://…" />
+                <div class="error" id="nudge-error" aria-live="polite"></div>
+              </div>
+              <div class="nudge-actions">
+                <button class="button" id="nudge-submit" type="submit">Add my code</button>
+                <button class="button ghost" type="button" data-nudge-close>Not yet</button>
+              </div>
+              <p class="form-note">Do not have a code yet? Redeem the one you copied first, then come back. The pool stays open.</p>
+            </div>
+          </form>
+          <div class="message" id="nudge-message" aria-live="polite"><strong>Your code is in.</strong> Thanks for keeping the pool alive for the next person.</div>
+        </div>
+      </div>
+
     <footer class="footer">
       <div class="footer-cta">
         <div>
@@ -583,6 +630,7 @@
             status.textContent = statusText;
             startTimer();
             loadPool();
+            armNudge();
           } catch (error) {
             setCode("");
             status.textContent = claimMessage(error.code);
@@ -630,6 +678,64 @@
           showNextCode();
         }));
 
+        const nudge = document.getElementById("nudge");
+        let nudgeTimer = null;
+        let nudgeShown = false;
+        try { nudgeShown = sessionStorage.getItem("bwm_nudge") === "1"; } catch (_) {}
+        function openNudge() {
+          if (nudgeShown || !currentCode) return;
+          nudgeShown = true;
+          try { sessionStorage.setItem("bwm_nudge", "1"); } catch (_) {}
+          clearTimeout(nudgeTimer);
+          nudge.hidden = false;
+          document.body.style.overflow = "hidden";
+          setTimeout(() => document.getElementById("nudge-code").focus(), 120);
+        }
+        function closeNudge() {
+          nudge.hidden = true;
+          document.body.style.overflow = "";
+        }
+        function armNudge() {
+          clearTimeout(nudgeTimer);
+          if (!nudgeShown) nudgeTimer = setTimeout(openNudge, 30000);
+        }
+        nudge.querySelectorAll("[data-nudge-close]").forEach((el) => el.addEventListener("click", closeNudge));
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !nudge.hidden) closeNudge(); });
+
+        const nudgeForm = document.getElementById("nudge-form");
+        const nudgeSubmit = document.getElementById("nudge-submit");
+        nudgeForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const input = document.getElementById("nudge-code");
+          const linkInput = document.getElementById("nudge-link");
+          const error = document.getElementById("nudge-error");
+          const code = input.value.trim();
+          const link = linkInput.value.trim();
+          if (code.length < 5) {
+            error.textContent = "Enter a complete invite code to continue.";
+            input.focus();
+            return;
+          }
+          if (link && (!linkInput.validity.valid || !/^https?:\/\//i.test(link))) {
+            error.textContent = "Enter the full invite link, starting with http:// or https://, or leave it empty.";
+            linkInput.focus();
+            return;
+          }
+          error.textContent = "";
+          nudgeSubmit.disabled = true;
+          nudgeSubmit.textContent = "Adding your code...";
+          try {
+            await postForm("/api/codes", { code, inviteLink: link, website: nudgeForm.elements.website.value });
+            nudgeForm.hidden = true;
+            document.getElementById("nudge-message").classList.add("visible");
+            loadPool();
+          } catch (_) {
+            error.textContent = "We could not add your code. Please try again.";
+            nudgeSubmit.disabled = false;
+            nudgeSubmit.textContent = "Add my code";
+          }
+        });
+
         document.getElementById("copy-code").addEventListener("click", async () => {
           const code = currentCode;
           const status = document.getElementById("copy-status");
@@ -640,11 +746,13 @@
           } catch (_) {
             status.textContent = "Select the code and copy it manually";
           }
+          setTimeout(openNudge, 900);
         });
 
-        document.getElementById("another-code").addEventListener("click", () => {
+        document.getElementById("another-code").addEventListener("click", async () => {
           document.getElementById("issue-panel").classList.remove("visible");
-          showNextCode("Here’s another code from the pool", true);
+          await showNextCode("Here’s another code from the pool", true);
+          setTimeout(openNudge, 600);
         });
 
         document.getElementById("report-issue").addEventListener("click", async () => {
@@ -653,11 +761,13 @@
             try { await api("/api/report", { code: reported }); } catch (_) { /* a failed report should not block the next code */ }
           }
           document.getElementById("issue-panel").classList.add("visible");
-          showNextCode("", true);
+          await showNextCode("", true);
+          setTimeout(openNudge, 600);
         });
 
         document.getElementById("redeemed").addEventListener("click", () => {
           if (currentCode) api("/api/redeemed", { code: currentCode }).catch(() => {});
+          if (!nudgeShown) { openNudge(); return; }
           showView("share");
           setTimeout(() => document.getElementById("share-code").focus(), 250);
         });
@@ -744,6 +854,9 @@
         toggle.addEventListener("click", () => set(!bar.classList.contains("open")));
         bar.querySelectorAll(".nav button, .nav a").forEach((item) => item.addEventListener("click", () => set(false)));
         document.addEventListener("keydown", (event) => { if (event.key === "Escape") set(false); });
+        const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
       })();
     </script>
   </body>

@@ -40,6 +40,7 @@ Environment variables on Vercel (production and preview):
 - A device that reloads within 15 minutes gets the same code back rather than a new one. "Try another code" and "This code didn't work" ask for a fresh one; a device never gets the same code twice.
 - "Not working" flags the code (visible as Flagged in the dashboard) and hands the visitor the latest available code; two flags from different people retire the code.
 - When the pool is empty the page says so and points to sharing and the waitlist.
+- After a visitor copies a code or presses any button on the code screen (or after 30 quiet seconds), a "Pay it forward" modal asks for their own invite code, with a form that posts to the same endpoint as the share page. It appears once per browser session.
 - "I redeemed it" records a confirmation from the holder; such codes show as Verified on the home page pool and in the dashboard.
 - The home page shows the pool itself through `GET /api/pool`: masked codes (first letter only), seat squares, open counts, Full and Pulled states. Never a code.
 - The invite link on the share form is optional; the code alone is accepted.

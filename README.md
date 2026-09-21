@@ -38,7 +38,7 @@ Environment variables on Vercel (production and preview):
 - A visitor clicks "Get a code". The page calls `POST /api/claim`, which picks the newest available code and increments its counter in one statement (`FOR UPDATE SKIP LOCKED`), so concurrent visitors never receive the same code past its limit.
 - Each code is handed to at most two people, then the next one is used. Newest submissions go first.
 - A device that reloads within 15 minutes gets the same code back rather than a new one. "Try another code" and "This code didn't work" ask for a fresh one; a device never gets the same code twice.
-- Two reports from people who were handed a code retire it.
+- "Not working" flags the code (visible as Flagged in the dashboard) and hands the visitor the latest available code; two flags from different people retire the code.
 - When the pool is empty the page says so and points to sharing and the waitlist.
 
 ## Scraper controls
@@ -49,7 +49,7 @@ Environment variables on Vercel (production and preview):
 
 ## Moderation
 
-https://builtwithmuse.com/admin is the moderator page: Google sign in only, for the emails in `ADMIN_EMAILS` (default: pranavmore.psm, polostudio.brand and jayeshmarathe2000jm at gmail.com). It shows live counts and activity, every code with its state, claims, reports and the waitlist, and can add, retire, restore or delete codes and remove waitlist entries.
+https://builtwithmuse.com/admin is the moderator dashboard: Google sign in only, for the emails in `ADMIN_EMAILS` (default: pranavmore.psm, polostudio.brand and jayeshmarathe2000jm at gmail.com). Sections: Overview (counts and the latest activity), Analytics (codes given out per day and per hour, submissions, waitlist joins and reports per day, pool health, top countries), Codes (search, filter, add, retire, restore, delete), Claims, Reports and Waitlist, each with CSV export. Every record stores the visitor's country, region and city from Vercel's geolocation headers.
 
 Sign in uses the Google Cloud project `built-with-muse` (owned by polostudio.brand@gmail.com), OAuth client "builtwithmuse admin", client id in `GOOGLE_CLIENT_ID` on Vercel. The consent screen is in testing mode, so only its listed test users can sign in at all; add a new moderator both there (Google Auth Platform, Audience) and in `ADMIN_EMAILS`. Sessions are a signed cookie valid for seven days.
 

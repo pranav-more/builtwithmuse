@@ -4,125 +4,239 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Built with muse moderation</title>
+    <title>Built with Muse moderation</title>
     <style>
-      :root { color-scheme: light; --ink: #1b1b1f; --muted: #6b6b76; --line: #e4e4ea; --bg: #f7f7fa; --card: #ffffff; --accent: #4f46e5; --danger: #b42318; --ok: #067647; }
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+      :root {
+        color-scheme: light;
+        --bg: #f4f6f5; --surface: #ffffff; --surface-2: #eef2f0; --ink: #14221d; --muted: #667570; --line: #dde3e0;
+        --accent: #e45d35; --accent-soft: #fff0ea; --teal: #0c766b; --teal-soft: #e2f3ef; --amber: #b54708; --amber-soft: #fdf0e6;
+        --danger: #b43a2a; --danger-soft: #fee4e2; --side: #14221d; --side-ink: #d9e3df; --side-active: #223730;
+        --shadow: 0 10px 30px rgba(20, 34, 29, 0.06);
+      }
       * { box-sizing: border-box; }
-      body { margin: 0; font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
-      header { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; background: var(--card); border-bottom: 1px solid var(--line); }
-      header h1 { margin: 0; font-size: 16px; font-weight: 600; }
-      header .who { color: var(--muted); font-size: 13px; }
-      main { max-width: 1200px; margin: 0 auto; padding: 20px 24px 60px; }
-      .signin { max-width: 420px; margin: 80px auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; text-align: center; }
-      .signin p { color: var(--muted); }
-      .tabs { display: flex; gap: 6px; margin: 0 0 16px; flex-wrap: wrap; }
-      .tabs button { border: 1px solid var(--line); background: var(--card); padding: 8px 14px; border-radius: 999px; cursor: pointer; font: inherit; }
-      .tabs button[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+      html, body { height: 100%; }
+      body { margin: 0; font: 14px/1.5 "DM Sans", system-ui, sans-serif; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+      h1, h2, h3 { font-family: "Manrope", sans-serif; letter-spacing: -0.02em; margin: 0; }
+      a { color: inherit; }
+      button, input, select, textarea { font: inherit; }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+
+      .layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+      .side { background: var(--side); color: var(--side-ink); display: flex; flex-direction: column; padding: 22px 16px; position: sticky; top: 0; height: 100vh; }
+      .side .brand { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 17px; color: #fff; padding: 4px 10px 22px; }
+      .side .brand small { display: block; font: 600 11px/1.4 "DM Sans", sans-serif; color: var(--side-ink); opacity: .7; letter-spacing: .08em; text-transform: uppercase; margin-top: 2px; }
+      .side nav { display: flex; flex-direction: column; gap: 2px; }
+      .side nav button { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; border: 0; background: transparent; color: var(--side-ink); padding: 10px 12px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+      .side nav button:hover { background: rgba(255,255,255,.06); color: #fff; }
+      .side nav button[aria-selected="true"] { background: var(--side-active); color: #fff; }
+      .side nav button svg { width: 18px; height: 18px; flex: 0 0 auto; opacity: .85; }
+      .side .foot { margin-top: auto; padding: 14px 10px 0; border-top: 1px solid rgba(255,255,255,.1); font-size: 12px; }
+      .side .foot .email { color: #fff; font-weight: 600; word-break: break-all; }
+      .side .foot button { margin-top: 10px; width: 100%; border: 1px solid rgba(255,255,255,.18); background: transparent; color: #fff; padding: 8px 10px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+      .side .foot a { display: block; margin-top: 10px; color: var(--side-ink); text-decoration: none; opacity: .8; }
+
+      .content { min-width: 0; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 28px; background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
+      .topbar h1 { font-size: 20px; }
+      .topbar .sub { color: var(--muted); font-size: 13px; }
+      .topbar .right { display: flex; align-items: center; gap: 10px; }
+      .page { padding: 24px 28px 60px; }
       .panel { display: none; }
       .panel.active { display: block; }
-      .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
-      .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
-      .card .n { font-size: 26px; font-weight: 600; }
-      .card .l { color: var(--muted); font-size: 12px; }
-      table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-      th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 13px; }
-      th { background: #fafafe; color: var(--muted); font-weight: 600; }
-      tr:last-child td { border-bottom: 0; }
-      code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
-      .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
-      input[type="search"], select, textarea { font: inherit; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
-      textarea { width: 100%; min-height: 90px; }
-      .btn { font: inherit; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); cursor: pointer; }
+
+      .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; margin-bottom: 22px; }
+      .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
+      .card .n { font-family: "Manrope", sans-serif; font-size: 28px; font-weight: 800; line-height: 1.1; }
+      .card .l { color: var(--muted); font-size: 12px; font-weight: 600; margin-top: 4px; }
+      .card .d { color: var(--muted); font-size: 12px; margin-top: 6px; }
+      .card.warn .n { color: var(--amber); }
+      .card.bad .n { color: var(--danger); }
+      .card.good .n { color: var(--teal); }
+
+      .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-bottom: 22px; }
+      .box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); min-width: 0; }
+      .box h2 { font-size: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; }
+      .box h2 span { color: var(--muted); font: 600 12px "DM Sans", sans-serif; }
+      .chart svg { width: 100%; height: auto; display: block; }
+      .chart .axis { fill: var(--muted); font-size: 10px; }
+      .legend { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 8px; }
+      .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+      .bars { display: grid; gap: 8px; }
+      .bar { display: grid; grid-template-columns: 120px 1fr 48px; align-items: center; gap: 10px; font-size: 13px; }
+      .bar .track { height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+      .bar .fill { height: 100%; background: var(--teal); border-radius: 999px; }
+      .bar .v { text-align: right; color: var(--muted); font-weight: 600; }
+
+      .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+      .toolbar .spacer { flex: 1; }
+      input[type="search"], select, textarea { padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink); }
+      input[type="search"] { min-width: 220px; }
+      textarea { width: 100%; min-height: 96px; resize: vertical; }
+      .btn { padding: 8px 13px; border-radius: 9px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+      .btn:hover { background: var(--surface-2); }
       .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+      .btn.primary:hover { filter: brightness(.95); }
       .btn.danger { color: var(--danger); }
-      .btn:disabled { opacity: 0.5; cursor: default; }
-      .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: #eef; }
-      .pill.ok { background: #e6f4ea; color: var(--ok); }
-      .pill.warn { background: #fdf0e6; color: #b54708; }
-      .pill.bad { background: #fee4e2; color: var(--danger); }
+      .btn:disabled { opacity: .5; cursor: default; }
+      .btn.sm { padding: 4px 9px; font-size: 12px; border-radius: 7px; }
+
+      .tablewrap { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: auto; box-shadow: var(--shadow); }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; font-size: 13px; white-space: nowrap; }
+      th { background: #fafbfa; color: var(--muted); font-weight: 700; font-size: 12px; letter-spacing: .02em; position: sticky; top: 0; }
+      tr:last-child td { border-bottom: 0; }
+      tbody tr:hover { background: #fbfcfb; }
+      .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; background: var(--surface-2); color: var(--ink); }
+      .pill.ok { background: var(--teal-soft); color: var(--teal); }
+      .pill.warn { background: var(--amber-soft); color: var(--amber); }
+      .pill.bad { background: var(--danger-soft); color: var(--danger); }
+      .pill.flag { background: var(--accent-soft); color: var(--accent); }
       .muted { color: var(--muted); }
-      .status { min-height: 20px; color: var(--muted); font-size: 13px; margin: 8px 0; }
-      .wrap { overflow-x: auto; }
-      .actions { white-space: nowrap; }
-      .actions .btn { padding: 4px 8px; font-size: 12px; margin-right: 4px; }
+      .status { color: var(--muted); font-size: 12px; }
+      .empty { padding: 26px; text-align: center; color: var(--muted); }
       .hidden { display: none !important; }
+
+      .signin-wrap { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+      .signin { width: min(420px, 100%); background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 30px; text-align: center; box-shadow: var(--shadow); }
+      .signin h2 { font-size: 22px; margin-bottom: 6px; }
+      .signin p { color: var(--muted); margin: 0 0 18px; }
+      .signin #google-button { display: flex; justify-content: center; }
+
+      .toast { position: fixed; right: 20px; bottom: 20px; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 10px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,.2); opacity: 0; transform: translateY(8px); transition: .2s; pointer-events: none; }
+      .toast.show { opacity: 1; transform: none; }
+
+      @media (max-width: 860px) {
+        .layout { grid-template-columns: 1fr; }
+        .side { position: static; height: auto; padding: 12px 14px 10px; gap: 8px; }
+        .side .brand { display: flex; align-items: baseline; gap: 8px; padding: 0 2px 8px; font-size: 16px; }
+        .side .brand small { margin: 0; }
+        .side nav { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: 4px; padding-bottom: 4px; scrollbar-width: none; }
+        .side nav::-webkit-scrollbar { display: none; }
+        .side nav button { width: auto; flex: 0 0 auto; padding: 8px 12px; font-size: 13px; }
+        .side .foot { margin: 0; padding: 8px 2px 0; border-top: 1px solid rgba(255,255,255,.1); display: flex; gap: 10px; align-items: center; justify-content: space-between; }
+        .side .foot .email { font-size: 12px; word-break: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+        .side .foot a { display: none; }
+        .side .foot button { margin: 0; width: auto; padding: 6px 10px; flex: 0 0 auto; }
+        .topbar { padding: 14px 16px; }
+        .topbar h1 { font-size: 18px; }
+        .page { padding: 16px 16px 48px; }
+        .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        .card .n { font-size: 24px; }
+        .grid2 { grid-template-columns: 1fr; }
+        .bar { grid-template-columns: 90px 1fr 40px; }
+        input[type="search"] { min-width: 0; flex: 1; }
+      }
     </style>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
   <body>
-    <header>
-      <h1>Built with muse moderation</h1>
-      <div>
-        <span class="who" id="who"></span>
-        <button class="btn hidden" id="logout" type="button">Sign out</button>
-      </div>
-    </header>
-
-    <main>
-      <section class="signin" id="signin">
-        <h2>Moderator sign in</h2>
-        <p>Google sign in only. Only listed moderator accounts can enter.</p>
+    <div class="signin-wrap" id="signin">
+      <div class="signin">
+        <h2>Built with Muse</h2>
+        <p>Moderator sign in. Google accounts on the moderator list only.</p>
         <div id="google-button"></div>
-        <div class="status" id="signin-status"></div>
-      </section>
+        <div class="status" id="signin-status" style="margin-top: 12px"></div>
+      </div>
+    </div>
 
-      <section id="dash" class="hidden">
-        <div class="tabs" role="tablist">
-          <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
-          <button role="tab" data-tab="codes">Codes</button>
-          <button role="tab" data-tab="claims">Claims</button>
-          <button role="tab" data-tab="reports">Reports</button>
-          <button role="tab" data-tab="waitlist">Waitlist</button>
+    <div class="layout hidden" id="app">
+      <aside class="side">
+        <div class="brand">Built with Muse<small>Moderation</small></div>
+        <nav aria-label="Sections">
+          <button data-tab="overview" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>Overview</button>
+          <button data-tab="analytics" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 15v-4M12 15V8M16 15v-6"/></svg>Analytics</button>
+          <button data-tab="codes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M7 12h.01M11 12h.01M15 12h.01"/></svg>Codes</button>
+          <button data-tab="claims" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M6 9l6 6 6-6M5 21h14"/></svg>Claims</button>
+          <button data-tab="reports" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V4h12l-1 4 1 4H4"/></svg>Reports</button>
+          <button data-tab="waitlist" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h6"/></svg>Waitlist</button>
+        </nav>
+        <div class="foot">
+          <div class="email" id="who"></div>
+          <a href="/" target="_blank" rel="noopener">Open the site</a>
+          <button type="button" id="logout">Sign out</button>
         </div>
-        <div class="status" id="status"></div>
+      </aside>
 
-        <div class="panel active" id="panel-overview">
-          <div class="cards" id="cards"></div>
-          <h3>Latest activity</h3>
-          <div class="wrap"><table id="activity"><thead><tr><th>When</th><th>What</th><th>Code</th><th>Who</th><th>Detail</th></tr></thead><tbody></tbody></table></div>
-        </div>
-
-        <div class="panel" id="panel-codes">
-          <div class="toolbar">
-            <select id="code-status">
-              <option value="all">All codes</option>
-              <option value="available">Available</option>
-              <option value="used">Fully used</option>
-              <option value="retired">Retired</option>
-            </select>
-            <input type="search" id="code-q" placeholder="Search code" />
-            <button class="btn" id="code-refresh" type="button">Refresh</button>
-            <a class="btn" id="export-codes" href="/api/admin/export.csv?table=codes">Export CSV</a>
+      <div class="content">
+        <div class="topbar">
+          <div>
+            <h1 id="title">Overview</h1>
+            <div class="sub" id="status">Loading</div>
           </div>
-          <details style="margin-bottom: 12px">
-            <summary>Add codes to the pool</summary>
-            <textarea id="add-codes" placeholder="One code per line, or separated by spaces or commas"></textarea>
-            <div class="toolbar"><button class="btn primary" id="add-codes-btn" type="button">Add codes</button><span class="muted" id="add-codes-status"></span></div>
-          </details>
-          <div class="wrap"><table id="codes"><thead><tr><th>Code</th><th>State</th><th>Given out</th><th>Reports</th><th>Source</th><th>Invite link</th><th>Added</th><th>Last claim</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+          <div class="right">
+            <button class="btn" id="refresh" type="button">Refresh</button>
+          </div>
         </div>
 
-        <div class="panel" id="panel-claims">
-          <div class="toolbar"><button class="btn" data-refresh="claims" type="button">Refresh</button><a class="btn" href="/api/admin/export.csv?table=claims">Export CSV</a></div>
-          <div class="wrap"><table id="claims"><thead><tr><th>When</th><th>Code</th><th>Device</th><th>IP hash</th><th>Code state</th></tr></thead><tbody></tbody></table></div>
-        </div>
+        <div class="page">
+          <section class="panel active" id="panel-overview">
+            <div class="cards" id="cards"></div>
+            <div class="box">
+              <h2>Latest activity <span>most recent 40 events</span></h2>
+              <div class="tablewrap"><table id="activity"><thead><tr><th>When</th><th>Event</th><th>Code</th><th>Who</th><th>Country</th><th>Detail</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </section>
 
-        <div class="panel" id="panel-reports">
-          <div class="toolbar"><button class="btn" data-refresh="reports" type="button">Refresh</button><a class="btn" href="/api/admin/export.csv?table=reports">Export CSV</a></div>
-          <div class="wrap"><table id="reports"><thead><tr><th>When</th><th>Code</th><th>Device</th><th>IP hash</th><th>Code state</th></tr></thead><tbody></tbody></table></div>
-        </div>
+          <section class="panel" id="panel-analytics">
+            <div class="cards" id="a-cards"></div>
+            <div class="grid2">
+              <div class="box"><h2>Codes given out per day <span id="a-days"></span></h2><div class="chart" id="c-claims"></div><div class="legend"><span><i style="background: var(--teal)"></i>Codes given out</span><span><i style="background: var(--accent)"></i>Distinct devices</span></div></div>
+              <div class="box"><h2>Codes given out per hour <span>last 24 hours</span></h2><div class="chart" id="c-hourly"></div></div>
+              <div class="box"><h2>Submissions and waitlist per day</h2><div class="chart" id="c-supply"></div><div class="legend"><span><i style="background: var(--teal)"></i>Codes submitted by users</span><span><i style="background: #7c5cff"></i>Waitlist joins</span><span><i style="background: var(--danger)"></i>Reports</span></div></div>
+              <div class="box"><h2>Pool health</h2><div class="chart" id="c-pool"></div></div>
+              <div class="box"><h2>Where codes are taken <span>top countries</span></h2><div class="bars" id="b-claims"></div></div>
+              <div class="box"><h2>Where codes come from <span>top countries, user submissions</span></h2><div class="bars" id="b-subs"></div></div>
+              <div class="box"><h2>Waitlist by detected country</h2><div class="bars" id="b-wl"></div></div>
+              <div class="box"><h2>Waitlist by chosen country</h2><div class="bars" id="b-wlc"></div></div>
+            </div>
+          </section>
 
-        <div class="panel" id="panel-waitlist">
-          <div class="toolbar"><button class="btn" data-refresh="waitlist" type="button">Refresh</button><a class="btn" href="/api/admin/export.csv?table=waitlist">Export CSV</a></div>
-          <div class="wrap"><table id="waitlist"><thead><tr><th>When</th><th>Email</th><th>Country</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+          <section class="panel" id="panel-codes">
+            <div class="toolbar">
+              <select id="code-status">
+                <option value="all">All codes</option>
+                <option value="available">Available</option>
+                <option value="used">Fully used</option>
+                <option value="retired">Retired</option>
+              </select>
+              <input type="search" id="code-q" placeholder="Search a code" />
+              <button class="btn" id="code-search" type="button">Search</button>
+              <span class="spacer"></span>
+              <button class="btn primary" id="show-add" type="button">Add codes</button>
+              <a class="btn" href="/api/admin/export.csv?table=codes">Export CSV</a>
+            </div>
+            <div class="box hidden" id="add-box" style="margin-bottom: 14px">
+              <h2>Add codes to the pool <span>one per line, or separated by spaces or commas</span></h2>
+              <textarea id="add-codes" placeholder="ABC123&#10;DEF456"></textarea>
+              <div class="toolbar" style="margin: 10px 0 0"><button class="btn primary" id="add-codes-btn" type="button">Add to pool</button><button class="btn" id="hide-add" type="button">Close</button><span class="status" id="add-codes-status"></span></div>
+            </div>
+            <div class="tablewrap"><table id="codes"><thead><tr><th>Code</th><th>State</th><th>Given out</th><th>Reports</th><th>Source</th><th>From</th><th>Invite link</th><th>Added</th><th>Last given</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+          </section>
+
+          <section class="panel" id="panel-claims">
+            <div class="toolbar"><span class="muted">Every time a code was handed to a visitor. Device and IP are shortened hashes.</span><span class="spacer"></span><a class="btn" href="/api/admin/export.csv?table=claims">Export CSV</a></div>
+            <div class="tablewrap"><table id="claims"><thead><tr><th>When</th><th>Code</th><th>Device</th><th>IP hash</th><th>Country</th><th>Region</th><th>City</th><th>Code state</th></tr></thead><tbody></tbody></table></div>
+          </section>
+
+          <section class="panel" id="panel-reports">
+            <div class="toolbar"><span class="muted">Visitors who pressed "Not working" on a code they were given. Two reports retire a code.</span><span class="spacer"></span><a class="btn" href="/api/admin/export.csv?table=reports">Export CSV</a></div>
+            <div class="tablewrap"><table id="reports"><thead><tr><th>When</th><th>Code</th><th>Device</th><th>IP hash</th><th>Country</th><th>Region</th><th>City</th><th>Code state</th></tr></thead><tbody></tbody></table></div>
+          </section>
+
+          <section class="panel" id="panel-waitlist">
+            <div class="toolbar"><span class="muted">Country is what the visitor chose; detected is where they were when they joined.</span><span class="spacer"></span><a class="btn" href="/api/admin/export.csv?table=waitlist">Export CSV</a></div>
+            <div class="tablewrap"><table id="waitlist"><thead><tr><th>When</th><th>Email</th><th>Chosen country</th><th>Detected</th><th>City</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+          </section>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
+    <div class="toast" id="toast"></div>
 
     <script>
       (() => {
         const $ = (id) => document.getElementById(id);
-        const status = $("status");
+        const titles = { overview: "Overview", analytics: "Analytics", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist" };
         let refreshTimer = null;
 
         async function api(path, options = {}) {
@@ -138,51 +252,92 @@
           if (!response.ok || !result || !result.ok) throw new Error((result && result.error) || String(response.status));
           return result;
         }
-
-        function when(value) {
-          if (!value) return "";
-          const d = new Date(value);
-          return d.toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
-        }
-        function esc(value) {
-          return String(value === null || value === undefined ? "" : value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-        }
+        const esc = (v) => String(v === null || v === undefined ? "" : v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const when = (v) => v ? new Date(v).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "";
+        const day = (v) => new Date(v).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+        const place = (r) => [r.city, r.region, r.country].filter(Boolean).join(", ");
+        function toast(text) { const t = $("toast"); t.textContent = text; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200); }
         function codeState(row) {
           if (row.retired_at) return '<span class="pill bad">Retired</span>';
           if (row.claims >= row.max_claims) return '<span class="pill warn">Fully used</span>';
+          if (row.reports > 0) return '<span class="pill flag">Flagged</span>';
           return '<span class="pill ok">Available</span>';
+        }
+        const currentTab = () => document.querySelector('[data-tab][aria-selected="true"]').dataset.tab;
+
+        // Tiny SVG charts, no dependencies.
+        function barChart(el, series, labels, colors) {
+          const w = 640, h = 220, padL = 34, padB = 26, padT = 10;
+          const max = Math.max(1, ...series.flat());
+          const n = labels.length, groupW = (w - padL) / n, barW = Math.max(2, (groupW - 6) / series.length);
+          const y = (v) => padT + (h - padB - padT) * (1 - v / max);
+          let out = `<svg viewBox="0 0 ${w} ${h}" role="img">`;
+          for (let i = 0; i <= 4; i++) { const v = Math.round(max * i / 4); const yy = y(v); out += `<line x1="${padL}" x2="${w}" y1="${yy}" y2="${yy}" stroke="#e6ebe8"/><text class="axis" x="${padL - 6}" y="${yy + 3}" text-anchor="end">${v}</text>`; }
+          series.forEach((s, si) => s.forEach((v, i) => { const x = padL + i * groupW + 3 + si * barW; out += `<rect x="${x}" y="${y(v)}" width="${barW - 1}" height="${h - padB - y(v)}" rx="2" fill="${colors[si]}"><title>${esc(labels[i])}: ${v}</title></rect>`; }));
+          const step = Math.ceil(n / 8);
+          labels.forEach((l, i) => { if (i % step === 0 || i === n - 1) out += `<text class="axis" x="${padL + i * groupW + groupW / 2}" y="${h - 8}" text-anchor="middle">${esc(l)}</text>`; });
+          el.innerHTML = out + "</svg>";
+        }
+        function stackChart(el, parts) {
+          const total = parts.reduce((a, p) => a + p.value, 0) || 1;
+          let x = 0, out = `<svg viewBox="0 0 640 36">`;
+          parts.forEach((p) => { const wdt = 640 * p.value / total; out += `<rect x="${x}" y="4" width="${wdt}" height="28" fill="${p.color}"><title>${esc(p.label)}: ${p.value}</title></rect>`; x += wdt; });
+          el.innerHTML = out + "</svg>" + `<div class="legend">${parts.map((p) => `<span><i style="background:${p.color}"></i>${esc(p.label)} ${p.value}</span>`).join("")}</div>`;
+        }
+        function hbars(el, rows) {
+          const max = Math.max(1, ...rows.map((r) => r.n));
+          el.innerHTML = rows.length ? rows.map((r) => `<div class="bar"><span>${esc(r.country || "Unknown")}</span><div class="track"><div class="fill" style="width:${(100 * r.n / max).toFixed(1)}%"></div></div><span class="v">${esc(r.n)}</span></div>`).join("") : '<div class="muted">No data yet</div>';
         }
 
         function showSignin() {
-          $("signin").classList.remove("hidden");
-          $("dash").classList.add("hidden");
-          $("logout").classList.add("hidden");
-          $("who").textContent = "";
-          clearInterval(refreshTimer);
+          $("signin").classList.remove("hidden"); $("app").classList.add("hidden"); clearInterval(refreshTimer);
         }
-        function showDash(email) {
-          $("signin").classList.add("hidden");
-          $("dash").classList.remove("hidden");
-          $("logout").classList.remove("hidden");
-          $("who").textContent = email;
+        function showApp(email) {
+          $("signin").classList.add("hidden"); $("app").classList.remove("hidden"); $("who").textContent = email;
           loadTab(currentTab());
           clearInterval(refreshTimer);
-          refreshTimer = setInterval(() => { if (currentTab() === "overview") loadOverview(); }, 30000);
-        }
-        function currentTab() {
-          return document.querySelector('[role="tab"][aria-selected="true"]').dataset.tab;
+          refreshTimer = setInterval(() => { if (document.visibilityState === "visible" && currentTab() === "overview") loadOverview(); }, 30000);
         }
 
         async function loadOverview() {
           const d = await api("/api/admin/overview");
           const cards = [
-            ["Available codes", d.available], ["Fully used", d.used_up], ["Retired", d.retired], ["Codes total", d.total_codes],
-            ["Codes added, 24h", d.codes_24h], ["Claims, last hour", d.claims_1h], ["Claims, 24h", d.claims_24h], ["Claims total", d.claims_total],
-            ["Devices, 24h", d.devices_24h], ["Reports, 24h", d.reports_24h], ["Reports total", d.reports_total], ["Waitlist", d.waitlist], ["Waitlist, 24h", d.waitlist_24h],
+            ["Available codes", d.available, d.available === 0 ? "bad" : d.available < 5 ? "warn" : "good", "ready to hand out"],
+            ["Fully used", d.used_up, "", "both seats taken"],
+            ["Retired", d.retired, "", "reported or removed"],
+            ["Codes total", d.total_codes, "", `${d.codes_24h} added in 24h`],
+            ["Given out, last hour", d.claims_1h, "", ""],
+            ["Given out, 24h", d.claims_24h, "", `${d.devices_24h} devices`],
+            ["Given out, total", d.claims_total, "", ""],
+            ["Reports, 24h", d.reports_24h, d.reports_24h > 3 ? "warn" : "", `${d.reports_total} total`],
+            ["Waitlist", d.waitlist, "", `${d.waitlist_24h} joined in 24h`],
           ];
-          $("cards").innerHTML = cards.map(([l, n]) => `<div class="card"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div></div>`).join("");
-          const labels = { claim: "Code given out", report: "Code reported", code: "Code submitted", waitlist: "Joined waitlist" };
-          $("activity").querySelector("tbody").innerHTML = d.activity.map((a) => `<tr><td>${esc(when(a.created_at))}</td><td>${esc(labels[a.kind] || a.kind)}</td><td><code>${esc(a.code || "")}</code></td><td class="muted">${esc(a.who || "")}</td><td class="muted">${esc(a.detail || "")}</td></tr>`).join("") || '<tr><td colspan="5" class="muted">Nothing yet</td></tr>';
+          $("cards").innerHTML = cards.map(([l, n, cls, dd]) => `<div class="card ${cls}"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div>${dd ? `<div class="d">${esc(dd)}</div>` : ""}</div>`).join("");
+          const labels = { claim: "Code given out", report: "Marked not working", code: "Code submitted", waitlist: "Joined waitlist" };
+          $("activity").querySelector("tbody").innerHTML = d.activity.map((a) => `<tr><td>${esc(when(a.created_at))}</td><td>${esc(labels[a.kind] || a.kind)}</td><td><code>${esc(a.code || "")}</code></td><td class="muted">${esc(a.who || "")}</td><td>${esc(a.country || "")}</td><td class="muted">${esc(a.detail || "")}</td></tr>`).join("") || '<tr><td colspan="6" class="empty">Nothing yet</td></tr>';
+        }
+
+        async function loadAnalytics() {
+          const d = await api("/api/admin/analytics?days=14");
+          const p = d.pool;
+          $("a-days").textContent = `last ${d.days} days`;
+          const perDevice = p.devices_total ? (p.claims_total / p.devices_total).toFixed(2) : "0";
+          const reportRate = p.claims_total ? Math.round(100 * p.reports_total / p.claims_total) + "%" : "0%";
+          $("a-cards").innerHTML = [
+            ["Seats left in pool", p.seats_left, p.seats_left === 0 ? "bad" : p.seats_left < 10 ? "warn" : "good", "each code has two seats"],
+            ["Submitted by users", p.user_submitted, "", `${p.added_by_us} added by moderators`],
+            ["Devices ever served", p.devices_total, "", `${perDevice} codes per device`],
+            ["Report rate", reportRate, "", "reports over codes given out"],
+          ].map(([l, n, cls, dd]) => `<div class="card ${cls}"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div><div class="d">${esc(dd)}</div></div>`).join("");
+          const days = d.daily.map((r) => day(r.day));
+          barChart($("c-claims"), [d.daily.map((r) => r.claims), d.daily.map((r) => r.devices)], days, ["#0c766b", "#e45d35"]);
+          barChart($("c-hourly"), [d.hourly.map((r) => r.claims)], d.hourly.map((r) => new Date(r.hour).toLocaleTimeString(undefined, { hour: "2-digit" })), ["#0c766b"]);
+          barChart($("c-supply"), [d.daily.map((r) => r.submissions), d.daily.map((r) => r.waitlist), d.daily.map((r) => r.reports)], days, ["#0c766b", "#7c5cff", "#b43a2a"]);
+          stackChart($("c-pool"), [{ label: "Available", value: p.available, color: "#0c766b" }, { label: "Fully used", value: p.used_up, color: "#b54708" }, { label: "Retired", value: p.retired, color: "#b43a2a" }]);
+          hbars($("b-claims"), d.countries.claims);
+          hbars($("b-subs"), d.countries.submissions);
+          hbars($("b-wl"), d.countries.waitlist);
+          hbars($("b-wlc"), d.countries.waitlist_choice);
         }
 
         async function loadCodes() {
@@ -192,50 +347,55 @@
             <td><code>${esc(c.code)}</code></td>
             <td>${codeState(c)}</td>
             <td>${esc(c.claims)} of ${esc(c.max_claims)}</td>
-            <td>${esc(c.reports)}</td>
+            <td>${c.reports ? `<span class="pill flag">${esc(c.reports)}</span>` : "0"}</td>
             <td class="muted">${esc(c.source)}</td>
-            <td class="muted">${c.invite_link ? `<a href="${esc(c.invite_link)}" target="_blank" rel="noopener noreferrer">${esc(c.invite_link.replace(/^https?:\/\//, "").slice(0, 40))}</a>` : ""}</td>
+            <td>${esc(place(c))}</td>
+            <td class="muted">${c.invite_link ? `<a href="${esc(c.invite_link)}" target="_blank" rel="noopener noreferrer">${esc(c.invite_link.replace(/^https?:\/\//, "").slice(0, 36))}</a>` : ""}</td>
             <td class="muted">${esc(when(c.created_at))}</td>
             <td class="muted">${esc(when(c.last_claim_at))}</td>
-            <td class="actions">
-              ${c.retired_at ? `<button class="btn" data-act="restore" data-code="${esc(c.code)}">Restore</button>` : `<button class="btn" data-act="retire" data-code="${esc(c.code)}">Retire</button>`}
-              <button class="btn danger" data-act="delete" data-id="${esc(c.id)}" data-code="${esc(c.code)}">Delete</button>
-            </td></tr>`).join("") || '<tr><td colspan="9" class="muted">No codes match</td></tr>';
+            <td>
+              ${c.retired_at ? `<button class="btn sm" data-act="restore" data-code="${esc(c.code)}">Restore</button>` : `<button class="btn sm" data-act="retire" data-code="${esc(c.code)}">Retire</button>`}
+              <button class="btn sm danger" data-act="delete" data-id="${esc(c.id)}" data-code="${esc(c.code)}">Delete</button>
+            </td></tr>`).join("") || '<tr><td colspan="10" class="empty">No codes match</td></tr>';
         }
 
         async function loadList(kind) {
           const d = await api(`/api/admin/${kind}`);
           const tbody = $(kind).querySelector("tbody");
           if (kind === "waitlist") {
-            tbody.innerHTML = d.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td>${esc(r.email)}</td><td>${esc(r.country)}</td><td class="actions"><button class="btn danger" data-act="delete-waitlist" data-id="${esc(r.id)}" data-email="${esc(r.email)}">Remove</button></td></tr>`).join("") || '<tr><td colspan="4" class="muted">Nobody yet</td></tr>';
+            tbody.innerHTML = d.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td>${esc(r.email)}</td><td>${esc(r.country)}</td><td>${esc([r.region, r.country_code].filter(Boolean).join(", "))}</td><td class="muted">${esc(r.city || "")}</td><td><button class="btn sm danger" data-act="delete-waitlist" data-id="${esc(r.id)}" data-email="${esc(r.email)}">Remove</button></td></tr>`).join("") || '<tr><td colspan="6" class="empty">Nobody yet</td></tr>';
             return;
           }
-          tbody.innerHTML = d.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><code>${esc(r.code)}</code></td><td class="muted">${esc(r.device)}</td><td class="muted">${esc(r.ip)}</td><td>${r.retired_at ? '<span class="pill bad">Retired</span>' : '<span class="pill ok">Live</span>'}</td></tr>`).join("") || '<tr><td colspan="5" class="muted">Nothing yet</td></tr>';
+          tbody.innerHTML = d.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><code>${esc(r.code)}</code></td><td class="muted">${esc(r.device)}</td><td class="muted">${esc(r.ip)}</td><td>${esc(r.country || "")}</td><td class="muted">${esc(r.region || "")}</td><td class="muted">${esc(r.city || "")}</td><td>${r.retired_at ? '<span class="pill bad">Retired</span>' : '<span class="pill ok">Live</span>'}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">Nothing yet</td></tr>';
         }
 
         async function loadTab(tab) {
-          status.textContent = "Loading...";
+          $("title").textContent = titles[tab];
+          $("status").textContent = "Loading";
           try {
             if (tab === "overview") await loadOverview();
+            else if (tab === "analytics") await loadAnalytics();
             else if (tab === "codes") await loadCodes();
             else await loadList(tab);
-            status.textContent = "Updated " + new Date().toLocaleTimeString();
+            $("status").textContent = "Updated " + new Date().toLocaleTimeString();
           } catch (error) {
-            if (error.message !== "signed_out") status.textContent = "Could not load: " + error.message;
+            if (error.message !== "signed_out") $("status").textContent = "Could not load: " + error.message;
           }
         }
 
-        document.querySelectorAll('[role="tab"]').forEach((button) => {
+        document.querySelectorAll("[data-tab]").forEach((button) => {
           button.addEventListener("click", () => {
-            document.querySelectorAll('[role="tab"]').forEach((b) => b.setAttribute("aria-selected", String(b === button)));
+            document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("aria-selected", String(b === button)));
             document.querySelectorAll(".panel").forEach((p) => p.classList.toggle("active", p.id === "panel-" + button.dataset.tab));
             loadTab(button.dataset.tab);
           });
         });
-        document.querySelectorAll("[data-refresh]").forEach((b) => b.addEventListener("click", () => loadTab(b.dataset.refresh)));
-        $("code-refresh").addEventListener("click", () => loadTab("codes"));
+        $("refresh").addEventListener("click", () => loadTab(currentTab()));
+        $("code-search").addEventListener("click", () => loadTab("codes"));
         $("code-status").addEventListener("change", () => loadTab("codes"));
         $("code-q").addEventListener("keydown", (e) => { if (e.key === "Enter") loadTab("codes"); });
+        $("show-add").addEventListener("click", () => { $("add-box").classList.remove("hidden"); $("add-codes").focus(); });
+        $("hide-add").addEventListener("click", () => $("add-box").classList.add("hidden"));
 
         $("add-codes-btn").addEventListener("click", async () => {
           const codes = $("add-codes").value.split(/[\s,]+/).map((c) => c.trim()).filter(Boolean);
@@ -243,8 +403,9 @@
           $("add-codes-btn").disabled = true;
           try {
             const r = await api("/api/admin/codes", { method: "POST", body: { codes, source: "moderator" } });
-            $("add-codes-status").textContent = `Added ${r.added} of ${r.received}`;
+            $("add-codes-status").textContent = `Added ${r.added} of ${r.received} (duplicates skipped)`;
             $("add-codes").value = "";
+            toast(`Added ${r.added} codes`);
             loadTab("codes");
           } catch (error) {
             $("add-codes-status").textContent = "Failed: " + error.message;
@@ -258,19 +419,19 @@
           if (!button) return;
           const act = button.dataset.act;
           try {
-            if (act === "retire") await api("/api/admin/codes/retire", { method: "POST", body: { code: button.dataset.code } });
-            if (act === "restore") await api("/api/admin/codes/restore", { method: "POST", body: { code: button.dataset.code } });
+            if (act === "retire") { await api("/api/admin/codes/retire", { method: "POST", body: { code: button.dataset.code } }); toast(`Retired ${button.dataset.code}`); }
+            if (act === "restore") { await api("/api/admin/codes/restore", { method: "POST", body: { code: button.dataset.code } }); toast(`Restored ${button.dataset.code}`); }
             if (act === "delete") {
               if (!confirm(`Delete code ${button.dataset.code} and its history?`)) return;
-              await api(`/api/admin/codes/${button.dataset.id}`, { method: "DELETE" });
+              await api(`/api/admin/codes/${button.dataset.id}`, { method: "DELETE" }); toast(`Deleted ${button.dataset.code}`);
             }
             if (act === "delete-waitlist") {
               if (!confirm(`Remove ${button.dataset.email} from the waitlist?`)) return;
-              await api(`/api/admin/waitlist/${button.dataset.id}`, { method: "DELETE" });
+              await api(`/api/admin/waitlist/${button.dataset.id}`, { method: "DELETE" }); toast("Removed from waitlist");
             }
             loadTab(currentTab());
           } catch (error) {
-            status.textContent = "Action failed: " + error.message;
+            $("status").textContent = "Action failed: " + error.message;
           }
         });
 
@@ -280,12 +441,13 @@
         });
 
         async function onCredential(response) {
-          $("signin-status").textContent = "Checking...";
+          $("signin-status").textContent = "Checking";
           try {
             const r = await api("/api/admin/login", { method: "POST", body: { credential: response.credential } });
-            showDash(r.email);
+            $("signin-status").textContent = "";
+            showApp(r.email);
           } catch (error) {
-            $("signin-status").textContent = error.message === "not_a_moderator" ? "That Google account is not a moderator." : "Sign in failed: " + error.message;
+            $("signin-status").textContent = error.message === "not_a_moderator" ? "That Google account is not on the moderator list." : "Sign in failed: " + error.message;
           }
         }
 
@@ -303,7 +465,7 @@
         (async () => {
           try {
             const me = await api("/api/admin/me");
-            showDash(me.email || "token session");
+            showApp(me.email || "token session");
           } catch (_) {
             showSignin();
             initGoogle().catch((error) => { $("signin-status").textContent = "Could not load sign in: " + error.message; });

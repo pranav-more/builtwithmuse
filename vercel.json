@@ -2,11 +2,35 @@
   "regions": [
     "sfo1"
   ],
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "getmusecode.com"
+        }
+      ],
+      "destination": "https://builtwithmuse.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.getmusecode.com"
+        }
+      ],
+      "destination": "https://builtwithmuse.com/",
+      "statusCode": 301
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",
       "destination": "/api/index?__path=:path*"
     }
-  ],
-  "cleanUrls": true
+  ]
 }

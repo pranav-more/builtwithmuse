@@ -6,6 +6,8 @@ Community site for sharing free Muse invite codes. Live at https://builtwithmuse
 
 - `public/index.html`: the whole site, one static page.
 - `public/admin.html`: the moderator page, served at `/admin`.
+- `public/use-cases/`: the use case library (hub at `/use-cases`, one file per use case, clean URLs, no trailing slash). Two more use cases are listed on the hub as coming soon until their pages exist.
+- `public/og/`: 1200 by 630 share images, rendered from `~/Documents/builtwithmuse-design/og-template.html` in a browser. Every page references its own under `/og/`.
 - `public/blog/`: the blog. `index.html` lists posts; each post is its own file, served without the `.html` (Vercel `cleanUrls`). Add a post by copying an existing one, adding a card to the index and a line to `sitemap.xml`. Guides with a FAQ carry FAQPage JSON-LD.
 - `api/index.js` and `lib/api.js`: the API, a Vercel serverless function backed by Postgres on Supabase. Every `/api/*` path is rewritten to it (see `vercel.json`).
 - `server.js`: local development server that serves `public/` and the same API code. Not used in production.
@@ -95,7 +97,7 @@ Then open http://localhost:3000.
 
 ## Search
 
-`public/sitemap.xml` lists the home page and the blog; `public/robots.txt` points at it and blocks `/api/`. The moderator page relies on its `noindex` meta tag. Add new blog posts to the sitemap.
+`public/sitemap.xml` lists the home page, the blog and the use case library; `public/robots.txt` points at it and blocks `/api/`. The moderator page relies on its `noindex` meta tag. Add new blog posts to the sitemap.
 
 ## Analytics
 

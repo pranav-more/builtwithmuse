@@ -108,7 +108,7 @@
       .button {
         display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 2px solid var(--paper); border-radius: 8px;
         padding: 13px 20px; background: var(--paper); color: var(--blue-deep); font-weight: 700; font-size: 15px; text-decoration: none;
-        transition: transform .08s ease, background .15s ease;
+        transition: transform .08s ease, background .15s ease; touch-action: manipulation;
       }
       .button svg { width: 18px; height: 18px; }
       .hero h1.hero-click { cursor: pointer; }
@@ -135,6 +135,10 @@
       .button:disabled { opacity: .6; cursor: default; }
       .fine { display: flex; align-items: center; gap: 8px; margin-top: 18px; color: var(--muted); font-size: 13px; }
       .fine svg { width: 16px; height: 16px; color: var(--mint); flex: 0 0 auto; }
+      .waitlist-nudge { margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+      .linklike { background: none; border: 0; padding: 0; color: var(--mint); font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; touch-action: manipulation; }
+      .linklike:hover { color: #c2ffe2; }
+      .linklike:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
 
       .invite-card { position: relative; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
       .invite-card .card-label { display: flex; justify-content: space-between; align-items: center; color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px; }
@@ -165,6 +169,11 @@
       .pool-list { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(6,16,48,.55); overflow: hidden; }
       .pool-row { display: grid; grid-template-columns: 110px 1fr auto; align-items: center; gap: 18px; padding: 16px 20px; border-bottom: 1px solid var(--line-soft); }
       .pool-row:last-child { border-bottom: 0; }
+      button.pool-row { width: 100%; padding: 16px 20px; background: transparent; border: 0; border-bottom: 1px solid var(--line-soft); color: inherit; font: inherit; text-align: left; cursor: pointer; transition: background .12s ease; touch-action: manipulation; }
+      button.pool-row:last-child { border-bottom: 0; }
+      button.pool-row:hover { background: rgba(255,255,255,.06); }
+      button.pool-row:focus-visible { outline: 2px solid var(--mint); outline-offset: -2px; }
+      @media (max-width: 640px) { button.pool-row { padding: 14px 16px; } }
       .pool-code { font: 700 16px "JetBrains Mono", monospace; letter-spacing: 0.14em; }
       .pool-slots { display: flex; flex-wrap: wrap; gap: 6px; }
       .pool-slots i { display: block; width: 34px; height: 14px; border-radius: 3px; background: rgba(255,255,255,.18); }
@@ -189,6 +198,8 @@
       .hold-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px rgba(125,255,198,.2); flex: 0 0 auto; }
       .assigned-code { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.06); }
       .assigned-code code { font: 700 clamp(26px, 5vw, 38px)/1 "JetBrains Mono", monospace; letter-spacing: 0.16em; overflow-wrap: anywhere; }
+      .assigned-code code.tap-copy { cursor: pointer; }
+      .assigned-code code.tap-copy:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
       .icon-button { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--blue-deep); }
       .icon-button svg { width: 20px; height: 20px; }
       .icon-button:disabled { opacity: .5; cursor: default; }
@@ -338,6 +349,7 @@
                 <button class="button secondary" type="button" data-view="share">Share code</button></div>
               </div>
               <p class="fine"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free to use. No sign in. Codes are first come, first served.</p>
+              <p class="waitlist-nudge">Muse not in your country yet? <button type="button" class="linklike" data-view="waitlist">Join the waitlist</button> and we will send you a fresh code on launch day.</p>
             </div>
             <div class="invite-card" aria-hidden="true">
               <div class="card-label"><span>Your invite</span><span class="live-tag">Ready</span></div>
@@ -363,7 +375,7 @@
             </div>
             <h3 class="pool-title">The pool right now</h3>
             <div class="pool-health" id="pool-health" aria-live="polite"><span><i class="open"></i><b id="health-open">0</b> open</span><span><i class="used"></i><b id="health-used">0</b> used</span><span><i class="broken"></i><b id="health-broken">0</b> broken</span></div>
-            <p class="pool-note">Codes stay hidden until you claim one, so scrapers cannot grab the slots.</p>
+            <p class="pool-note">Codes stay hidden until you claim one, so scrapers cannot grab the slots. Tap a row with open slots to claim it.</p>
             <div class="pool-list" id="pool-list" aria-live="polite"></div>
             <div class="pool-legend"><span><i class="open"></i>Open</span><span><i></i>Used</span><span><i class="pulled"></i>Broken</span></div>
           </section>
@@ -378,7 +390,7 @@
           <div class="workflow-card">
             <div class="hold-row"><span class="hold-dot" aria-hidden="true"></span><span class="hold-label">This code is yours. Reload any time and the same one comes back. It stays with you until you tell us it failed.</span></div>
             <div class="assigned-code">
-              <code id="assigned-code">......</code>
+              <code id="assigned-code" class="tap-copy" role="button" tabindex="0" title="Tap to copy" aria-label="Copy referral code">......</code>
               <button class="icon-button" id="copy-code" type="button" aria-label="Copy referral code">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               </button>
@@ -608,8 +620,16 @@
         function showView(name) {
           views.forEach((view) => document.getElementById(`view-${view}`).classList.toggle("active", view === name));
           navButtons.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.view === name || (name === "claim" && button.dataset.view === "home"))));
+          const hash = name === "home" ? "" : `#${name}`;
+          try { if ((location.hash || "") !== hash) history.replaceState(null, "", hash || `${location.pathname}${location.search}`); } catch (_) { /* non critical */ }
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
+
+        function routeFromHash() {
+          const name = (location.hash || "").replace(/^#/, "");
+          if (name === "share" || name === "workflows" || name === "waitlist") showView(name);
+        }
+        window.addEventListener("hashchange", routeFromHash);
 
         async function api(path, payload) {
           const response = await fetch(API + path, {
@@ -626,6 +646,10 @@
             throw error;
           }
           return result;
+        }
+
+        function trackEvent(name) {
+          try { if (typeof window.clarity === "function") window.clarity("event", name); } catch (_) { /* analytics must never break the flow */ }
         }
 
         function setCode(code) {
@@ -681,6 +705,7 @@
           try {
             const result = await claim(fresh);
             setCode(result.code);
+            trackEvent("claim_success");
             status.textContent = result.redeemed ? "You already redeemed this one. It stays yours." : statusText;
             if (result.redeemed) showSuccess();
             loadPool();
@@ -717,7 +742,12 @@
                 : row.state === "full" ? '<span class="pool-tag">Full</span>'
                 : `<span class="pool-tag open">${left} open</span>`;
               const verified = row.verified ? '<span class="pool-tag">Verified</span>' : "";
-              return `<div class="pool-row"><code class="pool-code">${row.label}</code><div class="pool-slots">${slots}</div><div class="pool-tags">${verified}${tag}</div></div>`;
+              const actionable = row.state !== "pulled" && row.state !== "full" && left > 0;
+              const cell = actionable ? "span" : "div";
+              const inner = `<code class="pool-code">${row.label}</code><${cell} class="pool-slots">${slots}</${cell}><${cell} class="pool-tags">${verified}${tag}</${cell}>`;
+              return actionable
+                ? `<button type="button" class="pool-row" data-claim-row aria-label="Claim a code from this row">${inner}</button>`
+                : `<div class="pool-row">${inner}</div>`;
             }).join("") : '<div class="pool-empty">No codes in the pool yet. Be the first to add one.</div>';
           } catch (_) {
             summary.textContent = "The pool is taking a moment to load.";
@@ -730,6 +760,14 @@
         });
 
         /* Clarity: hero CTA button and H1 scroll to the pool section. */ const poolSection = document.getElementById("pool-section"); const scrollToPool = () => { if (poolSection) poolSection.scrollIntoView({ behavior: "smooth", block: "start" }); }; const heroCta = document.getElementById("hero-cta"); if (heroCta) heroCta.addEventListener("click", scrollToPool); const heroH1 = document.getElementById("hero-h1"); if (heroH1) { heroH1.addEventListener("click", scrollToPool); heroH1.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); scrollToPool(); } }); } document.getElementById("get-code-2").addEventListener("click", () => {
+          trackEvent("claim_started");
+          showView("claim");
+          showNextCode();
+        });
+
+        document.getElementById("pool-list").addEventListener("click", (event) => {
+          if (!event.target.closest("[data-claim-row]")) return;
+          trackEvent("claim_started");
           showView("claim");
           showNextCode();
         });
@@ -792,7 +830,7 @@
           }
         });
 
-        document.getElementById("copy-code").addEventListener("click", async () => {
+        async function copyCurrentCode() {
           const code = currentCode;
           const status = document.getElementById("copy-status");
           if (!code) return;
@@ -803,6 +841,12 @@
             status.textContent = "Select the code and copy it manually";
           }
           setTimeout(openNudge, 900);
+        }
+        document.getElementById("copy-code").addEventListener("click", copyCurrentCode);
+        const assignedCodeEl = document.getElementById("assigned-code");
+        assignedCodeEl.addEventListener("click", copyCurrentCode);
+        assignedCodeEl.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); copyCurrentCode(); }
         });
 
         document.getElementById("report-issue").addEventListener("click", async () => {
@@ -867,6 +911,7 @@
             shareForm.reset();
             message.classList.add("visible");
             shareSubmit.textContent = "Code added";
+            trackEvent("code_shared");
           } catch (_) {
             error.textContent = "We could not add your code. Please try again.";
             shareSubmit.disabled = false;
@@ -902,12 +947,15 @@
             waitlistForm.reset();
             message.classList.add("visible");
             waitlistSubmit.textContent = "Joined";
+            trackEvent("waitlist_joined");
           } catch (_) {
             error.textContent = "We could not save your place. Please try again.";
             waitlistSubmit.disabled = false;
             waitlistSubmit.textContent = "Join the waitlist";
           }
         });
+
+        routeFromHash();
       })();
     </script>
     <script>

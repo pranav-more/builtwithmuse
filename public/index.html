@@ -12,19 +12,19 @@
     <meta name="description" content="Get a free Muse invite code from the community, share your own, or join the country waitlist. Plus real workflows people run with Meta's Muse." />
     <meta name="google-site-verification" content="LlT9jY1_oQsqZveGYWV_leOyY1_JA7RjeWkDOKkNK6Q" />
     <link rel="canonical" href="https://builtwithmuse.com/" />
-    <meta property="og:title" content="Free Muse Invite Codes (2026) | Built with Muse" />
-    <meta property="og:description" content="Get a free Muse invite code from the community, share your own, or join the country waitlist." />
+    <meta property="og:title" content="Active Muse Invite Codes | Built with Muse" />
+    <meta property="og:description" content="Working invite codes shared by the community. Take one from the pool or add yours." />
     <meta property="og:url" content="https://builtwithmuse.com/" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://builtwithmuse.com/og/home.png" />
+    <meta property="og:image" content="https://builtwithmuse.com/og/homepage-share.png" />
     <meta property="og:image:width" content="1200" />
 <!-- -->
 <!-- -->
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Free Muse Invite Codes (2026) | Built with Muse" />
-    <meta name="twitter:description" content="Get a free Muse invite code from the community, share your own, or join the country waitlist." />
-    <meta name="twitter:image" content="https://builtwithmuse.com/og/home.png" />
+    <meta name="twitter:title" content="Active Muse Invite Codes | Built with Muse" />
+    <meta name="twitter:description" content="Working invite codes shared by the community. Take one from the pool or add yours." />
+    <meta name="twitter:image" content="https://builtwithmuse.com/og/homepage-share.png" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -203,7 +203,7 @@
       .icon-button { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--blue-deep); }
       .icon-button svg { width: 20px; height: 20px; }
       .icon-button:disabled { opacity: .5; cursor: default; }
-      .copy-status { min-height: 22px; margin: 12px 0 8px; color: var(--mint); font-size: 14px; font-weight: 600; }
+      .copy-status { min-height: 22px; margin: 12px 0 8px; color: var(--mint); font-size: 14px; font-weight: 600; } .share-status { display: block; min-height: 20px; margin: 10px 0 0; color: var(--mint); font-size: 14px; font-weight: 600; } .share-status:empty { display: none; }
       .instructions { margin: 10px 0 24px; padding-left: 22px; color: var(--muted); line-height: 1.7; }
       .instructions strong { color: var(--ink); }
       .card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -412,7 +412,7 @@
               <p>Do one real thing with Muse before you close the tab, then add your own invite so the pool keeps moving.</p>
               <div class="card-actions">
                 <a class="button" href="/use-cases/recipe-reel-to-groceries">Try this first: recipe reel to grocery list</a>
-                <button class="button ghost" type="button" id="success-share">Add your invite</button>
+                <button class="button ghost" type="button" id="success-share">Add your invite</button> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
               </div>
             </div>
           </div>
@@ -443,7 +443,7 @@
                 <p class="form-note"><strong>New codes get shown first, so yours won’t get buried.</strong> By adding yours, you confirm the code and link are available to use.</p>
               </div>
             </form>
-            <div class="message" id="share-message" aria-live="polite"><strong>Your code is in.</strong> Thanks for adding it to the community pool.</div>
+            <div class="message" id="share-message" aria-live="polite"><strong>Your code is in.</strong> Thanks for adding it to the community pool.</div> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
           </div>
         </section>
 
@@ -881,7 +881,7 @@
           setTimeout(() => document.getElementById("share-code").focus(), 250);
         });
 
-        const shareForm = document.getElementById("share-form");
+        const SHARE_COPY = { title: "Built with Muse", text: "Active Muse invite codes. Take one from the pool, or share yours with the community.", url: "https://builtwithmuse.com" }; async function sharePlatform(button) { const status = button.parentElement.querySelector(".share-status"); if (navigator.share) { try { await navigator.share({ title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url }); } catch (_) {} return; } try { await navigator.clipboard.writeText(SHARE_COPY.text + " " + SHARE_COPY.url); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); const shareForm = document.getElementById("share-form");
         const shareSubmit = document.getElementById("share-submit");
         shareForm.addEventListener("submit", async (event) => {
           event.preventDefault();

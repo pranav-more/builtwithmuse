@@ -45,7 +45,7 @@
       "destination": "/api/index?__path=pages/creators/:handle"
     },
     {
-      "source": "/sitemap.xml",
+      "source": "/sitemap-pool.xml",
       "destination": "/api/index?__path=pages/sitemap"
     },
     {

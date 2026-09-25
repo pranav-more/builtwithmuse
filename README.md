@@ -142,7 +142,7 @@ ratings and never stored.
   2026-09-25.
 - Code: `lib/creators.js` (API, pages, admin), `lib/pages.js` (layout),
   `lib/dashboard.js` (the /creator page). Routes: `/workflows`,
-  `/workflows/:slug`, `/creators/:handle`, `/creator`, `/sitemap.xml` are
+  `/workflows/:slug`, `/creators/:handle`, `/creator`, `/sitemap-pool.xml` are
   rewritten to the function (vercel.json) and forwarded by server.js locally.
 - Seed: `seed/workflows.json` (14 editorial workflows owned by the
   `builtwithmuse` editorial profile). `SUPABASE_DB_URL=... node

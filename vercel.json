@@ -29,6 +29,26 @@
   ],
   "rewrites": [
     {
+      "source": "/creator",
+      "destination": "/api/index?__path=pages/creator"
+    },
+    {
+      "source": "/workflows",
+      "destination": "/api/index?__path=pages/workflows"
+    },
+    {
+      "source": "/workflows/:slug",
+      "destination": "/api/index?__path=pages/workflows/:slug"
+    },
+    {
+      "source": "/creators/:handle",
+      "destination": "/api/index?__path=pages/creators/:handle"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/index?__path=pages/sitemap"
+    },
+    {
       "source": "/api/:path*",
       "destination": "/api/index?__path=:path*"
     }

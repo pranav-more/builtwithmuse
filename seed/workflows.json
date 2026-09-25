@@ -1,0 +1,298 @@
+[
+  {
+    "slug": "turn-a-saved-recipe-reel-into-a-grocery-order",
+    "title": "Turn a saved recipe reel into a grocery order",
+    "summary": "Forward Muse the Instagram reel you saved for Sunday dinner and get a grouped grocery list, minus what you already have, ready to order for delivery.",
+    "category": "shopping",
+    "problem": "You save a recipe reel on Instagram for Sunday dinner. Normally that reel dies in your Saved folder. With Muse it becomes groceries at your door.",
+    "prerequisites": [
+      "Read Instagram content you share",
+      "Browse the web",
+      "Make purchases, confirm with you first"
+    ],
+    "steps": [
+      "Save or forward the reel to Muse, in the Muse app or by messaging it in WhatsApp.",
+      "Muse watches the reel, transcribes it and extracts the full ingredient list with quantities.",
+      "It checks the list against the pantry staples it remembers from earlier conversations (olive oil, cumin, rice) so you do not rebuy them.",
+      "It builds a clean grocery list grouped by store section: produce, dairy, spices.",
+      "If you have named a store or connected a grocery service, it opens its cloud browser, fills the cart and pauses for your approval before checkout.",
+      "Checkout goes through Link by Stripe with a one-time virtual card, so your real card number never reaches the merchant."
+    ],
+    "result": "Early testers found general web shopping is Muse's weakest area; one hands-on test could not complete a Costco run. This is most reliable when the store has a clean website and the items are common. Start with list generation before handing it your grocery money. Approval gates: One: the final cart review before it pays.",
+    "prompt": "Here's a recipe reel I saved. Turn it into a grocery list for 4 servings, skip anything I already have, and order it from [store] for delivery tomorrow morning.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "plan-a-dinner-party-with-a-menu-timeline-and-invites",
+    "title": "Plan a dinner party with a menu, timeline and invites",
+    "summary": "Give Muse the date, headcount and vibe. It plans a scaled menu, remembers who cannot eat what.",
+    "category": "life-admin",
+    "problem": "You are hosting six people on Saturday. Muse plans the menu, remembers who cannot eat what, and handles the invitations.",
+    "prerequisites": [
+      "Read and modify your calendar",
+      "Send messages on your behalf"
+    ],
+    "steps": [
+      "Tell Muse the date, headcount and vibe, such as casual and Italian-ish.",
+      "Muse suggests a starter, main and dessert scaled to six, plus a shopping list and a prep timeline working backward from 7pm on Saturday.",
+      "It recalls dietary restrictions from past conversations. If you once mentioned that Priya is vegetarian and Dan is gluten-free, it flags the dishes that need adapting without you re-entering anything.",
+      "It drafts the invitation messages; you approve each one and it sends them through your connected messaging or email.",
+      "It can turn the whole plan into a printable checklist you keep on your phone in the kitchen."
+    ],
+    "result": "Memory cuts both ways. Tell Muse to forget something and verify that it did. The upside is that the second dinner party is far easier than the first. Approval gates: Menu approval, then per-invite approval before anything sends.",
+    "prompt": "I'm hosting a dinner party Saturday for 6. Plan an Italian-ish menu, build the shopping list and a prep timeline, and draft the invites. Remember everyone's dietary stuff.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "negotiate-your-internet-bill-down",
+    "title": "Negotiate your internet bill down",
+    "summary": "Give Muse your provider, what you pay and your ceiling. It researches competitor offers, negotiates with retention support in its browser.",
+    "category": "money",
+    "problem": "Your internet bill crept up to 89 dollars a month. You would never call to haggle. Muse does it while you are at lunch.",
+    "prerequisites": [
+      "Browse the web",
+      "Access account settings, confirm changes first"
+    ],
+    "steps": [
+      "Tell Muse the provider, what you pay and what you would switch for.",
+      "Muse researches competitor pricing and current retention offers in the background.",
+      "It opens the provider's site or chat support in its browser and negotiates: citing competitor rates, asking for retention deals, escalating politely.",
+      "It reports back with the offer. Nothing is agreed without you.",
+      "The same playbook works for phone bills, insurance renewals and subscription cancellations."
+    ],
+    "result": "Some providers require phone calls or identity steps Muse cannot pass, and success varies wildly by company. Treat this as experimental: wins are real but not guaranteed. Approval gates: Final offer approval. Tell it explicitly never to accept on your behalf.",
+    "prompt": "My [provider] bill is $89/month. Negotiate it down. I'd accept anything under $65 for at least a year. Don't agree to anything without asking me first.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "handle-buyer-messages-when-selling-your-car",
+    "title": "Handle buyer messages when selling your car",
+    "summary": "Give Muse the listing, your asking price and your floor. It drafts a reply to every inquiry, counters lowballs with local comps and schedules viewings.",
+    "category": "money",
+    "problem": "You are selling your car on Marketplace. Buyers lowball. Muse negotiates every inquiry toward your target price without you touching your phone.",
+    "prerequisites": [
+      "Read your Marketplace messages",
+      "Send messages on your behalf"
+    ],
+    "steps": [
+      "Give Muse the listing: car details, asking price and your walk-away floor.",
+      "As buyer messages arrive, Muse drafts a reply to each: countering lowballs with comparable listings in your area, answering spec questions, proposing viewing times.",
+      "Every outbound message waits for your one-tap approval. You see the buyer, the offer and the proposed counter before anything sends.",
+      "When a buyer reaches your target, Muse flags it and asks whether to accept and schedule the handoff."
+    ],
+    "result": "This was Meta's own launch demo, and in hands-on testing each Marketplace message still needed human review, which testers called friction. It is slower than a bot farm on purpose: no message goes out that you did not see. Approval gates: Every single outbound message.",
+    "prompt": "I'm selling my 2019 Civic for $16,500. Handle buyer messages. Never accept below $14,500, counter lowballs with local comps, and get my approval on every reply.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "watch-a-price-and-buy-at-the-right-moment",
+    "title": "Watch a price and buy at the right moment",
+    "summary": "Name a product and a target price. Muse compares retailers, watches the price, pings you when it drops.",
+    "category": "shopping",
+    "problem": "You want a specific espresso machine. Muse watches prices across stores, buys at the right moment, and you are covered if the price drops further.",
+    "prerequisites": [
+      "Browse the web",
+      "Make purchases, confirm with you first"
+    ],
+    "steps": [
+      "Name the product and your target price.",
+      "Muse compares options across retailers in its browser, specs, reviews and shipping times, and presents a shortlist.",
+      "It monitors the price. When it hits your target or a sale starts, it pings you.",
+      "You approve; Muse checks out with a one-time Link by Stripe virtual card.",
+      "Meta says Muse is the first agent covered by Link's purchase protections on eligible purchases: damaged or lost items, price-drop protection and no-fee returns."
+    ],
+    "result": "This has the widest gap between demo and reality: a reviewer's real shopping task failed outright. Use it for simple single-retailer purchases first and keep the experimental label until reliability improves. Approval gates: Purchase approval, always.",
+    "prompt": "I want the [model] espresso machine. Watch prices, alert me under $250, and buy it when I say go.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "draft-replies-to-every-marketplace-buyer",
+    "title": "Draft replies to every Marketplace buyer",
+    "summary": "Ten buyers ask the same five questions. Muse reads your listing details and drafts each reply; you approve from a queue.",
+    "category": "money",
+    "problem": "You flip furniture on Facebook Marketplace. Ten buyers message at once with the same five questions. Muse drafts every reply; you just approve.",
+    "prerequisites": [
+      "Read your Marketplace messages",
+      "Send messages on your behalf"
+    ],
+    "steps": [
+      "Connect Facebook and Messenger. Muse reads incoming buyer messages on your listings.",
+      "For each message it drafts a reply from the listing details it already knows: dimensions, price, pickup location and the times that work.",
+      "You get a queue of drafts. Tap approve on each; nothing sends without you.",
+      "The buy-side mirror is the deal watcher workflow, which watches for listings you want."
+    ],
+    "result": "Bulk messaging is deliberately slow. Approval per message is a safety feature. This is leverage, not automation. Approval gates: Per message, by design.",
+    "prompt": "Draft replies to all my Marketplace messages using my listing details. I'll approve each one before it sends.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "export-your-instagram-followers-and-map-the-clusters",
+    "title": "Export your Instagram followers and map the clusters",
+    "summary": "Ask Muse for a spreadsheet of your followers with bios and engagement signals, then a map of who follows whom.",
+    "category": "creators",
+    "problem": "You are a creator or a small brand and you want to actually know your followers: not a count, but who is there, who follows whom, and where the clusters are.",
+    "prerequisites": [
+      "Read your Instagram followers"
+    ],
+    "steps": [
+      "Ask Muse to export your Instagram followers into a spreadsheet: handles, bios, follower counts and engagement signals.",
+      "It goes further, examines followers of followers, maps the relationship graph and renders a visualisation of your audience clusters.",
+      "You get a file you own rather than a dashboard trapped in an app, plus the visual."
+    ],
+    "result": "In the best-documented hands-on test the export stopped at 749 accounts and the tester could not tell whether that was an API limit or a cutoff, and the visualisation was attractive but not very functional. Keep exports small and verify row counts against the source. Approval gates: None needed; this is read-only work.",
+    "prompt": "Export my Instagram followers to a spreadsheet with bios and engagement stats, then map the follower-of-follower relationships and visualize the clusters.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "triage-your-inbox-every-morning",
+    "title": "Triage your inbox every morning",
+    "summary": "Muse reads new mail, drafts replies in your voice, flags what needs a decision and archives the noise. Start read-only, then drafts, then approved sends.",
+    "category": "work",
+    "problem": "You wake up to 80 emails. Muse has already read them, drafted replies to 30, flagged 5 that need you, and archived the noise.",
+    "prerequisites": [
+      "Read email you connect",
+      "Send messages on your behalf"
+    ],
+    "steps": [
+      "Connect email with granular permissions. Start read-only.",
+      "Each morning, or on demand from WhatsApp, Muse scans new mail, categorises it and drafts replies in your voice, learned from your sent folder.",
+      "You review a digest: drafts to approve, items needing decisions, FYIs. One tap per draft.",
+      "Over weeks it learns which senders matter and which threads you ignore, and starts pre-sorting before you ask."
+    ],
+    "result": "This is the highest blast-radius workflow here: a misfired email is reputational damage, not a bad answer. Climb the ladder: read-only first, drafts second, approved sends third. Approval gates: Per-email send approval. Run read-only for a week before granting send.",
+    "prompt": "Every weekday at 8am, triage my inbox. Draft replies, flag anything needing a decision, archive newsletters. Never send without my approval.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "fill-out-forms-and-registrations-for-you",
+    "title": "Fill out forms and registrations for you",
+    "summary": "Forward Muse a form link or a photo of a paper form. It completes every field from the details it remembers and stops before signatures.",
+    "category": "life-admin",
+    "problem": "School permission slips, camp registrations, insurance forms, job applications: the paperwork of life. Muse opens the sites and fills them out.",
+    "prerequisites": [
+      "Browse the web",
+      "Submit forms and bookings"
+    ],
+    "steps": [
+      "Forward Muse the form link or a photo of a paper form, plus any details it does not have. It remembers your kids' names, birthdates, allergies and your address from earlier conversations.",
+      "Muse opens the form in its cloud browser and completes every field.",
+      "It stops at signatures, payments and anything legally binding; those come to you.",
+      "For recurring forms it can pre-fill and queue them on schedule."
+    ],
+    "result": "Sites with aggressive anti-bot protection, CAPTCHAs or identity verification will block it. It works best on straightforward web forms. Approval gates: Pre-submission review, always. Signatures and payments are human-only.",
+    "prompt": "Fill out this camp registration for [kid]. Use the details you have on file. Stop before anything that needs a signature or payment and show me the completed form.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "book-and-manage-a-recurring-lesson-or-class",
+    "title": "Book and manage a recurring lesson or class",
+    "summary": "Describe a recurring need once. Muse finds providers, books the first session with your approval, then manages rebooking.",
+    "category": "life-admin",
+    "problem": "Book me tennis lessons every Tuesday at 6pm, said once, handled forever.",
+    "prerequisites": [
+      "Read and modify your calendar",
+      "Submit forms and bookings"
+    ],
+    "steps": [
+      "Describe the recurring need in plain language: lessons, classes, reservations, tickets.",
+      "Muse finds providers, compares schedules and prices, and books the first one with your approval.",
+      "It then manages the series: rebooking, handling cancellations, finding substitutes when you are travelling (it has your calendar) and confirming each week.",
+      "Movie tickets, restaurant reservations and gym classes follow the same pattern."
+    ],
+    "result": "Cancellation policies vary. Make sure Muse knows which bookings are refundable before it commits you to a series. Approval gates: First booking approval; the ongoing series runs on the rules you set.",
+    "prompt": "Book me beginner tennis lessons every Tuesday at 6pm near [area], under $40/session. Handle rebooking and cancellations, and skip weeks I'm traveling.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "a-fitness-plan-that-rebuilds-itself-when-you-fall-behind",
+    "title": "A fitness plan that rebuilds itself when you fall behind",
+    "summary": "Give Muse the goal. It builds a phased plan as a living document, tracks connected health data.",
+    "category": "health",
+    "problem": "Not a workout PDF you abandon by February. A plan that notices you stopped and adjusts.",
+    "prerequisites": [
+      "Read health data you connect"
+    ],
+    "steps": [
+      "Tell Muse the goal: run a half marathon in October, or lose 15 pounds sustainably.",
+      "Muse builds a phased plan as a living document: training blocks, rest weeks, nutrition guidelines.",
+      "Connect health data and it tracks workouts, trends and plateaus.",
+      "When you travel, get sick or work explodes, it notices the gap and rewrites the plan, for example a rebuilt 8-week ramp instead of the original 12.",
+      "Weekly check-ins arrive in WhatsApp like a text from a coach."
+    ],
+    "result": "It is a planner and an accountability layer, not a doctor. Good for structure and adaptation, not for medical advice or injury rehab. Approval gates: None structural, but keep health data sharing deliberate and minimal.",
+    "prompt": "Build me a half-marathon plan for October. I'm currently running 10 miles a week. Check in weekly and rebuild the plan whenever I fall behind.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "turn-a-business-idea-into-a-90-day-plan",
+    "title": "Turn a business idea into a 90-day plan",
+    "summary": "Describe the idea in a sentence. Muse breaks it into workstreams with owners and deadlines, does the supplier and competitor research in the background.",
+    "category": "creators",
+    "problem": "I want to start a candle business becomes a 90-day plan with tasks, deadlines and research, coordinated while you keep your day job.",
+    "prerequisites": [
+      "Browse the web"
+    ],
+    "steps": [
+      "Describe the business idea in a sentence or two.",
+      "Muse breaks it into workstreams: market research, supplier sourcing, pricing, branding, legal basics and a launch checklist, each with an owner (you or Muse) and a deadline.",
+      "It does the legwork in the background: comparing suppliers, drafting product descriptions, researching competitors, building a simple budget spreadsheet.",
+      "Weekly it reports what is done, what is blocked on you and what is next, and adjusts the timeline when you fall behind.",
+      "Side chats keep workstreams separate while the main chat holds the full picture."
+    ],
+    "result": "Muse can research and draft, but it cannot taste your candles or sign a lease. It is a chief of staff for the idea phase; execution still needs a human. Approval gates: Spending and legal or filing decisions come to you; research runs free.",
+    "prompt": "I want to launch a soy candle business in 90 days. Build the full plan, do the supplier and competitor research, and check in every Monday with what's done and what needs me.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "watch-marketplace-for-the-deal-you-want",
+    "title": "Watch Marketplace for the deal you want",
+    "summary": "Describe the item, max price, radius and condition. Muse watches Marketplace, filters out the junk and messages you the moment a real match appears.",
+    "category": "shopping",
+    "problem": "You have been hunting a used Herman Miller chair under 400 dollars for months. Muse watches and pings you the minute one appears.",
+    "prerequisites": [
+      "Read Marketplace listings",
+      "Send messages on your behalf"
+    ],
+    "steps": [
+      "Describe exactly what you want: item, maximum price, radius, condition.",
+      "Muse monitors Facebook Marketplace and other listing sites on a schedule.",
+      "The Ideas tab may suggest this itself. In testing, Muse noticed someone browsing office furniture and proposed recurring desk searches.",
+      "When a match appears you get a WhatsApp ping with the listing, price history where available, and a draft message to the seller.",
+      "You approve the message or the purchase. Muse never buys unprompted."
+    ],
+    "result": "Set the frequency and price rules explicitly, or enthusiastic monitoring becomes notification spam. Approval gates: Outreach and purchase approvals.",
+    "prompt": "Watch Marketplace for a used Herman Miller Aeron under $400 within 20 miles. Ping me immediately when one shows up.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  },
+  {
+    "slug": "build-a-budget-tracker-or-study-guide-you-can-keep",
+    "title": "Build a budget tracker or study guide you can keep",
+    "summary": "Describe the deliverable and Muse builds it in its cloud workspace as a real file: an interactive tracker, a PDF study guide, a one-page site.",
+    "category": "productivity",
+    "problem": "You need a thing, not an answer: a budget tracker, a study guide for your certification exam, a one-page site for your garage sale.",
+    "prerequisites": [],
+    "steps": [
+      "Describe the deliverable, for example a household spending tracker or a PMP study guide at two hours a day for six weeks.",
+      "Muse builds it in its cloud workspace with real files and real code: interactive spreadsheets, PDFs, HTML pages, small web apps.",
+      "It iterates with you conversationally, such as making the budget categories match your bank's.",
+      "The files live in your Muse workspace, downloadable and yours. If a service has a public API, Muse can wire the artifact to live data with credentials you provide."
+    ],
+    "result": "First-version quality varies. Treat Muse like a talented junior who needs one round of feedback, not a senior shipping final work. Approval gates: None; this is pure creation. Review the output the way you would review a freelancer's.",
+    "prompt": "Build me an interactive household budget tracker as a web page I can open on my phone. Categories: housing, food, transport, fun, savings.",
+    "proof_url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "source": "sundog-editorial"
+  }
+]

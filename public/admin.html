@@ -153,6 +153,7 @@
           <button data-tab="codes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M7 12h.01M11 12h.01M15 12h.01"/></svg>Codes</button>
           <button data-tab="claims" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M6 9l6 6 6-6M5 21h14"/></svg>Claims</button>
           <button data-tab="reports" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V4h12l-1 4 1 4H4"/></svg>Reports</button>
+          <button data-tab="pool" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.7 5.6 6.3.9-4.5 4.4 1 6.1-5.5-2.9L6.5 20l1-6.1L3 9.5l6.3-.9z"/></svg>Creator pool</button>
           <button data-tab="waitlist" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h6"/></svg>Waitlist</button>
         </nav>
         <div class="foot">
@@ -232,6 +233,22 @@
             <div class="toolbar"><span class="muted">Country is what the visitor chose; detected is where they were when they joined.</span><span class="spacer"></span><a class="btn" href="/api/admin/export.csv?table=waitlist">Export CSV</a></div>
             <div class="tablewrap"><table id="waitlist"><thead><tr><th>When</th><th>Email</th><th>Chosen country</th><th>Detected</th><th>City</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
           </section>
+
+          <section class="panel" id="panel-pool">
+            <div class="cards" id="pool-cards"></div>
+            <div class="box">
+              <h2>Open reports <span>newest first; hide, restore or remove the workflow, or dismiss the report</span></h2>
+              <div class="tablewrap"><table id="pool-reports"><thead><tr><th>When</th><th>Workflow</th><th>Creator</th><th>Reason</th><th>Detail</th><th>Open</th><th>State</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+            </div>
+            <div class="box">
+              <h2>Hidden and removed workflows</h2>
+              <div class="tablewrap"><table id="pool-hidden"><thead><tr><th>Updated</th><th>Workflow</th><th>Creator</th><th>State</th><th>Ratings</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+            </div>
+            <div class="box">
+              <h2>Creators <span>newest first</span></h2>
+              <div class="tablewrap"><table id="pool-creators"><thead><tr><th>Joined</th><th>Handle</th><th>Name</th><th>Email</th><th>Published</th><th>Ratings</th><th>Score</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -240,7 +257,7 @@
     <script>
       (() => {
         const $ = (id) => document.getElementById(id);
-        const titles = { overview: "Overview", analytics: "Analytics", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist" };
+        const titles = { overview: "Overview", analytics: "Analytics", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist", pool: "Creator pool" };
         let refreshTimer = null;
 
         async function api(path, options = {}) {
@@ -373,6 +390,34 @@
           tbody.innerHTML = d.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><code>${esc(r.code)}</code></td><td class="muted">${esc(r.device)}</td><td class="muted">${esc(r.ip)}</td><td>${esc(r.country || "")}</td><td class="muted">${esc(r.region || "")}</td><td class="muted">${esc(r.city || "")}</td><td>${r.retired_at ? '<span class="pill bad">Retired</span>' : '<span class="pill ok">Live</span>'}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">Nothing yet</td></tr>';
         }
 
+        async function loadPool() {
+          const o = await api("/api/admin/pool/overview");
+          $("pool-cards").innerHTML = [["Published", o.published], ["Hidden", o.hidden], ["Drafts", o.drafts], ["Creators", o.creators], ["Ratings", o.ratings], ["Ratings 24h", o.ratings_24h], ["Open reports", o.open_reports], ["Published 24h", o.published_24h]]
+            .map(([k, v]) => `<div class="card"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("");
+          const reports = await api("/api/admin/pool/reports");
+          const wfState = (r) => r.workflow_status === "removed" ? '<span class="pill bad">Removed</span>' : r.hidden_at ? '<span class="pill warn">Hidden</span>' : r.workflow_status === "published" ? '<span class="pill ok">Live</span>' : `<span class="pill">${esc(r.workflow_status)}</span>`;
+          $("pool-reports").querySelector("tbody").innerHTML = reports.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="/workflows/${esc(r.slug)}" target="_blank" rel="noopener">${esc(r.title)}</a></td><td>@${esc(r.handle)}</td><td>${esc(r.reason)}</td><td class="muted">${esc(r.detail || "")}</td><td>${esc(r.open_count)}</td><td>${r.status === "open" ? '<span class="pill flag">Open</span>' : `<span class="pill">${esc(r.status)}</span>`} ${wfState(r)}</td><td>${r.status === "open" ? `<button class="btn sm" data-pool="hide" data-id="${esc(r.workflow_id)}">Hide</button> <button class="btn sm" data-pool="restore" data-id="${esc(r.workflow_id)}">Restore</button> <button class="btn sm danger" data-pool="remove" data-id="${esc(r.workflow_id)}">Remove</button> <button class="btn sm" data-pool="dismiss" data-id="${esc(r.id)}">Dismiss</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">No reports</td></tr>';
+          const hidden = await api("/api/admin/pool/workflows?status=hidden");
+          const removed = await api("/api/admin/pool/workflows?status=removed");
+          const rows = hidden.rows.map((r) => ({ ...r, state: "hidden" })).concat(removed.rows.map((r) => ({ ...r, state: "removed" })));
+          $("pool-hidden").querySelector("tbody").innerHTML = rows.map((r) => `<tr><td>${esc(when(r.updated_at))}</td><td><a href="/workflows/${esc(r.slug)}" target="_blank" rel="noopener">${esc(r.title)}</a></td><td>@${esc(r.handle)}</td><td>${r.state === "hidden" ? '<span class="pill warn">Hidden</span>' : '<span class="pill bad">Removed</span>'}${r.exclude_from_reputation ? ' <span class="pill">Excluded</span>' : ""}</td><td>${esc(r.rating_count || 0)}</td><td><button class="btn sm" data-pool="restore" data-id="${esc(r.id)}">Restore</button>${r.state === "hidden" ? ` <button class="btn sm danger" data-pool="remove" data-id="${esc(r.id)}">Remove</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="6" class="empty">Nothing hidden or removed</td></tr>';
+          const creators = await api("/api/admin/pool/creators");
+          $("pool-creators").querySelector("tbody").innerHTML = creators.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="/creators/${esc(r.handle)}" target="_blank" rel="noopener">@${esc(r.handle)}</a>${r.is_editorial ? ' <span class="pill">Editorial</span>' : ""}</td><td>${esc(r.display_name)}</td><td class="muted">${esc(r.email)}</td><td>${esc(r.workflow_count || 0)}</td><td>${esc(r.rating_count || 0)}</td><td>${r.rating_count ? esc(Number(r.weighted_score).toFixed(2)) : "New"}</td><td>${r.status === "active" ? '<span class="pill ok">Active</span>' : r.status === "deactivated" ? '<span class="pill warn">Deactivated</span>' : '<span class="pill bad">Removed</span>'}</td><td>${r.status !== "active" ? `<button class="btn sm" data-pool="creator-active" data-id="${esc(r.id)}">Restore</button> ` : `<button class="btn sm" data-pool="creator-deactivated" data-id="${esc(r.id)}">Deactivate</button> `}${r.status !== "removed" && !r.is_editorial ? `<button class="btn sm danger" data-pool="creator-removed" data-id="${esc(r.id)}">Remove</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">No creators yet</td></tr>';
+        }
+        document.body.addEventListener("click", async (event) => {
+          const button = event.target.closest("[data-pool]");
+          if (!button) return;
+          const act = button.dataset.pool, id = button.dataset.id;
+          try {
+            if (act === "hide" || act === "restore") await api(`/api/admin/pool/workflows/${id}/${act}`, { method: "POST", body: {} });
+            else if (act === "remove") { const reason = window.prompt("Reason for removal (kept on record):"); if (!reason) return; const exclude = window.confirm("Exclude its ratings from the creator's reputation? OK only when the removal is unrelated to the work itself."); await api(`/api/admin/pool/workflows/${id}/remove`, { method: "POST", body: { reason, excludeFromReputation: exclude } }); }
+            else if (act === "dismiss") await api(`/api/admin/pool/reports/${id}/dismiss`, { method: "POST", body: {} });
+            else if (act.startsWith("creator-")) await api(`/api/admin/pool/creators/${id}/status`, { method: "POST", body: { status: act.replace("creator-", "") } });
+            toast("Done");
+            await loadPool();
+          } catch (error) { if (error.message !== "signed_out") toast("Failed: " + error.message); }
+        });
+
         async function loadTab(tab) {
           $("title").textContent = titles[tab];
           $("status").textContent = "Loading";
@@ -380,6 +425,7 @@
             if (tab === "overview") await loadOverview();
             else if (tab === "analytics") await loadAnalytics();
             else if (tab === "codes") await loadCodes();
+            else if (tab === "pool") await loadPool();
             else await loadList(tab);
             $("status").textContent = "Updated " + new Date().toLocaleTimeString();
           } catch (error) {

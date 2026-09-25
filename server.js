@@ -8,7 +8,7 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
-const { handle } = require("./lib/api");
+const { handle, pageRoute } = require("./lib/api");
 
 const PORT = Number(process.env.PORT || 3000);
 const ROOT = path.join(__dirname, "public");
@@ -40,7 +40,7 @@ function serveStatic(req, res, url) {
 http
   .createServer((req, res) => {
     const url = new URL(req.url, "http://localhost");
-    if (url.pathname.startsWith("/api/")) return handle(req, res);
+    if (url.pathname.startsWith("/api/") || pageRoute(url.pathname)) return handle(req, res);
     if (req.method !== "GET" && req.method !== "HEAD") { res.writeHead(405); return res.end("Method not allowed"); }
     serveStatic(req, res, url);
   })

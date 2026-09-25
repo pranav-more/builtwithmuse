@@ -126,3 +126,33 @@ Then open http://localhost:3000.
 - Supabase: jayeshmarathe2000jm@gmail.com, organization "Built with muse"
 - GoDaddy: domain registration for both domains and the getmusecode.com A records (jayeshmarathe2000jm@gmail.com)
 - Google, polostudio.brand@gmail.com: Analytics, Search Console, Microsoft Clarity
+
+## Creator Pool
+
+A reputation driven pool of Muse workflows (spec: `creator-pool-spec.pdf`,
+25 September 2026). Creators sign in with Google, claim a handle, and publish
+workflows as problem, steps, result. Anyone can rate once per device; the
+weighted score (`workflow_stats`, `creator_stats` views) is computed from the
+ratings and never stored.
+
+- Schema: `sql/creator-pool.sql`, idempotent. Apply by hand with psql against
+  the Supabase session pooler (`aws-0-us-west-1.pooler.supabase.com:5432`,
+  user `postgres.ixifjltslrhelbtzelkf`, password in
+  `~/.config/builtwithmuse/supabase-db-password`). Applied to production on
+  2026-09-25.
+- Code: `lib/creators.js` (API, pages, admin), `lib/pages.js` (layout),
+  `lib/dashboard.js` (the /creator page). Routes: `/workflows`,
+  `/workflows/:slug`, `/creators/:handle`, `/creator`, `/sitemap.xml` are
+  rewritten to the function (vercel.json) and forwarded by server.js locally.
+- Seed: `seed/workflows.json` (14 editorial workflows owned by the
+  `builtwithmuse` editorial profile). `SUPABASE_DB_URL=... node
+  scripts/seed-workflows.js [--dry]`, idempotent by slug. Seeded in production
+  on 2026-09-25.
+- Settings live in `pool_settings`: `prior_weight` (5), `report_hide_threshold`
+  (3 distinct devices), `submissions_open` (true).
+- Moderation: the Creator pool tab in /admin, or `/api/admin/pool/*` with the
+  admin token.
+- Sign in uses the existing Google OAuth client (GCP project `built-with-muse`),
+  published to production on 2026-09-25 so any Google account can sign in.
+  Email magic links were not built: the site has no email sender.
+

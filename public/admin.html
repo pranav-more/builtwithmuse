@@ -201,8 +201,8 @@
             <div class="toolbar">
               <select id="code-status">
                 <option value="all">All codes</option>
-                <option value="available">Available</option>
-                <option value="used">Fully used</option>
+                <option value="live">Live</option>
+                <option value="broken">Broken</option>
                 <option value="retired">Retired</option>
               </select>
               <input type="search" id="code-q" placeholder="Search a code" />
@@ -280,9 +280,10 @@
         function toast(text) { const t = $("toast"); t.textContent = text; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200); }
         function codeState(row) {
           if (row.retired_at) return '<span class="pill bad">Retired</span>';
-          if (row.claims >= row.max_claims) return '<span class="pill warn">Fully used</span>';
+          // The owner code is never pulled by reports; it stays live.
+          if (row.reports >= 2 && row.source !== "owner") return '<span class="pill bad">Broken</span>';
           if (row.reports > 0) return '<span class="pill flag">Flagged</span>';
-          return '<span class="pill ok">Available</span>';
+          return '<span class="pill ok">Live</span>';
         }
         const currentTab = () => document.querySelector('[data-tab][aria-selected="true"]').dataset.tab;
 
@@ -323,12 +324,12 @@
         async function loadOverview() {
           const d = await api("/api/admin/overview");
           const cards = [
-            ["Available codes", d.available, d.available === 0 ? "bad" : d.available < 5 ? "warn" : "good", "ready to hand out"],
-            ["Fully used", d.used_up, "", "both seats taken"],
+            ["Live codes", d.live, d.live === 0 ? "bad" : d.live < 5 ? "warn" : "good", "in the pool right now"],
+            ["Broken", d.broken, d.broken > 3 ? "warn" : "", "flagged twice, not handed out"],
             ["Retired", d.retired, "", "reported or removed"],
             ["Codes total", d.total_codes, "", `${d.codes_24h} added in 24h`],
             ["Given out, last hour", d.claims_1h, "", ""],
-            ["Given out, 24h", d.claims_24h, "", `${d.devices_24h} devices`],
+            ["Given out, 24h", d.claims_24h, "", `${d.claimers_24h} accounts`],
             ["Given out, total", d.claims_total, "", ""],
             ["Reports, 24h", d.reports_24h, d.reports_24h > 3 ? "warn" : "", `${d.reports_total} total`],
             ["Waitlist", d.waitlist, "", `${d.waitlist_24h} joined in 24h`],
@@ -342,19 +343,19 @@
           const d = await api("/api/admin/analytics?days=14");
           const p = d.pool;
           $("a-days").textContent = `last ${d.days} days`;
-          const perDevice = p.devices_total ? (p.claims_total / p.devices_total).toFixed(2) : "0";
+          const perClaimer = p.claimers_total ? (p.claims_total / p.claimers_total).toFixed(2) : "0";
           const reportRate = p.claims_total ? Math.round(100 * p.reports_total / p.claims_total) + "%" : "0%";
           $("a-cards").innerHTML = [
-            ["Seats left in pool", p.seats_left, p.seats_left === 0 ? "bad" : p.seats_left < 10 ? "warn" : "good", "each code has two seats"],
+            ["Live codes in pool", p.live, p.live === 0 ? "bad" : p.live < 10 ? "warn" : "good", "not retired"],
             ["Submitted by users", p.user_submitted, "", `${p.added_by_us} added by moderators`],
-            ["Devices ever served", p.devices_total, "", `${perDevice} codes per device`],
+            ["Accounts ever served", p.claimers_total, "", `${perClaimer} codes per account`],
             ["Report rate", reportRate, "", "reports over codes given out"],
           ].map(([l, n, cls, dd]) => `<div class="card ${cls}"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div><div class="d">${esc(dd)}</div></div>`).join("");
           const days = d.daily.map((r) => day(r.day));
-          barChart($("c-claims"), [d.daily.map((r) => r.claims), d.daily.map((r) => r.devices)], days, ["#0c766b", "#e45d35"]);
+          barChart($("c-claims"), [d.daily.map((r) => r.claims), d.daily.map((r) => r.claimers)], days, ["#0c766b", "#e45d35"]);
           barChart($("c-hourly"), [d.hourly.map((r) => r.claims)], d.hourly.map((r) => new Date(r.hour).toLocaleTimeString(undefined, { hour: "2-digit" })), ["#0c766b"]);
           barChart($("c-supply"), [d.daily.map((r) => r.submissions), d.daily.map((r) => r.waitlist), d.daily.map((r) => r.reports)], days, ["#0c766b", "#7c5cff", "#b43a2a"]);
-          stackChart($("c-pool"), [{ label: "Available", value: p.available, color: "#0c766b" }, { label: "Fully used", value: p.used_up, color: "#b54708" }, { label: "Retired", value: p.retired, color: "#b43a2a" }]);
+          stackChart($("c-pool"), [{ label: "Live", value: p.live, color: "#0c766b" }, { label: "Broken", value: p.broken, color: "#b54708" }, { label: "Retired", value: p.retired, color: "#b43a2a" }]);
           hbars($("b-claims"), d.countries.claims);
           hbars($("b-subs"), d.countries.submissions);
           hbars($("b-wl"), d.countries.waitlist);
@@ -367,7 +368,7 @@
           $("codes").querySelector("tbody").innerHTML = d.codes.map((c) => `<tr>
             <td><code>${esc(c.code)}</code></td>
             <td>${codeState(c)}</td>
-            <td>${esc(c.claims)} of ${esc(c.max_claims)}</td>
+            <td>${esc(c.claims_live)} claims${c.owner_invites !== null && c.owner_invites !== undefined ? ` <span class="muted">(${esc(c.owner_invites)} reported)</span>` : ""}</td>
             <td>${c.reports ? `<span class="pill flag">${esc(c.reports)}</span>` : "0"}${c.redeemed ? ` <span class="pill ok" title="Confirmed working by ${esc(c.redeemed)}">Verified</span>` : ""}</td>
             <td class="muted">${esc(c.source)}</td>
             <td>${esc(place(c))}</td>

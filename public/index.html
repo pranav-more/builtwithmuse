@@ -26,6 +26,7 @@
     <meta name="twitter:description" content="Working invite codes shared by the community. Take one from the pool or add yours." />
     <meta name="twitter:image" content="https://builtwithmuse.com/og/homepage-share.png" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
+    <script async defer src="https://accounts.google.com/gsi/client"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -96,6 +97,23 @@
       .nav button:hover, .nav a:hover { color: var(--ink); border-color: var(--line); }
       .nav button[aria-selected="true"] { background: rgba(255,255,255,.14); color: var(--ink); border-color: var(--line); }
       .nav button:focus-visible, .nav a:focus-visible, .button:focus-visible, .icon-button:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .account { display: flex; align-items: center; gap: 10px; margin-left: 8px; }
+      .account-chip { display: flex; align-items: center; gap: 10px; }
+      .account-chip img { width: 30px; height: 30px; border-radius: 50%; }
+      .account-chip .who { font-size: 13px; font-weight: 600; color: var(--ink); max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .account .linklike { background: none; border: none; color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; padding: 8px 4px; }
+      .account .linklike:hover { color: var(--ink); }
+      .signin-card { max-width: 560px; margin: 60px auto; text-align: center; background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 20px; padding: 44px 32px; }
+      .signin-card h2 { margin: 0 0 12px; font-size: 32px; letter-spacing: -0.02em; }
+      .signin-card p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0 auto 24px; max-width: 420px; }
+      .signin-card .google-slot { display: flex; justify-content: center; margin-bottom: 14px; min-height: 44px; }
+      .mycode { background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 14px; }
+      .mycode .row1 { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+      .mycode .code { font-family: "JetBrains Mono", monospace; font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+      .mycode .stats { color: var(--muted); font-size: 13.5px; margin-top: 8px; line-height: 1.7; }
+      .mycode .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
+      .mycode .verify-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      .mycode input[type="number"] { width: 110px; }
 
       .view { display: none; }
       .view.active { display: block; }
@@ -163,6 +181,7 @@
       .pool-health b { color: var(--ink); font-variant-numeric: tabular-nums; }
       .pool-health i { width: 10px; height: 10px; border-radius: 50%; background: var(--muted-2); }
       .pool-health i.open { background: var(--mint); }
+      .pool-health i.verified { background: #7db4ff; }
       .pool-health i.broken { background: #ff8f8f; }
       .pool-title { margin: 44px 0 6px; font-size: 22px; font-weight: 700; }
       .pool-note { color: var(--muted); margin: 0 0 18px; }
@@ -175,10 +194,7 @@
       button.pool-row:focus-visible { outline: 2px solid var(--mint); outline-offset: -2px; }
       @media (max-width: 640px) { button.pool-row { padding: 14px 16px; } }
       .pool-code { font: 700 16px "JetBrains Mono", monospace; letter-spacing: 0.14em; }
-      .pool-slots { display: flex; flex-wrap: wrap; gap: 6px; }
-      .pool-slots i { display: block; width: 34px; height: 14px; border-radius: 3px; background: rgba(255,255,255,.18); }
-      .pool-slots i.open { background: var(--mint); }
-      .pool-slots i.pulled { background: transparent; border: 1.5px solid var(--coral); }
+      .pool-meta { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
       .pool-tags { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
       .pool-tag { border-radius: 4px; padding: 5px 10px; font-size: 12px; font-weight: 700; background: rgba(255,255,255,.14); color: var(--ink); white-space: nowrap; }
       .pool-tag.open { background: var(--mint); color: var(--mint-ink); }
@@ -336,6 +352,7 @@
           <a href="/use-cases">Use cases</a>
           <a href="/blog">Blog</a>
         </nav>
+        <div class="account" id="account-area"><button class="button small secondary" type="button" id="account-signin">Sign in</button></div>
       </header>
 
       <main>
@@ -348,7 +365,7 @@
               <div class="hero-actions"><button class="button hero-cta" type="button" id="hero-cta">Get a code <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="actions">
                 <button class="button secondary" type="button" data-view="share">Share code</button></div>
               </div>
-              <p class="fine"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free to use. No sign in. Codes are first come, first served.</p>
+              <p class="fine"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free to use. Sign in with Google to claim a code. Codes are first come, first served.</p>
               <p class="waitlist-nudge">Muse not in your country yet? <button type="button" class="linklike" data-view="waitlist">Join the waitlist</button> and we will send you a fresh code on launch day.</p>
             </div>
             <div class="invite-card" aria-hidden="true">
@@ -374,10 +391,10 @@
               <p class="pool-summary" id="pool-summary">Checking the pool.</p>
             </div>
             <h3 class="pool-title">The pool right now</h3>
-            <div class="pool-health" id="pool-health" aria-live="polite"><span><i class="open"></i><b id="health-open">0</b> open</span><span><i class="used"></i><b id="health-used">0</b> used</span><span><i class="broken"></i><b id="health-broken">0</b> broken</span></div>
-            <p class="pool-note">Codes stay hidden until you claim one, so scrapers cannot grab the slots. Tap a row with open slots to claim it.</p>
+            <div class="pool-health" id="pool-health" aria-live="polite"><span><i class="open"></i><b id="health-open">0</b> open</span><span><i class="verified"></i><b id="health-verified">0</b> verified</span><span><i class="broken"></i><b id="health-broken">0</b> broken</span></div>
+            <p class="pool-note">Codes stay hidden until you sign in and claim one, so scrapers cannot grab them. Tap a row to claim it.</p>
             <div class="pool-list" id="pool-list" aria-live="polite"></div>
-            <div class="pool-legend"><span><i class="open"></i>Open</span><span><i></i>Used</span><span><i class="pulled"></i>Broken</span></div>
+            <div class="pool-legend"><span><i class="open"></i>Open</span><span><i></i>Needs a check</span><span><i class="pulled"></i>Broken</span></div>
           </section>
         </section>
 
@@ -422,9 +439,14 @@
           <div class="section-head">
             <div class="eyebrow">Pay it forward</div>
             <h2>Add your invite to the pool.</h2>
-            <p>Here is the actual mechanic: when someone joins Muse with your invite and redeems it in Settings within 48 hours of joining, Muse credits tokens to both of you, inside the app. The amount is set by Muse and changes, so we do not quote one. Source: <a href="https://x.com/Muse/status/2100268557229531376" target="_blank" rel="noopener noreferrer">Muse's own announcement</a>.</p>
+            <p>Here is the actual mechanic: when someone joins Muse with your invite and redeems it in Settings within 48 hours of joining, Muse credits 1 billion tokens to each of you, inside the app. Source: <a href="https://x.com/Muse/status/2100268557229531376" target="_blank" rel="noopener noreferrer">Muse's own announcement</a>.</p>
           </div>
-          <div class="workflow-card">
+          <div class="signin-card" id="share-gate" hidden>
+            <h2>One step first.</h2>
+            <p>To add a code you need to sign in so you can manage how many invites you have left. It takes ten seconds with Google.</p>
+            <button class="button" type="button" id="share-gate-signin">Sign in with Google</button>
+          </div>
+          <div class="workflow-card" id="share-card" hidden>
             <form id="share-form" novalidate>
               <div class="form-stack">
                 <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -434,13 +456,18 @@
                   <small>Check every letter and number before adding it.</small>
                 </div>
                 <div class="field">
-                  <label for="invite-link">Your invite link (optional)</label>
-                  <input id="invite-link" name="invite-link" type="url" inputmode="url" autocomplete="url" placeholder="https://…" />
-                  <small>Adding the link helps us keep fake codes out, but the code alone is fine.</small>
+                  <label for="invite-link">Your full invite link</label>
+                  <input id="invite-link" name="invite-link" type="url" required inputmode="url" autocomplete="url" placeholder="https://…" />
+                  <small>We need the full link from your Muse app, not just the code, to keep fake codes out.</small>
+                </div>
+                <div class="field">
+                  <label for="share-invites">Invites left in your Muse app</label>
+                  <input id="share-invites" name="share-invites" type="number" min="1" max="100000" inputmode="numeric" required placeholder="e.g. 16" />
+                  <small>Open your Muse app and enter the number it shows. You can update it any time from My codes.</small>
                   <div class="error" id="share-error" aria-live="polite"></div>
                 </div>
                 <button class="button full" id="share-submit" type="submit">Add my code</button>
-                <p class="form-note"><strong>New codes get shown first, so yours won’t get buried.</strong> By adding yours, you confirm the code and link are available to use.</p>
+                <p class="form-note"><strong>New codes get shown first, so yours won’t get buried.</strong> Keep your code live by confirming your invite count every few days. Codes unconfirmed for 7 days drop to the bottom of the pool. By adding yours, you confirm the code and link are available to use.</p>
               </div>
             </form>
             <div class="message" id="share-message" aria-live="polite"><strong>Your code is in.</strong> Thanks for adding it to the community pool.</div> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
@@ -532,6 +559,26 @@
             </div>
           </div>
         </section>
+
+        <section class="view" id="view-signin">
+          <div class="signin-card">
+            <div class="eyebrow">One account for everything</div>
+            <h2>Sign in to get your code.</h2>
+            <p id="signin-copy">Sign in with Google to reveal your code. Your claimed codes stay saved to your account, and you can add your own code to earn tokens when someone redeems it.</p>
+            <div class="google-slot" id="google-button"></div>
+            <p class="form-note" id="signin-status" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="view" id="view-mycodes">
+          <div class="section-head">
+            <div class="eyebrow">Your codes</div>
+            <h2>Keep your codes alive.</h2>
+            <p>Confirm your invite count every few days. Codes unconfirmed for 7 days drop to the bottom of the pool.</p>
+          </div>
+          <div id="mycodes-list"></div>
+          <div style="margin-top:18px"><button class="button secondary" type="button" data-view="share">Add another code</button></div>
+        </section>
       </main>
 
       <div class="nudge" id="nudge" hidden>
@@ -542,27 +589,11 @@
           </button>
           <div class="eyebrow">Pay it forward</div>
           <h2 id="nudge-title">Got your code? Add yours next.</h2>
-          <p>Once you are in, Muse gives you an invite code of your own. When someone joins with it and redeems it within 48 hours, Muse credits tokens to both of you. Drop it here and the pool keeps flowing for the next person.</p>
-          <form id="nudge-form" novalidate>
-            <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
-            <div class="form-stack">
-              <div class="field">
-                <label for="nudge-code">Your invite code</label>
-                <input id="nudge-code" name="nudge-code" type="text" autocomplete="off" placeholder="Enter your Muse code" maxlength="40" />
-              </div>
-              <div class="field">
-                <label for="nudge-link">Your invite link (optional)</label>
-                <input id="nudge-link" name="nudge-link" type="url" inputmode="url" autocomplete="url" placeholder="https://…" />
-                <div class="error" id="nudge-error" aria-live="polite"></div>
-              </div>
-              <div class="nudge-actions">
-                <button class="button" id="nudge-submit" type="submit">Add my code</button>
-                <button class="button ghost" type="button" data-nudge-close>Not yet</button>
-              </div>
-              <p class="form-note">Do not have a code yet? Redeem the one you copied first, then come back. The pool stays open.</p>
-            </div>
-          </form>
-          <div class="message" id="nudge-message" aria-live="polite"><strong>Your code is in.</strong> Thanks for keeping the pool alive for the next person.</div>
+          <p>Once you are in, Muse gives you an invite code of your own. When someone joins with it and redeems it within 48 hours, Muse credits 1 billion tokens to both of you. Add it to the pool and keep it flowing for the next person.</p>
+          <div class="nudge-actions">
+            <button class="button" id="nudge-add" type="button">Add my code</button>
+            <button class="button ghost" type="button" data-nudge-close>Not yet</button>
+          </div>
         </div>
       </div>
 
@@ -597,7 +628,7 @@
     <script>
       (() => {
         const API = "";
-        const views = ["home", "claim", "share", "workflows", "waitlist"];
+        const views = ["home", "claim", "share", "workflows", "waitlist", "signin", "mycodes"];
         const navButtons = [...document.querySelectorAll(".nav [data-view]")];
         let currentCode = "";
         const forbiddenDash = /[\u002D\u058A\u05BE\u1400\u1806\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2E17\u2E1A\u2E3A\u2E3B\u2E40\u2E5D\u301C\u3030\u30A0\uFE31\uFE32\uFE58\uFE63\uFF0D]/;
@@ -627,7 +658,9 @@
 
         function routeFromHash() {
           const name = (location.hash || "").replace(/^#/, "");
-          if (name === "share" || name === "workflows" || name === "waitlist") showView(name);
+          if (name === "share" || name === "workflows" || name === "waitlist") { showView(name); renderShare(); }
+          if (name === "signin") openSignin("claim");
+          if (name === "mycodes") { showView("mycodes"); loadMyCodes(); }
         }
         window.addEventListener("hashchange", routeFromHash);
 
@@ -651,6 +684,108 @@
         function trackEvent(name) {
           try { if (typeof window.clarity === "function") window.clarity("event", name); } catch (_) { /* analytics must never break the flow */ }
         }
+
+        /* ----- one account for everything: Google sign in ----- */
+        let me = null;
+        let pendingAfterSignin = null;
+        const accountArea = document.getElementById("account-area");
+
+        function escAttr(v) { return String(v || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+
+        function renderAccount() {
+          if (!accountArea) return;
+          if (me && me.creator) {
+            const c = me.creator;
+            accountArea.innerHTML =
+              '<div class="account-chip">' +
+              (c.avatarUrl ? `<img src="${escAttr(c.avatarUrl)}" alt="" referrerpolicy="no-referrer" />` : "") +
+              `<span class="who">${escAttr(c.displayName)}</span>` +
+              '<button class="linklike" type="button" data-view="mycodes">My codes</button>' +
+              '<button class="linklike" type="button" id="account-signout">Sign out</button></div>';
+            const so = document.getElementById("account-signout");
+            if (so) so.addEventListener("click", signOut);
+            accountArea.querySelector('[data-view="mycodes"]').addEventListener("click", () => { showView("mycodes"); loadMyCodes(); });
+          } else {
+            accountArea.innerHTML = '<button class="button small secondary" type="button" id="account-signin">Sign in</button>';
+            document.getElementById("account-signin").addEventListener("click", () => openSignin("claim"));
+          }
+        }
+
+        async function refreshAuth() {
+          try {
+            const response = await fetch(API + "/api/v1/me", { credentials: "same-origin" });
+            const data = await response.json().catch(() => null);
+            me = response.ok && data && data.ok ? data : null;
+          } catch (_) { me = null; }
+          renderAccount();
+          return me;
+        }
+
+        const SIGNIN_COPY = {
+          claim: "Sign in with Google to reveal your code. Your claimed codes stay saved to your account, and you can add your own code to earn tokens when someone redeems it.",
+          add: "To add a code you need to sign in so you can manage how many invites you have left. It takes ten seconds with Google."
+        };
+
+        function openSignin(context) {
+          pendingAfterSignin = context;
+          const copy = document.getElementById("signin-copy");
+          if (copy) copy.textContent = SIGNIN_COPY[context] || SIGNIN_COPY.claim;
+          showView("signin");
+          initGoogleButton();
+        }
+
+        function requireSignin(context) {
+          if (me) return true;
+          openSignin(context);
+          return false;
+        }
+
+        async function onGoogleCredential(response) {
+          const status = document.getElementById("signin-status");
+          if (status) status.textContent = "Signing you in...";
+          try {
+            const r = await fetch(API + "/api/v1/auth/google", {
+              method: "POST", credentials: "same-origin",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ credential: response.credential })
+            });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok || !d.ok || !d.signedIn) throw new Error(d.error || "signin_failed");
+            await refreshAuth();
+            if (status) status.textContent = "";
+            const next = pendingAfterSignin;
+            pendingAfterSignin = null;
+            if (next === "add") { showView("share"); renderShare(); }
+            else { showView("claim"); showNextCode(); }
+          } catch (err) {
+            if (status) status.textContent = err.message === "submissions_closed" ? "Signups are closed right now. Please try again later." : "Sign in did not work. Please try again.";
+          }
+        }
+
+        let googleReady = false;
+        function initGoogleButton() {
+          if (googleReady) return;
+          const slot = document.getElementById("google-button");
+          if (!slot || !window.google || !google.accounts) { setTimeout(initGoogleButton, 200); return; }
+          fetch(API + "/api/v1/auth/config", { credentials: "same-origin" })
+            .then((r) => r.json()).then((config) => {
+              if (!config.clientId) return;
+              google.accounts.id.initialize({ client_id: config.clientId, callback: onGoogleCredential, ux_mode: "popup", auto_select: false });
+              google.accounts.id.renderButton(slot, { theme: "filled_blue", size: "large", text: "signin_with", shape: "pill", width: 280 });
+              googleReady = true;
+            }).catch(() => { setTimeout(initGoogleButton, 2000); });
+        }
+
+        async function signOut() {
+          try { await fetch(API + "/api/v1/auth/logout", { method: "POST", credentials: "same-origin" }); } catch (_) {}
+          me = null;
+          pendingAfterSignin = null;
+          renderAccount();
+          showView("home");
+          loadPool();
+        }
+
+        document.getElementById("account-signin").addEventListener("click", () => openSignin("claim"));
 
         function setCode(code) {
           currentCode = code;
@@ -711,6 +846,12 @@
             loadPool();
             armNudge();
           } catch (error) {
+            if (error.code === "sign_in_required") {
+              setCode("");
+              me = null; renderAccount();
+              openSignin("claim");
+              return;
+            }
             setCode("");
             status.textContent = claimMessage(error.code);
           }
@@ -722,6 +863,13 @@
 
         assertDashFreeVisibleCopy();
 
+        function checkedLabel(days) {
+          if (days === null || days === undefined) return "not confirmed yet";
+          if (days <= 0) return "checked today";
+          if (days === 1) return "checked yesterday";
+          return `checked ${days} days ago`;
+        }
+
         async function loadPool() {
           const summary = document.getElementById("pool-summary");
           const list = document.getElementById("pool-list");
@@ -729,22 +877,28 @@
             const response = await fetch(API + "/api/pool", { credentials: "same-origin" });
             const data = await response.json();
             if (!data.ok) throw new Error("pool");
-            document.getElementById("health-open").textContent = data.openCodes;
-            document.getElementById("health-used").textContent = data.usedCodes || 0;
+            document.getElementById("health-open").textContent = data.codes;
+            document.getElementById("health-verified").textContent = data.verifiedCodes || 0;
             document.getElementById("health-broken").textContent = data.brokenCodes || 0;
-            summary.textContent = data.openSlots
-              ? `${data.openSlots} open ${data.openSlots === 1 ? "slot" : "slots"} across ${data.openCodes} ${data.openCodes === 1 ? "code" : "codes"}. One code per person. Yours stays yours until you flag it as not working.`
+            summary.textContent = data.codes
+              ? `${data.codes} ${data.codes === 1 ? "code" : "codes"} in the pool. Claimed by ${data.claimed} ${data.claimed === 1 ? "person" : "people"} so far. One code per person. Yours stays yours until you flag it as not working.`
               : "The pool is empty right now. Add your code or join the waitlist.";
             list.innerHTML = data.rows.length ? data.rows.map((row) => {
-              const slots = Array.from({ length: row.seats }, (_, i) => `<i class="${row.state === "pulled" ? "pulled" : i < row.used ? "used" : "open"}"></i>`).join("");
-              const left = row.seats - row.used;
-              const tag = row.state === "pulled" ? '<span class="pool-tag pulled">Broken</span>'
-                : row.state === "full" ? '<span class="pool-tag">Full</span>'
-                : `<span class="pool-tag open">${left} open</span>`;
-              const verified = row.verified ? '<span class="pool-tag">Verified</span>' : "";
-              const actionable = row.state !== "pulled" && row.state !== "full" && left > 0;
-              const cell = actionable ? "span" : "div";
-              const inner = `<code class="pool-code">${row.label}</code><${cell} class="pool-slots">${slots}</${cell}><${cell} class="pool-tags">${verified}${tag}</${cell}>`;
+              const stateTag = row.state === "pulled" ? '<span class="pool-tag pulled">Broken</span>'
+                : row.state === "stale" ? '<span class="pool-tag">Needs a check</span>'
+                : '<span class="pool-tag open">Open</span>';
+              const tags = (row.mine ? '<span class="pool-tag">Yours</span>' : "") +
+                (row.isNew ? '<span class="pool-tag open">New</span>' : "") +
+                (row.verified ? '<span class="pool-tag">Verified</span>' : "") + stateTag;
+              let middle;
+              if (row.state === "pulled") middle = "Flagged as not working. Not handed out.";
+              else {
+                middle = `Claimed by ${row.claimedBy}`;
+                if (row.ownerInvites !== null && row.ownerInvites !== undefined) middle += ` · Owner reports ${row.ownerInvites} invites, ${checkedLabel(row.checkedDays)}`;
+                else if (row.state === "stale") middle += " · Not confirmed recently";
+              }
+              const actionable = row.state === "open" || row.state === "stale";
+              const inner = `<code class="pool-code">${row.label}</code><span class="pool-meta">${middle}</span><span class="pool-tags">${tags}</span>`;
               return actionable
                 ? `<button type="button" class="pool-row" data-claim-row aria-label="Claim a code from this row">${inner}</button>`
                 : `<div class="pool-row">${inner}</div>`;
@@ -756,11 +910,17 @@
         loadPool();
 
         document.querySelectorAll("[data-view]").forEach((button) => {
-          button.addEventListener("click", () => showView(button.dataset.view));
+          button.addEventListener("click", () => {
+            const name = button.dataset.view;
+            showView(name);
+            if (name === "share") renderShare();
+            if (name === "mycodes") loadMyCodes();
+          });
         });
 
         /* Clarity: hero CTA button and H1 scroll to the pool section. */ const poolSection = document.getElementById("pool-section"); const scrollToPool = () => { if (poolSection) poolSection.scrollIntoView({ behavior: "smooth", block: "start" }); }; const heroCta = document.getElementById("hero-cta"); if (heroCta) heroCta.addEventListener("click", scrollToPool); const heroH1 = document.getElementById("hero-h1"); if (heroH1) { heroH1.addEventListener("click", scrollToPool); heroH1.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); scrollToPool(); } }); } document.getElementById("get-code-2").addEventListener("click", () => {
           trackEvent("claim_started");
+          if (!requireSignin("claim")) return;
           showView("claim");
           showNextCode();
         });
@@ -768,6 +928,7 @@
         document.getElementById("pool-list").addEventListener("click", (event) => {
           if (!event.target.closest("[data-claim-row]")) return;
           trackEvent("claim_started");
+          if (!requireSignin("claim")) return;
           showView("claim");
           showNextCode();
         });
@@ -783,7 +944,7 @@
           clearTimeout(nudgeTimer);
           nudge.hidden = false;
           document.body.style.overflow = "hidden";
-          setTimeout(() => document.getElementById("nudge-code").focus(), 120);
+          setTimeout(() => document.getElementById("nudge-add").focus(), 120);
         }
         function closeNudge() {
           nudge.hidden = true;
@@ -796,38 +957,10 @@
         nudge.querySelectorAll("[data-nudge-close]").forEach((el) => el.addEventListener("click", closeNudge));
         document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !nudge.hidden) closeNudge(); });
 
-        const nudgeForm = document.getElementById("nudge-form");
-        const nudgeSubmit = document.getElementById("nudge-submit");
-        nudgeForm.addEventListener("submit", async (event) => {
-          event.preventDefault();
-          const input = document.getElementById("nudge-code");
-          const linkInput = document.getElementById("nudge-link");
-          const error = document.getElementById("nudge-error");
-          const code = input.value.trim();
-          const link = linkInput.value.trim();
-          if (code.length < 5) {
-            error.textContent = "Enter a complete invite code to continue.";
-            input.focus();
-            return;
-          }
-          if (link && (!linkInput.validity.valid || !/^https?:\/\//i.test(link))) {
-            error.textContent = "Enter the full invite link, starting with http:// or https://, or leave it empty.";
-            linkInput.focus();
-            return;
-          }
-          error.textContent = "";
-          nudgeSubmit.disabled = true;
-          nudgeSubmit.textContent = "Adding your code...";
-          try {
-            await postForm("/api/codes", { code, inviteLink: link, website: nudgeForm.elements.website.value });
-            nudgeForm.hidden = true;
-            document.getElementById("nudge-message").classList.add("visible");
-            loadPool();
-          } catch (_) {
-            error.textContent = "We could not add your code. Please try again.";
-            nudgeSubmit.disabled = false;
-            nudgeSubmit.textContent = "Add my code";
-          }
+        document.getElementById("nudge-add").addEventListener("click", () => {
+          closeNudge();
+          showView("share");
+          renderShare();
         });
 
         async function copyCurrentCode() {
@@ -878,28 +1011,46 @@
 
         document.getElementById("success-share").addEventListener("click", () => {
           showView("share");
-          setTimeout(() => document.getElementById("share-code").focus(), 250);
+          renderShare();
+          setTimeout(() => {
+            if (document.getElementById("share-card").hidden) document.getElementById("share-gate-signin").focus();
+            else document.getElementById("share-code").focus();
+          }, 250);
         });
 
         const SHARE_COPY = { title: "Built with Muse", text: "Active Muse invite codes. Take one from the pool, or share yours with the community.", url: "https://builtwithmuse.com" }; async function sharePlatform(button) { const status = button.parentElement.querySelector(".share-status"); if (navigator.share) { try { await navigator.share({ title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url }); } catch (_) {} return; } try { await navigator.clipboard.writeText(SHARE_COPY.text + " " + SHARE_COPY.url); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); const shareForm = document.getElementById("share-form");
         const shareSubmit = document.getElementById("share-submit");
+        function renderShare() {
+          const signed = !!me;
+          document.getElementById("share-gate").hidden = signed;
+          document.getElementById("share-card").hidden = !signed;
+        }
+        document.getElementById("share-gate-signin").addEventListener("click", () => openSignin("add"));
         shareForm.addEventListener("submit", async (event) => {
           event.preventDefault();
+          if (!requireSignin("add")) return;
           const input = document.getElementById("share-code");
           const inviteLink = document.getElementById("invite-link");
+          const invitesInput = document.getElementById("share-invites");
           const error = document.getElementById("share-error");
           const message = document.getElementById("share-message");
           const code = input.value.trim();
           const link = inviteLink.value.trim();
+          const invites = Number(invitesInput.value);
           message.classList.remove("visible");
           if (code.length < 5) {
             error.textContent = "Enter a complete referral code to continue.";
             input.focus();
             return;
           }
-          if (link && (!inviteLink.validity.valid || !/^https?:\/\//i.test(link))) {
-            error.textContent = "Enter the full invite link, starting with http:// or https://, or leave it empty.";
+          if (!link || !inviteLink.validity.valid || !/^https?:\/\//i.test(link)) {
+            error.textContent = "Enter the full invite link from your Muse app.";
             inviteLink.focus();
+            return;
+          }
+          if (!Number.isInteger(invites) || invites < 1) {
+            error.textContent = "Enter the invite count from your Muse app.";
+            invitesInput.focus();
             return;
           }
 
@@ -907,17 +1058,84 @@
           shareSubmit.disabled = true;
           shareSubmit.textContent = "Adding your code...";
           try {
-            await postForm("/api/codes", { code, inviteLink: link, website: shareForm.elements.website.value });
+            const d = await postForm("/api/codes", { code, inviteLink: link, ownerInvites: invites, website: shareForm.elements.website.value });
             shareForm.reset();
             message.classList.add("visible");
+            if (d.adopted) message.innerHTML = "<strong>Your old code is back.</strong> It is now linked to your account so you can keep it updated.";
             shareSubmit.textContent = "Code added";
             trackEvent("code_shared");
-          } catch (_) {
-            error.textContent = "We could not add your code. Please try again.";
+            loadPool();
+            loadMyCodes();
+          } catch (err) {
+            error.textContent = err.code === "already_owned"
+              ? "That code already belongs to another account."
+              : err.code === "sign_in_required"
+              ? "Please sign in first, then add your code."
+              : err.code === "invites_required"
+              ? "Enter the invite count from your Muse app."
+              : "We could not add your code. Please try again.";
             shareSubmit.disabled = false;
             shareSubmit.textContent = "Add my code";
           }
         });
+
+        async function loadMyCodes() {
+          const list = document.getElementById("mycodes-list");
+          if (!list) return;
+          if (!me) { showView("signin"); openSignin("add"); return; }
+          list.innerHTML = '<p class="pool-note">Loading your codes.</p>';
+          try {
+            const response = await fetch(API + "/api/v1/me/codes", { credentials: "same-origin" });
+            const data = await response.json();
+            if (!response.ok || !data.ok) throw new Error("codes");
+            if (!data.codes.length) {
+              list.innerHTML = '<div class="pool-empty">You have not added a code yet.</div>';
+              return;
+            }
+            list.innerHTML = data.codes.map((c) => {
+              const state = c.retired ? '<span class="pool-tag pulled">Removed</span>'
+                : (c.verifiedDays !== null && c.verifiedDays >= 7) ? '<span class="pool-tag">Needs a check</span>'
+                : '<span class="pool-tag open">Live</span>';
+              const checked = c.verifiedDays === null ? "Not confirmed yet"
+                : c.verifiedDays <= 0 ? "Confirmed today"
+                : c.verifiedDays === 1 ? "Confirmed yesterday"
+                : `Confirmed ${c.verifiedDays} days ago`;
+              return `<div class="mycode">
+                <div class="row1"><span class="code">${escAttr(c.code)}</span>${state}</div>
+                <div class="stats">${c.claimedBy} claimed · ${c.confirmed} redeemed · ${c.reports} not working reports<br />Owner reports ${c.ownerInvites === null ? "?" : c.ownerInvites} invites left · ${checked}</div>
+                ${c.retired ? "" : `<div class="actions">
+                  <form class="verify-form" data-verify="${c.id}">
+                    <input type="number" min="1" max="100000" inputmode="numeric" placeholder="Invites left" aria-label="Invites left in your Muse app" required />
+                    <button class="button small" type="submit">Confirm count</button>
+                  </form>
+                  <button class="button small secondary" type="button" data-retire="${c.id}">Remove code</button>
+                </div>`}
+              </div>`;
+            }).join("");
+            list.querySelectorAll("[data-verify]").forEach((form) => {
+              form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const n = Number(form.querySelector("input").value);
+                if (!Number.isInteger(n) || n < 1) return;
+                try {
+                  await api("/api/codes/verify", { id: form.dataset.verify, ownerInvites: n });
+                  loadMyCodes(); loadPool();
+                } catch (_) { /* keep the form; the pool refresh below shows the real state */ }
+              });
+            });
+            list.querySelectorAll("[data-retire]").forEach((button) => {
+              button.addEventListener("click", async () => {
+                if (!confirm("Remove this code from the pool?")) return;
+                try {
+                  await api("/api/codes/retire", { id: button.dataset.retire });
+                  loadMyCodes(); loadPool();
+                } catch (_) { /* keep the row; nothing changed */ }
+              });
+            });
+          } catch (_) {
+            list.innerHTML = '<p class="pool-note">Could not load your codes. Please try again.</p>';
+          }
+        }
 
         const waitlistForm = document.getElementById("waitlist-form");
         const waitlistSubmit = document.getElementById("waitlist-submit");
@@ -955,7 +1173,10 @@
           }
         });
 
-        routeFromHash();
+        refreshAuth().then(() => {
+          renderShare();
+          routeFromHash();
+        });
       })();
     </script>
     <script>

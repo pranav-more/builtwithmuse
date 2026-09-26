@@ -41,6 +41,10 @@
       "destination": "/api/index?__path=pages/workflows/:slug"
     },
     {
+      "source": "/creators",
+      "destination": "/api/index?__path=pages/creators"
+    },
+    {
       "source": "/creators/:handle",
       "destination": "/api/index?__path=pages/creators/:handle"
     },

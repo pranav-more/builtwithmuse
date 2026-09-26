@@ -465,8 +465,8 @@
                 </div>
                 <div class="field">
                   <label for="invite-link">Your full invite link</label>
-                  <input id="invite-link" name="invite-link" type="url" required inputmode="url" autocomplete="url" placeholder="https://…" />
-                  <small>We need the full link from your Muse app, not just the code, to keep fake codes out.</small>
+                  <input id="invite-link" name="invite-link" type="text" inputmode="url" autocomplete="url" placeholder="Paste the invite message from your Muse app" />
+                  <small>Paste the whole invite message from your Muse app. We pull the link out of it to keep fake codes out.</small>
                 </div>
                 <div class="field">
                   <label for="share-invites">Invites left in your Muse app</label>
@@ -862,6 +862,7 @@
           document.getElementById("report-issue").hidden = true;
           document.getElementById("issue-panel").classList.remove("visible");
           document.getElementById("success-panel").classList.add("visible");
+          armNudge();
         }
 
         async function showNextCode(statusText = "", fresh = false) {
@@ -875,7 +876,6 @@
             status.textContent = result.redeemed ? "You already redeemed this one. It stays yours." : statusText;
             if (result.redeemed) showSuccess();
             loadPool();
-            armNudge();
           } catch (error) {
             if (error.code === "sign_in_required") {
               setCode("");
@@ -984,7 +984,9 @@
         }
         function armNudge() {
           clearTimeout(nudgeTimer);
-          if (!nudgeShown) nudgeTimer = setTimeout(openNudge, 30000);
+          // Only after the claim journey is done, and with a real delay, so the
+          // popup never interrupts someone mid flow. Once per session.
+          if (!nudgeShown) nudgeTimer = setTimeout(openNudge, 120000);
         }
         nudge.querySelectorAll("[data-nudge-close]").forEach((el) => el.addEventListener("click", closeNudge));
         document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !nudge.hidden) closeNudge(); });
@@ -1005,7 +1007,6 @@
           } catch (_) {
             status.textContent = "Select the code and copy it manually";
           }
-          setTimeout(openNudge, 900);
         }
         document.getElementById("copy-code").addEventListener("click", copyCurrentCode);
         const assignedCodeEl = document.getElementById("assigned-code");
@@ -1025,7 +1026,6 @@
           button.disabled = false;
           await showNextCode("Here is another code from the pool", true);
           document.getElementById("issue-panel").classList.add("visible");
-          setTimeout(openNudge, 600);
         });
 
         document.getElementById("redeemed").addEventListener("click", async () => {
@@ -1038,7 +1038,6 @@
           status.textContent = "";
           showSuccess();
           loadPool();
-          setTimeout(openNudge, 1500);
         });
 
         document.getElementById("success-share").addEventListener("click", () => {
@@ -1069,7 +1068,11 @@
           const error = document.getElementById("share-error");
           const message = document.getElementById("share-message");
           const code = input.value.trim().toUpperCase();
-          const link = inviteLink.value.trim();
+          // The Muse app shares the link inside a longer message. Pull the URL
+          // out of whatever was pasted instead of rejecting the whole thing.
+          const rawLink = inviteLink.value.trim();
+          const linkMatch = rawLink.match(/https?:\/\/[^\s<>"']+/i);
+          const link = linkMatch ? linkMatch[0].replace(/[.,;:!?)\]]+$/, "") : "";
           const invites = Number(invitesInput.value);
           message.classList.remove("visible");
           if (code.length < 5) {
@@ -1077,8 +1080,8 @@
             input.focus();
             return;
           }
-          if (!link || !inviteLink.validity.valid || !/^https?:\/\//i.test(link)) {
-            error.textContent = "Enter the full invite link from your Muse app.";
+          if (!link) {
+            error.textContent = "Enter the full invite link from your Muse app. Pasting the whole share message is fine.";
             inviteLink.focus();
             return;
           }

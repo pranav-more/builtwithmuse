@@ -43,6 +43,10 @@ create table if not exists creator_profiles (
   bio text,
   avatar_url text,
   website_url text,
+  x_url text,
+  youtube_url text,
+  instagram_url text,
+  tiktok_url text,
   status text not null default 'active' check (status in ('active', 'deactivated', 'removed')),
   is_editorial boolean not null default false,
   handle_changed_at timestamptz,
@@ -73,6 +77,7 @@ create table if not exists workflows (
   prompt text,
   proof_url text,
   category_id int references categories(id),
+  tags text[] not null default '{}',
   status text not null default 'draft' check (status in ('draft', 'published', 'unpublished', 'removed')),
   -- Set by an administrator when a removal is for reasons unrelated to the
   -- work itself, so the ratings stop counting toward creator reputation.
@@ -144,6 +149,40 @@ create table if not exists workflow_revisions (
 
 -- Audit trail for every sensitive write: ratings, reports, status changes,
 -- admin actions. Never shown publicly.
+create table if not exists workflow_saves (
+  workflow_id uuid not null references workflows(id) on delete cascade,
+  device_id text not null,
+  created_at timestamptz not null default now(),
+  primary key (workflow_id, device_id)
+);
+create index if not exists workflow_saves_device_idx on workflow_saves (device_id);
+
+create table if not exists workflow_comments (
+  id uuid primary key default gen_random_uuid(),
+  workflow_id uuid not null references workflows(id) on delete cascade,
+  creator_id uuid not null references creator_profiles(id) on delete cascade,
+  body text not null,
+  hidden_at timestamptz,
+  created_at timestamptz not null default now()
+);
+create index if not exists workflow_comments_workflow_idx on workflow_comments (workflow_id, created_at);
+
+create table if not exists comment_likes (
+  comment_id uuid not null references workflow_comments(id) on delete cascade,
+  creator_id uuid not null references creator_profiles(id) on delete cascade,
+  created_at timestamptz not null default now(),
+  primary key (comment_id, creator_id)
+);
+
+create table if not exists comment_reports (
+  id serial primary key,
+  comment_id uuid not null references workflow_comments(id) on delete cascade,
+  device_id text not null,
+  reason text not null,
+  created_at timestamptz not null default now(),
+  unique (comment_id, device_id)
+);
+
 create table if not exists pool_events (
   id serial primary key,
   kind text not null,
@@ -216,5 +255,8 @@ create or replace view creator_stats as
 -- The editorial account owns researched seed workflows until a creator
 -- claims them. Clearly labelled, never presented as community authored.
 insert into creator_profiles (email, handle, display_name, bio, website_url, is_editorial)
-values ('editorial@builtwithmuse.com', 'builtwithmuse', 'Built with Muse editorial', 'Researched workflows written up by the Built with Muse team from public reports and Meta''s own announcements. Not community authored. If one of these is your work, get in touch and claim it.', 'https://builtwithmuse.com', true)
+values ('editorial@builtwithmuse.com', 'builtwithmuse', 'Jayesh', 'Researched workflows written up by the Built with Muse team from public reports and Meta''s own announcements. Not community authored. If one of these is your work, get in touch and claim it.', 'https://builtwithmuse.com', true)
 on conflict (lower(email)) do nothing;
+-- Attributed to Jayesh while keeping the editorial flag. Seeded workflows
+-- are editorial content, not fake community submissions.
+update creator_profiles set display_name = 'Jayesh' where is_editorial and display_name = 'Built with Muse editorial';

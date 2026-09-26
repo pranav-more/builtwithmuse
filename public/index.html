@@ -923,10 +923,12 @@
                 (row.verified ? '<span class="pool-tag">Verified</span>' : "") + stateTag;
               let middle;
               if (row.state === "pulled") middle = "Flagged as not working. Not handed out.";
+              else if (row.ownerInvites !== null && row.ownerInvites !== undefined) {
+                middle = `Owner reports ${row.ownerInvites} invites, ${checkedLabel(row.checkedDays)}`;
+              }
               else {
                 middle = `Claimed by ${row.claimedBy}`;
-                if (row.ownerInvites !== null && row.ownerInvites !== undefined) middle += ` · Owner reports ${row.ownerInvites} invites, ${checkedLabel(row.checkedDays)}`;
-                else if (row.state === "stale") middle += " · Not confirmed recently";
+                if (row.state === "stale") middle += " · Not confirmed recently";
               }
               const actionable = row.state === "open" || row.state === "stale";
               const inner = `<code class="pool-code">${row.label}</code><span class="pool-meta">${middle}</span><span class="pool-tags">${tags}</span>`;

@@ -418,7 +418,7 @@
             <div class="copy-status" id="copy-status" aria-live="polite"></div>
             <div class="invite-link-row" id="invite-link-row" hidden>
               <span>Or use your invite link:</span>
-              <a id="invite-link" href="" target="_blank" rel="noopener noreferrer"></a>
+              <a id="claim-invite-link" href="" target="_blank" rel="noopener noreferrer"></a>
             </div>
             <ol class="instructions">
               <li><strong>Copy</strong> the code above.</li>
@@ -811,7 +811,7 @@
           document.getElementById("assigned-code").textContent = code || "......";
           document.getElementById("copy-code").disabled = !code;
           const linkRow = document.getElementById("invite-link-row");
-          const linkAnchor = document.getElementById("invite-link");
+          const linkAnchor = document.getElementById("claim-invite-link");
           if (code && inviteLink) {
             linkAnchor.href = inviteLink;
             linkAnchor.textContent = inviteLink;

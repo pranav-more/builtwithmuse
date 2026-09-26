@@ -1,0 +1,80 @@
+# Built with Muse
+
+> Built with Muse is a community hub for Meta's Muse AI assistant. Get a free Muse invite code to join Muse, and browse real world Muse workflows: step by step guides showing what people actually do with Muse, from saving money to running a small business. Independent community project. Not affiliated with or endorsed by Meta.
+
+## Get a Muse invite code
+
+- [Get a free Muse invite code](https://builtwithmuse.com/): Live pool of free Muse invite codes shared by the community. Sign in with Google to claim a code. Have a code to share? Add it to the pool.
+- [Free Muse invite code guide](https://builtwithmuse.com/blog/free-muse-invite-code): How invite codes work and how to get one.
+- [Find and share a Muse referral code](https://builtwithmuse.com/blog/find-and-share-muse-referral-code): Where to find working codes and how to share your own.
+
+## Muse workflows
+
+Real things people do with Muse, each with the exact prompt to say and the steps to follow. Browse free, sign in to save and rate.
+
+- [All Muse workflows](https://builtwithmuse.com/workflows): The full collection of community Muse workflows.
+- [Switch car insurance and keep your savings](https://builtwithmuse.com/workflows/switch-car-insurance-with-muse): Upload your policy and get an identical coverage quote for hundreds or thousands less, then buy and cancel in one session.
+- [Shop with live discount codes applied](https://builtwithmuse.com/workflows/shop-with-live-discount-codes): Muse finds the product, hunts live coupon codes, fills the cart, and checks out at the lowest price it can find.
+- [Claim flight delay compensation fast](https://builtwithmuse.com/workflows/claim-flight-delay-compensation): Muse files delay compensation, watches fares for price drops, and chats with airlines to rebook or refund.
+- [Book restaurants and appointments hands free](https://builtwithmuse.com/workflows/book-restaurants-and-appointments): Muse books restaurants, event tickets, and barbers, including negotiating with a hotel for a dinner slot.
+- [Let Muse call businesses for you](https://builtwithmuse.com/workflows/let-muse-call-businesses-for-you): Muse dials businesses to beat phone trees, check stock, and haggle, then patches you in live when a human is needed.
+- [Daily inbox triage without opening email](https://builtwithmuse.com/workflows/daily-inbox-triage-with-muse): Get a daily digest of only the important emails.
+- [Find and cancel forgotten subscriptions](https://builtwithmuse.com/workflows/find-and-cancel-forgotten-subscriptions): Muse surfaces subscriptions you forgot, cancels them, and claws back refunds.
+- [Put podcast and YouTube admin on autopilot](https://builtwithmuse.com/workflows/podcast-and-youtube-admin-on-autopilot): Muse runs an SEO audit, writes smart chapters, and updates YouTube metadata as an editor.
+- [Build playlists and podcasts by chatting](https://builtwithmuse.com/workflows/playlists-and-podcasts-built-by-chat): Build a Spotify playlist on command, with daily recurring updates handled by Muse.
+- [Get a personal stylist from your measurements](https://builtwithmuse.com/workflows/personal-stylist-from-your-measurements): Feed Muse your measurements, photos, stores, and budget and get complete outfits built around a hero piece.
+- [Run family and school admin from one chat](https://builtwithmuse.com/workflows/family-and-school-admin-in-one-chat): School digests and party planning from one chat, with honest notes on where it hits limits.
+- [Run your rental P and L without spreadsheets](https://builtwithmuse.com/workflows/rental-pl-and-claims-without-spreadsheets): Turn logins into rental profit statements, run a kids allowance bank, and file a vet claim.
+- [Run your small business by texting Muse](https://builtwithmuse.com/workflows/run-your-small-business-by-texting-muse): Dispatch jobs to staff and run the business by text.
+- [Log meals by texting Muse](https://builtwithmuse.com/workflows/log-meals-by-texting-muse): Ditch the food logging app and text meals to Muse instead.
+- [Dispute credit report collections fast](https://builtwithmuse.com/workflows/dispute-credit-report-collections): Muse files disputes that removed collections from a credit report within about an hour.
+- [Negotiate marketplace deals like a pro](https://builtwithmuse.com/workflows/negotiate-marketplace-deals-like-a-pro): Muse negotiates with sellers on Facebook Marketplace.
+- [Spot hidden fees when buying a car](https://builtwithmuse.com/workflows/spot-hidden-fees-when-buying-a-car): Muse spots hidden dealer fees and unneeded upsells during a lease buyout.
+- [Get birthday reminders from your social graph](https://builtwithmuse.com/workflows/birthday-reminders-from-your-social-graph): Pull friends birthdays off Facebook into calendar files. Experimental.
+- [Get paid for product demos](https://builtwithmuse.com/workflows/get-paid-for-product-demos): Sign up for paid demo programs through Muse. Early report, treat with skepticism.
+- [Negotiate your internet bill down](https://builtwithmuse.com/workflows/negotiate-your-internet-bill-down): Muse negotiates the internet bill down, in one case from 80 to 40 a month plus 3 months free.
+- [Turn a saved recipe reel into a grocery order](https://builtwithmuse.com/workflows/turn-a-saved-recipe-reel-into-a-grocery-order): Turn saved recipe reels into a cookbook, weekly meals, and a filled grocery cart.
+- [Build a budget tracker or study guide you can keep](https://builtwithmuse.com/workflows/build-a-budget-tracker-or-study-guide-you-can-keep): Build a budget tracker or study guide with Muse.
+- [Watch the marketplace for the deal you want](https://builtwithmuse.com/workflows/watch-marketplace-for-the-deal-you-want): Muse watches the marketplace and pings you when the deal you want appears.
+- [Turn a business idea into a 90 day plan](https://builtwithmuse.com/workflows/turn-a-business-idea-into-a-90-day-plan): Turn a business idea into a 90 day plan.
+- [A fitness plan that rebuilds itself when you fall behind](https://builtwithmuse.com/workflows/a-fitness-plan-that-rebuilds-itself-when-you-fall-behind): A fitness plan that rebuilds itself when you fall behind.
+- [Book and manage a recurring lesson or class](https://builtwithmuse.com/workflows/book-and-manage-a-recurring-lesson-or-class): Book and manage a recurring lesson or class through Muse.
+- [Fill out forms and registrations for you](https://builtwithmuse.com/workflows/fill-out-forms-and-registrations-for-you): Muse fills out forms and registrations for you.
+- [Triage your inbox every morning](https://builtwithmuse.com/workflows/triage-your-inbox-every-morning): Triage your inbox every morning with Muse.
+- [Export your Instagram followers and map the clusters](https://builtwithmuse.com/workflows/export-your-instagram-followers-and-map-the-clusters): Export Instagram followers and map the clusters with Muse.
+- [Draft replies to every marketplace buyer](https://builtwithmuse.com/workflows/draft-replies-to-every-marketplace-buyer): Draft replies to every marketplace buyer with Muse.
+- [Watch a price and buy at the right moment](https://builtwithmuse.com/workflows/watch-a-price-and-buy-at-the-right-moment): Watch a price and buy at the right moment.
+- [Handle buyer messages when selling your car](https://builtwithmuse.com/workflows/handle-buyer-messages-when-selling-your-car): Handle buyer messages when selling your car.
+- [Plan a dinner party with a menu timeline and invites](https://builtwithmuse.com/workflows/plan-a-dinner-party-with-a-menu-timeline-and-invites): Plan a dinner party with menu, timeline, and invites.
+
+## Use cases
+
+- [All use cases](https://builtwithmuse.com/use-cases): Shorter everyday Muse use cases.
+- [Turn a saved recipe reel into groceries](https://builtwithmuse.com/use-cases/recipe-reel-to-groceries): From saved reel to grocery order.
+- [Find startup jobs on X with Muse](https://builtwithmuse.com/use-cases/startup-jobs-on-x-with-muse): Track funding news and hiring signals, then reach founders.
+- [Morning newsletter briefing with Muse](https://builtwithmuse.com/use-cases/newsletter-briefing-with-muse): A short morning briefing of the news you care about.
+- [Instagram research without doomscrolling](https://builtwithmuse.com/use-cases/instagram-without-doomscrolling): Research a topic on Instagram without the endless scroll.
+- [Dinner party planner](https://builtwithmuse.com/use-cases/dinner-party-planner): Plan the menu and the evening.
+
+## Using Muse outside the US
+
+Muse has not launched in every country. These guides cover the workarounds.
+
+- [How to use Meta Muse outside the US](https://builtwithmuse.com/blog/how-to-use-meta-muse-outside-us): The hub guide: status check, laptop and phone paths, what does not work.
+- [How to use Muse in India](https://builtwithmuse.com/blog/how-to-use-muse-in-india): India specific guide.
+- [Install the Muse app on iPhone outside the US](https://builtwithmuse.com/blog/install-muse-app-on-iphone-outside-us): iPhone install path.
+- [How to use Muse on Mac outside the US](https://builtwithmuse.com/blog/how-to-use-muse-on-mac-outside-us): Mac install path.
+- [How to use Muse if not available in your country](https://builtwithmuse.com/blog/how-to-use-muse-if-not-available-in-your-country): Country availability and options.
+- [What is Meta Muse](https://builtwithmuse.com/blog/what-is-meta-muse): What Muse is and what it can do.
+- [Muse tokens explained](https://builtwithmuse.com/blog/muse-tokens-explained): How Muse tokens work.
+- [Muse vs ChatGPT](https://builtwithmuse.com/blog/muse-vs-chatgpt): How Muse compares with ChatGPT.
+- [How Muse helps creators grow](https://builtwithmuse.com/blog/how-muse-helps-creators-grow): What creators use Muse for.
+
+## Creators
+
+- [All creators](https://builtwithmuse.com/creators): People publishing Muse workflows on the platform.
+- [Built with Muse editorial](https://builtwithmuse.com/creators/builtwithmuse): The editorial team account.
+
+## About
+
+- [About Built with Muse](https://builtwithmuse.com/about): What the project is. Independent community project. Not affiliated with or endorsed by Meta.

@@ -912,7 +912,7 @@
             document.getElementById("health-verified").textContent = data.verifiedCodes || 0;
             document.getElementById("health-broken").textContent = data.brokenCodes || 0;
             summary.textContent = data.codes
-              ? `${data.codes} ${data.codes === 1 ? "code" : "codes"} in the pool. Claimed by ${data.claimed} ${data.claimed === 1 ? "person" : "people"} so far. One code per person. Yours stays yours until you flag it as not working.`
+              ? `${data.codes} ${data.codes === 1 ? "code" : "codes"} in the pool. One code per person. Yours stays yours until you flag it as not working.`
               : "The pool is empty right now. Add your code or join the waitlist.";
             list.innerHTML = data.rows.length ? data.rows.map((row) => {
               const stateTag = row.state === "pulled" ? '<span class="pool-tag pulled">Broken</span>'
@@ -926,10 +926,8 @@
               else if (row.ownerInvites !== null && row.ownerInvites !== undefined) {
                 middle = `Owner reports ${row.ownerInvites} invites, ${checkedLabel(row.checkedDays)}`;
               }
-              else {
-                middle = `Claimed by ${row.claimedBy}`;
-                if (row.state === "stale") middle += " · Not confirmed recently";
-              }
+              else if (row.state === "stale") middle = "Not confirmed recently";
+              else middle = "";
               const actionable = row.state === "open" || row.state === "stale";
               const inner = `<code class="pool-code">${row.label}</code><span class="pool-meta">${middle}</span><span class="pool-tags">${tags}</span>`;
               return actionable

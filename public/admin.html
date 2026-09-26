@@ -283,6 +283,8 @@
           // The owner code is never pulled by reports; it stays live.
           if (row.reports >= 2 && row.source !== "owner") return '<span class="pill bad">Broken</span>';
           if (row.reports > 0) return '<span class="pill flag">Flagged</span>';
+          // New scarce codes get a 24 hour priority boost; keep an eye on them.
+          if (row.boosted) return '<span class="pill ok">Live</span> <span class="pill warn">Boosted</span>';
           return '<span class="pill ok">Live</span>';
         }
         const currentTab = () => document.querySelector('[data-tab][aria-selected="true"]').dataset.tab;

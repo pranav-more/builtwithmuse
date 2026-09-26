@@ -1145,7 +1145,7 @@
                     <input type="number" min="1" max="100000" inputmode="numeric" placeholder="Invites left" aria-label="Invites left in your Muse app" required />
                     <button class="button small" type="submit">Confirm count</button>
                   </form>
-                  <button class="button small secondary" type="button" data-retire="${c.id}">Remove code</button>
+                  ${c.source === "owner" ? "" : `<button class="button small secondary" type="button" data-retire="${c.id}">Remove code</button>`}
                 </div>`}
               </div>`;
             }).join("");

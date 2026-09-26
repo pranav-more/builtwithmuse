@@ -216,6 +216,9 @@
       .assigned-code code { font: 700 clamp(26px, 5vw, 38px)/1 "JetBrains Mono", monospace; letter-spacing: 0.16em; overflow-wrap: anywhere; }
       .assigned-code code.tap-copy { cursor: pointer; }
       .assigned-code code.tap-copy:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
+      .invite-link-row { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--muted); }
+      .invite-link-row[hidden] { display: none; }
+      .invite-link-row a { color: var(--mint); overflow-wrap: anywhere; }
       .icon-button { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--blue-deep); }
       .icon-button svg { width: 20px; height: 20px; }
       .icon-button:disabled { opacity: .5; cursor: default; }
@@ -413,6 +416,10 @@
               </button>
             </div>
             <div class="copy-status" id="copy-status" aria-live="polite"></div>
+            <div class="invite-link-row" id="invite-link-row" hidden>
+              <span>Or use your invite link:</span>
+              <a id="invite-link" href="" target="_blank" rel="noopener noreferrer"></a>
+            </div>
             <ol class="instructions">
               <li><strong>Copy</strong> the code above.</li>
               <li>Open Muse, go to <strong>Settings</strong>, then <strong>Redeem token</strong>, and paste it.</li>
@@ -579,6 +586,15 @@
           <div id="mycodes-list"></div>
           <div style="margin-top:18px"><button class="button secondary" type="button" data-view="share">Add another code</button></div>
         </section>
+
+        <section class="view" id="view-saved">
+          <div class="section-head">
+            <div class="eyebrow">Your list</div>
+            <h2>Saved workflows.</h2>
+            <p>Everything you saved, on every device you sign in on.</p>
+          </div>
+          <div id="saved-list"></div>
+        </section>
       </main>
 
       <div class="nudge" id="nudge" hidden>
@@ -628,7 +644,7 @@
     <script>
       (() => {
         const API = "";
-        const views = ["home", "claim", "share", "workflows", "waitlist", "signin", "mycodes"];
+        const views = ["home", "claim", "share", "workflows", "waitlist", "signin", "mycodes", "saved"];
         const navButtons = [...document.querySelectorAll(".nav [data-view]")];
         let currentCode = "";
         const forbiddenDash = /[\u002D\u058A\u05BE\u1400\u1806\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2E17\u2E1A\u2E3A\u2E3B\u2E40\u2E5D\u301C\u3030\u30A0\uFE31\uFE32\uFE58\uFE63\uFF0D]/;
@@ -661,6 +677,7 @@
           if (name === "share" || name === "workflows" || name === "waitlist") { showView(name); renderShare(); }
           if (name === "signin") openSignin("claim");
           if (name === "mycodes") { showView("mycodes"); loadMyCodes(); }
+          if (name === "saved") { showView("saved"); loadSaved(); }
         }
         window.addEventListener("hashchange", routeFromHash);
 
@@ -701,10 +718,12 @@
               (c.avatarUrl ? `<img src="${escAttr(c.avatarUrl)}" alt="" referrerpolicy="no-referrer" />` : "") +
               `<span class="who">${escAttr(c.displayName)}</span>` +
               '<button class="linklike" type="button" data-view="mycodes">My codes</button>' +
+              '<button class="linklike" type="button" data-view="saved">Saved</button>' +
               '<button class="linklike" type="button" id="account-signout">Sign out</button></div>';
             const so = document.getElementById("account-signout");
             if (so) so.addEventListener("click", signOut);
             accountArea.querySelector('[data-view="mycodes"]').addEventListener("click", () => { showView("mycodes"); loadMyCodes(); });
+            accountArea.querySelector('[data-view="saved"]').addEventListener("click", () => { showView("saved"); loadSaved(); });
           } else {
             accountArea.innerHTML = '<button class="button small secondary" type="button" id="account-signin">Sign in</button>';
             document.getElementById("account-signin").addEventListener("click", () => openSignin("claim"));
@@ -787,10 +806,21 @@
 
         document.getElementById("account-signin").addEventListener("click", () => openSignin("claim"));
 
-        function setCode(code) {
+        function setCode(code, inviteLink) {
           currentCode = code;
           document.getElementById("assigned-code").textContent = code || "......";
           document.getElementById("copy-code").disabled = !code;
+          const linkRow = document.getElementById("invite-link-row");
+          const linkAnchor = document.getElementById("invite-link");
+          if (code && inviteLink) {
+            linkAnchor.href = inviteLink;
+            linkAnchor.textContent = inviteLink;
+            linkRow.hidden = false;
+          } else {
+            linkRow.hidden = true;
+            linkAnchor.removeAttribute("href");
+            linkAnchor.textContent = "";
+          }
         }
 
         function claimMessage(code) {
@@ -839,7 +869,7 @@
           resetActions();
           try {
             const result = await claim(fresh);
-            setCode(result.code);
+            setCode(result.code, result.inviteLink);
             trackEvent("claim_success");
             status.textContent = result.redeemed ? "You already redeemed this one. It stays yours." : statusText;
             if (result.redeemed) showSuccess();
@@ -915,6 +945,7 @@
             showView(name);
             if (name === "share") renderShare();
             if (name === "mycodes") loadMyCodes();
+            if (name === "saved") loadSaved();
           });
         });
 
@@ -1134,6 +1165,34 @@
             });
           } catch (_) {
             list.innerHTML = '<p class="pool-note">Could not load your codes. Please try again.</p>';
+          }
+        }
+
+        async function loadSaved() {
+          const list = document.getElementById("saved-list");
+          if (!list) return;
+          if (!me || !me.creator) {
+            list.innerHTML = '<div class="pool-empty">Sign in to see the workflows you saved.</div>';
+            return;
+          }
+          list.innerHTML = '<div class="pool-empty">Loading your saved workflows...</div>';
+          try {
+            const response = await fetch(API + "/api/v1/workflows/me/saves", { credentials: "same-origin", headers: { "X-Requested-With": "fetch" } });
+            const data = await response.json().catch(() => null);
+            if (!response.ok || !data || !data.ok) throw new Error("saves");
+            if (!data.workflows.length) {
+              list.innerHTML = '<div class="pool-empty">Nothing saved yet. Open a workflow and tap Save to keep it here.</div>';
+              return;
+            }
+            list.innerHTML = '<div class="case-list">' + data.workflows.map((w) => `
+              <article class="case-study">
+                <span class="case-tag">${escAttr(w.categoryName || "Workflow")}</span>
+                <h3>${escAttr(w.title)}</h3>
+                ${w.summary ? `<p>${escAttr(w.summary)}</p>` : ""}
+                <a class="case-link" href="/workflows/${escAttr(w.slug)}">Open the workflow</a>
+              </article>`).join("") + "</div>";
+          } catch (_) {
+            list.innerHTML = '<p class="pool-note">Could not load your saved workflows. Please try again.</p>';
           }
         }
 

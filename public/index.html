@@ -1177,7 +1177,7 @@
           }
           list.innerHTML = '<div class="pool-empty">Loading your saved workflows...</div>';
           try {
-            const response = await fetch(API + "/api/v1/workflows/me/saves", { credentials: "same-origin", headers: { "X-Requested-With": "fetch" } });
+            const response = await fetch(API + "/api/v1/me/saves", { credentials: "same-origin", headers: { "X-Requested-With": "fetch" } });
             const data = await response.json().catch(() => null);
             if (!response.ok || !data || !data.ok) throw new Error("saves");
             if (!data.workflows.length) {

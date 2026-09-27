@@ -34,12 +34,12 @@
   ],
   "rewrites": [
     {
-      "source": "/wild",
-      "destination": "/api/index?__path=pages/wild"
+      "source": "/posts",
+      "destination": "/api/index?__path=pages/posts"
     },
     {
-      "source": "/wild/:id",
-      "destination": "/api/index?__path=pages/wild/:id"
+      "source": "/posts/:id",
+      "destination": "/api/index?__path=pages/posts/:id"
     },
     {
       "source": "/creator",

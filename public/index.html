@@ -201,21 +201,20 @@
       .creator-cell span { display: block; color: var(--muted-2); font-size: 12px; font-weight: 600; }
       @media (max-width: 900px) { .home-cards { grid-template-columns: 1fr; } .creators-grid { grid-template-columns: 1fr 1fr; } .creator-cell:nth-child(3) { border-left: 0; } .creator-cell:nth-child(n+3) { border-top: 1px solid var(--line-soft); } }
       @media (max-width: 640px) { .home-card { padding: 22px; } .code-row { grid-template-columns: 1fr; } .mini-steps.three { grid-template-columns: 1fr; } .creators-grid { grid-template-columns: 1fr; } .creator-cell { border-left: 0; } .quote-band .button { width: 100%; } }
-      .wild-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 18px; }
-      .wild-card { display: flex; flex-direction: column; gap: 10px; padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: var(--shadow); min-width: 0; }
-      .wild-head { display: flex; align-items: center; gap: 10px; }
-      .wild-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--tint); color: var(--blue-deep); display: grid; place-items: center; font: 700 12px "Archivo", sans-serif; flex: 0 0 auto; }
-      .wild-who { display: flex; flex-direction: column; min-width: 0; flex: 1; line-height: 1.2; }
-      .wild-who b { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .wild-who span { font-size: 12px; color: var(--muted-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .wild-cat { flex: 0 0 auto; padding: 4px 10px; border-radius: 999px; background: var(--tint); color: var(--blue-deep); font-size: 12px; font-weight: 700; text-decoration: none; }
-      .wild-title { margin: 0; font-size: 17px; line-height: 1.2; letter-spacing: -0.02em; }
-      .wild-title a { text-decoration: none; }
-      .wild-text { margin: 0; padding: 0 0 0 12px; border-left: 3px solid var(--blue); color: var(--ink); font-size: 15px; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
-      .wild-text.condensed { border-left-color: var(--line); color: var(--muted); }
-      .wild-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; color: var(--muted-2); font-size: 13px; font-weight: 600; }
-      .wild-stats { display: flex; gap: 12px; flex-wrap: wrap; }
-      .wild-open { color: var(--blue-deep); text-decoration: none; white-space: nowrap; }
+      .wild-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; margin-top: 18px; align-items: start; }
+      .tweet { display: flex; flex-direction: column; gap: 10px; padding: 16px 18px 14px; border: 1px solid #e3e6ea; border-radius: 16px; background: #fff; color: #0f1419; box-shadow: 0 1px 2px rgba(11,18,32,.04); }
+      .tweet-head { display: flex; align-items: center; gap: 10px; }
+      .tweet-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #1a56ff, #7aa2ff); color: #fff; display: grid; place-items: center; font: 700 14px "Archivo", sans-serif; flex: 0 0 auto; }
+      .tweet-names { display: flex; flex-direction: column; min-width: 0; flex: 1; line-height: 1.25; }
+      .tweet-names b { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .tweet-names span { font-size: 14px; color: #536471; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .tweet-mark { flex: 0 0 auto; color: #0f1419; display: inline-grid; place-items: center; }
+      .tweet-mark svg { width: 20px; height: 20px; }
+      .tweet-text { margin: 0; font-size: 16px; line-height: 1.5; color: #0f1419; white-space: pre-line; overflow-wrap: anywhere; }
+      .tweet-actions { display: flex; align-items: center; gap: 22px; padding-top: 8px; border-top: 1px solid #eff3f4; color: #536471; font-size: 13px; }
+      .tweet-actions > span { display: inline-flex; align-items: center; gap: 6px; }
+      .tweet-actions svg { width: 18px; height: 18px; }
+      .tweet-open { margin-left: auto; color: var(--blue-deep); font-weight: 600; text-decoration: none; white-space: nowrap; }
       .pool { margin-top: 28px; padding: 44px 0 8px; border-top: 1px solid var(--line); }
       .pool-head { max-width: 640px; }
       .pool-head h2 { margin: 0 0 12px; font-size: clamp(30px, 4.6vw, 52px); line-height: 1; font-weight: 900; text-transform: uppercase; }
@@ -446,7 +445,7 @@ body { background-image: none; }
         <nav class="nav" id="site-nav" aria-label="Site">
           <a href="/" aria-current="page">Home</a>
           <a href="/workflows">Feed</a>
-          <a href="/wild">In the wild</a>
+          <a href="/posts">Posts</a>
           <a href="/creators">Creators</a>
           <a href="/blog">Blog</a>
           <a href="/creator">Profile</a>
@@ -487,7 +486,7 @@ body { background-image: none; }
           </section>
 
           <section class="home-section" aria-labelledby="wild-heading">
-            <div class="section-row"><div><h2 id="wild-heading">Seen in the wild</h2><p>Real posts from X and Threads where people report what Muse did for them. Outcomes as the posters reported them.</p></div><a class="see-all" href="/wild">All 264 posts</a></div>
+            <div class="section-row"><div><h2 id="wild-heading">What people are posting</h2><p>Real posts from X and Threads where people say what Muse did for them. Outcomes as the posters reported them.</p></div><a class="see-all" href="/posts">All posts</a></div>
             <div class="wild-grid" id="home-wild"><div class="pool-empty">Loading posts.</div></div>
           </section>
 
@@ -1377,15 +1376,19 @@ body { background-image: none; }
           }).join("");
         }).catch(() => { rowsEl.innerHTML = '<div class="pool-empty"><a href="/workflows">Browse the workflows.</a></div>'; });
         const wildEl = document.getElementById("home-wild");
-        fetch("/api/v1/wild?limit=3", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
-          if (!d.ok || !d.posts.length) { wildEl.innerHTML = '<div class="pool-empty"><a href="/wild">Browse the posts.</a></div>'; return; }
-          const compact = (n) => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e4 ? 0 : 1).replace(/\.0$/, "") + "K" : String(n);
+        const XM = '<svg viewBox="0 0 24 24" aria-label="X" role="img"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
+        const IC = { reply: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"/></svg>', repost: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zm16.5 16.24l-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14z"/></svg>', like: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"/></svg>', views: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"/></svg>' };
+        fetch("/api/v1/wild?limit=9", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
+          if (!d.ok || !d.posts.length) { wildEl.innerHTML = '<div class="pool-empty"><a href="/posts">Browse the posts.</a></div>'; return; }
+          const compact = (n) => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e4 ? 0 : 1).replace(/\.0$/, "") + "K" : String(n || 0);
+          const dl = (iso) => iso ? new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" }) : "";
           wildEl.innerHTML = d.posts.map((p) => {
             const ini = String(p.name || p.handle || "?").replace(/^@/, "").split(/\s+/).map((x) => x[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
-            const stats = [p.likes ? "&#9829; " + compact(p.likes) : "", p.views ? compact(p.views) + " views" : ""].filter(Boolean);
-            return '<article class="wild-card"><header class="wild-head"><span class="wild-avatar" aria-hidden="true">' + esc(ini) + '</span><span class="wild-who"><b>' + esc(p.name || p.handle) + "</b><span>" + (p.handle ? esc(p.handle) + " · " : "") + esc(p.platform) + '</span></span><a class="wild-cat" href="/wild/' + esc(p.category) + '">' + esc(p.categoryTitle) + '</a></header><h3 class="wild-title"><a href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + esc(p.title) + '</a></h3><blockquote class="wild-text' + (p.ownWords ? "" : " condensed") + '">' + esc(p.text) + '</blockquote><footer class="wild-foot"><span class="wild-stats">' + (stats.length ? "<span>" + stats.join("</span><span>") + "</span>" : "<span>Reported by the poster</span>") + '</span><a class="wild-open" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">Open post &#8599;</a></footer></article>';
+            const mark = p.platform === "X" ? XM : '<span style="font-size:12px;font-weight:700;color:#536471">' + esc(p.platform) + "</span>";
+            const stats = (p.likes || p.views) ? "<span>" + IC.reply + compact(p.replies) + "</span><span>" + IC.repost + compact(p.reposts) + "</span><span>" + IC.like + compact(p.likes) + "</span><span>" + IC.views + compact(p.views) + "</span>" : '<span style="font-size:12px">Outcome as reported by the poster</span>';
+            return '<article class="tweet"><header class="tweet-head"><span class="tweet-avatar" aria-hidden="true">' + esc(ini) + '</span><span class="tweet-names"><b>' + esc(p.name || (p.handle || "").replace(/^@/, "")) + "</b><span>" + esc(p.handle || "") + (p.handle && p.postedAt ? " · " : "") + esc(dl(p.postedAt)) + '</span></span><a class="tweet-mark" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + mark + '</a></header><p class="tweet-text">' + esc(p.text) + '</p><footer class="tweet-actions">' + stats + '<a class="tweet-open" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">View on ' + esc(p.platform) + "</a></footer></article>";
           }).join("");
-        }).catch(() => { wildEl.innerHTML = '<div class="pool-empty"><a href="/wild">Browse the posts.</a></div>'; });
+        }).catch(() => { wildEl.innerHTML = '<div class="pool-empty"><a href="/posts">Browse the posts.</a></div>'; });
         fetch("/api/v1/creators?limit=4", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           if (!d.ok || !d.creators.length) { creatorsEl.innerHTML = '<div class="pool-empty" style="grid-column:1/-1">No creators yet. <a href="/creator">Be the first.</a></div>'; return; }
           creatorsEl.innerHTML = d.creators.map((c) => '<a class="creator-cell" href="/creators/' + esc(c.handle) + '">' + face(c.displayName, c.avatarUrl) + "<div><b>" + esc(c.displayName) + "</b><span>" + c.workflowCount + " workflow" + (c.workflowCount === 1 ? "" : "s") + "</span></div></a>").join("");

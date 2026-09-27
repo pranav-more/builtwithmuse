@@ -164,9 +164,9 @@
       .code-row .button { margin: 0; }
       .code-row button.preview-code { font: 700 clamp(26px, 4vw, 34px)/1 "JetBrains Mono", monospace; letter-spacing: 0.18em; color: var(--ink); cursor: default; }
       .code-row button.preview-code.revealed { filter: none; user-select: all; cursor: pointer; background: var(--tint); border-color: var(--blue); }
-      .hero-actions-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: -8px 0 18px; }
-      .hero-actions-row .button { margin: 0; }
-      .hero-actions-row .linklike { color: var(--muted); font-weight: 600; text-decoration: underline; }
+      .hero-after { margin: -6px 0 16px; color: var(--muted); font-size: 14px; }
+      .hero-after .linklike { color: var(--muted); font-weight: 600; text-decoration: underline; padding: 0; }
+      .hero-after .linklike:hover { color: var(--blue-deep); }
       .hero-status { min-height: 20px; margin: 0 0 8px; color: var(--muted); font-size: 14px; font-weight: 600; }
       .hero-status:empty { display: none; }
       .hero-link { margin: 0 0 14px; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
@@ -227,6 +227,14 @@
       .tweet-mark { flex: 0 0 auto; color: #0f1419; display: inline-grid; place-items: center; }
       .tweet-mark svg { width: 20px; height: 20px; }
       .tweet-text { margin: 0; font-size: 16px; line-height: 1.5; color: #0f1419; white-space: pre-line; overflow-wrap: anywhere; }
+      img.tweet-avatar { object-fit: cover; background: #eff3f4; }
+      .tweet-media { display: grid; gap: 3px; border-radius: 14px; overflow: hidden; border: 1px solid #e3e6ea; position: relative; }
+      .tweet-media img { width: 100%; height: 100%; object-fit: cover; display: block; background: #eff3f4; }
+      .tweet-media.n1 img { max-height: 360px; }
+      .tweet-media.n2, .tweet-media.n3, .tweet-media.n4 { grid-template-columns: 1fr 1fr; }
+      .tweet-media.n2 img, .tweet-media.n3 img, .tweet-media.n4 img { height: 160px; }
+      .tweet-media.n3 img:first-child { grid-row: span 2; height: 100%; }
+      .tweet-media .play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 26px; text-shadow: 0 2px 10px rgba(0,0,0,.5); }
       .tweet-actions { display: flex; align-items: center; gap: 22px; padding-top: 8px; border-top: 1px solid #eff3f4; color: #536471; font-size: 13px; }
       .tweet-actions > span { display: inline-flex; align-items: center; gap: 6px; }
       .tweet-actions svg { width: 18px; height: 18px; }
@@ -461,7 +469,6 @@ body { background-image: none; }
         <nav class="nav" id="site-nav" aria-label="Site">
           <a href="/" aria-current="page">Home</a>
           <a href="/workflows">Feed</a>
-          <a href="/posts">Posts</a>
           <a href="/creators">Creators</a>
           <a href="/blog">Blog</a>
           <a href="/creator">Profile</a>
@@ -478,12 +485,8 @@ body { background-image: none; }
               <h1 id="hero-h1">Get a code.</h1>
               <p class="lead">Reveal a community code and redeem it in Muse before moving on.</p>
               <div class="code-row"><button class="preview-code blurred" type="button" id="hero-code" aria-label="Your invite code" title="Click to copy">XXXXXX</button><button class="button hero-cta" type="button" id="hero-cta">Get a code</button></div>
-              <div class="hero-actions-row" id="hero-actions" hidden>
-                <button class="button" type="button" id="hero-copy">Copy code</button>
-                <button class="button secondary" type="button" id="hero-retry">Not working? Try another</button>
-                <button class="linklike" type="button" id="hero-redeemed">I redeemed it</button>
-              </div>
               <p class="hero-status" id="hero-status" aria-live="polite"></p>
+              <p class="hero-after" id="hero-actions" hidden><button class="linklike" type="button" id="hero-retry">Not working? Try another</button><span aria-hidden="true"> · </span><button class="linklike" type="button" id="hero-redeemed">I redeemed it</button></p>
               <p class="hero-link" id="hero-link" hidden>Invite link: <a id="hero-link-a" href="#" target="_blank" rel="noopener noreferrer"></a></p>
               <ol class="mini-steps three">
                 <li class="mini-row"><span class="mini-number">1</span><div><strong>Claim</strong><span class="hint">Receive one available code.</span></div></li>
@@ -1100,7 +1103,7 @@ body { background-image: none; }
           heroCode.textContent = code || "XXXXXX";
           heroCode.classList.toggle("blurred", !code); heroCode.classList.toggle("revealed", Boolean(code));
           heroCode.setAttribute("aria-hidden", code ? "false" : "true");
-          heroCta.hidden = Boolean(code); heroActions.hidden = !code;
+          heroCta.textContent = code ? "Copy code" : "Get a code"; heroCta.dataset.mode = code ? "copy" : "claim"; heroActions.hidden = !code;
           const linkRow = document.getElementById("hero-link"), linkA = document.getElementById("hero-link-a");
           if (code && inviteLink) { linkA.href = inviteLink; linkA.textContent = inviteLink; linkRow.hidden = false; } else { linkRow.hidden = true; }
         }
@@ -1125,9 +1128,8 @@ body { background-image: none; }
           try { await navigator.clipboard.writeText(currentCode); heroStatus.textContent = "Copied. Paste it in Muse under Settings, Redeem invite code."; }
           catch (_) { heroStatus.textContent = "Select the code and copy it manually."; }
         }
-        heroCta.addEventListener("click", async () => { trackEvent("claim_started"); if (!(await requireSignin("hero"))) return; heroClaim(false); });
+        heroCta.addEventListener("click", async () => { if (heroCta.dataset.mode === "copy") return heroCopy(); trackEvent("claim_started"); if (!(await requireSignin("hero"))) return; heroClaim(false); });
         heroCode.addEventListener("click", heroCopy);
-        document.getElementById("hero-copy").addEventListener("click", heroCopy);
         document.getElementById("hero-retry").addEventListener("click", async () => {
           const reported = currentCode; const b = document.getElementById("hero-retry");
           b.disabled = true; heroStatus.textContent = "Flagging that code...";
@@ -1458,9 +1460,12 @@ body { background-image: none; }
           const dl = (iso) => iso ? new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" }) : "";
           wildEl.innerHTML = d.posts.map((p) => {
             const ini = String(p.name || p.handle || "?").replace(/^@/, "").split(/\s+/).map((x) => x[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
+            const avatar = p.avatar ? '<img class="tweet-avatar" src="' + esc(p.avatar) + '" alt="" loading="lazy" referrerpolicy="no-referrer" />' : '<span class="tweet-avatar" aria-hidden="true">' + esc(ini) + "</span>";
+            const photos = (p.photos || []).slice(0, 4);
+            const mediaHtml = photos.length ? '<a class="tweet-media n' + photos.length + '" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + photos.map((u) => '<img src="' + esc(u) + '" alt="" loading="lazy" referrerpolicy="no-referrer" />').join("") + "</a>" : p.videoPoster ? '<a class="tweet-media n1 video" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow"><img src="' + esc(p.videoPoster) + '" alt="" loading="lazy" referrerpolicy="no-referrer" /><span class="play" aria-hidden="true">&#9654;</span></a>' : "";
             const mark = p.platform === "X" ? XM : '<span style="font-size:12px;font-weight:700;color:#536471">' + esc(p.platform) + "</span>";
             const stats = (p.likes || p.views) ? "<span>" + IC.reply + compact(p.replies) + "</span><span>" + IC.repost + compact(p.reposts) + "</span><span>" + IC.like + compact(p.likes) + "</span><span>" + IC.views + compact(p.views) + "</span>" : '<span style="font-size:12px">Outcome as reported by the poster</span>';
-            return '<article class="tweet"><header class="tweet-head"><span class="tweet-avatar" aria-hidden="true">' + esc(ini) + '</span><span class="tweet-names"><b>' + esc(p.name || (p.handle || "").replace(/^@/, "")) + "</b><span>" + esc(p.handle || "") + (p.handle && p.postedAt ? " · " : "") + esc(dl(p.postedAt)) + '</span></span><a class="tweet-mark" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + mark + '</a></header><p class="tweet-text">' + esc(p.text) + '</p><footer class="tweet-actions">' + stats + '<a class="tweet-open" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">View on ' + esc(p.platform) + "</a></footer></article>";
+            return '<article class="tweet"><header class="tweet-head">' + avatar + '<span class="tweet-names"><b>' + esc(p.name || (p.handle || "").replace(/^@/, "")) + "</b><span>" + esc(p.handle || "") + (p.handle && p.postedAt ? " · " : "") + esc(dl(p.postedAt)) + '</span></span><a class="tweet-mark" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + mark + '</a></header><p class="tweet-text">' + esc(p.text) + "</p>" + mediaHtml + '<footer class="tweet-actions">' + stats + '<a class="tweet-open" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">View on ' + esc(p.platform) + "</a></footer></article>";
           }).join("");
         }).catch(() => { wildEl.innerHTML = '<div class="pool-empty"><a href="/posts">Browse the posts.</a></div>'; });
         fetch("/api/v1/creators?limit=4", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {

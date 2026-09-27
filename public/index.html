@@ -416,7 +416,7 @@
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               </button>
             </div>
-            <div class="copy-status" id="copy-status" aria-live="polite"></div>
+            <div class="copy-status" id="copy-status" aria-live="polite"></div> <div class="creator-nudge" style="margin-top:24px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,0.05);text-align:center"> <h3 style="margin:0 0 8px;font-size:20px">Become one of the first Muse creators.</h3> <p style="margin:0 0 16px;color:var(--muted)">Add your workflow and become an authoritative creator in the AI space.</p> <a href="/creator" style="display:inline-block;padding:12px 24px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Publish your first workflow</a> </div>
             <div class="invite-link-row" id="invite-link-row" hidden>
               <span>Or use your invite link:</span>
               <a id="claim-invite-link" href="" target="_blank" rel="noopener noreferrer"></a>
@@ -931,7 +931,7 @@
               const actionable = row.state === "open" || row.state === "stale";
               const inner = `<code class="pool-code">${row.label}</code><span class="pool-meta">${middle}</span><span class="pool-tags">${tags}</span>`;
               return actionable
-                ? `<button type="button" class="pool-row" data-claim-row aria-label="Claim a code from this row">${inner}</button>`
+                ? `<button type="button" class="pool-row" data-claim-row aria-label="Sign in to claim and become one of the first Muse creators.">${inner}</button>`
                 : `<div class="pool-row">${inner}</div>`;
             }).join("") : '<div class="pool-empty">No codes in the pool yet. Be the first to add one.</div>';
           } catch (_) {

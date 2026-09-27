@@ -171,6 +171,22 @@
       .mini-row span.hint { color: var(--muted-2); }
       .mini-number { width: 24px; height: 24px; border-radius: 50%; background: var(--blue); color: var(--ink); display: grid; place-items: center; font-size: 12px; font-weight: 700; }
 
+      .community { margin-top: 28px; padding: 44px 0 8px; border-top: 1px solid var(--line); }
+      .community-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 18px; flex-wrap: wrap; margin-bottom: 22px; }
+      .community-head h2 { margin: 0 0 10px; font-size: clamp(28px, 4.4vw, 46px); line-height: 1; font-weight: 900; text-transform: uppercase; }
+      .community-head p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; max-width: 56ch; }
+      .community-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+      .feed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+      .feed-card { display: flex; flex-direction: column; gap: 8px; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--navy); text-decoration: none; box-shadow: var(--shadow); min-height: 170px; }
+      .feed-card:hover { border-color: var(--mint); }
+      .feed-card .who { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted-2); font-weight: 600; }
+      .feed-card .who img, .feed-card .who i { width: 24px; height: 24px; border-radius: 50%; background: var(--navy-2); border: 1px solid var(--line); display: inline-grid; place-items: center; font: 700 10px "Archivo", sans-serif; font-style: normal; }
+      .feed-card .who b { color: var(--ink); }
+      .feed-card h3 { margin: 0; font-size: 18px; line-height: 1.2; }
+      .feed-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; flex: 1; }
+      .feed-card .fmeta { display: flex; gap: 12px; color: var(--muted-2); font-size: 12px; font-weight: 700; }
+      .feed-card .fmeta .new { color: var(--mint); }
+      @media (max-width: 640px) { .community-actions .button { width: 100%; } }
       .pool { margin-top: 28px; padding: 44px 0 8px; border-top: 1px solid var(--line); }
       .pool-head { max-width: 640px; }
       .pool-head h2 { margin: 0 0 12px; font-size: clamp(30px, 4.6vw, 52px); line-height: 1; font-weight: 900; text-transform: uppercase; }
@@ -353,7 +369,7 @@
           <button type="button" data-view="share" aria-selected="false">Share yours</button>
           <button type="button" data-view="waitlist" aria-selected="false">Waitlist</button>
           <a href="/workflows">Workflows</a>
-          <a href="/workflows">Use cases</a>
+          <a href="/creators">Creators</a>
           <a href="/blog">Blog</a>
         </nav>
         <div class="account" id="account-area"><button class="button small secondary" type="button" id="account-signin">Sign in</button></div>
@@ -367,7 +383,8 @@
               <h1 id="hero-h1">Get a free Muse invite code.</h1>
               <p class="lead">Take one from the pool. Once you are in, add your own invite: when someone redeems it, Muse credits tokens to both of you.</p>
               <div class="hero-actions"><button class="button hero-cta" type="button" id="hero-cta">Get a code <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="actions">
-                <button class="button secondary" type="button" data-view="share">Share code</button></div>
+                <button class="button secondary" type="button" data-view="share">Share code</button>
+                <a class="button secondary" href="/creator">Publish a workflow</a></div>
               </div>
               <p class="fine"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free to use. Sign in with Google to claim a code. Codes are first come, first served.</p>
               <p class="waitlist-nudge">Muse not in your country yet? <button type="button" class="linklike" data-view="waitlist">Join the waitlist</button> and we will send you a fresh code on launch day.</p>
@@ -383,6 +400,18 @@
               </ul>
             </div>
           </div>
+
+          <section class="community" id="community" aria-labelledby="community-heading">
+            <div class="community-head">
+              <div>
+                <div class="eyebrow">From the community</div>
+                <h2 id="community-heading">What people are making Muse do.</h2>
+                <p>Real workflows, the prompt they used and what happened. React to what works, save what you want to try, follow the creators.</p>
+              </div>
+              <div class="community-actions"><a class="button" href="/workflows">See all workflows</a><a class="button secondary" href="/creator">Publish yours</a></div>
+            </div>
+            <div class="feed-grid" id="feed-grid"><div class="pool-empty">Loading the latest workflows.</div></div>
+          </section>
 
           <section class="pool" id="pool-section" aria-labelledby="pool-heading">
             <div class="pool-head">
@@ -1242,6 +1271,23 @@
           renderShare();
           routeFromHash();
         });
+      })();
+    </script>
+    <script>
+      (() => {
+        const grid = document.getElementById("feed-grid");
+        if (!grid) return;
+        const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const initials = (n) => String(n || "?").split(/\s+/).map((p) => p[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
+        fetch("/api/v1/workflows?sort=trending&limit=6", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
+          if (!d.ok || !d.workflows.length) { grid.innerHTML = '<div class="pool-empty">No workflows yet. <a href="/creator">Publish the first one.</a></div>'; return; }
+          grid.innerHTML = d.workflows.map((w) => {
+            const c = w.creator || {};
+            const counts = [w.reactionCount ? "&#128293; " + w.reactionCount : "", w.saveCount ? "&#128278; " + w.saveCount : "", w.commentCount ? "&#128172; " + w.commentCount : ""].filter(Boolean);
+            const rating = w.ratingCount >= 3 ? "&#9733; " + Number(w.average).toFixed(1) : '<span class="new">New</span>';
+            return '<a class="feed-card" href="/workflows/' + esc(w.slug) + '"><span class="who">' + (c.avatarUrl ? '<img src="' + esc(c.avatarUrl) + '" alt="" referrerpolicy="no-referrer" />' : "<i>" + esc(initials(c.displayName)) + "</i>") + "<b>" + esc(c.displayName) + "</b><span>@" + esc(c.handle) + "</span></span><h3>" + esc(w.title) + "</h3>" + (w.summary ? "<p>" + esc(w.summary) + "</p>" : "") + '<span class="fmeta">' + rating + (counts.length ? "<span>" + counts.join("</span><span>") + "</span>" : "") + "</span></a>";
+          }).join("");
+        }).catch(() => { grid.innerHTML = '<div class="pool-empty"><a href="/workflows">Browse the workflows.</a></div>'; });
       })();
     </script>
     <script>

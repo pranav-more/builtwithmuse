@@ -816,6 +816,7 @@ body { background-image: none; }
 
         /* ----- one account for everything: Google sign in ----- */
         let me = null;
+        let authReady = Promise.resolve(null);
         let pendingAfterSignin = null;
         const accountArea = document.getElementById("account-area");
 
@@ -870,7 +871,10 @@ body { background-image: none; }
           initGoogleButton();
         }
 
-        function requireSignin(context) {
+        // Waits for the session check that starts on page load, so a signed in
+        // visitor who clicks before it returns is never asked to sign in again.
+        async function requireSignin(context) {
+          await authReady;
           if (me) return true;
           openSignin(context);
           return false;
@@ -1066,17 +1070,17 @@ body { background-image: none; }
           });
         });
 
-        /* Clarity: hero CTA button and H1 scroll to the pool section. */ const poolSection = document.getElementById("pool-section"); const scrollToPool = () => { if (poolSection) poolSection.scrollIntoView({ behavior: "smooth", block: "start" }); }; const heroCta = document.getElementById("hero-cta"); if (heroCta) heroCta.addEventListener("click", scrollToPool); const heroH1 = document.getElementById("hero-h1"); if (heroH1) { heroH1.addEventListener("click", scrollToPool); heroH1.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); scrollToPool(); } }); } document.getElementById("get-code-2").addEventListener("click", () => {
+        /* Clarity: hero CTA button and H1 scroll to the pool section. */ const poolSection = document.getElementById("pool-section"); const scrollToPool = () => { if (poolSection) poolSection.scrollIntoView({ behavior: "smooth", block: "start" }); }; const heroCta = document.getElementById("hero-cta"); if (heroCta) heroCta.addEventListener("click", scrollToPool); const heroH1 = document.getElementById("hero-h1"); if (heroH1) { heroH1.addEventListener("click", scrollToPool); heroH1.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); scrollToPool(); } }); } document.getElementById("get-code-2").addEventListener("click", async () => {
           trackEvent("claim_started");
-          if (!requireSignin("claim")) return;
+          if (!(await requireSignin("claim"))) return;
           showView("claim");
           showNextCode();
         });
 
-        document.getElementById("pool-list").addEventListener("click", (event) => {
+        document.getElementById("pool-list").addEventListener("click", async (event) => {
           if (!event.target.closest("[data-claim-row]")) return;
           trackEvent("claim_started");
-          if (!requireSignin("claim")) return;
+          if (!(await requireSignin("claim"))) return;
           showView("claim");
           showNextCode();
         });
@@ -1177,7 +1181,7 @@ body { background-image: none; }
         shareCodeInput.addEventListener("input", () => { shareCodeInput.value = shareCodeInput.value.toUpperCase(); });
         shareForm.addEventListener("submit", async (event) => {
           event.preventDefault();
-          if (!requireSignin("add")) return;
+          if (!(await requireSignin("add"))) return;
           const input = document.getElementById("share-code");
           const inviteLink = document.getElementById("invite-link");
           const invitesInput = document.getElementById("share-invites");
@@ -1235,6 +1239,7 @@ body { background-image: none; }
         async function loadMyCodes() {
           const list = document.getElementById("mycodes-list");
           if (!list) return;
+          await authReady;
           if (!me) { showView("signin"); openSignin("add"); return; }
           list.innerHTML = '<p class="pool-note">Loading your codes.</p>';
           try {
@@ -1293,6 +1298,7 @@ body { background-image: none; }
         async function loadSaved() {
           const list = document.getElementById("saved-list");
           if (!list) return;
+          await authReady;
           if (!me || !me.creator) {
             list.innerHTML = '<div class="pool-empty">Sign in to see the workflows you saved.</div>';
             return;
@@ -1354,7 +1360,8 @@ body { background-image: none; }
           }
         });
 
-        refreshAuth().then(() => {
+        authReady = refreshAuth();
+        authReady.then(() => {
           renderShare();
           routeFromHash();
         });

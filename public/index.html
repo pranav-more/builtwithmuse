@@ -359,7 +359,22 @@
         .nav button, .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
       }
       
-/* Light theme: white ground, ink text, blue for actions and active states. */
+
+      .acct { position: relative; margin-left: 8px; }
+      .acct-btn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px 4px 4px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font: 600 13px/1 "IBM Plex Sans", system-ui, sans-serif; cursor: pointer; }
+      .acct-btn:hover, .acct-btn[aria-expanded="true"] { border-color: var(--blue); }
+      .acct-btn img, .acct-btn i { width: 28px; height: 28px; border-radius: 50%; background: var(--tint); color: var(--blue-deep); display: inline-grid; place-items: center; font: 700 11px "Archivo", sans-serif; font-style: normal; overflow: hidden; }
+      .acct-btn img { object-fit: cover; }
+      .acct-btn .who { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .acct-btn svg { width: 14px; height: 14px; color: var(--muted-2); }
+      .acct-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 210px; padding: 6px; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 32px rgba(11,18,32,.12); z-index: 40; display: grid; }
+      .acct-menu[hidden] { display: none; }
+      .acct-menu a, .acct-menu button { display: block; width: 100%; text-align: left; padding: 10px 12px; border: 0; border-radius: 6px; background: none; color: var(--ink); font: 500 14px/1.2 "IBM Plex Sans", system-ui, sans-serif; text-decoration: none; cursor: pointer; }
+      .acct-menu a:hover, .acct-menu button:hover { background: var(--tint); color: var(--blue-deep); }
+      .acct-menu .sep { height: 1px; margin: 6px 4px; background: var(--line-soft); }
+      .acct-menu small { display: block; padding: 8px 12px 4px; color: var(--muted-2); font-size: 12px; }
+      @media (max-width: 640px) { .acct-btn .who { display: none; } .acct { order: 4; } }
+      /* Light theme: white ground, ink text, blue for actions and active states. */
 body { background-image: none; }
 .topbar { border-bottom-color: var(--line); }
 .topbar.scrolled { background: rgba(255,255,255,.9); box-shadow: 0 10px 30px rgba(11,18,32,.06); }
@@ -790,17 +805,22 @@ body { background-image: none; }
           if (!accountArea) return;
           if (me && me.creator) {
             const c = me.creator;
+            const initials = String(c.displayName || "?").split(/\s+/).map((p) => p[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
             accountArea.innerHTML =
-              '<div class="account-chip">' +
-              (c.avatarUrl ? `<img src="${escAttr(c.avatarUrl)}" alt="" referrerpolicy="no-referrer" />` : "") +
-              `<span class="who">${escAttr(c.displayName)}</span>` +
-              '<button class="linklike" type="button" data-view="mycodes">My codes</button>' +
-              '<button class="linklike" type="button" data-view="saved">Saved</button>' +
-              '<button class="linklike" type="button" id="account-signout">Sign out</button></div>';
-            const so = document.getElementById("account-signout");
-            if (so) so.addEventListener("click", signOut);
-            accountArea.querySelector('[data-view="mycodes"]').addEventListener("click", () => { showView("mycodes"); loadMyCodes(); });
-            accountArea.querySelector('[data-view="saved"]').addEventListener("click", () => { showView("saved"); loadSaved(); });
+              '<div class="acct"><button class="acct-btn" type="button" aria-haspopup="menu" aria-expanded="false">' +
+              (c.avatarUrl ? `<img src="${escAttr(c.avatarUrl)}" alt="" referrerpolicy="no-referrer" />` : `<i>${escAttr(initials)}</i>`) +
+              `<span class="who">${escAttr(c.displayName)}</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>` +
+              `<div class="acct-menu" role="menu" hidden><small>@${escAttr(c.handle)}</small><a role="menuitem" href="/creators/${escAttr(c.handle)}">View profile</a><a role="menuitem" href="/creator">Dashboard</a>` +
+              '<button role="menuitem" type="button" data-view="mycodes">My codes</button><button role="menuitem" type="button" data-view="saved">Saved</button><div class="sep"></div>' +
+              '<button role="menuitem" type="button" id="account-signout">Sign out</button></div></div>';
+            const btn = accountArea.querySelector(".acct-btn"), menu = accountArea.querySelector(".acct-menu");
+            const set = (open) => { menu.hidden = !open; btn.setAttribute("aria-expanded", String(open)); };
+            btn.addEventListener("click", (e) => { e.stopPropagation(); set(menu.hidden); });
+            document.addEventListener("click", (e) => { if (!accountArea.contains(e.target)) set(false); });
+            document.addEventListener("keydown", (e) => { if (e.key === "Escape") set(false); });
+            document.getElementById("account-signout").addEventListener("click", signOut);
+            accountArea.querySelector('[data-view="mycodes"]').addEventListener("click", () => { set(false); showView("mycodes"); loadMyCodes(); });
+            accountArea.querySelector('[data-view="saved"]').addEventListener("click", () => { set(false); showView("saved"); loadSaved(); });
           } else {
             accountArea.innerHTML = '<button class="button small secondary" type="button" id="account-signin">Sign in</button>';
             document.getElementById("account-signin").addEventListener("click", () => openSignin("claim"));

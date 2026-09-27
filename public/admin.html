@@ -238,16 +238,16 @@
           <section class="panel" id="panel-pool">
             <div class="cards" id="pool-cards"></div>
             <div class="box">
-              <h2>Open reports <span>newest first; hide, restore or remove the workflow, or dismiss the report</span></h2>
-              <div class="tablewrap"><table id="pool-reports"><thead><tr><th>When</th><th>Workflow</th><th>Creator</th><th>Reason</th><th>Detail</th><th>Open</th><th>State</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+              <h2>Reports <span>newest first, with the reporter's message; hide, restore or remove the workflow, or dismiss</span></h2>
+              <div class="tablewrap"><table id="pool-reports"><thead><tr><th>When</th><th>Workflow</th><th>Creator</th><th>Reason</th><th>Message</th><th>Open</th><th>State</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
             </div>
             <div class="box">
               <h2>Hidden and removed workflows</h2>
-              <div class="tablewrap"><table id="pool-hidden"><thead><tr><th>Updated</th><th>Workflow</th><th>Creator</th><th>State</th><th>Ratings</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+              <div class="tablewrap"><table id="pool-hidden"><thead><tr><th>Updated</th><th>Workflow</th><th>Creator</th><th>State</th><th>Reactions</th><th>Open reports</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
             </div>
             <div class="box">
               <h2>Creators <span>newest first</span></h2>
-              <div class="tablewrap"><table id="pool-creators"><thead><tr><th>Joined</th><th>Handle</th><th>Name</th><th>Email</th><th>Published</th><th>Ratings</th><th>Score</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+              <div class="tablewrap"><table id="pool-creators"><thead><tr><th>Joined</th><th>Handle</th><th>Name</th><th>Email</th><th>Published</th><th>Useful</th><th>Followers</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
             </div>
           </section>
         </div>
@@ -396,7 +396,7 @@
 
         async function loadPool() {
           const o = await api("/api/admin/pool/overview");
-          $("pool-cards").innerHTML = [["Published", o.published], ["Hidden", o.hidden], ["Drafts", o.drafts], ["Creators", o.creators], ["Ratings", o.ratings], ["Ratings 24h", o.ratings_24h], ["Open reports", o.open_reports], ["Published 24h", o.published_24h]]
+          $("pool-cards").innerHTML = [["Published", o.published], ["Hidden", o.hidden], ["Drafts", o.drafts], ["Creators", o.creators], ["Reactions", o.reactions], ["Reactions 24h", o.reactions_24h], ["Open reports", o.open_reports], ["Reports 24h", o.reports_24h], ["Published 24h", o.published_24h]]
             .map(([k, v]) => `<div class="card"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("");
           const reports = await api("/api/admin/pool/reports");
           const wfState = (r) => r.workflow_status === "removed" ? '<span class="pill bad">Removed</span>' : r.hidden_at ? '<span class="pill warn">Hidden</span>' : r.workflow_status === "published" ? '<span class="pill ok">Live</span>' : `<span class="pill">${esc(r.workflow_status)}</span>`;
@@ -404,9 +404,9 @@
           const hidden = await api("/api/admin/pool/workflows?status=hidden");
           const removed = await api("/api/admin/pool/workflows?status=removed");
           const rows = hidden.rows.map((r) => ({ ...r, state: "hidden" })).concat(removed.rows.map((r) => ({ ...r, state: "removed" })));
-          $("pool-hidden").querySelector("tbody").innerHTML = rows.map((r) => `<tr><td>${esc(when(r.updated_at))}</td><td><a href="/workflows/${esc(r.slug)}" target="_blank" rel="noopener">${esc(r.title)}</a></td><td>@${esc(r.handle)}</td><td>${r.state === "hidden" ? '<span class="pill warn">Hidden</span>' : '<span class="pill bad">Removed</span>'}${r.exclude_from_reputation ? ' <span class="pill">Excluded</span>' : ""}</td><td>${esc(r.rating_count || 0)}</td><td><button class="btn sm" data-pool="restore" data-id="${esc(r.id)}">Restore</button>${r.state === "hidden" ? ` <button class="btn sm danger" data-pool="remove" data-id="${esc(r.id)}">Remove</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="6" class="empty">Nothing hidden or removed</td></tr>';
+          $("pool-hidden").querySelector("tbody").innerHTML = rows.map((r) => `<tr><td>${esc(when(r.updated_at))}</td><td><a href="/workflows/${esc(r.slug)}" target="_blank" rel="noopener">${esc(r.title)}</a></td><td>@${esc(r.handle)}</td><td>${r.state === "hidden" ? '<span class="pill warn">Hidden</span>' : '<span class="pill bad">Removed</span>'}${r.exclude_from_reputation ? ' <span class="pill">Excluded</span>' : ""}</td><td>${esc(r.reaction_count || 0)}</td><td>${esc(r.open_reports || 0)}</td><td><button class="btn sm" data-pool="restore" data-id="${esc(r.id)}">Restore</button>${r.state === "hidden" ? ` <button class="btn sm danger" data-pool="remove" data-id="${esc(r.id)}">Remove</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="6" class="empty">Nothing hidden or removed</td></tr>';
           const creators = await api("/api/admin/pool/creators");
-          $("pool-creators").querySelector("tbody").innerHTML = creators.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="/creators/${esc(r.handle)}" target="_blank" rel="noopener">@${esc(r.handle)}</a>${r.is_editorial ? ' <span class="pill">Editorial</span>' : ""}</td><td>${esc(r.display_name)}</td><td class="muted">${esc(r.email)}</td><td>${esc(r.workflow_count || 0)}</td><td>${esc(r.rating_count || 0)}</td><td>${r.rating_count ? esc(Number(r.weighted_score).toFixed(2)) : "New"}</td><td>${r.status === "active" ? '<span class="pill ok">Active</span>' : r.status === "deactivated" ? '<span class="pill warn">Deactivated</span>' : '<span class="pill bad">Removed</span>'}</td><td>${r.status !== "active" ? `<button class="btn sm" data-pool="creator-active" data-id="${esc(r.id)}">Restore</button> ` : `<button class="btn sm" data-pool="creator-deactivated" data-id="${esc(r.id)}">Deactivate</button> `}${r.status !== "removed" && !r.is_editorial ? `<button class="btn sm danger" data-pool="creator-removed" data-id="${esc(r.id)}">Remove</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">No creators yet</td></tr>';
+          $("pool-creators").querySelector("tbody").innerHTML = creators.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="/creators/${esc(r.handle)}" target="_blank" rel="noopener">@${esc(r.handle)}</a>${r.is_editorial ? ' <span class="pill">Editorial</span>' : ""}</td><td>${esc(r.display_name)}</td><td class="muted">${esc(r.email)}</td><td>${esc(r.workflow_count || 0)}</td><td>${esc(r.useful || 0)}</td><td>${esc(r.followers || 0)}</td><td>${r.status === "active" ? '<span class="pill ok">Active</span>' : r.status === "deactivated" ? '<span class="pill warn">Deactivated</span>' : '<span class="pill bad">Removed</span>'}</td><td>${r.status !== "active" ? `<button class="btn sm" data-pool="creator-active" data-id="${esc(r.id)}">Restore</button> ` : `<button class="btn sm" data-pool="creator-deactivated" data-id="${esc(r.id)}">Deactivate</button> `}${r.status !== "removed" && !r.is_editorial ? `<button class="btn sm danger" data-pool="creator-removed" data-id="${esc(r.id)}">Remove</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">No creators yet</td></tr>';
         }
         document.body.addEventListener("click", async (event) => {
           const button = event.target.closest("[data-pool]");

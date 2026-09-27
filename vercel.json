@@ -34,6 +34,14 @@
   ],
   "rewrites": [
     {
+      "source": "/wild",
+      "destination": "/api/index?__path=pages/wild"
+    },
+    {
+      "source": "/wild/:id",
+      "destination": "/api/index?__path=pages/wild/:id"
+    },
+    {
       "source": "/creator",
       "destination": "/api/index?__path=pages/creator"
     },

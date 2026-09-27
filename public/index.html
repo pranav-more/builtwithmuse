@@ -161,6 +161,15 @@
       .code-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: stretch; margin-bottom: 24px; }
       .code-row .preview-code { display: flex; align-items: center; justify-content: center; margin: 0; padding: 0 16px; border: 1px solid var(--line-soft); border-radius: 8px; background: #f3f6fd; font-size: 26px; }
       .code-row .button { margin: 0; }
+      .code-row button.preview-code { font: 700 clamp(26px, 4vw, 34px)/1 "JetBrains Mono", monospace; letter-spacing: 0.18em; color: var(--ink); cursor: default; }
+      .code-row button.preview-code.revealed { filter: none; user-select: all; cursor: pointer; background: var(--tint); border-color: var(--blue); }
+      .hero-actions-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: -8px 0 18px; }
+      .hero-actions-row .button { margin: 0; }
+      .hero-actions-row .linklike { color: var(--muted); font-weight: 600; text-decoration: underline; }
+      .hero-status { min-height: 20px; margin: 0 0 8px; color: var(--muted); font-size: 14px; font-weight: 600; }
+      .hero-status:empty { display: none; }
+      .hero-link { margin: 0 0 14px; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+      .hero-link a { color: var(--blue-deep); }
       .mini-steps.three { grid-template-columns: repeat(3, 1fr); gap: 14px; }
       .mini-steps.three .mini-row { grid-template-columns: 1fr; gap: 8px; }
       .home-card .fine { margin-top: auto; padding-top: 22px; }
@@ -170,6 +179,12 @@
       .quote-band { margin: 40px calc(50% - 50vw) 0; padding: 52px calc(50vw - 50%); background: #f6f8fe; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
       .quote-band p { margin: 0; font: 900 clamp(26px, 3.6vw, 44px)/1.05 "Archivo", sans-serif; letter-spacing: -0.03em; text-transform: uppercase; max-width: 22ch; }
       .quote-band .button { margin: 0; }
+      .quote-band .hl { font-style: normal; background-image: linear-gradient(120deg, rgba(26,86,255,.22), rgba(26,86,255,.22)); background-repeat: no-repeat; background-size: 0% 100%; background-position: 0 0; padding: 0 .08em; margin: 0 -.08em; border-radius: 4px; transition: background-size 1.1s cubic-bezier(.2,.7,.2,1) .25s; }
+      .quote-band.seen .hl { background-size: 100% 100%; }
+      .quote-band .button { position: relative; overflow: hidden; }
+      .quote-band .button::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent); transform: skewX(-18deg); animation: quote-shine 9s ease-in-out infinite; animation-delay: 2.5s; }
+      @keyframes quote-shine { 0%, 88% { left: -60%; } 100% { left: 130%; } }
+      @media (prefers-reduced-motion: reduce) { .quote-band .hl { transition: none; background-size: 100% 100%; } .quote-band .button::after { animation: none; } }
       .home-section { padding: 44px 0 8px; }
       .section-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 18px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
       .section-row h2 { margin: 0 0 8px; font-size: clamp(28px, 4.2vw, 44px); line-height: 1; font-weight: 900; text-transform: uppercase; }
@@ -461,7 +476,14 @@ body { background-image: none; }
               <div class="card-label"><span>Your invite</span><span class="live-tag">Ready</span></div>
               <h1 id="hero-h1">Get a code.</h1>
               <p class="lead">Reveal a community code and redeem it in Muse before moving on.</p>
-              <div class="code-row"><div class="preview-code blurred" aria-hidden="true">XXXXXX</div><button class="button hero-cta" type="button" id="hero-cta">Get a code</button></div>
+              <div class="code-row"><button class="preview-code blurred" type="button" id="hero-code" aria-label="Your invite code" title="Click to copy">XXXXXX</button><button class="button hero-cta" type="button" id="hero-cta">Get a code</button></div>
+              <div class="hero-actions-row" id="hero-actions" hidden>
+                <button class="button" type="button" id="hero-copy">Copy code</button>
+                <button class="button secondary" type="button" id="hero-retry">Not working? Try another</button>
+                <button class="linklike" type="button" id="hero-redeemed">I redeemed it</button>
+              </div>
+              <p class="hero-status" id="hero-status" aria-live="polite"></p>
+              <p class="hero-link" id="hero-link" hidden>Invite link: <a id="hero-link-a" href="#" target="_blank" rel="noopener noreferrer"></a></p>
               <ol class="mini-steps three">
                 <li class="mini-row"><span class="mini-number">1</span><div><strong>Claim</strong><span class="hint">Receive one available code.</span></div></li>
                 <li class="mini-row"><span class="mini-number">2</span><div><strong>Redeem</strong><span class="hint">Use it in your Muse settings.</span></div></li>
@@ -478,7 +500,7 @@ body { background-image: none; }
             </section>
           </div>
 
-          <div class="quote-band"><p>Muse is new and there are no big names yet. Share your workflows and become the person people follow.</p><a class="button" href="/creator#new">Become a creator</a></div>
+          <div class="quote-band" id="quote-band"><p>Muse is new and there are no big names yet. Share your workflows and become <em class="hl">the person people follow</em>.</p><a class="button" href="/creator#new">Become a creator</a></div>
 
           <section class="home-section" aria-labelledby="new-heading">
             <div class="section-row"><div><h2 id="new-heading">New this week</h2><p>Fresh ways people are getting more from Muse.</p></div><a class="see-all" href="/workflows">See the full feed</a></div>
@@ -896,6 +918,7 @@ body { background-image: none; }
             const next = pendingAfterSignin;
             pendingAfterSignin = null;
             if (next === "add") { showView("share"); renderShare(); }
+            else if (next === "hero") { showView("home"); heroClaim(false); }
             else { showView("claim"); showNextCode(); }
           } catch (err) {
             if (status) status.textContent = err.message === "submissions_closed" ? "Signups are closed right now. Please try again later." : "Sign in did not work. Please try again.";
@@ -1070,12 +1093,54 @@ body { background-image: none; }
           });
         });
 
-        /* Clarity: hero CTA button and H1 scroll to the pool section. */ const poolSection = document.getElementById("pool-section"); const scrollToPool = () => { if (poolSection) poolSection.scrollIntoView({ behavior: "smooth", block: "start" }); }; const heroCta = document.getElementById("hero-cta"); if (heroCta) heroCta.addEventListener("click", scrollToPool); const heroH1 = document.getElementById("hero-h1"); if (heroH1) { heroH1.addEventListener("click", scrollToPool); heroH1.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); scrollToPool(); } }); } document.getElementById("get-code-2").addEventListener("click", async () => {
-          trackEvent("claim_started");
-          if (!(await requireSignin("claim"))) return;
-          showView("claim");
-          showNextCode();
+        /* The hero card claims in place: the code appears in the box, with copy, retry and redeemed actions. */
+        const heroCode = document.getElementById("hero-code"), heroCta = document.getElementById("hero-cta"), heroActions = document.getElementById("hero-actions"), heroStatus = document.getElementById("hero-status");
+        function heroShow(code, inviteLink) {
+          heroCode.textContent = code || "XXXXXX";
+          heroCode.classList.toggle("blurred", !code); heroCode.classList.toggle("revealed", Boolean(code));
+          heroCode.setAttribute("aria-hidden", code ? "false" : "true");
+          heroCta.hidden = Boolean(code); heroActions.hidden = !code;
+          const linkRow = document.getElementById("hero-link"), linkA = document.getElementById("hero-link-a");
+          if (code && inviteLink) { linkA.href = inviteLink; linkA.textContent = inviteLink; linkRow.hidden = false; } else { linkRow.hidden = true; }
+        }
+        async function heroClaim(fresh) {
+          heroStatus.textContent = fresh ? "Finding you a different code..." : "Finding a code for you...";
+          heroCta.disabled = true;
+          try {
+            const result = await claim(fresh);
+            setCode(result.code, result.inviteLink);
+            heroShow(result.code, result.inviteLink);
+            trackEvent("claim_success");
+            heroStatus.textContent = result.redeemed ? "You already redeemed this one. It stays yours." : fresh ? "Here is another code. Redeem it in Muse within 48 hours." : "Redeem it in your Muse settings within 48 hours, then come back and tell us if it worked.";
+            document.getElementById("hero-redeemed").hidden = Boolean(result.redeemed);
+            loadPool();
+          } catch (error) {
+            if (error.code === "sign_in_required") { me = null; renderAccount(); openSignin("hero"); return; }
+            heroStatus.textContent = claimMessage(error.code);
+          } finally { heroCta.disabled = false; }
+        }
+        async function heroCopy() {
+          if (!currentCode) return;
+          try { await navigator.clipboard.writeText(currentCode); heroStatus.textContent = "Copied. Paste it in Muse under Settings, Redeem invite code."; }
+          catch (_) { heroStatus.textContent = "Select the code and copy it manually."; }
+        }
+        heroCta.addEventListener("click", async () => { trackEvent("claim_started"); if (!(await requireSignin("hero"))) return; heroClaim(false); });
+        heroCode.addEventListener("click", heroCopy);
+        document.getElementById("hero-copy").addEventListener("click", heroCopy);
+        document.getElementById("hero-retry").addEventListener("click", async () => {
+          const reported = currentCode; const b = document.getElementById("hero-retry");
+          b.disabled = true; heroStatus.textContent = "Flagging that code...";
+          try { if (reported) await api("/api/report", { code: reported }); } catch (_) { /* a failed flag should not block the next code */ }
+          await heroClaim(true); b.disabled = false;
         });
+        document.getElementById("hero-redeemed").addEventListener("click", async () => {
+          if (!currentCode) return;
+          const b = document.getElementById("hero-redeemed"); b.disabled = true;
+          try { await api("/api/redeemed", { code: currentCode }); } catch (_) {}
+          heroStatus.textContent = "Marked as working. Add your own invite next so the pool keeps flowing."; b.hidden = true; armNudge(); loadPool();
+        });
+        // A signed in visitor who arrives with a code already held sees it straight away.
+        async function heroRestore() { if (!me) return; try { const r = await claim(false); if (r && r.code) { setCode(r.code, r.inviteLink); heroShow(r.code, r.inviteLink); heroStatus.textContent = r.redeemed ? "Your code. You marked it as redeemed." : "Your code. Redeem it in Muse within 48 hours."; document.getElementById("hero-redeemed").hidden = Boolean(r.redeemed); } } catch (_) {} }
 
         document.getElementById("pool-list").addEventListener("click", async (event) => {
           if (!event.target.closest("[data-claim-row]")) return;
@@ -1361,6 +1426,7 @@ body { background-image: none; }
         });
 
         authReady = refreshAuth();
+        authReady.then(heroRestore);
         authReady.then(() => {
           renderShare();
           routeFromHash();
@@ -1404,6 +1470,15 @@ body { background-image: none; }
           const el = document.getElementById("home-active"); if (!el || !d.ok) return;
           const n = Number(d.live ?? d.available ?? 0); el.textContent = n + " active code" + (n === 1 ? "" : "s") + " in the pool";
         }).catch(() => {});
+      })();
+    </script>
+    <script>
+      (() => {
+        const band = document.getElementById("quote-band");
+        if (!band) return;
+        if (!("IntersectionObserver" in window)) { band.classList.add("seen"); return; }
+        const io = new IntersectionObserver((entries) => { if (entries.some((e) => e.isIntersecting)) { band.classList.add("seen"); io.disconnect(); } }, { threshold: 0.4 });
+        io.observe(band);
       })();
     </script>
     <script>

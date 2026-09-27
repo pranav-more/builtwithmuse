@@ -30,11 +30,6 @@
       "source": "/use-cases",
       "destination": "/workflows",
       "statusCode": 301
-    },
-    {
-      "source": "/use-cases/:slug",
-      "destination": "/workflows/:slug",
-      "statusCode": 301
     }
   ],
   "rewrites": [

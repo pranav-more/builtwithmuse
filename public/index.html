@@ -213,7 +213,7 @@
       .hold-row { display: flex; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid var(--line-soft); margin-bottom: 20px; color: var(--muted); font-size: 14px; line-height: 1.5; }
       .hold-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px rgba(125,255,198,.2); flex: 0 0 auto; }
       .assigned-code { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.06); }
-      .assigned-code code { font: 700 clamp(26px, 5vw, 38px)/1 "JetBrains Mono", monospace; letter-spacing: 0.16em; overflow-wrap: anywhere; }
+      .assigned-code code { -webkit-user-select: text; user-select: text; font: 700 clamp(26px, 5vw, 38px)/1 "JetBrains Mono", monospace; letter-spacing: 0.16em; overflow-wrap: anywhere; }
       .assigned-code code.tap-copy { cursor: pointer; }
       .assigned-code code.tap-copy:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
       .invite-link-row { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--muted); }
@@ -883,7 +883,7 @@
               openSignin("claim");
               return;
             }
-            setCode("");
+            if (error.code !== "rate_limited") setCode("");
             status.textContent = claimMessage(error.code);
           }
         }

@@ -508,6 +508,44 @@ body { background-image: none; }
       #home-wild .tweet-actions .tweet-open { margin-left: auto; }
       @media (max-width: 1100px) { #home-wild.wild-grid { column-count: 2; } }
       @media (max-width: 640px) { #home-wild.wild-grid { column-count: 1; } }
+      /* Hero tightening: both columns land at the same height with no dead space. */
+      .home-cards > .home-card { padding: 26px 28px; }
+      .home-card h1 { font-size: clamp(32px, 3.6vw, 44px); margin-bottom: 8px; }
+      .home-card.compact h2 { font-size: 26px; margin-bottom: 8px; }
+      .home-card .lead { font-size: 16px; margin-bottom: 16px; line-height: 1.5; }
+      .code-row { margin-bottom: 14px; }
+      .code-row button.preview-code { font-size: clamp(24px, 3vw, 30px); padding: 0 14px; }
+      .button.hero-cta { font-size: 16px; padding: 13px 22px; margin-bottom: 0; }
+      .hero-status { margin: 0 0 4px; }
+      .hero-after { margin: 0 0 12px; }
+      .mini-steps.three { gap: 12px; margin-top: 2px; }
+      .mini-steps.three .mini-row .hint { font-size: 13px; }
+      .pool-stats { padding-top: 16px; gap: 8px; }
+      .pool-stats div { padding: 10px 12px; }
+      .pool-stats b { font-size: 22px; }
+      .home-card .waitlist-nudge { margin-top: 10px; font-size: 13px; }
+      .home-card.compact { padding: 20px 22px; }
+      .home-card.compact .card-foot { padding-top: 8px; }
+      .sponsor-card { padding: 18px 20px; gap: 8px; }
+      .sponsor-card h2 { font-size: 18px; }
+      .sponsor-slots { gap: 6px; }
+      .sponsor-slots li { padding: 6px 10px; }
+      .sponsor-slots li.filled { padding: 5px 10px 5px 8px; }
+      .sponsor-slots .slot-logo { width: 34px; height: 34px; }
+      .sponsor-cta { padding: 11px 18px; font-size: 15px; }
+      .sponsor-note { font-size: 12px; }
+      .mini-steps.three { margin-top: 10px; gap: 14px; }
+      .pool-stats { padding-top: 22px; }
+      .sponsor-card { gap: 7px; }
+      .sponsor-slots li { padding: 5px 10px; }
+      .sponsor-slots li.filled { padding: 4px 10px 4px 8px; }
+      .sponsor-cta { padding: 10px 18px; min-height: 0; }
+      .home-card.compact .lead { margin-bottom: 12px; }
+      #pool-section { display: none !important; }
+      .share-row { display: flex; gap: 18px; align-items: center; justify-content: space-between; }
+      .share-row .lead { margin: 0; flex: 1 1 auto; }
+      .share-row .button { flex: 0 0 auto; white-space: nowrap; }
+      @media (max-width: 640px) { .share-row { flex-direction: column; align-items: flex-start; } }
 </style>
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -607,8 +645,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
               <section class="home-card tint compact" aria-labelledby="share-h2">
                 <div class="card-label"><span>Pass it on</span></div>
                 <h2 id="share-h2">Share a code.</h2>
-                <p class="lead">Add your unused invite to the pool. When someone redeems it, Muse credits tokens to both of you.</p>
-                <div class="card-foot"><button class="button secondary" type="button" data-view="share">Share a code</button></div>
+                <div class="share-row"><p class="lead">Add your unused invite to the pool. Muse credits tokens to both of you when it is redeemed.</p><button class="button secondary" type="button" data-view="share">Share a code</button></div>
               </section>
               <section class="sponsor-card" aria-labelledby="sponsor-h2">
                 <div class="card-label"><span>Sponsors</span><span class="live-tag">4 slots</span></div>
@@ -620,7 +657,6 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
                   <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%234%20on%20Built%20with%20Muse">Claim</a></li>
                 </ol>
                 <a class="button sponsor-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20on%20Built%20with%20Muse">Sponsor a slot &#8594;</a>
-                <p class="sponsor-note">Your logo and one line, on every page. About a thousand AI early adopters come through each week.</p>
               </section>
             </div>
           </div>
@@ -642,7 +678,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
             <div class="creators-grid" id="home-creators"><div class="pool-empty">Loading creators.</div></div>
           </section>
 
-          <section class="pool" id="pool-section" aria-labelledby="pool-heading">
+          <section class="pool" id="pool-section" aria-labelledby="pool-heading" hidden>
             <div class="pool-head">
               <h2 id="pool-heading">Invite codes with room left</h2>
               <p>Claim a code, join Muse within 48 hours, then tell us whether it worked. Full or broken codes leave the pool on their own.</p>

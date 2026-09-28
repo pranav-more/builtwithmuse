@@ -311,7 +311,6 @@
       .field input, .field select { width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: #f3f6fd; color: var(--ink); }
       .field input::placeholder { color: #98a2c3; }
       .field input:focus, .field select:focus { outline: 2px solid var(--mint); outline-offset: 1px; border-color: transparent; }
-      #share-code { text-transform: uppercase; }
       .field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
       .field select option { color: #0b1b4d; background: #fff; }
       .field small { color: var(--muted-2); font-size: 13px; }
@@ -1239,7 +1238,7 @@ body { background-image: none; }
           }, 250);
         });
 
-        const SHARE_COPY = { title: "Built with Muse", text: "Active Muse invite codes. Take one from the pool, or share yours with the community.", url: "https://builtwithmuse.com" }; async function sharePlatform(button) { const status = button.parentElement.querySelector(".share-status"); if (navigator.share) { try { await navigator.share({ title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url }); } catch (_) {} return; } try { await navigator.clipboard.writeText(SHARE_COPY.text + " " + SHARE_COPY.url); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); const shareForm = document.getElementById("share-form");
+        const SHARE_COPY = { title: "Built with Muse", text: "Active Muse invite codes. Take one from the pool, or share yours with the community.", url: "https://builtwithmuse.com/?s=1" }; async function shareLink(button, opts) { const status = button.parentElement.querySelector(".share-status"); trackEvent(opts.clickedEvent); if (navigator.share) { try { await navigator.share({ title: opts.title, text: opts.text, url: opts.url }); trackEvent(opts.sharedEvent); } catch (err) { if (err && err.name === "AbortError") trackEvent(opts.cancelledEvent); } return; } try { await navigator.clipboard.writeText(opts.text + " " + opts.url); trackEvent(opts.copiedEvent); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } function sharePlatform(button) { return shareLink(button, { title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url, clickedEvent: "platform_share_clicked", sharedEvent: "platform_shared", cancelledEvent: "platform_share_cancelled", copiedEvent: "platform_link_copied" }); } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); try { if (new URLSearchParams(location.search).get("s") === "1") trackEvent("share_arrival"); } catch (_) {} const shareForm = document.getElementById("share-form");
         const shareSubmit = document.getElementById("share-submit");
         function renderShare() {
           const signed = !!me;

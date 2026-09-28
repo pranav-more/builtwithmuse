@@ -599,14 +599,13 @@ body { background-image: none; }
               <div class="form-stack">
                 <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="field">
-                  <label for="share-code">Your invite code</label>
-                  <input id="share-code" name="share-code" type="text" required autocomplete="off" autocapitalize="characters" placeholder="Enter your Muse code" maxlength="40" />
-                  <small>Check every letter and number before adding it. Codes are saved in all caps.</small>
+                  <label for="share-message-text">Paste your full Muse share message</label>
+                  <textarea id="share-message-text" name="share-message-text" rows="4" required autocomplete="off" placeholder="Check out Muse, your personal AI agent. Redeem my code in Settings within 48 hours of joining and we will both get 1 billion Muse tokens. Code: 70Z09F https://muse.ai/join"></textarea>
+                  <small>Copy the whole invite message from your Muse app and paste it here. We pull your code and invite link out of it.</small>
                 </div>
-                <div class="field">
-                  <label for="invite-link">Your full invite link</label>
-                  <input id="invite-link" name="invite-link" type="text" inputmode="url" autocomplete="url" placeholder="Paste the invite message from your Muse app" />
-                  <small>Paste the whole invite message from your Muse app. We pull the link out of it to keep fake codes out.</small>
+                <div class="field" id="share-detection" aria-live="polite" style="background:#f7f7f5;border:1px solid #e8e8e3;border-radius:12px;padding:12px 14px;display:grid;gap:8px">
+                  <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span>Invite code</span><strong id="detected-code">Waiting for your message</strong></div>
+                  <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span>Invite link</span><strong id="detected-link" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:62%">Waiting for your message</strong></div>
                 </div>
                 <div class="field">
                   <label for="share-invites">Invites left in your Muse app</label>
@@ -614,7 +613,7 @@ body { background-image: none; }
                   <small>Open your Muse app and enter the number it shows. You can update it any time from My codes.</small>
                   <div class="error" id="share-error" aria-live="polite"></div>
                 </div>
-                <button class="button full" id="share-submit" type="submit">Add my code</button>
+                <button class="button full" id="share-submit" type="submit" disabled>Add my code</button>
                 <p class="form-note"><strong>New codes get shown first, so yours won’t get buried.</strong> Keep your code live by confirming your invite count every few days. Codes unconfirmed for 7 days drop to the bottom of the pool. By adding yours, you confirm the code and link are available to use.</p>
               </div>
             </form>
@@ -1236,7 +1235,7 @@ body { background-image: none; }
           renderShare();
           setTimeout(() => {
             if (document.getElementById("share-card").hidden) document.getElementById("share-gate-signin").focus();
-            else document.getElementById("share-code").focus();
+            else document.getElementById("share-message-text").focus();
           }, 250);
         });
 
@@ -1248,32 +1247,49 @@ body { background-image: none; }
           document.getElementById("share-card").hidden = !signed;
         }
         document.getElementById("share-gate-signin").addEventListener("click", () => openSignin("add"));
-        const shareCodeInput = document.getElementById("share-code");
-        shareCodeInput.addEventListener("input", () => { shareCodeInput.value = shareCodeInput.value.toUpperCase(); });
+        const shareMessageText = document.getElementById("share-message-text");
+        const detectedCodeEl = document.getElementById("detected-code");
+        const detectedLinkEl = document.getElementById("detected-link");
+        let detectedCode = "";
+        let detectedLink = "";
+        let detectTimer = null;
+        function renderDetection() {
+          const text = shareMessageText.value.trim();
+          const codeMatch = text.match(/(?:code\s*:\s*)([a-z0-9]{6,})/i);
+          const linkMatch = text.match(/https?:\/\/[^\s<>"']+/i);
+          detectedCode = codeMatch ? codeMatch[1].toUpperCase() : "";
+          detectedLink = linkMatch ? linkMatch[0].replace(/[.,;:!?)\]]+$/, "") : "";
+          const waiting = !text;
+          detectedCodeEl.textContent = detectedCode || (waiting ? "Waiting for your message" : "Not found yet");
+          detectedLinkEl.textContent = detectedLink || (waiting ? "Waiting for your message" : "Not found yet");
+          detectedCodeEl.style.color = detectedCode ? "#1a7f37" : "";
+          detectedLinkEl.style.color = detectedLink ? "#1a7f37" : "";
+          const ready = !!(detectedCode && detectedLink);
+          shareSubmit.disabled = !ready;
+          if (ready && shareSubmit.textContent !== "Adding your code...") shareSubmit.textContent = "Add my code";
+        }
+        shareMessageText.addEventListener("input", () => {
+          clearTimeout(detectTimer);
+          detectTimer = setTimeout(renderDetection, 220);
+        });
         shareForm.addEventListener("submit", async (event) => {
           event.preventDefault();
           if (!(await requireSignin("add"))) return;
-          const input = document.getElementById("share-code");
-          const inviteLink = document.getElementById("invite-link");
           const invitesInput = document.getElementById("share-invites");
           const error = document.getElementById("share-error");
           const message = document.getElementById("share-message");
-          const code = input.value.trim().toUpperCase();
-          // The Muse app shares the link inside a longer message. Pull the URL
-          // out of whatever was pasted instead of rejecting the whole thing.
-          const rawLink = inviteLink.value.trim();
-          const linkMatch = rawLink.match(/https?:\/\/[^\s<>"']+/i);
-          const link = linkMatch ? linkMatch[0].replace(/[.,;:!?)\]]+$/, "") : "";
+          const code = detectedCode;
+          const link = detectedLink;
           const invites = Number(invitesInput.value);
           message.classList.remove("visible");
           if (code.length < 5) {
-            error.textContent = "Enter a complete referral code to continue.";
-            input.focus();
+            error.textContent = "We could not find a code in your message. Paste the full share message from your Muse app.";
+            shareMessageText.focus();
             return;
           }
           if (!link) {
-            error.textContent = "Enter the full invite link from your Muse app. Pasting the whole share message is fine.";
-            inviteLink.focus();
+            error.textContent = "We could not find an invite link in your message. Paste the full share message from your Muse app.";
+            shareMessageText.focus();
             return;
           }
           if (!Number.isInteger(invites) || invites < 1) {
@@ -1288,6 +1304,9 @@ body { background-image: none; }
           try {
             const d = await postForm("/api/codes", { code, inviteLink: link, ownerInvites: invites, website: shareForm.elements.website.value });
             shareForm.reset();
+            detectedCode = "";
+            detectedLink = "";
+            renderDetection();
             message.classList.add("visible");
             if (d.adopted) message.innerHTML = "<strong>Your old code is back.</strong> It is now linked to your account so you can keep it updated.";
             shareSubmit.textContent = "Code added";

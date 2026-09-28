@@ -1,20 +1,21 @@
 {
   "title": "Muse use cases from public posts",
   "product": "Meta Muse",
-  "updated": "2026-09-27",
+  "updated": "2026-09-28",
   "disclaimer": "Outcomes are what the poster reported. Built with Muse did not verify the savings, bookings, or completions. Posts with text_source tweet are the author's own words. Posts with text_source field-guide-summary are condensed from the public post by the EveryAI Muse field guide (snapshot 2026-09-14) and link back to the original.",
   "sources": [
     "Posts read from X on 2026-09-27",
-    "https://github.com/everyai-com/muse-use-cases (snapshot 2026-09-14, 257 cases)"
+    "https://github.com/everyai-com/muse-use-cases (snapshot 2026-09-14, 257 cases)",
+    "Posts read from X on 2026-09-28"
   ],
-  "total": 264,
-  "with_tweet_text": 31,
+  "total": 272,
+  "with_tweet_text": 39,
   "categories": [
     {
       "id": "paying-bills",
       "title": "Paying bills",
       "blurb": "Negotiate a bill, switch insurance, cancel a subscription, or chase a refund.",
-      "count": 68,
+      "count": 71,
       "items": [
         {
           "id": "2101738613851803877",
@@ -1687,6 +1688,78 @@
           "has_media": null,
           "library_category": "Money",
           "text_source": "field-guide-summary"
+        },
+        {
+          "id": "2104372349613040072",
+          "title": "Switch car insurance to Geico and bind the policy",
+          "category": "paying-bills",
+          "tags": [
+            "paying-bills"
+          ],
+          "summary": ".@Muse just saved me $2,130. I'm officially blown away. One of my big expenses is car insurance, so I shared my policy details and cost and asked it to use it as a reference and search for alternatives. It quickly gave me a few options and recommend to go with GEICO to save $1,064.50 per term (6 months). I then gave it access to my @stripe account, handled the payment for me and ultimately bound the policy. @muse promised me it would handle canceling my existing policy tomorrow morning.",
+          "prompt": "Here is my current car insurance policy and what I pay. Find equivalent coverage that costs less, show me the options, and once I approve one, pay and bind it. Then cancel the old policy. Pause before you pay and before you cancel.",
+          "handle": "@NestorLRamos",
+          "name": "NLR",
+          "url": "https://x.com/NestorLRamos/status/2104372349613040072",
+          "platform": "x",
+          "status_id": "2104372349613040072",
+          "posted_at": "2026-09-28T00:47:20.000Z",
+          "tweet_text": ".@Muse just saved me $2,130. I'm officially blown away. One of my big expenses is car insurance, so I shared my policy details and cost and asked it to use it as a reference and search for alternatives. It quickly gave me a few options and recommend to go with GEICO to save $1,064.50 per term (6 months). I then gave it access to my @stripe account, handled the payment for me and ultimately bound the policy. @muse promised me it would handle canceling my existing policy tomorrow morning.",
+          "likes": 0,
+          "reposts": 1,
+          "replies": 1,
+          "views": 122,
+          "has_media": true,
+          "library_category": null,
+          "text_source": "tweet"
+        },
+        {
+          "id": "2103619614437425619",
+          "title": "Cut a Verizon bill with no plan change",
+          "category": "paying-bills",
+          "tags": [
+            "paying-bills"
+          ],
+          "summary": "Muse just cut my Verizon bill! No new plan. Nothing added. $40/mo loyalty discount + they paid the last $33.30 iPhone 15 Pro Max payment as an additional discount. Pure price cut. The math actually checked out. My Muse bot, Ragnar, saved me real money on the free plan.",
+          "prompt": "Look at my Verizon bill. Do not change my plan or add anything. Ask them for a loyalty discount on what I already have, and check whether any device payment can be credited. Show me the before and after before anything is confirmed.",
+          "handle": "@M3PUnleashed",
+          "name": "M3PUnleashed",
+          "url": "https://x.com/M3PUnleashed/status/2103619614437425619",
+          "platform": "x",
+          "status_id": "2103619614437425619",
+          "posted_at": "2026-09-25T22:56:14.000Z",
+          "tweet_text": "Muse just cut my Verizon bill! No new plan. Nothing added. $40/mo loyalty discount + they paid the last $33.30 iPhone 15 Pro Max payment as an additional discount. Pure price cut. The math actually checked out. My Muse bot, Ragnar, saved me real money on the free plan.",
+          "likes": 4,
+          "reposts": 0,
+          "replies": 0,
+          "views": 777,
+          "has_media": false,
+          "library_category": null,
+          "text_source": "tweet"
+        },
+        {
+          "id": "2104409511226417488",
+          "title": "Switch insurance and cancel unused subscriptions",
+          "category": "paying-bills",
+          "tags": [
+            "paying-bills"
+          ],
+          "summary": "Muse is still a game changer as it helped me switch insurance and save over a grand and also helped me cancel a few subscriptions that I don't use. However tighter guardrails are important. Too early in the game.",
+          "prompt": "Shop my insurance for equivalent coverage and show me anything that saves at least $1,000 a year. Separately, list subscriptions I am not using. Do not switch or cancel anything until I approve each one.",
+          "handle": "@spluscollective",
+          "name": "First Fellow",
+          "url": "https://x.com/spluscollective/status/2104409511226417488",
+          "platform": "x",
+          "status_id": "2104409511226417488",
+          "posted_at": "2026-09-28T03:15:00.000Z",
+          "tweet_text": "Muse is still a game changer as it helped me switch insurance and save over a grand and also helped me cancel a few subscriptions that I don't use. However tighter guardrails are important. Too early in the game.",
+          "likes": 3,
+          "reposts": 0,
+          "replies": 1,
+          "views": 2519,
+          "has_media": false,
+          "library_category": null,
+          "text_source": "tweet"
         }
       ]
     },
@@ -3117,7 +3190,7 @@
       "id": "travel",
       "title": "Travel",
       "blurb": "Flights, hotels, delays, and trips booked or fixed after the fact.",
-      "count": 28,
+      "count": 29,
       "items": [
         {
           "id": "2102179999122153690",
@@ -3807,6 +3880,30 @@
           "has_media": null,
           "library_category": "Travel",
           "text_source": "field-guide-summary"
+        },
+        {
+          "id": "2104367036428067109",
+          "title": "Watch a flight without being asked",
+          "category": "travel",
+          "tags": [
+            "travel"
+          ],
+          "summary": "I don't know what mechanism @Muse is using to do proactive notifications like this, but stuff like this is extremely nice compared to Grok @bot. I never asked it to monitor my flight, I never set up any routine or anything at all. The fact that it is checking anyway is really nice.",
+          "prompt": "Watch the flights already on my calendar. If a delay, gate change, or cancellation shows up, tell me before I would have checked myself. Do not rebook anything unless I say so.",
+          "handle": "@johnhelmuth_",
+          "name": "John Helmuth",
+          "url": "https://x.com/johnhelmuth_/status/2104367036428067109",
+          "platform": "x",
+          "status_id": "2104367036428067109",
+          "posted_at": "2026-09-28T00:26:13.000Z",
+          "tweet_text": "I don't know what mechanism @Muse is using to do proactive notifications like this, but stuff like this is extremely nice compared to Grok @bot. I never asked it to monitor my flight, I never set up any routine or anything at all. The fact that it is checking anyway is really nice.",
+          "likes": 16,
+          "reposts": 0,
+          "replies": 3,
+          "views": 420,
+          "has_media": true,
+          "library_category": null,
+          "text_source": "tweet"
         }
       ]
     },
@@ -3814,7 +3911,7 @@
       "id": "food",
       "title": "Food",
       "blurb": "Meals, groceries, recipes, and restaurant reservations.",
-      "count": 9,
+      "count": 10,
       "items": [
         {
           "id": "ilpollaiosf-delivery-orchestration",
@@ -4035,6 +4132,31 @@
           "has_media": null,
           "library_category": "Health",
           "text_source": "field-guide-summary"
+        },
+        {
+          "id": "2103996683160047771",
+          "title": "Sort hundreds of saved Instagram posts into a cookbook",
+          "category": "food",
+          "tags": [
+            "food",
+            "fun"
+          ],
+          "summary": "I have 500+ saved posts on @instagram and I've never even opened most of them, it was a total mess. Asked my Pikachu (that's my Muse name) to sort them out and he actually did it. 11 folders now: book recommendations, recipes, movies, cool tech, AI, everything in its place. One more cool thing about him is you can ask your agent to make a cookbook from all the recipes that you have saved. I did nothing.",
+          "prompt": "Go through my saved Instagram posts. Sort them into folders by what they actually are: recipes, books, movies, and anything else that shows up. Then turn the recipe saves into a cookbook with ingredients and steps.",
+          "handle": "@Mj4Stocks",
+          "name": "MJ",
+          "url": "https://x.com/Mj4Stocks/status/2103996683160047771",
+          "platform": "x",
+          "status_id": "2103996683160047771",
+          "posted_at": "2026-09-26T23:54:34.000Z",
+          "tweet_text": "I have 500+ saved posts on @instagram and I've never even opened most of them, it was a total mess. Asked my Pikachu (that's my Muse name) to sort them out and he actually did it. 11 folders now: book recommendations, recipes, movies, cool tech, AI, everything in its place. One more cool thing about him is you can ask your agent to make a cookbook from all the recipes that you have saved. I did nothing.",
+          "likes": 11,
+          "reposts": 1,
+          "replies": 1,
+          "views": 772,
+          "has_media": false,
+          "library_category": null,
+          "text_source": "tweet"
         }
       ]
     },
@@ -4460,7 +4582,7 @@
       "id": "health",
       "title": "Health",
       "blurb": "Appointments, habits, supplements, and claims people had been putting off.",
-      "count": 7,
+      "count": 8,
       "items": [
         {
           "id": "therapist",
@@ -4631,6 +4753,30 @@
           "has_media": null,
           "library_category": "Admin",
           "text_source": "field-guide-summary"
+        },
+        {
+          "id": "2104393725615173856",
+          "title": "Book a Covid and flu shot",
+          "category": "health",
+          "tags": [
+            "health"
+          ],
+          "summary": "@Muse just booked an appointment for my Covid and flu shot. The time of going to websites and apps for such things is over.",
+          "prompt": "Book me a Covid and flu shot at a pharmacy near me that has both available. Use a time that fits my calendar, and confirm the place and time before you finish.",
+          "handle": "@Suprraja",
+          "name": "Super Raja",
+          "url": "https://x.com/Suprraja/status/2104393725615173856",
+          "platform": "x",
+          "status_id": "2104393725615173856",
+          "posted_at": "2026-09-28T02:12:16.000Z",
+          "tweet_text": "@Muse just booked an appointment for my Covid and flu shot. The time of going to websites and apps for such things is over.",
+          "likes": 0,
+          "reposts": 0,
+          "replies": 0,
+          "views": 2,
+          "has_media": false,
+          "library_category": null,
+          "text_source": "tweet"
         }
       ]
     },
@@ -4638,7 +4784,7 @@
       "id": "work",
       "title": "Work",
       "blurb": "Inbox, research, small-business admin, and tools built for the job.",
-      "count": 33,
+      "count": 34,
       "items": [
         {
           "id": "stock-dashboard",
@@ -5437,6 +5583,32 @@
           "has_media": null,
           "library_category": "Productivity",
           "text_source": "field-guide-summary"
+        },
+        {
+          "id": "2103981239199834130",
+          "title": "Clear an old inbox, chase a refund, book HVAC, during a nap",
+          "category": "work",
+          "tags": [
+            "work",
+            "paying-bills",
+            "home-and-family"
+          ],
+          "summary": "Things my Muse agent got done while I took a nap this afternoon: 1. Cleaned up my ancient Hotmail inbox from 96% full to 60%. Went through 80K emails, deleting 20k+ old promos and newsletters with my approval, keeping a full audit log of everything. 2. Chased down a missing refund from my old internet provider. Chatted with customer support, pulled the details from my emails, and got me an exact refund date. 3. Scheduled my HVAC tune-up based on previous years maintenance history. All while I was peacefully napping. Didn't even lift a finger.",
+          "prompt": "While I am away: clean my old inbox of promos and newsletters, keep an audit log, and ask before deleting. Chase the missing refund from my old internet provider until you have a date. Schedule my HVAC tune-up from last year's maintenance history. Pause before you delete mail, accept a refund, or book the appointment.",
+          "handle": "@anandragn",
+          "name": "Anand",
+          "url": "https://x.com/anandragn/status/2103981239199834130",
+          "platform": "x",
+          "status_id": "2103981239199834130",
+          "posted_at": "2026-09-26T22:53:12.000Z",
+          "tweet_text": "Things my Muse agent got done while I took a nap this afternoon: 1. Cleaned up my ancient Hotmail inbox from 96% full to 60%. Went through 80K emails, deleting 20k+ old promos and newsletters with my approval, keeping a full audit log of everything. 2. Chased down a missing refund from my old internet provider. Chatted with customer support, pulled the details from my emails, and got me an exact refund date. 3. Scheduled my HVAC tune-up based on previous years maintenance history. All while I was peacefully napping. Didn't even lift a finger.",
+          "likes": 466,
+          "reposts": 12,
+          "replies": 45,
+          "views": 63371,
+          "has_media": false,
+          "library_category": null,
+          "text_source": "tweet"
         }
       ]
     },
@@ -5444,7 +5616,7 @@
       "id": "calls-and-admin",
       "title": "Calls and paperwork",
       "blurb": "Hold music, forms, DMV, visas, and the errands that only finish on the phone.",
-      "count": 28,
+      "count": 29,
       "items": [
         {
           "id": "2102617037831086261",
@@ -6123,6 +6295,31 @@
           "has_media": null,
           "library_category": "Admin",
           "text_source": "field-guide-summary"
+        },
+        {
+          "id": "2104002947864547566",
+          "title": "Call a mobile tire repair, pay, then get insurance to reimburse it",
+          "category": "calls-and-admin",
+          "tags": [
+            "calls-and-admin",
+            "paying-bills"
+          ],
+          "summary": "So @Muse crushed it again for me. Car got a flat tire today. And my dumb self left the tire kit in the other car. I tried my call insurance flat tire program but they told me 4 hours to get to me. Instead Muse found a mobile tire repair place. Muse called them and setup the entire thing. Within 30 minutes they had arrived and Muse even paid for it online. Then Muse alerted me that my insurance may reimburse me for this cost under certain conditions. So it called the agent and got it taken care of. Insurance didn't want to take care of it at first so it told them I would remove my 2 cars and home insurance and take business elsewhere. They figured an $80 reimbursement would be better than losing me completely.",
+          "prompt": "I have a flat and my tire kit is in the other car. My insurer's roadside program quoted a long wait. Find a mobile tire repair that can come now, call them, and set it up. Then check whether my auto policy will reimburse the cost and call them if it should. Pause before you pay and before you say I will cancel a policy.",
+          "handle": "@JoshExile82",
+          "name": "JH Trader",
+          "url": "https://x.com/JoshExile82/status/2104002947864547566",
+          "platform": "x",
+          "status_id": "2104002947864547566",
+          "posted_at": "2026-09-27T00:19:27.000Z",
+          "tweet_text": "So @Muse crushed it again for me. Car got a flat tire today. And my dumb self left the tire kit in the other car. I tried my call insurance flat tire program but they told me 4 hours to get to me. Instead Muse found a mobile tire repair place. Muse called them and setup the entire thing. Within 30 minutes they had arrived and Muse even paid for it online. Then Muse alerted me that my insurance may reimburse me for this cost under certain conditions. So it called the agent and got it taken care of. Insurance didn't want to take care of it at first so it told them I would remove my 2 cars and home insurance and take business elsewhere. They figured an $80 reimbursement would be better than losing me completely.",
+          "likes": 8,
+          "reposts": 0,
+          "replies": 4,
+          "views": 513,
+          "has_media": false,
+          "library_category": null,
+          "text_source": "tweet"
         }
       ]
     },

@@ -905,14 +905,14 @@ body { background-image: none; }
         // blocked), we fall back to the full sign in page with the button.
         async function signinNow(context) {
           pendingAfterSignin = context;
-          if (await ensureGoogle()) {
-            try {
+          try {
+            if (await ensureGoogle()) {
               google.accounts.id.prompt((notification) => {
                 if (notification.isNotDisplayed() || notification.isSkippedMoment()) openSignin(context);
               });
               return;
-            } catch (_) { /* fall through to the sign in page */ }
-          }
+            }
+          } catch (_) { /* fall through to the sign in page */ }
           openSignin(context);
         }
 

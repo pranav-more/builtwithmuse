@@ -195,7 +195,11 @@
       .hero-link a { color: var(--blue-deep); }
       .mini-steps.three { grid-template-columns: repeat(3, 1fr); gap: 14px; }
       .mini-steps.three .mini-row { grid-template-columns: 1fr; gap: 8px; }
-      .home-card .fine { margin-top: auto; padding-top: 22px; }
+      .pool-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: auto; padding-top: 24px; }
+      .pool-stats div { padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--tint); display: grid; gap: 4px; }
+      .pool-stats b { font: 700 26px/1 "Archivo", sans-serif; letter-spacing: -0.02em; color: var(--ink); }
+      .pool-stats span { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-2); }
+      @media (max-width: 480px) { .pool-stats { gap: 8px; } .pool-stats div { padding: 10px 10px; } .pool-stats b { font-size: 20px; } .pool-stats span { font-size: 10px; letter-spacing: 0.04em; } }
       .fine .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); display: inline-block; flex: 0 0 auto; }
       .home-card .waitlist-nudge { margin: 10px 0 0; }
       .card-foot { margin-top: auto; padding-top: 24px; }
@@ -204,10 +208,27 @@
       .quote-band .button { margin: 0; }
       .quote-band .hl { font-style: normal; background-image: linear-gradient(120deg, rgba(26,86,255,.22), rgba(26,86,255,.22)); background-repeat: no-repeat; background-size: 0% 100%; background-position: 0 0; padding: 0 .08em; margin: 0 -.08em; border-radius: 4px; transition: background-size 1.1s cubic-bezier(.2,.7,.2,1) .25s; }
       .quote-band.seen .hl { background-size: 100% 100%; }
-      .sponsor-card { margin: 0; padding: 36px 32px; border: 1px dashed var(--line); border-radius: var(--radius); background: var(--tint); display: grid; gap: 12px; justify-items: center; text-align: center; }
-      .sponsor-card .eyebrow { margin-bottom: 0; }
-      .sponsor-card h2 { margin: 0; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; }
-      .sponsor-card p { margin: 0; color: var(--muted); max-width: 54ch; font-size: 15px; line-height: 1.6; }
+      .sponsor-card { margin: 0; padding: 20px 22px; border: 1px dashed var(--line); border-radius: var(--radius); background: #fff; display: grid; gap: 10px; align-content: start; }
+      .sponsor-card .card-label { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); }
+      .sponsor-card .card-label .live-tag { color: var(--blue-deep); }
+      .sponsor-card h2 { margin: 0; font-size: 20px; letter-spacing: -0.02em; line-height: 1.2; }
+      .sponsor-slots { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+      .sponsor-slots li { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border: 1px dashed var(--line); border-radius: 10px; background: var(--tint); }
+      .sponsor-slots .n { width: 26px; font: 700 12px/1 "IBM Plex Sans", system-ui, sans-serif; color: var(--muted-2); }
+      .sponsor-slots .slot-name { flex: 1; font-size: 14px; font-weight: 600; color: var(--muted); }
+      .sponsor-slots .slot-cta { font-size: 13px; font-weight: 700; color: var(--blue-deep); text-decoration: none; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: #fff; }
+      .sponsor-slots .slot-cta:hover { border-color: var(--blue); }
+      .sponsor-slots li.filled { background: #fff; border-style: solid; padding: 8px 12px 8px 10px; }
+      .sponsor-slots a.slot-link { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; text-decoration: none; color: var(--ink); }
+      .sponsor-slots .slot-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; border: 1px solid var(--line); background: #fff; }
+      .sponsor-slots .slot-brand { font-size: 15px; font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .sponsor-slots .slot-clicks { flex: 0 0 auto; font-size: 12px; font-weight: 700; color: var(--blue-deep); background: var(--tint); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; white-space: nowrap; }
+      .sponsor-cta { width: 100%; justify-content: center; margin-top: 2px; }
+      .sponsor-note { margin: 2px 0 0; color: var(--muted-2); font-size: 13px; line-height: 1.5; }
+      .home-card.compact { padding: 22px 22px; }
+      .home-card.compact h2 { font-size: 28px; }
+      .home-card.compact .lead { font-size: 15px; margin-bottom: 4px; }
+      .home-card.compact .card-foot { padding-top: 14px; }
       .quote-band .button { position: relative; overflow: hidden; }
       .quote-band .button::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent); transform: skewX(-18deg); animation: quote-shine 9s ease-in-out infinite; animation-delay: 2.5s; }
       @keyframes quote-shine { 0%, 88% { left: -60%; } 100% { left: 130%; } }
@@ -425,7 +446,7 @@
       @media (max-width: 640px) {
         .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
         .menu-toggle { display: flex; }
-        .topbar { gap: 8px; } .brand { order: 0; font-size: 14px; gap: 6px; } .account, .acct { margin-left: 0 !important; } .menu-toggle { margin-left: 0 !important; } .brand .mark { width: 18px; height: 18px; } .menu-toggle { width: 38px; height: 38px; } .acct-btn { padding: 3px; gap: 0; } .acct-btn img, .acct-btn i { width: 24px; height: 24px; } .signin-btn { padding: 7px 10px; font-size: 13px; } .write-btn { order: 1; margin-left: auto; padding: 7px 9px; font-size: 13px; } .acct { order: 2; margin-left: 0; } .acct-btn svg { display: none; } .account { order: 2; } .menu-toggle { order: 3; margin-left: 4px; } #account-slot, .signin-btn { order: 2; } .nav { order: 5; }
+        .topbar { gap: 8px; } .brand { order: 0; font-size: 14px; gap: 6px; } .account, .acct { margin-left: 0 !important; } .menu-toggle { margin-left: 0 !important; } .brand .mark { width: 18px; height: 18px; } .menu-toggle { width: 38px; height: 38px; } .acct-btn { padding: 3px; gap: 0; } .acct-btn img, .acct-btn i { width: 24px; height: 24px; } .signin-btn { padding: 7px 10px; font-size: 13px; } .write-btn { order: 1; margin-left: auto; padding: 7px 9px; font-size: 13px; } #account-signin { padding: 7px 10px; font-size: 13px; min-height: 0; } .acct { order: 2; margin-left: 0; } .acct-btn svg { display: none; } .account { order: 2; } .menu-toggle { order: 3; margin-left: 4px; } #account-slot, .signin-btn { order: 2; } .nav { order: 5; }
         .nav { display: none; flex-direction: column; width: 100%; flex-basis: 100%; margin: 4px 0 0; padding: 8px 0 4px; border-top: 1px solid var(--line-soft); overflow: visible; }
         .topbar.open .nav { display: flex; }
         .nav button, .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
@@ -575,21 +596,31 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
                 <li class="mini-row"><span class="mini-number">2</span><div><strong>Redeem</strong><span class="hint">Use it in your Muse settings.</span></div></li>
                 <li class="mini-row"><span class="mini-number">3</span><div><strong>Pass it on</strong><span class="hint">Add your own invite for the next person.</span></div></li>
               </ol>
-              <p class="fine"><i class="dot"></i><span id="home-active">Checking the pool.</span></p>
+              <div class="pool-stats" aria-label="The pool right now">
+                <div><b id="home-active">&#8230;</b><span>Active codes</span></div>
+                <div><b id="home-submitted">&#8230;</b><span>Codes shared</span></div>
+                <div><b id="home-waitlist">&#8230;</b><span>On the waitlist</span></div>
+              </div>
               <p class="waitlist-nudge">Muse not in your country yet? <button type="button" class="linklike" data-view="waitlist">Join the waitlist</button> and we will send you a fresh code on launch day.</p>
             </section>
             <div class="home-side">
-              <section class="home-card tint" aria-labelledby="share-h2">
+              <section class="home-card tint compact" aria-labelledby="share-h2">
                 <div class="card-label"><span>Pass it on</span></div>
                 <h2 id="share-h2">Share a code.</h2>
-                <p class="lead">Add your unused Muse invite to the community pool so the next person can get in. When someone redeems it, Muse credits tokens to both of you.</p>
+                <p class="lead">Add your unused invite to the pool. When someone redeems it, Muse credits tokens to both of you.</p>
                 <div class="card-foot"><button class="button secondary" type="button" data-view="share">Share a code</button></div>
               </section>
-              <section class="sponsor-card" aria-label="Sponsor">
-                <div class="eyebrow">Sponsor</div>
-                <h2>Put your brand in front of the people building with Muse.</h2>
-                <p>One sponsor slot, and it is exclusive. Every week about a thousand AI early adopters come here for invite codes and workflows. Your name on every page, your line in every share kit.</p>
-                <a class="button" href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Claim the sponsor slot</a>
+              <section class="sponsor-card" aria-labelledby="sponsor-h2">
+                <div class="card-label"><span>Sponsors</span><span class="live-tag">4 slots</span></div>
+                <h2 id="sponsor-h2">Your product, in front of the people building with Muse.</h2>
+                <ol class="sponsor-slots" id="sponsor-slots">
+                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%231%20on%20Built%20with%20Muse">Claim</a></li>
+                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%232%20on%20Built%20with%20Muse">Claim</a></li>
+                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%233%20on%20Built%20with%20Muse">Claim</a></li>
+                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%234%20on%20Built%20with%20Muse">Claim</a></li>
+                </ol>
+                <a class="button sponsor-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20on%20Built%20with%20Muse">Sponsor a slot &#8594;</a>
+                <p class="sponsor-note">Your logo and one line, on every page. About a thousand AI early adopters come through each week.</p>
               </section>
             </div>
           </div>
@@ -1695,9 +1726,22 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           if (!d.ok || !d.creators.length) { creatorsEl.innerHTML = '<div class="pool-empty" style="grid-column:1/-1">No creators yet. <a href="/creator">Be the first.</a></div>'; return; }
           creatorsEl.innerHTML = d.creators.map((c) => '<a class="creator-cell" href="/creators/' + esc(c.handle) + '">' + face(c.displayName, c.avatarUrl) + "<div><b>" + esc(c.displayName) + "</b><span>" + c.workflowCount + " workflow" + (c.workflowCount === 1 ? "" : "s") + "</span></div></a>").join("");
         }).catch(() => { creatorsEl.innerHTML = ""; });
+        fetch("/api/sponsors", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
+          const list = document.getElementById("sponsor-slots"); if (!list || !d.ok || !Array.isArray(d.slots)) return;
+          const esc = (v) => String(v || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+          list.innerHTML = d.slots.map((sp) => sp.name
+            ? '<li class="filled"><span class="n">#' + sp.slot + '</span><a class="slot-link" href="' + esc(sp.url) + '" target="_blank" rel="noopener sponsored" data-slot="' + sp.slot + '">' + (sp.logo ? '<img class="slot-logo" src="' + esc(sp.logo) + '" alt="" />' : "") + '<span class="slot-brand">' + esc(sp.name) + '</span></a><span class="slot-clicks">' + sp.clicks + ' click' + (sp.clicks === 1 ? "" : "s") + '</span></li>'
+            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%23' + sp.slot + '%20on%20Built%20with%20Muse">Claim</a></li>').join("");
+          list.querySelectorAll("a[data-slot]").forEach((a) => a.addEventListener("click", () => {
+            try { fetch("/api/sponsors/click", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: JSON.stringify({ slot: Number(a.dataset.slot) }) }); } catch (_) {}
+            const pill = a.parentElement.querySelector(".slot-clicks"); if (pill) { const n = (parseInt(pill.textContent, 10) || 0) + 1; pill.textContent = n + " click" + (n === 1 ? "" : "s"); }
+          }));
+        }).catch(() => {});
         fetch("/api/stats", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           const el = document.getElementById("home-active"); if (!el || !d.ok) return;
-          const n = Number(d.live ?? d.available ?? 0); el.textContent = n + " active code" + (n === 1 ? "" : "s") + " in the pool";
+          el.textContent = String(Number(d.live ?? d.available ?? 0));
+          const sub = document.getElementById("home-submitted"); if (sub) sub.textContent = String(Number(d.submitted || 0));
+          const wl = document.getElementById("home-waitlist"); if (wl) wl.textContent = String(Number(d.waitlist || 0));
         }).catch(() => {});
       })();
     </script>

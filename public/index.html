@@ -13,7 +13,7 @@
     <meta name="google-site-verification" content="LlT9jY1_oQsqZveGYWV_leOyY1_JA7RjeWkDOKkNK6Q" />
     <link rel="canonical" href="https://builtwithmuse.com/" />
     <meta property="og:title" content="Active Muse Invite Codes | Built with Muse" />
-    <meta property="og:description" content="Working invite codes shared by the community. Take one from the pool or add yours." />
+    <meta property="og:description" content="Muse is still invite only. Here is where people are finding working codes." />
     <meta property="og:url" content="https://builtwithmuse.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://builtwithmuse.com/og/homepage-share.png" />
@@ -23,7 +23,7 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Active Muse Invite Codes | Built with Muse" />
-    <meta name="twitter:description" content="Working invite codes shared by the community. Take one from the pool or add yours." />
+    <meta name="twitter:description" content="Muse is still invite only. Here is where people are finding working codes." />
     <meta name="twitter:image" content="https://builtwithmuse.com/og/homepage-share.png" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
     <script async defer src="https://accounts.google.com/gsi/client"></script>
@@ -135,7 +135,7 @@
       .fine svg { width: 16px; height: 16px; color: var(--mint); flex: 0 0 auto; }
       .waitlist-nudge { margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
       .linklike { background: none; border: 0; padding: 0; color: var(--mint); font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; touch-action: manipulation; }
-      .linklike:hover { color: #c2ffe2; }
+      .linklike:hover { color: var(--blue-deep); }
       .linklike:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
 
       .invite-card { position: relative; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
@@ -155,6 +155,7 @@
       .write-btn { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; margin-left: 8px; }
       .write-btn:hover { background: #e6edff; }
       .home-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 8px 0 8px; }
+      .home-side { display: grid; gap: 24px; align-content: start; }
       .home-card { position: relative; display: flex; flex-direction: column; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); }
       .home-card.tint { background: #eef3ff; }
       .home-card .card-label { display: flex; justify-content: space-between; align-items: center; color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px; }
@@ -183,6 +184,10 @@
       .quote-band .button { margin: 0; }
       .quote-band .hl { font-style: normal; background-image: linear-gradient(120deg, rgba(26,86,255,.22), rgba(26,86,255,.22)); background-repeat: no-repeat; background-size: 0% 100%; background-position: 0 0; padding: 0 .08em; margin: 0 -.08em; border-radius: 4px; transition: background-size 1.1s cubic-bezier(.2,.7,.2,1) .25s; }
       .quote-band.seen .hl { background-size: 100% 100%; }
+      .sponsor-card { margin: 0; padding: 36px 32px; border: 1px dashed var(--line); border-radius: var(--radius); background: var(--tint); display: grid; gap: 12px; justify-items: center; text-align: center; }
+      .sponsor-card .eyebrow { margin-bottom: 0; }
+      .sponsor-card h2 { margin: 0; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; }
+      .sponsor-card p { margin: 0; color: var(--muted); max-width: 54ch; font-size: 15px; line-height: 1.6; }
       .quote-band .button { position: relative; overflow: hidden; }
       .quote-band .button::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent); transform: skewX(-18deg); animation: quote-shine 9s ease-in-out infinite; animation-delay: 2.5s; }
       @keyframes quote-shine { 0%, 88% { left: -60%; } 100% { left: 130%; } }
@@ -239,6 +244,8 @@
       .tweet-actions { display: flex; align-items: center; gap: 22px; padding-top: 8px; border-top: 1px solid #eff3f4; color: #536471; font-size: 13px; }
       .tweet-actions > span { display: inline-flex; align-items: center; gap: 6px; }
       .tweet-actions svg { width: 18px; height: 18px; }
+      .tweet-submitter { font-size: 12px; }
+      .tweet-submitter a { color: inherit; font-weight: 600; }
       .tweet-open { margin-left: auto; color: var(--blue-deep); font-weight: 600; text-decoration: none; white-space: nowrap; }
       .pool { margin-top: 28px; padding: 44px 0 8px; border-top: 1px solid var(--line); }
       .pool-head { max-width: 640px; }
@@ -311,7 +318,6 @@
       .field input, .field select { width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: #f3f6fd; color: var(--ink); }
       .field input::placeholder { color: #98a2c3; }
       .field input:focus, .field select:focus { outline: 2px solid var(--mint); outline-offset: 1px; border-color: transparent; }
-      #share-code { text-transform: uppercase; }
       .field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
       .field select option { color: #0b1b4d; background: #fff; }
       .field small { color: var(--muted-2); font-size: 13px; }
@@ -320,6 +326,11 @@
       .form-note strong { color: var(--muted); }
       .message { display: none; margin-top: 18px; padding: 14px 16px; border-radius: 8px; background: rgba(26,86,255,.1); border: 1px solid rgba(26,86,255,.35); font-size: 14px; line-height: 1.5; }
       .message.visible { display: block; }
+      #share-after { margin-top: 14px; display: grid; gap: 12px; }
+      #share-after[hidden] { display: none; }
+      .share-earn { margin: 0; font-size: 14px; line-height: 1.5; }
+      .share-next { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+      .activity-banner { margin-bottom: 14px; padding: 14px 16px; border-radius: 8px; background: rgba(26,127,55,.1); border: 1px solid rgba(26,127,55,.35); font-size: 14px; line-height: 1.6; }
       .hp { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
 
       .workflows-layout, .waitlist-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr); gap: 40px; align-items: start; }
@@ -352,6 +363,7 @@
       @keyframes nudge-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
       @media (prefers-reduced-motion: reduce) { .nudge-card { animation: none; } }
       @media (max-width: 640px) { .nudge { padding: 12px; align-items: end; } .nudge-card { padding: 22px; } }
+      .nudge-card .google-slot { display: flex; justify-content: center; min-height: 48px; }
 
       .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
       .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
@@ -476,7 +488,7 @@ body { background-image: none; }
           <a href="/blog">Blog</a>
           <a href="/creator">Profile</a>
         </nav>
-        <a class="write-btn" href="/creator#new">Write</a>
+        <a class="write-btn" href="/creator#new">Publish a workflow</a>
         <div class="account" id="account-area"><button class="button small secondary" type="button" id="account-signin">Sign in</button></div>
       </header>
 
@@ -499,12 +511,20 @@ body { background-image: none; }
               <p class="fine"><i class="dot"></i><span id="home-active">Checking the pool.</span></p>
               <p class="waitlist-nudge">Muse not in your country yet? <button type="button" class="linklike" data-view="waitlist">Join the waitlist</button> and we will send you a fresh code on launch day.</p>
             </section>
-            <section class="home-card tint" aria-labelledby="share-h2">
-              <div class="card-label"><span>Pass it on</span></div>
-              <h2 id="share-h2">Share a code.</h2>
-              <p class="lead">Add your unused Muse invite to the community pool so the next person can get in. When someone redeems it, Muse credits tokens to both of you.</p>
-              <div class="card-foot"><button class="button secondary" type="button" data-view="share">Share a code</button></div>
-            </section>
+            <div class="home-side">
+              <section class="home-card tint" aria-labelledby="share-h2">
+                <div class="card-label"><span>Pass it on</span></div>
+                <h2 id="share-h2">Share a code.</h2>
+                <p class="lead">Add your unused Muse invite to the community pool so the next person can get in. When someone redeems it, Muse credits tokens to both of you.</p>
+                <div class="card-foot"><button class="button secondary" type="button" data-view="share">Share a code</button></div>
+              </section>
+              <section class="sponsor-card" aria-label="Sponsor">
+                <div class="eyebrow">Sponsor</div>
+                <h2>One sponsor. That’s all we need.</h2>
+                <p>We’re not looking for ten sponsors. Just one, to keep this platform running. Your brand in front of a thousand AI early adopters every week.</p>
+                <a class="button" href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Become our sponsor</a>
+              </section>
+            </div>
           </div>
 
           <div class="quote-band" id="quote-band"><p>Muse is new and there are no big names yet. Share your workflows and become <em class="hl">the person people follow</em>.</p><a class="button" href="/creator#new">Become a creator</a></div>
@@ -515,7 +535,7 @@ body { background-image: none; }
           </section>
 
           <section class="home-section" aria-labelledby="wild-heading">
-            <div class="section-row"><div><h2 id="wild-heading">What people are posting</h2><p>Real posts from X and Threads where people say what Muse did for them. Outcomes as the posters reported them.</p></div><a class="see-all" href="/posts">All 272 posts</a></div>
+            <div class="section-row"><div><h2 id="wild-heading">What people are posting</h2><p>Real posts from X and Threads where people say what Muse did for them. Outcomes as the posters reported them.</p></div><a class="see-all" id="wild-see-all" href="/posts">All 264 posts</a></div>
             <div class="wild-grid" id="home-wild"><div class="pool-empty">Loading posts.</div></div>
           </section>
 
@@ -556,7 +576,7 @@ body { background-image: none; }
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               </button>
             </div>
-            <div class="copy-status" id="copy-status" aria-live="polite"></div> <div class="creator-nudge" style="margin-top:24px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,0.05);text-align:center"> <h3 style="margin:0 0 8px;font-size:20px">Become one of the first Muse creators.</h3> <p style="margin:0 0 16px;color:var(--muted)">Add your workflow and become an authoritative creator in the AI space.</p> <a href="/creator" style="display:inline-block;padding:12px 24px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Publish your first workflow</a> </div>
+            <div class="copy-status" id="copy-status" aria-live="polite"></div> <div class="creator-nudge" style="margin-top:24px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,0.05);text-align:center"> <h3 style="margin:0 0 8px;font-size:20px">Become one of the first Muse creators.</h3> <p style="margin:0 0 16px;color:var(--muted)">Add your workflow and become the person people follow.</p> <a href="/creator" style="display:inline-block;padding:12px 24px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Publish a workflow</a> </div>
             <div class="invite-link-row" id="invite-link-row" hidden>
               <span>Or use your invite link:</span>
               <a id="claim-invite-link" href="" target="_blank" rel="noopener noreferrer"></a>
@@ -599,9 +619,9 @@ body { background-image: none; }
               <div class="form-stack">
                 <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="field">
-                  <label for="share-message-text">Paste your full Muse share message</label>
+                  <label for="share-message-text">Just paste your link here</label>
                   <textarea id="share-message-text" name="share-message-text" rows="4" required autocomplete="off" placeholder="Check out Muse, your personal AI agent. Redeem my code in Settings within 48 hours of joining and we will both get 1 billion Muse tokens. Code: 70Z09F https://muse.ai/join"></textarea>
-                  <small>Copy the whole invite message from your Muse app and paste it here. We pull your code and invite link out of it.</small>
+                  <small>Paste the invite message from your Muse app. We pull your code and invite link out of it.</small>
                 </div>
                 <div class="field" id="share-detection" aria-live="polite" style="background:#f7f7f5;border:1px solid #e8e8e3;border-radius:12px;padding:12px 14px;display:grid;gap:8px">
                   <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span>Invite code</span><strong id="detected-code">Waiting for your message</strong></div>
@@ -614,39 +634,20 @@ body { background-image: none; }
                   <div class="error" id="share-error" aria-live="polite"></div>
                 </div>
                 <button class="button full" id="share-submit" type="submit" disabled>Add my code</button>
-                <p class="form-note"><strong>New codes get shown first, so yours won’t get buried.</strong> Keep your code live by confirming your invite count every few days. Codes unconfirmed for 7 days drop to the bottom of the pool. By adding yours, you confirm the code and link are available to use.</p>
+                <p class="form-note">Keep your code live by confirming your invite count every few days. Codes unconfirmed for 7 days drop to the bottom of the pool. By adding yours, you confirm the code and link are available to use.</p>
               </div>
             </form>
-            <div class="message" id="share-message" aria-live="polite"><strong>Your code is in.</strong> Thanks for adding it to the community pool.</div> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
-          </div>
-        </section>
-
-        <section class="view" id="view-workflows">
-          <div class="workflows-layout">
-            <div>
-              <div class="eyebrow">After you are in</div>
-              <h2>Need a code? Stay here. Have access? Go build.</h2>
-              <p class="lead">This site does one job: get you a working invite. Once you are in, these are the places to spend your first hour. The workflow library itself lives on Sundog, and we link out rather than copy it.</p>
-            </div>
-            <div class="case-list">
-              <article class="case-study">
-                <span class="case-tag">Live use case</span>
-                <h3>Turn an Instagram recipe reel into a grocery list.</h3>
-                <p>Save a reel, and Muse turns it into a grocery list, skips what you already own, and can order the rest for delivery. The strongest first win we know of.</p>
-                <a class="case-link" href="/workflows/recipe-reel-to-groceries">Open the workflow</a>
-              </article>
-              <article class="case-study">
-                <span class="case-tag">Live use case</span>
-                <h3>Plan a dinner party in one conversation.</h3>
-                <p>Muse plans the menu around everyone's dietary restrictions, builds the shopping list and prep timeline, and drafts the invites.</p>
-                <a class="case-link" href="/workflows/dinner-party-planner">Open the workflow</a>
-              </article>
-              <article class="case-study">
-                <span class="case-tag">Workflow community</span>
-                <h3>Everything else people build with Muse.</h3>
-                <p>Sundog collects guides by task, country pages and hundreds of community workflows for Muse. Have access? That is where to go next.</p>
-                <a class="case-link quiet" href="https://usesundog.com/muse" target="_blank" rel="noopener noreferrer">Browse workflows on Sundog</a>
-              </article>
+            <div class="message" id="share-message" aria-live="polite"><strong>Your code is live.</strong> More visitors means more chances someone redeems it and you earn tokens.</div>
+            <div id="share-after" hidden>
+              <p class="share-earn">Bring people here:</p>
+              <div class="card-actions">
+                <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share the pool</button>
+                <span class="share-status" aria-live="polite"></span>
+              </div>
+              <div class="share-next">
+                <a class="button" href="/workflows">Explore workflows</a>
+                <a class="linklike" href="/creator#new">Or be one of the first to add a workflow</a>
+              </div>
             </div>
           </div>
         </section>
@@ -753,6 +754,19 @@ body { background-image: none; }
         </div>
       </div>
 
+      <div class="nudge" id="signin-modal" hidden>
+        <div class="nudge-backdrop" data-signin-modal-close></div>
+        <div class="nudge-card" role="dialog" aria-modal="true" aria-labelledby="signin-modal-title">
+          <button class="nudge-x" type="button" aria-label="Close" data-signin-modal-close>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="eyebrow">One click</div>
+          <h2 id="signin-modal-title">Sign in with Google.</h2>
+          <p id="signin-modal-copy">Google could not show its quick prompt, so sign in here instead. One click, no password.</p>
+          <div class="google-slot" id="google-modal-button"></div>
+        </div>
+      </div>
+
     <footer class="footer">
       <div class="footer-cta">
         <div>
@@ -760,10 +774,7 @@ body { background-image: none; }
           <h2>See what other people are building with Muse.</h2>
           <p>Trade codes, swap workflows and get help from people who are already inside.</p>
         </div>
-        <a class="button discord" href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 5.6A16.3 16.3 0 0 0 15.5 4.3l-.5 1a15 15 0 0 0-4 0l-.5-1a16.2 16.2 0 0 0-4.1 1.3C3.8 9.5 3.1 13.3 3.4 17a16.5 16.5 0 0 0 5 2.5l1-1.6a10.6 10.6 0 0 1-1.7-.8l.4-.3a11.7 11.7 0 0 0 9.8 0l.4.3-1.7.8 1 1.6a16.4 16.4 0 0 0 5-2.5c.4-4.3-.7-8-3-11.4zM9.3 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm5.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
-          Join the Discord
-        </a>
+
       </div>
       <div class="footer-row">
         <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
@@ -774,7 +785,6 @@ body { background-image: none; }
           <a href="/about">About</a>
           <a href="/privacy">Privacy</a>
           <a href="mailto:polostudio.brand@gmail.com">Contact</a>
-          <a href="https://discord.gg/wQEeXXntjs" target="_blank" rel="noopener noreferrer">Discord</a>
         </nav>
       </div>
       <div class="preview-strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
@@ -899,12 +909,31 @@ body { background-image: none; }
           initGoogleButton();
         }
 
+        // One click sign in: the Google quick prompt opens right on the
+        // click. If Google cannot show it, a small sign in popup appears
+        // instead. No intermediate page by design, and never a dead click.
+        async function signinNow(context) {
+          pendingAfterSignin = context;
+          try {
+            if (await ensureGoogle()) {
+              google.accounts.id.prompt((notification) => {
+                let blocked = false;
+                try { blocked = notification.isNotDisplayed() || notification.isSkippedMoment(); }
+                catch (_) { blocked = true; }
+                if (blocked) showSigninModal();
+              });
+            } else {
+              showSigninModal();
+            }
+          } catch (_) { showSigninModal(); }
+        }
+
         // Waits for the session check that starts on page load, so a signed in
         // visitor who clicks before it returns is never asked to sign in again.
         async function requireSignin(context) {
           await authReady;
           if (me) return true;
-          openSignin(context);
+          await signinNow(context);
           return false;
         }
 
@@ -920,6 +949,7 @@ body { background-image: none; }
             const d = await r.json().catch(() => ({}));
             if (!r.ok || !d.ok || !d.signedIn) throw new Error(d.error || "signin_failed");
             await refreshAuth();
+            hideSigninModal();
             if (status) status.textContent = "";
             const next = pendingAfterSignin;
             pendingAfterSignin = null;
@@ -931,19 +961,73 @@ body { background-image: none; }
           }
         }
 
-        let googleReady = false;
-        function initGoogleButton() {
-          if (googleReady) return;
-          const slot = document.getElementById("google-button");
-          if (!slot || !window.google || !google.accounts) { setTimeout(initGoogleButton, 200); return; }
-          fetch(API + "/api/v1/auth/config", { credentials: "same-origin" })
-            .then((r) => r.json()).then((config) => {
-              if (!config.clientId) return;
-              google.accounts.id.initialize({ client_id: config.clientId, callback: onGoogleCredential, ux_mode: "popup", auto_select: false });
-              google.accounts.id.renderButton(slot, { theme: "filled_blue", size: "large", text: "signin_with", shape: "pill", width: 280 });
-              googleReady = true;
-            }).catch(() => { setTimeout(initGoogleButton, 2000); });
+        // Initializes Google Identity Services once; resolves true when ready.
+        // A failed attempt clears the cached promise so the next click retries.
+        let googleInitPromise = null;
+        function ensureGoogle() {
+          if (!googleInitPromise) {
+            googleInitPromise = (async () => {
+              for (let i = 0; i < 50 && !(window.google && google.accounts && google.accounts.id); i++) {
+                await new Promise((r) => setTimeout(r, 200));
+              }
+              if (!(window.google && google.accounts && google.accounts.id)) return false;
+              const r = await fetch(API + "/api/v1/auth/config", { credentials: "same-origin" });
+              const config = await r.json().catch(() => ({}));
+              if (!config.clientId) return false;
+              google.accounts.id.initialize({ client_id: config.clientId, callback: onGoogleCredential, ux_mode: "popup", auto_select: false, use_fedcm_for_prompt: true });
+              return true;
+            })();
+            googleInitPromise.then((ok) => { if (!ok) googleInitPromise = null; });
+          }
+          return googleInitPromise;
         }
+
+        let googleButtonReady = false;
+        function initGoogleButton() {
+          if (googleButtonReady) return;
+          const slot = document.getElementById("google-button");
+          if (!slot) return;
+          ensureGoogle().then((ok) => {
+            if (!ok || googleButtonReady) return;
+            google.accounts.id.renderButton(slot, { theme: "filled_blue", size: "large", text: "signin_with", shape: "pill", width: 280 });
+            googleButtonReady = true;
+          });
+        }
+
+        /* Small sign in popup used only when Google's quick prompt cannot
+           show. It carries the real Google button, so the account chooser
+           still opens on a genuine click. */
+        let modalGoogleReady = false;
+        function initModalGoogleButton() {
+          const slot = document.getElementById("google-modal-button");
+          if (!slot || modalGoogleReady) return;
+          ensureGoogle().then((ok) => {
+            if (!ok || modalGoogleReady) return;
+            try {
+              google.accounts.id.renderButton(slot, { theme: "filled_blue", size: "large", text: "signin_with", shape: "pill", width: 280 });
+              modalGoogleReady = true;
+            } catch (_) { /* the quick prompt remains the primary path */ }
+          });
+        }
+        function showSigninModal() {
+          initModalGoogleButton();
+          const copy = document.getElementById("signin-modal-copy");
+          if (copy) {
+            copy.textContent = pendingAfterSignin === "add"
+              ? "To add a code you need to sign in so you can manage how many invites you have left."
+              : "Sign in with Google to reveal your code. Your claimed codes stay saved to your account.";
+          }
+          document.getElementById("signin-modal").hidden = false;
+        }
+        function hideSigninModal() {
+          document.getElementById("signin-modal").hidden = true;
+        }
+        document.querySelectorAll("[data-signin-modal-close]").forEach((el) => {
+          el.addEventListener("click", hideSigninModal);
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !document.getElementById("signin-modal").hidden) hideSigninModal();
+        });
 
         async function signOut() {
           try { await fetch(API + "/api/v1/auth/logout", { method: "POST", credentials: "same-origin", headers: { "X-Requested-With": "fetch" } }); } catch (_) {}
@@ -1090,8 +1174,12 @@ body { background-image: none; }
         loadPool();
 
         document.querySelectorAll("[data-view]").forEach((button) => {
-          button.addEventListener("click", () => {
+          button.addEventListener("click", async () => {
             const name = button.dataset.view;
+            if (name === "share") {
+              await authReady;
+              if (!me) { signinNow("add"); return; }
+            }
             showView(name);
             if (name === "share") renderShare();
             if (name === "mycodes") loadMyCodes();
@@ -1239,14 +1327,14 @@ body { background-image: none; }
           }, 250);
         });
 
-        const SHARE_COPY = { title: "Built with Muse", text: "Active Muse invite codes. Take one from the pool, or share yours with the community.", url: "https://builtwithmuse.com" }; async function sharePlatform(button) { const status = button.parentElement.querySelector(".share-status"); if (navigator.share) { try { await navigator.share({ title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url }); } catch (_) {} return; } try { await navigator.clipboard.writeText(SHARE_COPY.text + " " + SHARE_COPY.url); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); const shareForm = document.getElementById("share-form");
+        const SHARE_COPY = { title: "Built with Muse", text: "Muse is still invite only. Here is where people are finding working codes.", url: "https://builtwithmuse.com/?s=1" }; async function shareLink(button, opts) { const status = button.parentElement.querySelector(".share-status"); trackEvent(opts.clickedEvent); if (navigator.share) { try { await navigator.share({ title: opts.title, text: opts.text, url: opts.url }); trackEvent(opts.sharedEvent); } catch (err) { if (err && err.name === "AbortError") trackEvent(opts.cancelledEvent); } return; } try { await navigator.clipboard.writeText(opts.text + " " + opts.url); trackEvent(opts.copiedEvent); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } function sharePlatform(button) { return shareLink(button, { title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url, clickedEvent: "platform_share_clicked", sharedEvent: "platform_shared", cancelledEvent: "platform_share_cancelled", copiedEvent: "platform_link_copied" }); } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); try { if (new URLSearchParams(location.search).get("s") === "1") trackEvent("share_arrival"); } catch (_) {} const shareForm = document.getElementById("share-form");
         const shareSubmit = document.getElementById("share-submit");
         function renderShare() {
           const signed = !!me;
           document.getElementById("share-gate").hidden = signed;
           document.getElementById("share-card").hidden = !signed;
         }
-        document.getElementById("share-gate-signin").addEventListener("click", () => openSignin("add"));
+        document.getElementById("share-gate-signin").addEventListener("click", () => signinNow("add"));
         const shareMessageText = document.getElementById("share-message-text");
         const detectedCodeEl = document.getElementById("detected-code");
         const detectedLinkEl = document.getElementById("detected-link");
@@ -1278,10 +1366,12 @@ body { background-image: none; }
           const invitesInput = document.getElementById("share-invites");
           const error = document.getElementById("share-error");
           const message = document.getElementById("share-message");
+          const shareAfter = document.getElementById("share-after");
           const code = detectedCode;
           const link = detectedLink;
           const invites = Number(invitesInput.value);
           message.classList.remove("visible");
+          if (shareAfter) shareAfter.hidden = true;
           if (code.length < 5) {
             error.textContent = "We could not find a code in your message. Paste the full share message from your Muse app.";
             shareMessageText.focus();
@@ -1308,6 +1398,7 @@ body { background-image: none; }
             detectedLink = "";
             renderDetection();
             message.classList.add("visible");
+            if (shareAfter) shareAfter.hidden = false;
             if (d.adopted) message.innerHTML = "<strong>Your old code is back.</strong> It is now linked to your account so you can keep it updated.";
             shareSubmit.textContent = "Code added";
             trackEvent("code_shared");
@@ -1326,11 +1417,24 @@ body { background-image: none; }
           }
         });
 
+        function relTime(iso) {
+          const ms = Date.now() - new Date(iso).getTime();
+          if (!isFinite(ms) || ms < 0) return "recently";
+          const mins = Math.floor(ms / 60000);
+          if (mins < 1) return "just now";
+          if (mins < 60) return mins + (mins === 1 ? " minute ago" : " minutes ago");
+          const hours = Math.floor(mins / 60);
+          if (hours < 24) return hours + (hours === 1 ? " hour ago" : " hours ago");
+          const days = Math.floor(hours / 24);
+          if (days === 1) return "yesterday";
+          if (days < 30) return days + " days ago";
+          return "a while ago";
+        }
         async function loadMyCodes() {
           const list = document.getElementById("mycodes-list");
           if (!list) return;
           await authReady;
-          if (!me) { showView("signin"); openSignin("add"); return; }
+          if (!me) { signinNow("add"); return; }
           list.innerHTML = '<p class="pool-note">Loading your codes.</p>';
           try {
             const response = await fetch(API + "/api/v1/me/codes", { credentials: "same-origin" });
@@ -1340,7 +1444,11 @@ body { background-image: none; }
               list.innerHTML = '<div class="pool-empty">You have not added a code yet.</div>';
               return;
             }
-            list.innerHTML = data.codes.map((c) => {
+            const acts = (data.activity || []).slice(0, 3);
+            const banner = acts.length
+              ? `<div class="activity-banner" role="status"><strong>Your codes are moving.</strong><br>${acts.map((a) => `Someone redeemed your code <b>${escAttr(a.code)}</b> ${relTime(a.at)}`).join("<br>")} Each redemption earned you tokens.</div>`
+              : "";
+            list.innerHTML = banner + data.codes.map((c) => {
               const state = c.retired ? '<span class="pool-tag pulled">Removed</span>'
                 : (c.verifiedDays !== null && c.verifiedDays >= 7) ? '<span class="pool-tag">Needs a check</span>'
                 : '<span class="pool-tag open">Live</span>';
@@ -1353,7 +1461,7 @@ body { background-image: none; }
                 <div class="stats">${c.claimedBy} claimed · ${c.confirmed} redeemed · ${c.reports} not working reports<br />Owner reports ${c.ownerInvites === null ? "?" : c.ownerInvites} invites left · ${checked}</div>
                 ${c.retired ? "" : `<div class="actions">
                   <form class="verify-form" data-verify="${c.id}">
-                    <input type="number" min="1" max="100000" inputmode="numeric" placeholder="Invites left" aria-label="Invites left in your Muse app" required />
+                    <input type="number" min="0" max="100000" inputmode="numeric" placeholder="Invites left" aria-label="Invites left in your Muse app" required />
                     <button class="button small" type="submit">Confirm count</button>
                   </form>
                   ${c.source === "owner" ? "" : `<button class="button small secondary" type="button" data-retire="${c.id}">Remove code</button>`}
@@ -1364,7 +1472,7 @@ body { background-image: none; }
               form.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 const n = Number(form.querySelector("input").value);
-                if (!Number.isInteger(n) || n < 1) return;
+                if (!Number.isInteger(n) || n < 0) return;
                 try {
                   await api("/api/codes/verify", { id: form.dataset.verify, ownerInvites: n });
                   loadMyCodes(); loadPool();
@@ -1478,6 +1586,8 @@ body { background-image: none; }
         const IC = { reply: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"/></svg>', repost: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zm16.5 16.24l-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14z"/></svg>', like: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"/></svg>', views: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"/></svg>' };
         fetch("/api/v1/wild?limit=9", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           if (!d.ok || !d.posts.length) { wildEl.innerHTML = '<div class="pool-empty"><a href="/posts">Browse the posts.</a></div>'; return; }
+          const seeAll = document.getElementById("wild-see-all");
+          if (seeAll && d.total) seeAll.textContent = "All " + d.total + " posts";
           const compact = (n) => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e4 ? 0 : 1).replace(/\.0$/, "") + "K" : String(n || 0);
           const dl = (iso) => iso ? new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" }) : "";
           wildEl.innerHTML = d.posts.map((p) => {
@@ -1487,7 +1597,9 @@ body { background-image: none; }
             const mediaHtml = photos.length ? '<a class="tweet-media n' + photos.length + '" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + photos.map((u) => '<img src="' + esc(u) + '" alt="" loading="lazy" referrerpolicy="no-referrer" />').join("") + "</a>" : p.videoPoster ? '<a class="tweet-media n1 video" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow"><img src="' + esc(p.videoPoster) + '" alt="" loading="lazy" referrerpolicy="no-referrer" /><span class="play" aria-hidden="true">&#9654;</span></a>' : "";
             const mark = p.platform === "X" ? XM : '<span style="font-size:12px;font-weight:700;color:#536471">' + esc(p.platform) + "</span>";
             const stats = (p.likes || p.views) ? "<span>" + IC.reply + compact(p.replies) + "</span><span>" + IC.repost + compact(p.reposts) + "</span><span>" + IC.like + compact(p.likes) + "</span><span>" + IC.views + compact(p.views) + "</span>" : '<span style="font-size:12px">Outcome as reported by the poster</span>';
-            return '<article class="tweet"><header class="tweet-head">' + avatar + '<span class="tweet-names"><b>' + esc(p.name || (p.handle || "").replace(/^@/, "")) + "</b><span>" + esc(p.handle || "") + (p.handle && p.postedAt ? " · " : "") + esc(dl(p.postedAt)) + '</span></span><a class="tweet-mark" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + mark + '</a></header><p class="tweet-text">' + esc(p.text) + "</p>" + mediaHtml + '<footer class="tweet-actions">' + stats + '<a class="tweet-open" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">View on ' + esc(p.platform) + "</a></footer></article>";
+            const subH = p.submitterHandle ? String(p.submitterHandle).replace(/^@/, "") : "";
+            const submitter = subH ? '<span class="tweet-submitter">Added by ' + (p.submitterActive ? '<a href="/creators/' + esc(subH) + '">@' + esc(subH) + "</a>" : "@" + esc(subH)) + "</span>" : "";
+            return '<article class="tweet"><header class="tweet-head">' + avatar + '<span class="tweet-names"><b>' + esc(p.name || (p.handle || "").replace(/^@/, "")) + "</b><span>" + esc(p.handle || "") + (p.handle && p.postedAt ? " · " : "") + esc(dl(p.postedAt)) + '</span></span><a class="tweet-mark" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + mark + '</a></header><p class="tweet-text">' + esc(p.text) + "</p>" + mediaHtml + '<footer class="tweet-actions">' + stats + submitter + '<a class="tweet-open" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">View on ' + esc(p.platform) + "</a></footer></article>";
           }).join("");
         }).catch(() => { wildEl.innerHTML = '<div class="pool-empty"><a href="/posts">Browse the posts.</a></div>'; });
         fetch("/api/v1/creators?limit=4", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {

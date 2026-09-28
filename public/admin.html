@@ -154,6 +154,7 @@
           <button data-tab="claims" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M6 9l6 6 6-6M5 21h14"/></svg>Claims</button>
           <button data-tab="reports" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V4h12l-1 4 1 4H4"/></svg>Reports</button>
           <button data-tab="pool" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.7 5.6 6.3.9-4.5 4.4 1 6.1-5.5-2.9L6.5 20l1-6.1L3 9.5l6.3-.9z"/></svg>Creator pool</button>
+          <button data-tab="community" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v10H9l-5 4z"/></svg>Community</button>
           <button data-tab="waitlist" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h6"/></svg>Waitlist</button>
         </nav>
         <div class="foot">
@@ -250,6 +251,13 @@
               <div class="tablewrap"><table id="pool-creators"><thead><tr><th>Joined</th><th>Handle</th><th>Name</th><th>Email</th><th>Published</th><th>Useful</th><th>Followers</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
             </div>
           </section>
+
+          <section class="panel" id="panel-community">
+            <div class="toolbar"><span class="muted">Posts creators added themselves. Approve to publish on the Social page, reject to drop.</span><span class="spacer"></span>
+              <select id="community-filter" class="btn"><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select>
+            </div>
+            <div class="tablewrap"><table id="community"><thead><tr><th>When</th><th>Post</th><th>Submitted by</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+          </section>
         </div>
       </div>
     </div>
@@ -258,7 +266,7 @@
     <script>
       (() => {
         const $ = (id) => document.getElementById(id);
-        const titles = { overview: "Overview", analytics: "Analytics", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist", pool: "Creator pool" };
+        const titles = { overview: "Overview", analytics: "Analytics", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist", pool: "Creator pool", community: "Community posts" };
         let refreshTimer = null;
 
         async function api(path, options = {}) {
@@ -422,6 +430,23 @@
           } catch (error) { if (error.message !== "signed_out") toast("Failed: " + error.message); }
         });
 
+        async function loadCommunity() {
+          const status = $("community-filter").value;
+          const d = await api("/api/admin/wild/submissions?status=" + encodeURIComponent(status));
+          const pill = (r) => r.status === "approved" ? '<span class="pill ok">Approved</span>' : r.status === "rejected" ? '<span class="pill bad">Rejected</span>' : '<span class="pill flag">Pending</span>';
+          $("community").querySelector("tbody").innerHTML = d.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="${esc(r.tweet_url)}" target="_blank" rel="noopener"><b>${esc(r.author_name || "")}</b> <span class="muted">${esc(r.author_handle || "")}</span></a>${r.video_url ? ' <span class="pill">video</span>' : ""}<br /><span class="muted">${esc((r.text || "").slice(0, 160))}</span></td><td>@${esc(r.creator_handle)}<br /><span class="muted">${esc(r.creator_display || "")}</span></td><td>${pill(r)}</td><td>${r.status === "pending" ? `<button class="btn sm" data-community="approve" data-id="${esc(r.id)}">Approve</button> <button class="btn sm danger" data-community="reject" data-id="${esc(r.id)}">Reject</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="5" class="empty">Nothing here</td></tr>';
+        }
+        $("community-filter").addEventListener("change", () => loadCommunity().catch((e) => { if (e.message !== "signed_out") toast("Failed: " + e.message); }));
+        document.body.addEventListener("click", async (event) => {
+          const button = event.target.closest("[data-community]");
+          if (!button) return;
+          try {
+            await api("/api/admin/wild/submissions/" + encodeURIComponent(button.dataset.id) + "/" + button.dataset.community, { method: "POST", body: {} });
+            toast("Done");
+            await loadCommunity();
+          } catch (error) { if (error.message !== "signed_out") toast("Failed: " + error.message); }
+        });
+
         async function loadTab(tab) {
           $("title").textContent = titles[tab];
           $("status").textContent = "Loading";
@@ -430,6 +455,7 @@
             else if (tab === "analytics") await loadAnalytics();
             else if (tab === "codes") await loadCodes();
             else if (tab === "pool") await loadPool();
+            else if (tab === "community") await loadCommunity();
             else await loadList(tab);
             $("status").textContent = "Updated " + new Date().toLocaleTimeString();
           } catch (error) {

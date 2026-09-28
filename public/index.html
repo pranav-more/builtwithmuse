@@ -861,7 +861,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
     <script>
       (() => {
         const API = "";
-        const views = ["home", "claim", "share", "workflows", "waitlist", "signin", "mycodes", "saved"];
+        const views = ["home", "claim", "share", "waitlist", "signin", "mycodes", "saved"];
         const navButtons = [...document.querySelectorAll(".nav [data-view]")];
         let currentCode = "";
         const forbiddenDash = /[\u002D\u058A\u05BE\u1400\u1806\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2E17\u2E1A\u2E3A\u2E3B\u2E40\u2E5D\u301C\u3030\u30A0\uFE31\uFE32\uFE58\uFE63\uFF0D]/;
@@ -896,7 +896,10 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         document.getElementById("share-close").addEventListener("click", closeShare);
         function showView(name) {
           if (name === "share") { openShare(); return; }
-          views.forEach((view) => document.getElementById(`view-${view}`).classList.toggle("active", view === name));
+          views.forEach((view) => {
+            const section = document.getElementById(`view-${view}`);
+            if (section) section.classList.toggle("active", view === name);
+          });
           navButtons.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.view === name || (name === "claim" && button.dataset.view === "home"))));
           const hash = name === "home" ? "" : `#${name}`;
           try { if ((location.hash || "") !== hash) history.replaceState(null, "", hash || `${location.pathname}${location.search}`); } catch (_) { /* non critical */ }
@@ -905,7 +908,8 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
 
         function routeFromHash() {
           const name = (location.hash || "").replace(/^#/, "");
-          if (name === "share" || name === "workflows" || name === "waitlist") { showView(name); renderShare(); }
+          if (name === "workflows") { location.href = "/workflows"; return; }
+          if (name === "share" || name === "waitlist") { showView(name); renderShare(); }
           if (name === "signin") openSignin("claim");
           if (name === "mycodes") { showView("mycodes"); loadMyCodes(); }
           if (name === "saved") { showView("saved"); loadSaved(); }

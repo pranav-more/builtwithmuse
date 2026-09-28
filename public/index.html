@@ -900,12 +900,28 @@ body { background-image: none; }
           initGoogleButton();
         }
 
+        // One click sign in: the Google account chooser opens right on the
+        // click. When One Tap cannot show (suppressed, no Google session,
+        // blocked), we fall back to the full sign in page with the button.
+        async function signinNow(context) {
+          pendingAfterSignin = context;
+          if (await ensureGoogle()) {
+            try {
+              google.accounts.id.prompt((notification) => {
+                if (notification.isNotDisplayed() || notification.isSkippedMoment()) openSignin(context);
+              });
+              return;
+            } catch (_) { /* fall through to the sign in page */ }
+          }
+          openSignin(context);
+        }
+
         // Waits for the session check that starts on page load, so a signed in
         // visitor who clicks before it returns is never asked to sign in again.
         async function requireSignin(context) {
           await authReady;
           if (me) return true;
-          openSignin(context);
+          await signinNow(context);
           return false;
         }
 
@@ -932,18 +948,37 @@ body { background-image: none; }
           }
         }
 
-        let googleReady = false;
-        function initGoogleButton() {
-          if (googleReady) return;
-          const slot = document.getElementById("google-button");
-          if (!slot || !window.google || !google.accounts) { setTimeout(initGoogleButton, 200); return; }
-          fetch(API + "/api/v1/auth/config", { credentials: "same-origin" })
-            .then((r) => r.json()).then((config) => {
-              if (!config.clientId) return;
+        // Initializes Google Identity Services once; resolves true when ready.
+        // A failed attempt clears the cached promise so the next click retries.
+        let googleInitPromise = null;
+        function ensureGoogle() {
+          if (!googleInitPromise) {
+            googleInitPromise = (async () => {
+              for (let i = 0; i < 50 && !(window.google && google.accounts && google.accounts.id); i++) {
+                await new Promise((r) => setTimeout(r, 200));
+              }
+              if (!(window.google && google.accounts && google.accounts.id)) return false;
+              const r = await fetch(API + "/api/v1/auth/config", { credentials: "same-origin" });
+              const config = await r.json().catch(() => ({}));
+              if (!config.clientId) return false;
               google.accounts.id.initialize({ client_id: config.clientId, callback: onGoogleCredential, ux_mode: "popup", auto_select: false });
-              google.accounts.id.renderButton(slot, { theme: "filled_blue", size: "large", text: "signin_with", shape: "pill", width: 280 });
-              googleReady = true;
-            }).catch(() => { setTimeout(initGoogleButton, 2000); });
+              return true;
+            })();
+            googleInitPromise.then((ok) => { if (!ok) googleInitPromise = null; });
+          }
+          return googleInitPromise;
+        }
+
+        let googleButtonReady = false;
+        function initGoogleButton() {
+          if (googleButtonReady) return;
+          const slot = document.getElementById("google-button");
+          if (!slot) return;
+          ensureGoogle().then((ok) => {
+            if (!ok || googleButtonReady) return;
+            google.accounts.id.renderButton(slot, { theme: "filled_blue", size: "large", text: "signin_with", shape: "pill", width: 280 });
+            googleButtonReady = true;
+          });
         }
 
         async function signOut() {
@@ -1247,7 +1282,7 @@ body { background-image: none; }
           document.getElementById("share-gate").hidden = signed;
           document.getElementById("share-card").hidden = !signed;
         }
-        document.getElementById("share-gate-signin").addEventListener("click", () => openSignin("add"));
+        document.getElementById("share-gate-signin").addEventListener("click", () => signinNow("add"));
         const shareMessageText = document.getElementById("share-message-text");
         const detectedCodeEl = document.getElementById("detected-code");
         const detectedLinkEl = document.getElementById("detected-link");
@@ -1331,7 +1366,7 @@ body { background-image: none; }
           const list = document.getElementById("mycodes-list");
           if (!list) return;
           await authReady;
-          if (!me) { showView("signin"); openSignin("add"); return; }
+          if (!me) { signinNow("add"); return; }
           list.innerHTML = '<p class="pool-note">Loading your codes.</p>';
           try {
             const response = await fetch(API + "/api/v1/me/codes", { credentials: "same-origin" });

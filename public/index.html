@@ -95,6 +95,26 @@
       .mycode .verify-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
       .mycode input[type="number"] { width: 110px; }
 
+      .share-modal { width: min(94vw, 600px); max-height: 92vh; overflow: auto; border: 1px solid var(--line); border-radius: 22px; padding: 0; background: #fff; color: var(--ink); box-shadow: 0 30px 80px rgba(11,18,32,.28); }
+      .share-modal::backdrop { background: rgba(11,18,32,.5); backdrop-filter: blur(3px); }
+      .share-modal .modal-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 26px 28px 0; }
+      .share-modal .modal-head h2 { margin: 6px 0 8px; font-size: clamp(24px, 3vw, 30px); letter-spacing: -0.02em; line-height: 1.05; }
+      .share-modal .modal-lead { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+      .share-modal .modal-lead a { color: var(--blue-deep); }
+      .share-modal .modal-body { padding: 18px 28px 28px; display: grid; gap: 16px; }
+      .share-close { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink); display: inline-grid; place-items: center; cursor: pointer; }
+      .share-close:hover { border-color: var(--blue); color: var(--blue-deep); }
+      .share-card-inner .form-stack { display: grid; gap: 16px; }
+      .share-card-inner .field label { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+      .share-card-inner textarea { font-family: inherit; font-size: 15px; }
+      .detect-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .detect { min-width: 0; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: var(--tint); display: grid; gap: 4px; }
+      .detect span { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-2); font-weight: 700; }
+      .detect strong { font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .share-modal .form-note { margin: 0; font-size: 13px; color: var(--muted-2); line-height: 1.5; }
+      .share-modal .signin-card { margin: 0; padding: 28px 24px; }
+      body.modal-open { overflow: hidden; }
+      @media (max-width: 640px) { .share-modal { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; border-radius: 0; border: 0; } .share-modal .modal-head, .share-modal .modal-body { padding-left: 18px; padding-right: 18px; } .detect-row { grid-template-columns: 1fr; } }
       .view { display: none; }
       .view.active { display: block; }
       .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
@@ -474,7 +494,22 @@ body { background-image: none; }
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://builtwithmuse.com/#website", "url": "https://builtwithmuse.com/", "name": "Built with Muse", "description": "Free Muse invite codes from the community, plus real workflows people run with Meta's Muse."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I get a free Muse invite code?", "acceptedAnswer": {"@type": "Answer", "text": "Join the invite pool on builtwithmuse.com. When a community member shares a code, you can claim it, then share your own code to keep the pool going."}}, {"@type": "Question", "name": "Is builtwithmuse.com affiliated with Meta?", "acceptedAnswer": {"@type": "Answer", "text": "No. Built with Muse is an independent community project and is not affiliated with or endorsed by Meta."}}, {"@type": "Question", "name": "What can I do with Muse once I am in?", "acceptedAnswer": {"@type": "Answer", "text": "People use Muse to turn recipe reels into grocery lists, plan dinner parties, triage email, negotiate bills, export Instagram audiences, and run adaptive fitness plans. See the use case library at builtwithmuse.com/workflows."}}, {"@type": "Question", "name": "Muse is not available in my country. What now?", "acceptedAnswer": {"@type": "Answer", "text": "Join the country waitlist on builtwithmuse.com. You will be notified when Muse launches in your region, and you can read the guide on using Muse where it is not available yet."}}]}]}</script>
-  </head>
+  <style>.site-footer { margin: 72px calc(50% - 50vw) 0; padding: 56px calc(50vw - 50%) 36px; background: #0b1220; color: #fff; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1.15fr 2fr; gap: 40px 48px; max-width: 1180px; margin: 0 auto; }
+.footer-col h3 { margin: 0 0 12px; font: 600 13px/1 "IBM Plex Sans", system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #8e98b3; }
+.footer-col > a:not(.footer-brand), .footer-two a { display: block; padding: 5px 0; color: #d7deee; text-decoration: none; font-size: 15px; line-height: 1.4; }
+.footer-col > a:hover, .footer-two a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.footer-brand { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 24px; color: #fff; text-decoration: none; font: 900 16px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; }
+.footer-brand .mark { width: 20px; height: 20px; }
+.footer-about p { margin: 0 0 16px; color: #c9d1e3; font-size: 15px; line-height: 1.6; max-width: 60ch; }
+.footer-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+.footer-fine { font-size: 13px !important; color: #8e98b3 !important; margin: 20px 0 10px !important; }
+.footer-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 13px; color: #aab3c8; }
+.footer-meta a { color: #fff; text-decoration: none; }
+.footer-meta a:hover { text-decoration: underline; }
+@media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-about { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .site-footer { padding-top: 40px; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-two { grid-template-columns: 1fr; } }</style>
+</head>
   <body>
     <div class="shell">
       <header class="topbar">
@@ -602,54 +637,7 @@ body { background-image: none; }
           </div>
         </section>
 
-        <section class="view" id="view-share">
-          <div class="section-head">
-            <div class="eyebrow">Pay it forward</div>
-            <h2>Add your invite to the pool.</h2>
-            <p>Here is the actual mechanic: when someone joins Muse with your invite and redeems it in Settings within 48 hours of joining, Muse credits 1 billion tokens to each of you, inside the app. Source: <a href="https://x.com/Muse/status/2100268557229531376" target="_blank" rel="noopener noreferrer">Muse's own announcement</a>.</p>
-          </div>
-          <div class="signin-card" id="share-gate" hidden>
-            <h2>One step first.</h2>
-            <p>To add a code you need to sign in so you can manage how many invites you have left. It takes ten seconds with Google.</p>
-            <button class="button" type="button" id="share-gate-signin">Sign in with Google</button>
-          </div>
-          <div class="workflow-card" id="share-card" hidden>
-            <form id="share-form" novalidate>
-              <div class="form-stack">
-                <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
-                <div class="field">
-                  <label for="share-message-text">Just paste your link here</label>
-                  <textarea id="share-message-text" name="share-message-text" rows="4" required autocomplete="off" placeholder="Check out Muse, your personal AI agent. Redeem my code in Settings within 48 hours of joining and we will both get 1 billion Muse tokens. Code: 70Z09F https://muse.ai/join"></textarea>
-                  <small>Paste the invite message from your Muse app. We pull your code and invite link out of it.</small>
-                </div>
-                <div class="field" id="share-detection" aria-live="polite" style="background:#f7f7f5;border:1px solid #e8e8e3;border-radius:12px;padding:12px 14px;display:grid;gap:8px">
-                  <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span>Invite code</span><strong id="detected-code">Waiting for your message</strong></div>
-                  <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span>Invite link</span><strong id="detected-link" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:62%">Waiting for your message</strong></div>
-                </div>
-                <div class="field">
-                  <label for="share-invites">Invites left in your Muse app</label>
-                  <input id="share-invites" name="share-invites" type="number" min="1" max="100000" inputmode="numeric" required placeholder="e.g. 16" />
-                  <small>Open your Muse app and enter the number it shows. You can update it any time from My codes.</small>
-                  <div class="error" id="share-error" aria-live="polite"></div>
-                </div>
-                <button class="button full" id="share-submit" type="submit" disabled>Add my code</button>
-                <p class="form-note">Keep your code live by confirming your invite count every few days. Codes unconfirmed for 7 days drop to the bottom of the pool. By adding yours, you confirm the code and link are available to use.</p>
-              </div>
-            </form>
-            <div class="message" id="share-message" aria-live="polite"><strong>Your code is live.</strong> More visitors means more chances someone redeems it and you earn tokens.</div>
-            <div id="share-after" hidden>
-              <p class="share-earn">Bring people here:</p>
-              <div class="card-actions">
-                <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share the pool</button>
-                <span class="share-status" aria-live="polite"></span>
-              </div>
-              <div class="share-next">
-                <a class="button" href="/workflows">Explore workflows</a>
-                <a class="linklike" href="/creator#new">Or be one of the first to add a workflow</a>
-              </div>
-            </div>
-          </div>
-        </section>
+        <section class="view" id="view-share" aria-hidden="true"></section>
 
         <section class="view" id="view-waitlist">
           <div class="waitlist-layout">
@@ -735,6 +723,61 @@ body { background-image: none; }
           </div>
           <div id="saved-list"></div>
         </section>
+
+    <dialog class="share-modal" id="share-modal" aria-labelledby="share-modal-h2">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Pay it forward</div>
+          <h2 id="share-modal-h2">Add your invite to the pool.</h2>
+          <p class="modal-lead">When someone joins Muse with your invite and redeems it in Settings within 48 hours, Muse credits 1 billion tokens to each of you. <a href="https://x.com/Muse/status/2100268557229539328" target="_blank" rel="noopener noreferrer">Source</a></p>
+        </div>
+        <button class="share-close" type="button" id="share-close" aria-label="Close"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <div class="signin-card" id="share-gate" hidden>
+            <h2>One step first.</h2>
+            <p>To add a code you need to sign in so you can manage how many invites you have left. It takes ten seconds with Google.</p>
+            <button class="button" type="button" id="share-gate-signin">Sign in with Google</button>
+          </div>
+        <div class="share-card-inner" id="share-card" hidden>
+          <form id="share-form" novalidate>
+            <div class="form-stack">
+              <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="field">
+                <label for="share-message-text">Paste the invite message from your Muse app</label>
+                <textarea id="share-message-text" name="share-message-text" rows="3" required autocomplete="off" placeholder="Check out Muse, your personal AI agent. Redeem my code in Settings within 48 hours of joining and we will both get 1 billion Muse tokens. Code: 70Z09F https://muse.ai/join"></textarea>
+                <small>We pull the code and the invite link out of it. You can also paste just the code.</small>
+              </div>
+              <div class="detect-row" id="share-detection" aria-live="polite">
+                <div class="detect"><span>Invite code</span><strong id="detected-code">Waiting for your message</strong></div>
+                <div class="detect"><span>Invite link</span><strong id="detected-link">Waiting for your message</strong></div>
+              </div>
+              <div class="field">
+                <label for="share-invites">Invites left in your Muse app</label>
+                <input id="share-invites" name="share-invites" type="number" min="1" max="100000" inputmode="numeric" required placeholder="e.g. 16" />
+                <small>The number your Muse app shows. Update it any time from My codes.</small>
+                <div class="error" id="share-error" aria-live="polite"></div>
+              </div>
+              <button class="button full" id="share-submit" type="submit" disabled>Add my code</button>
+              <p class="form-note">Confirm your invite count every few days to keep the code live. Unconfirmed codes sink after 7 days.</p>
+            </div>
+          </form>
+          <div class="message" id="share-message" aria-live="polite"><strong>Your code is live.</strong> More visitors means more chances someone redeems it and you earn tokens.</div>
+          <div id="share-after" hidden>
+              <p class="share-earn">Bring people here:</p>
+              <div class="card-actions">
+                <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share the pool</button>
+                <span class="share-status" aria-live="polite"></span>
+              </div>
+              <div class="share-next">
+                <a class="button" href="/workflows">Explore workflows</a>
+                <a class="linklike" href="/creator#new">Or be one of the first to add a workflow</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
       </main>
 
       <div class="nudge" id="nudge" hidden>
@@ -766,27 +809,25 @@ body { background-image: none; }
         </div>
       </div>
 
-    <footer class="footer">
-      <div class="footer-cta">
-        <div>
-          <div class="eyebrow">Join the community</div>
-          <h2>See what other people are building with Muse.</h2>
-          <p>Trade codes, swap workflows and get help from people who are already inside.</p>
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="footer-brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+          <h3>Directory</h3>
+          <a href="/">Get a code</a><a href="/#share">Share a code</a><a href="/workflows">Feed</a><a href="/posts">Social</a><a href="/creators">Creators</a><a href="/use-cases">Use cases</a><a href="/blog">Blog</a><a href="/creator#new">Publish a workflow</a><a href="/#mycodes">My codes</a>
         </div>
-
+        <div class="footer-col">
+          <h3>Social posts</h3>
+          <a href="/posts/paying-bills">Paying bills</a><a href="/posts/spending-money">Where people spend money</a><a href="/posts/educational">Educational</a><a href="/posts/job-apply">Job applications</a><a href="/posts/dating">Dating</a><a href="/posts/travel">Travel</a><a href="/posts/food">Food</a><a href="/posts/home-and-family">Home and family</a><a href="/posts/health">Health</a><a href="/posts/work">Work</a><a href="/posts/calls-and-admin">Calls and paperwork</a><a href="/posts/fun">Fun</a>
+        </div>
+        <div class="footer-col footer-about">
+          <h3>About</h3>
+          <p>A community pool of Muse invite codes, and the workflows people build with Muse, Meta&#8217;s personal AI agent. Codes come from members who pass their invites on. Every post links to its source.</p>
+          <div class="footer-two"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/blog/what-is-meta-muse">What is Meta Muse</a><a href="/blog/free-muse-invite-code">Free Muse invite code</a><a href="/blog/how-to-use-meta-muse-outside-us">Muse outside the US</a><a href="/blog/muse-vs-chatgpt">Muse vs ChatGPT</a><a href="/blog/muse-tokens-explained">Muse tokens explained</a><a href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Sponsor</a><a href="mailto:polostudio.brand@gmail.com">Contact</a><a href="https://usesundog.com/muse">Sundog workflow library &#8599;</a></div>
+          <p class="footer-fine">Independent community project. Not affiliated with or endorsed by Meta. Token amounts are as Muse announced them.</p>
+          <div class="footer-meta"><span>Made by <a href="/about">Pranav More and Jayesh Marathe</a></span><span aria-hidden="true">&#183;</span><span>&#169; 2026 Built with Muse</span></div>
+        </div>
       </div>
-      <div class="footer-row">
-        <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
-        <nav class="footer-links" aria-label="Footer">
-          <a href="/">Get a code</a>
-          <a href="/workflows">Use cases</a>
-          <a href="/blog">Blog</a>
-          <a href="/about">About</a>
-          <a href="/privacy">Privacy</a>
-          <a href="mailto:polostudio.brand@gmail.com">Contact</a>
-        </nav>
-      </div>
-      <div class="preview-strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
     </footer>
     </div>
 
@@ -813,7 +854,21 @@ body { background-image: none; }
           });
         }
 
+        const shareModal = document.getElementById("share-modal");
+        function openShare() {
+          if (!shareModal.open) { if (typeof shareModal.showModal === "function") shareModal.showModal(); else shareModal.setAttribute("open", ""); }
+          document.body.classList.add("modal-open");
+          try { if ((location.hash || "") !== "#share") history.replaceState(null, "", "#share"); } catch (_) { /* non critical */ }
+        }
+        function closeShare() { if (shareModal.open) shareModal.close(); else shareModal.removeAttribute("open"); document.body.classList.remove("modal-open"); }
+        shareModal.addEventListener("close", () => {
+          document.body.classList.remove("modal-open");
+          try { if ((location.hash || "") === "#share") history.replaceState(null, "", `${location.pathname}${location.search}`); } catch (_) { /* non critical */ }
+        });
+        shareModal.addEventListener("click", (event) => { if (event.target === shareModal) closeShare(); });
+        document.getElementById("share-close").addEventListener("click", closeShare);
         function showView(name) {
+          if (name === "share") { openShare(); return; }
           views.forEach((view) => document.getElementById(`view-${view}`).classList.toggle("active", view === name));
           navButtons.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.view === name || (name === "claim" && button.dataset.view === "home"))));
           const hash = name === "home" ? "" : `#${name}`;

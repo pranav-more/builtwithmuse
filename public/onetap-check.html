@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Tap check</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+  body { font-family: system-ui, sans-serif; padding: 32px; background: #0f0f0f; color: #f2f2f2; }
+  #status { font-size: 20px; margin-top: 24px; padding: 16px; border: 1px solid #444; border-radius: 8px; }
+</style>
+</head>
+<body>
+<h1>One Tap check</h1>
+<p>This page asks Google to show its sign in prompt and writes the exact result below. Temporary diagnostic page.</p>
+<p id="status">Loading Google library</p>
+<script>
+  async function main() {
+    var status = document.getElementById("status");
+    for (var i = 0; i < 50 && !(window.google && google.accounts && google.accounts.id); i++) {
+      await new Promise(function (r) { setTimeout(r, 200); });
+    }
+    if (!(window.google && google.accounts && google.accounts.id)) {
+      status.textContent = "RESULT: Google library did not load";
+      return;
+    }
+    var clientId = null;
+    try {
+      var res = await fetch("/api/v1/auth/config", { headers: { "X-Requested-With": "fetch" } });
+      var cfg = await res.json();
+      clientId = cfg && cfg.clientId;
+    } catch (e) {
+      status.textContent = "RESULT: could not read auth config";
+      return;
+    }
+    if (!clientId) { status.textContent = "RESULT: no client id in auth config"; return; }
+    google.accounts.id.initialize({
+      client_id: clientId,
+      auto_select: false,
+      use_fedcm_for_prompt: true,
+      callback: function () { status.textContent = "RESULT: credential received (sign in completed)"; }
+    });
+    status.textContent = "Prompt requested, waiting for Google";
+    var done = false;
+    google.accounts.id.prompt(function (n) {
+      done = true;
+      var out = "RESULT: ";
+      try {
+        if (n.isDisplayed()) out += "DISPLAYED";
+        else if (n.isNotDisplayed()) out += "NOT DISPLAYED reason is " + n.getNotDisplayedReason();
+        else if (n.isSkippedMoment()) out += "SKIPPED reason is " + n.getSkippedReason();
+        else if (n.isDismissedMoment()) out += "DISMISSED reason is " + n.getDismissedReason();
+        else out += "UNKNOWN STATE";
+      } catch (e) { out += "error reading prompt state"; }
+      status.textContent = out;
+    });
+    setTimeout(function () {
+      if (!done) status.textContent = "RESULT: Google never answered the prompt request";
+    }, 15000);
+  }
+  main();
+</script>
+</body>
+</html>

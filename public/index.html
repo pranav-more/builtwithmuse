@@ -901,19 +901,12 @@ body { background-image: none; }
         }
 
         // One click sign in: the Google account chooser opens right on the
-        // click. When One Tap cannot show (suppressed, no Google session,
-        // blocked), we fall back to the full sign in page with the button.
+        // click. No intermediate page by design.
         async function signinNow(context) {
           pendingAfterSignin = context;
           try {
-            if (await ensureGoogle()) {
-              google.accounts.id.prompt((notification) => {
-                if (notification.isNotDisplayed() || notification.isSkippedMoment()) openSignin(context);
-              });
-              return;
-            }
-          } catch (_) { /* fall through to the sign in page */ }
-          openSignin(context);
+            if (await ensureGoogle()) google.accounts.id.prompt();
+          } catch (_) { /* Google sign in unavailable here */ }
         }
 
         // Waits for the session check that starts on page load, so a signed in

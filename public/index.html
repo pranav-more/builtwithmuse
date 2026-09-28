@@ -155,6 +155,7 @@
       .write-btn { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; margin-left: 8px; }
       .write-btn:hover { background: #e6edff; }
       .home-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 8px 0 8px; }
+      .home-side { display: grid; gap: 24px; align-content: start; }
       .home-card { position: relative; display: flex; flex-direction: column; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); }
       .home-card.tint { background: #eef3ff; }
       .home-card .card-label { display: flex; justify-content: space-between; align-items: center; color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px; }
@@ -183,7 +184,7 @@
       .quote-band .button { margin: 0; }
       .quote-band .hl { font-style: normal; background-image: linear-gradient(120deg, rgba(26,86,255,.22), rgba(26,86,255,.22)); background-repeat: no-repeat; background-size: 0% 100%; background-position: 0 0; padding: 0 .08em; margin: 0 -.08em; border-radius: 4px; transition: background-size 1.1s cubic-bezier(.2,.7,.2,1) .25s; }
       .quote-band.seen .hl { background-size: 100% 100%; }
-      .sponsor-card { margin: 24px 0 0; padding: 36px 32px; border: 1px dashed var(--line); border-radius: var(--radius); background: var(--tint); display: grid; gap: 12px; justify-items: center; text-align: center; }
+      .sponsor-card { margin: 0; padding: 36px 32px; border: 1px dashed var(--line); border-radius: var(--radius); background: var(--tint); display: grid; gap: 12px; justify-items: center; text-align: center; }
       .sponsor-card .eyebrow { margin-bottom: 0; }
       .sponsor-card h2 { margin: 0; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; }
       .sponsor-card p { margin: 0; color: var(--muted); max-width: 54ch; font-size: 15px; line-height: 1.6; }
@@ -510,20 +511,21 @@ body { background-image: none; }
               <p class="fine"><i class="dot"></i><span id="home-active">Checking the pool.</span></p>
               <p class="waitlist-nudge">Muse not in your country yet? <button type="button" class="linklike" data-view="waitlist">Join the waitlist</button> and we will send you a fresh code on launch day.</p>
             </section>
-            <section class="home-card tint" aria-labelledby="share-h2">
-              <div class="card-label"><span>Pass it on</span></div>
-              <h2 id="share-h2">Share a code.</h2>
-              <p class="lead">Add your unused Muse invite to the community pool so the next person can get in. When someone redeems it, Muse credits tokens to both of you.</p>
-              <div class="card-foot"><button class="button secondary" type="button" data-view="share">Share a code</button></div>
-            </section>
+            <div class="home-side">
+              <section class="home-card tint" aria-labelledby="share-h2">
+                <div class="card-label"><span>Pass it on</span></div>
+                <h2 id="share-h2">Share a code.</h2>
+                <p class="lead">Add your unused Muse invite to the community pool so the next person can get in. When someone redeems it, Muse credits tokens to both of you.</p>
+                <div class="card-foot"><button class="button secondary" type="button" data-view="share">Share a code</button></div>
+              </section>
+              <section class="sponsor-card" aria-label="Sponsor">
+                <div class="eyebrow">Sponsor</div>
+                <h2>One sponsor. That’s all we need.</h2>
+                <p>We’re not looking for ten sponsors. Just one, to keep this platform running. Your brand in front of a thousand AI early adopters every week.</p>
+                <a class="button" href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Become our sponsor</a>
+              </section>
+            </div>
           </div>
-
-          <section class="sponsor-card" aria-label="Sponsor">
-            <div class="eyebrow">Sponsor</div>
-            <h2>One sponsor. That’s all we need.</h2>
-            <p>We’re not looking for ten sponsors. Just one, to keep this platform running. Your brand in front of a thousand AI early adopters every week.</p>
-            <a class="button" href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Become our sponsor</a>
-          </section>
 
           <div class="quote-band" id="quote-band"><p>Muse is new and there are no big names yet. Share your workflows and become <em class="hl">the person people follow</em>.</p><a class="button" href="/creator#new">Become a creator</a></div>
 

@@ -502,7 +502,6 @@ body { background-image: none; }
               <div class="code-row"><button class="preview-code blurred" type="button" id="hero-code" aria-label="Your invite code" title="Click to copy">XXXXXX</button><button class="button hero-cta" type="button" id="hero-cta">Get a code</button></div>
               <p class="hero-status" id="hero-status" aria-live="polite"></p>
               <p class="hero-after" id="hero-actions" hidden><button class="linklike" type="button" id="hero-retry">Not working? Try another</button><span aria-hidden="true"> · </span><button class="linklike" type="button" id="hero-redeemed">I redeemed it</button></p>
-              <p class="hero-link" id="hero-link" hidden>Invite link: <a id="hero-link-a" href="#" target="_blank" rel="noopener noreferrer"></a></p>
               <ol class="mini-steps three">
                 <li class="mini-row"><span class="mini-number">1</span><div><strong>Claim</strong><span class="hint">Receive one available code.</span></div></li>
                 <li class="mini-row"><span class="mini-number">2</span><div><strong>Redeem</strong><span class="hint">Use it in your Muse settings.</span></div></li>
@@ -520,9 +519,9 @@ body { background-image: none; }
               </section>
               <section class="sponsor-card" aria-label="Sponsor">
                 <div class="eyebrow">Sponsor</div>
-                <h2>One sponsor. That’s all we need.</h2>
-                <p>We’re not looking for ten sponsors. Just one, to keep this platform running. Your brand in front of a thousand AI early adopters every week.</p>
-                <a class="button" href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Become our sponsor</a>
+                <h2>Put your brand in front of the people building with Muse.</h2>
+                <p>One sponsor slot, and it is exclusive. Every week about a thousand AI early adopters come here for invite codes and workflows. Your name on every page, your line in every share kit.</p>
+                <a class="button" href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Claim the sponsor slot</a>
               </section>
             </div>
           </div>
@@ -1194,8 +1193,6 @@ body { background-image: none; }
           heroCode.classList.toggle("blurred", !code); heroCode.classList.toggle("revealed", Boolean(code));
           heroCode.setAttribute("aria-hidden", code ? "false" : "true");
           heroCta.textContent = code ? "Copy code" : "Get a code"; heroCta.dataset.mode = code ? "copy" : "claim"; heroActions.hidden = !code;
-          const linkRow = document.getElementById("hero-link"), linkA = document.getElementById("hero-link-a");
-          if (code && inviteLink) { linkA.href = inviteLink; linkA.textContent = inviteLink; linkRow.hidden = false; } else { linkRow.hidden = true; }
         }
         async function heroClaim(fresh) {
           heroStatus.textContent = fresh ? "Finding you a different code..." : "Finding a code for you...";

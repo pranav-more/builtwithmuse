@@ -353,6 +353,7 @@
       @keyframes nudge-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
       @media (prefers-reduced-motion: reduce) { .nudge-card { animation: none; } }
       @media (max-width: 640px) { .nudge { padding: 12px; align-items: end; } .nudge-card { padding: 22px; } }
+      .nudge-card .google-slot { display: flex; justify-content: center; min-height: 48px; }
 
       .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
       .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
@@ -754,6 +755,19 @@ body { background-image: none; }
         </div>
       </div>
 
+      <div class="nudge" id="signin-modal" hidden>
+        <div class="nudge-backdrop" data-signin-modal-close></div>
+        <div class="nudge-card" role="dialog" aria-modal="true" aria-labelledby="signin-modal-title">
+          <button class="nudge-x" type="button" aria-label="Close" data-signin-modal-close>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="eyebrow">One click</div>
+          <h2 id="signin-modal-title">Sign in with Google.</h2>
+          <p>Google could not show its quick prompt, so sign in here instead. One click, no password.</p>
+          <div class="google-slot" id="google-modal-button"></div>
+        </div>
+      </div>
+
     <footer class="footer">
       <div class="footer-cta">
         <div>
@@ -900,13 +914,23 @@ body { background-image: none; }
           initGoogleButton();
         }
 
-        // One click sign in: the Google account chooser opens right on the
-        // click. No intermediate page by design.
+        // One click sign in: the Google quick prompt opens right on the
+        // click. If Google cannot show it, a small sign in popup appears
+        // instead. No intermediate page by design, and never a dead click.
         async function signinNow(context) {
           pendingAfterSignin = context;
           try {
-            if (await ensureGoogle()) google.accounts.id.prompt();
-          } catch (_) { /* Google sign in unavailable here */ }
+            if (await ensureGoogle()) {
+              google.accounts.id.prompt((notification) => {
+                let blocked = false;
+                try { blocked = notification.isNotDisplayed() || notification.isSkippedMoment(); }
+                catch (_) { blocked = true; }
+                if (blocked) showSigninModal();
+              });
+            } else {
+              showSigninModal();
+            }
+          } catch (_) { showSigninModal(); }
         }
 
         // Waits for the session check that starts on page load, so a signed in
@@ -930,6 +954,7 @@ body { background-image: none; }
             const d = await r.json().catch(() => ({}));
             if (!r.ok || !d.ok || !d.signedIn) throw new Error(d.error || "signin_failed");
             await refreshAuth();
+            hideSigninModal();
             if (status) status.textContent = "";
             const next = pendingAfterSignin;
             pendingAfterSignin = null;
@@ -954,7 +979,7 @@ body { background-image: none; }
               const r = await fetch(API + "/api/v1/auth/config", { credentials: "same-origin" });
               const config = await r.json().catch(() => ({}));
               if (!config.clientId) return false;
-              google.accounts.id.initialize({ client_id: config.clientId, callback: onGoogleCredential, ux_mode: "popup", auto_select: false });
+              google.accounts.id.initialize({ client_id: config.clientId, callback: onGoogleCredential, ux_mode: "popup", auto_select: false, use_fedcm_for_prompt: true });
               return true;
             })();
             googleInitPromise.then((ok) => { if (!ok) googleInitPromise = null; });
@@ -973,6 +998,35 @@ body { background-image: none; }
             googleButtonReady = true;
           });
         }
+
+        /* Small sign in popup used only when Google's quick prompt cannot
+           show. It carries the real Google button, so the account chooser
+           still opens on a genuine click. */
+        let modalGoogleReady = false;
+        function initModalGoogleButton() {
+          const slot = document.getElementById("google-modal-button");
+          if (!slot || modalGoogleReady) return;
+          ensureGoogle().then((ok) => {
+            if (!ok || modalGoogleReady) return;
+            try {
+              google.accounts.id.renderButton(slot, { theme: "filled_blue", size: "large", text: "signin_with", shape: "pill", width: 280 });
+              modalGoogleReady = true;
+            } catch (_) { /* the quick prompt remains the primary path */ }
+          });
+        }
+        function showSigninModal() {
+          initModalGoogleButton();
+          document.getElementById("signin-modal").hidden = false;
+        }
+        function hideSigninModal() {
+          document.getElementById("signin-modal").hidden = true;
+        }
+        document.querySelectorAll("[data-signin-modal-close]").forEach((el) => {
+          el.addEventListener("click", hideSigninModal);
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !document.getElementById("signin-modal").hidden) hideSigninModal();
+        });
 
         async function signOut() {
           try { await fetch(API + "/api/v1/auth/logout", { method: "POST", credentials: "same-origin", headers: { "X-Requested-With": "fetch" } }); } catch (_) {}
@@ -1119,8 +1173,12 @@ body { background-image: none; }
         loadPool();
 
         document.querySelectorAll("[data-view]").forEach((button) => {
-          button.addEventListener("click", () => {
+          button.addEventListener("click", async () => {
             const name = button.dataset.view;
+            if (name === "share") {
+              await authReady;
+              if (!me) { signinNow("add"); return; }
+            }
             showView(name);
             if (name === "share") renderShare();
             if (name === "mycodes") loadMyCodes();

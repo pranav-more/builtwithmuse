@@ -550,7 +550,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           <a href="/blog">Blog</a>
           <a href="/creator">Profile</a>
         </nav>
-        <a class="write-btn" href="/creator#new">Publish<span class="write-long">&nbsp;a workflow</span></a>
+        <a class="write-btn" href="/submit">Publish<span class="write-long">&nbsp;a workflow</span></a>
         <div class="account" id="account-area"><button class="button small secondary" type="button" id="account-signin">Sign in</button></div>
       </header>
 
@@ -588,7 +588,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
             </div>
           </div>
 
-          <div class="quote-band" id="quote-band"><p>Muse is new and there are no big names yet. Share your workflows and become <em class="hl">the person people follow</em>.</p><a class="button" href="/creator#new">Become a creator</a></div>
+          <div class="quote-band" id="quote-band"><p>Muse is new and there are no big names yet. Share your workflows and become <em class="hl">the person people follow</em>.</p><a class="button" href="/submit">Become a creator</a></div>
 
           <section class="home-section" aria-labelledby="new-heading">
             <div class="section-row"><div><h2 id="new-heading">New this week</h2><p>Fresh ways people are getting more from Muse.</p></div><a class="see-all" href="/workflows">See the full feed</a></div>
@@ -798,7 +798,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
               </div>
               <div class="share-next">
                 <a class="button" href="/workflows">Explore workflows</a>
-                <a class="linklike" href="/creator#new">Or be one of the first to add a workflow</a>
+                <a class="linklike" href="/submit">Or be one of the first to add a workflow</a>
               </div>
             </div>
           </div>
@@ -841,7 +841,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         <div class="footer-col">
           <a class="footer-brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
           <h3>Directory</h3>
-          <a href="/">Get a code</a><a href="/#share">Share a code</a><a href="/workflows">Feed</a><a href="/posts">Social</a><a href="/creators">Creators</a><a href="/use-cases">Use cases</a><a href="/blog">Blog</a><a href="/creator#new">Publish a workflow</a><a href="/#mycodes">My codes</a>
+          <a href="/">Get a code</a><a href="/#share">Share a code</a><a href="/workflows">Feed</a><a href="/posts">Social</a><a href="/creators">Creators</a><a href="/use-cases">Use cases</a><a href="/blog">Blog</a><a href="/submit">Publish a workflow</a><a href="/#mycodes">My codes</a>
         </div>
         <div class="footer-col">
           <h3>Social posts</h3>
@@ -1657,7 +1657,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         const initials = (n) => String(n || "?").split(/\s+/).map((p) => p[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
         const face = (name, url) => "<i>" + (url ? '<img src="' + esc(url) + '" alt="" referrerpolicy="no-referrer" />' : esc(initials(name))) + "</i>";
         fetch("/api/v1/workflows?sort=new&limit=3", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
-          if (!d.ok || !d.workflows.length) { rowsEl.innerHTML = '<div class="pool-empty">No workflows yet. <a href="/creator#new">Publish the first one.</a></div>'; return; }
+          if (!d.ok || !d.workflows.length) { rowsEl.innerHTML = '<div class="pool-empty">No workflows yet. <a href="/submit">Publish the first one.</a></div>'; return; }
           rowsEl.innerHTML = d.workflows.map((w) => {
             const c = w.creator || {};
             const quote = w.latestComment ? '<a class="row-quote" href="/workflows/' + esc(w.slug) + '#comments">' + face(w.latestComment.author, w.latestComment.avatarUrl) + "<span>" + esc(String(w.latestComment.body).slice(0, 140)) + "</span></a>" : "";

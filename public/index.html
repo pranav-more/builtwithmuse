@@ -763,7 +763,7 @@ body { background-image: none; }
           </button>
           <div class="eyebrow">One click</div>
           <h2 id="signin-modal-title">Sign in with Google.</h2>
-          <p>Google could not show its quick prompt, so sign in here instead. One click, no password.</p>
+          <p id="signin-modal-copy">Google could not show its quick prompt, so sign in here instead. One click, no password.</p>
           <div class="google-slot" id="google-modal-button"></div>
         </div>
       </div>
@@ -1016,6 +1016,12 @@ body { background-image: none; }
         }
         function showSigninModal() {
           initModalGoogleButton();
+          const copy = document.getElementById("signin-modal-copy");
+          if (copy) {
+            copy.textContent = pendingAfterSignin === "add"
+              ? "To add a code you need to sign in so you can manage how many invites you have left."
+              : "Sign in with Google to reveal your code. Your claimed codes stay saved to your account.";
+          }
           document.getElementById("signin-modal").hidden = false;
         }
         function hideSigninModal() {

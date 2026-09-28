@@ -509,6 +509,33 @@ body { background-image: none; }
 .footer-meta a:hover { text-decoration: underline; }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-about { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .site-footer { padding-top: 40px; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-two { grid-template-columns: 1fr; } }</style>
+<style>form :where(input:not([type=file]):not([type=checkbox]):not([type=radio]):not([type=hidden]):not([type=submit]):not([type=button]), textarea, select) { width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font: 500 15px/1.4 "IBM Plex Sans", system-ui, sans-serif; transition: border-color .15s, box-shadow .15s; }
+form :where(input, textarea, select):focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,255,.16); }
+form :where(input, textarea)::placeholder { color: #98a2c3; }
+form :where(textarea) { min-height: 110px; resize: vertical; }
+form :where(select) { appearance: none; -webkit-appearance: none; padding-right: 40px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%234b5675' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; cursor: pointer; }
+form :where(input[type=number]) { -moz-appearance: textfield; }
+form :where(input[type=search]) { -webkit-appearance: none; }
+form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance: none; }
+.field.bad :where(input, textarea, select) { border-color: #d64545; box-shadow: 0 0 0 3px rgba(214,69,69,.12); }
+.file-pick { position: relative; display: flex; gap: 14px; align-items: center; padding: 12px 14px; border: 1px dashed var(--line); border-radius: 12px; background: #fff; }
+.file-pick:hover, .file-pick:focus-within { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,255,.12); }
+.file-pick input[type=file] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; margin: 0; }
+.file-thumb { position: relative; flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; background: var(--tint); color: var(--blue-deep); display: grid; place-items: center; overflow: hidden; font: 700 15px "Archivo", sans-serif; }
+.file-pick.wide .file-thumb { width: 96px; height: 64px; border-radius: 8px; }
+.file-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.file-thumb svg { width: 22px; height: 22px; }
+.file-text { display: grid; gap: 2px; min-width: 0; }
+.file-text b { font-size: 14px; color: var(--ink); }
+.file-text span { font-size: 12px; color: var(--muted-2); line-height: 1.4; }
+.file-btn { margin-left: auto; flex: 0 0 auto; padding: 9px 14px; border-radius: 8px; border: 1px solid var(--line); background: #fff; font-weight: 700; font-size: 13px; color: var(--ink); white-space: nowrap; }
+.file-pick:hover .file-btn { border-color: var(--blue); color: var(--blue-deep); }
+.file-actions { display: flex; gap: 12px; }
+@media (max-width: 560px) { .file-pick { flex-wrap: wrap; } .file-btn { margin-left: 0; width: 100%; text-align: center; } }
+.field { align-content: start; }
+.field label { flex-wrap: wrap; gap: 4px 10px; }
+.field select, form select { appearance: none; -webkit-appearance: none; padding-right: 40px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%234b5675' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; background-color: #fff; }
+</style>
 </head>
   <body>
     <div class="shell">

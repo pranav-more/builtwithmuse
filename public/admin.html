@@ -179,6 +179,10 @@
           <section class="panel active" id="panel-overview">
             <div class="cards" id="cards"></div>
             <div class="box">
+              <h2>Sponsors <span>clicks on the homepage slots</span></h2>
+              <div class="tablewrap"><table id="sponsors"><thead><tr><th>Slot</th><th>Sponsor</th><th>Clicks</th><th>Last 24h</th><th>Last 7 days</th><th>Unique visitors</th><th>Last click</th></tr></thead><tbody><tr><td colspan="7" class="muted">Loading.</td></tr></tbody></table></div>
+            </div>
+            <div class="box">
               <h2>Latest activity <span>most recent 40 events</span></h2>
               <div class="tablewrap"><table id="activity"><thead><tr><th>When</th><th>Event</th><th>Code</th><th>Who</th><th>Country</th><th>Detail</th></tr></thead><tbody></tbody></table></div>
             </div>
@@ -332,7 +336,14 @@
           refreshTimer = setInterval(() => { if (document.visibilityState === "visible" && currentTab() === "overview") loadOverview(); }, 30000);
         }
 
+        async function loadSponsors() {
+          try {
+            const d = await api("/api/admin/sponsors");
+            $("sponsors").querySelector("tbody").innerHTML = d.slots.map((s) => `<tr><td>#${s.slot}</td><td>${s.name ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : '<span class="muted">Open slot</span>'}</td><td><b>${esc(s.total)}</b></td><td>${esc(s.today)}</td><td>${esc(s.week)}</td><td>${esc(s.visitors)}</td><td class="muted">${s.last_click ? esc(when(s.last_click)) : "never"}</td></tr>`).join("");
+          } catch (_) { $("sponsors").querySelector("tbody").innerHTML = '<tr><td colspan="7" class="muted">Could not load sponsor clicks.</td></tr>'; }
+        }
         async function loadOverview() {
+          loadSponsors();
           const d = await api("/api/admin/overview");
           const cards = [
             ["Live codes", d.live, d.live === 0 ? "bad" : d.live < 5 ? "warn" : "good", "in the pool right now"],

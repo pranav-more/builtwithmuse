@@ -546,6 +546,14 @@ body { background-image: none; }
       .share-row .lead { margin: 0; flex: 1 1 auto; }
       .share-row .button { flex: 0 0 auto; white-space: nowrap; }
       @media (max-width: 640px) { .share-row { flex-direction: column; align-items: flex-start; } }
+      .share-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 10px; }
+      .share-head .card-label { margin-bottom: 6px; }
+      .share-head h2 { margin: 0; }
+      .share-head .button { flex: 0 0 auto; white-space: nowrap; }
+      .home-card.compact .lead { margin-bottom: 0; }
+      @media (max-width: 640px) { .share-head { flex-direction: column; align-items: flex-start; gap: 10px; } }
+      .home-side { grid-template-rows: auto 1fr; }
+      .sponsor-card { align-content: space-between; }
 </style>
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -643,9 +651,8 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
             </section>
             <div class="home-side">
               <section class="home-card tint compact" aria-labelledby="share-h2">
-                <div class="card-label"><span>Pass it on</span></div>
-                <h2 id="share-h2">Share a code.</h2>
-                <div class="share-row"><p class="lead">Add your unused invite to the pool. Muse credits tokens to both of you when it is redeemed.</p><button class="button secondary" type="button" data-view="share">Share a code</button></div>
+                <div class="share-head"><div><div class="card-label"><span>Pass it on</span></div><h2 id="share-h2">Share a code.</h2></div><button class="button secondary" type="button" data-view="share">Share a code</button></div>
+                <p class="lead">Add your unused invite to the pool. Muse credits tokens to both of you when it is redeemed.</p>
               </section>
               <section class="sponsor-card" aria-labelledby="sponsor-h2">
                 <div class="card-label"><span>Sponsors</span><span class="live-tag">4 slots</span></div>

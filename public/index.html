@@ -481,7 +481,13 @@ body { background-image: none; }
 .avatar { background: var(--tint); color: var(--blue-deep); border-color: var(--line); }
 .brand { color: var(--ink); }
 @media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; } .hero-actions .button { margin-bottom: 0; } </style>
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; } .hero-actions .button { margin-bottom: 0; }       #home-wild.wild-grid { display: block; column-count: 3; column-gap: 18px; }
+      #home-wild.wild-grid > * { break-inside: avoid; margin-bottom: 18px; }
+      #home-wild .tweet-actions { flex-wrap: wrap; row-gap: 6px; }
+      #home-wild .tweet-actions .tweet-open { margin-left: auto; }
+      @media (max-width: 1100px) { #home-wild.wild-grid { column-count: 2; } }
+      @media (max-width: 640px) { #home-wild.wild-grid { column-count: 1; } }
+</style>
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

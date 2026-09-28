@@ -183,6 +183,10 @@
       .quote-band .button { margin: 0; }
       .quote-band .hl { font-style: normal; background-image: linear-gradient(120deg, rgba(26,86,255,.22), rgba(26,86,255,.22)); background-repeat: no-repeat; background-size: 0% 100%; background-position: 0 0; padding: 0 .08em; margin: 0 -.08em; border-radius: 4px; transition: background-size 1.1s cubic-bezier(.2,.7,.2,1) .25s; }
       .quote-band.seen .hl { background-size: 100% 100%; }
+      .sponsor-card { margin: 24px 0 0; padding: 36px 32px; border: 1px dashed var(--line); border-radius: var(--radius); background: var(--tint); display: grid; gap: 12px; justify-items: center; text-align: center; }
+      .sponsor-card .eyebrow { margin-bottom: 0; }
+      .sponsor-card h2 { margin: 0; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; }
+      .sponsor-card p { margin: 0; color: var(--muted); max-width: 54ch; font-size: 15px; line-height: 1.6; }
       .quote-band .button { position: relative; overflow: hidden; }
       .quote-band .button::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent); transform: skewX(-18deg); animation: quote-shine 9s ease-in-out infinite; animation-delay: 2.5s; }
       @keyframes quote-shine { 0%, 88% { left: -60%; } 100% { left: 130%; } }
@@ -514,6 +518,13 @@ body { background-image: none; }
             </section>
           </div>
 
+          <section class="sponsor-card" aria-label="Sponsor">
+            <div class="eyebrow">Sponsor</div>
+            <h2>One sponsor. That’s all we need.</h2>
+            <p>We’re not looking for ten sponsors. Just one, to keep this platform running. Your brand in front of a thousand AI early adopters every week.</p>
+            <a class="button" href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Become our sponsor</a>
+          </section>
+
           <div class="quote-band" id="quote-band"><p>Muse is new and there are no big names yet. Share your workflows and become <em class="hl">the person people follow</em>.</p><a class="button" href="/creator#new">Become a creator</a></div>
 
           <section class="home-section" aria-labelledby="new-heading">
@@ -606,9 +617,9 @@ body { background-image: none; }
               <div class="form-stack">
                 <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="field">
-                  <label for="share-message-text">Paste your full Muse share message</label>
+                  <label for="share-message-text">Just paste your link here</label>
                   <textarea id="share-message-text" name="share-message-text" rows="4" required autocomplete="off" placeholder="Check out Muse, your personal AI agent. Redeem my code in Settings within 48 hours of joining and we will both get 1 billion Muse tokens. Code: 70Z09F https://muse.ai/join"></textarea>
-                  <small>Copy the whole invite message from your Muse app and paste it here. We pull your code and invite link out of it.</small>
+                  <small>Paste the invite message from your Muse app. We pull your code and invite link out of it.</small>
                 </div>
                 <div class="field" id="share-detection" aria-live="polite" style="background:#f7f7f5;border:1px solid #e8e8e3;border-radius:12px;padding:12px 14px;display:grid;gap:8px">
                   <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span>Invite code</span><strong id="detected-code">Waiting for your message</strong></div>
@@ -1482,7 +1493,7 @@ body { background-image: none; }
                 <div class="stats">${c.claimedBy} claimed · ${c.confirmed} redeemed · ${c.reports} not working reports<br />Owner reports ${c.ownerInvites === null ? "?" : c.ownerInvites} invites left · ${checked}</div>
                 ${c.retired ? "" : `<div class="actions">
                   <form class="verify-form" data-verify="${c.id}">
-                    <input type="number" min="1" max="100000" inputmode="numeric" placeholder="Invites left" aria-label="Invites left in your Muse app" required />
+                    <input type="number" min="0" max="100000" inputmode="numeric" placeholder="Invites left" aria-label="Invites left in your Muse app" required />
                     <button class="button small" type="submit">Confirm count</button>
                   </form>
                   ${c.source === "owner" ? "" : `<button class="button small secondary" type="button" data-retire="${c.id}">Remove code</button>`}
@@ -1493,7 +1504,7 @@ body { background-image: none; }
               form.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 const n = Number(form.querySelector("input").value);
-                if (!Number.isInteger(n) || n < 1) return;
+                if (!Number.isInteger(n) || n < 0) return;
                 try {
                   await api("/api/codes/verify", { id: form.dataset.verify, ownerInvites: n });
                   loadMyCodes(); loadPool();

@@ -658,10 +658,10 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
                 <div class="card-label"><span>Sponsors</span><span class="live-tag">4 slots</span></div>
                 <h2 id="sponsor-h2">Your product, in front of the people building with Muse.</h2>
                 <ol class="sponsor-slots" id="sponsor-slots">
-                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%231%20on%20Built%20with%20Muse">Claim</a></li>
-                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%232%20on%20Built%20with%20Muse">Claim</a></li>
-                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%233%20on%20Built%20with%20Muse">Claim</a></li>
-                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%234%20on%20Built%20with%20Muse">Claim</a></li>
+                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%231%20on%20Built%20with%20Muse">Email to claim</a></li>
+                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%232%20on%20Built%20with%20Muse">Email to claim</a></li>
+                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%233%20on%20Built%20with%20Muse">Email to claim</a></li>
+                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%234%20on%20Built%20with%20Muse">Email to claim</a></li>
                 </ol>
                 <a class="button sponsor-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20on%20Built%20with%20Muse">Sponsor a slot &#8594;</a>
               </section>
@@ -1774,7 +1774,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           const esc = (v) => String(v || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
           list.innerHTML = d.slots.map((sp) => sp.name
             ? '<li class="filled"><span class="n">#' + sp.slot + '</span><a class="slot-link" href="' + esc(sp.url) + '" target="_blank" rel="noopener sponsored" data-slot="' + sp.slot + '">' + (sp.logo ? '<img class="slot-logo" src="' + esc(sp.logo) + '" alt="" />' : "") + '<span class="slot-brand">' + esc(sp.name) + '</span></a><span class="slot-clicks">' + sp.clicks + ' click' + (sp.clicks === 1 ? "" : "s") + '</span></li>'
-            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%23' + sp.slot + '%20on%20Built%20with%20Muse">Claim</a></li>').join("");
+            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%23' + sp.slot + '%20on%20Built%20with%20Muse">Email to claim</a></li>').join("");
           list.querySelectorAll("a[data-slot]").forEach((a) => a.addEventListener("click", () => {
             try { fetch("/api/sponsors/click", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: JSON.stringify({ slot: Number(a.dataset.slot) }) }); } catch (_) {}
             const pill = a.parentElement.querySelector(".slot-clicks"); if (pill) { const n = (parseInt(pill.textContent, 10) || 0) + 1; pill.textContent = n + " click" + (n === 1 ? "" : "s"); }

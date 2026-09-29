@@ -26,11 +26,21 @@ function resolveFile(pathname) {
   return null;
 }
 
+// Vercel serves public/404.html for unknown paths on its own; the dev server
+// mirrors that so the page can be checked locally.
+function serveNotFound(res) {
+  const page = path.join(ROOT, "404.html");
+  fs.readFile(page, (err, html) => {
+    if (err) { res.writeHead(404); return res.end("Not found"); }
+    res.writeHead(404, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-cache" });
+    res.end(html);
+  });
+}
 function serveStatic(req, res, url) {
   const full = resolveFile(url.pathname);
-  if (!full) { res.writeHead(404); return res.end("Not found"); }
+  if (!full) return serveNotFound(res);
   fs.stat(full, (err, stat) => {
-    if (err || !stat.isFile()) { res.writeHead(404); return res.end("Not found"); }
+    if (err || !stat.isFile()) return serveNotFound(res);
     res.writeHead(200, { "Content-Type": TYPES[path.extname(full)] || "application/octet-stream", "Content-Length": stat.size, "Cache-Control": "no-cache" });
     if (req.method === "HEAD") return res.end();
     fs.createReadStream(full).pipe(res);

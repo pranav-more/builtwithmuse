@@ -46,6 +46,10 @@
       "destination": "/api/index?__path=pages/creator"
     },
     {
+      "source": "/submit",
+      "destination": "/api/index?__path=pages/submit"
+    },
+    {
       "source": "/workflows",
       "destination": "/api/index?__path=pages/workflows"
     },

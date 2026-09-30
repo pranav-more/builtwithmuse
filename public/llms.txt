@@ -70,6 +70,11 @@ Step by step guides for getting real things done with Muse.
 - [How to Use Muse for Real Estate Research](https://builtwithmuse.com/blog/muse-for-real-estate-research): Give Muse your area, budget, and must haves, and get listing watch, neighborhood briefs, and showing prep. Research help, not a replacement for your agent.
 - [How to Use Muse for Job Hunting](https://builtwithmuse.com/blog/muse-for-job-hunting): Muse can run your job search like a project: find fitting openings, tailor each application, track everything, and prep you for interviews.
 - [How to Use Muse to Build a Personal CRM](https://builtwithmuse.com/blog/muse-build-personal-crm): No app, no spreadsheet. Tell Muse about the people you meet and it keeps your relationships organized: who they are, last contact, and what is next.
+- [How to Use Muse to Run Your Shopify Store](https://builtwithmuse.com/blog/muse-for-shopify-store): Connect your Shopify store to Muse and get sales analysis, campaign drafts, and customer follow ups written in your brand voice. Here is how owners set it up.
+- [How to Use Muse to Review Your Business Finances](https://builtwithmuse.com/blog/muse-for-small-business-finances): Connect QuickBooks and Stripe to Muse and get a plain English money review each month: what came in, what went out, and which expenses look off.
+- [How to Use Muse for Your Instagram Marketing](https://builtwithmuse.com/blog/muse-for-instagram-marketing): Connect your Instagram professional account to Muse and get an honest read on what is working, plus next week of posts drafted in your brand voice.
+- [How to Use Muse for a Small Business Morning Briefing](https://builtwithmuse.com/blog/muse-small-business-morning-briefing): Start each day with Muse triaging your inbox, flagging bills, and briefing your calendar and bookings. Here is how owners set it up.
+- [How to Use Muse to Analyze Customer Reviews](https://builtwithmuse.com/blog/muse-analyze-customer-reviews): Point Muse at your customer reviews and get a strengths and weaknesses breakdown in minutes. Here is the workflow, step by step.
 
 ## Using Muse outside the US
 

@@ -18,7 +18,7 @@
     '<button type="button" data-vote="-1" aria-label="No, this was not helpful" style="cursor:pointer;border:1px solid #dfe5f3;border-radius:999px;background:#f8fafe;color:#0b1220;font-size:15px;font-weight:700;padding:10px 22px;">&#128078; <span data-count="down">0</span></button>' +
     "</div>" +
     '<div data-msg style="color:#1a56ff;font-size:13px;margin-top:12px;min-height:18px;"></div>';
-  article.insertAdjacentElement("afterend", box);
+  article.insertAdjacentElement("beforeend", box);
 
   var upBtn = box.querySelector('[data-vote="1"]');
   var downBtn = box.querySelector('[data-vote="-1"]');

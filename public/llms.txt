@@ -56,6 +56,21 @@ Real things people do with Muse, each with the exact prompt to say and the steps
 - [Instagram research without doomscrolling](https://builtwithmuse.com/use-cases/instagram-without-doomscrolling): Research a topic on Instagram without the endless scroll.
 - [Dinner party planner](https://builtwithmuse.com/use-cases/dinner-party-planner): Plan the menu and the evening.
 
+## Everyday tasks with Muse
+
+Step by step guides for getting real things done with Muse.
+
+- [How to Use Muse to Summarize Gmail Newsletters Every Morning](https://builtwithmuse.com/blog/muse-summarize-gmail-newsletters): Your inbox fills with newsletters overnight. Muse can read them all and hand you one short morning briefing. Here is how to set it up in minutes.
+- [How to Use Muse to Find Startup Jobs on X](https://builtwithmuse.com/blog/muse-find-startup-jobs-on-x): Founders post open roles on X before they reach job boards. Muse can watch those posts for you and surface the ones that fit your skills.
+- [How to Use Muse to Monitor Instagram Without Scrolling](https://builtwithmuse.com/blog/muse-monitor-instagram-without-scrolling): You do not need to open Instagram to know what happened there. Connect it to Muse and get a clean digest of the accounts and topics you care about.
+- [How to Use Muse to Compare Flights](https://builtwithmuse.com/blog/muse-compare-flights): Give Muse your route and dates and get flight options laid out side by side: price, times, stops, and baggage. Here is how to get a comparison you can trust.
+- [How to Use Muse to Plan a Trip](https://builtwithmuse.com/blog/muse-plan-a-trip): Tell Muse your destination, dates, budget, and interests, and get a day by day itinerary with stays, food, and logistics. Then verify and book each part.
+- [How to Use Muse to Negotiate a Bill](https://builtwithmuse.com/blog/muse-negotiate-a-bill): Muse can call your provider and negotiate a lower bill while you do something else. Here is how to set it up, what to share, and what to watch for.
+- [How to Use Muse for Sales Research](https://builtwithmuse.com/blog/muse-for-sales-research): Give Muse your ideal customer and get back researched prospects: who they are, why now, and who to contact. Here is the research workflow that works.
+- [How to Use Muse for Real Estate Research](https://builtwithmuse.com/blog/muse-for-real-estate-research): Give Muse your area, budget, and must haves, and get listing watch, neighborhood briefs, and showing prep. Research help, not a replacement for your agent.
+- [How to Use Muse for Job Hunting](https://builtwithmuse.com/blog/muse-for-job-hunting): Muse can run your job search like a project: find fitting openings, tailor each application, track everything, and prep you for interviews.
+- [How to Use Muse to Build a Personal CRM](https://builtwithmuse.com/blog/muse-build-personal-crm): No app, no spreadsheet. Tell Muse about the people you meet and it keeps your relationships organized: who they are, last contact, and what is next.
+
 ## Using Muse outside the US
 
 Muse has not launched in every country. These guides cover the workarounds.

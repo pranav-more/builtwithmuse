@@ -205,7 +205,7 @@ body { background-image: none; }
             <div class="eyebrow">Guides</div>
             <h1>How to Use Muse to Summarize Gmail Newsletters Every Morning</h1>
             <p class="lead">Your inbox fills with newsletters overnight. Muse can read them all and hand you one short briefing with your morning coffee. Here is how to set it up.</p>
-            <div class="meta">September 2026 · 5 min read</div>
+            <div class="meta">September 2026 · 12 min read</div>
           </div>
           <aside class="hero-aside">
             <div class="k">Become a creator</div>
@@ -217,35 +217,63 @@ body { background-image: none; }
         <div class="layout">
           <article>
           <h2 id="short-answer">1. The short answer</h2>
-<p>Connect Gmail to Muse once. Every morning, ask Muse for your newsletter briefing. It reads the newsletters that arrived overnight and hands you the few stories worth your time, each in a line or two, with links back to the full email. The whole thing takes about a minute of your time instead of twenty.</p>
+<p>You subscribed to everything and read nothing. The newsletters pile up, the unread count climbs, and every morning carries a small guilt about all the insight you are supposedly missing. Connect Gmail to Muse once. Every morning, ask Muse for your newsletter briefing. It reads the newsletters that arrived overnight and hands you the few stories worth your time, each in a line or two, with links back to the full email. A minute or two of your time instead of a long scroll through the inbox.</p>
 <p>The rest of this guide covers what you need, the five minute setup, what a good briefing looks like, and how to tune it over your first week.</p>
 <p>Muse is invite only right now. Need an invite code? <a href="/">Click here</a> to grab one free from the community pool. Waiting on a launch in your country? <a href="/#waitlist">Join the waitlist</a> and we will send you a fresh code on launch day.</p>
           <h2 id="what-you-need">2. What you need</h2>
 <ul>
 <li><strong>Muse access.</strong> Muse is invite only, so you need an account with access first.</li>
-<li><strong>Gmail connected.</strong> Muse connects to Gmail through its official connector, which you approve in settings. You can disconnect it any time.</li>
-<li><strong>A rough list of the newsletters you care about.</strong> Not every sender, just the five or ten you actually want to read.</li>
+<li><strong>Gmail connected.</strong> Muse connects to Gmail through its official connector, which you approve in settings under connected apps. Approve only what you are comfortable with, and know that you can disconnect it any time. The connection is a permission you grant, not a door you leave open forever.</li>
+<li><strong>A rough list of the newsletters you care about.</strong> Not every sender, just the five or ten you actually want to read. Be honest here. The newsletter you "should" read but never open does not belong on the list. It will only make the briefing longer and guiltier.</li>
+<li><strong>One line on your interests.</strong> Startups, AI tools, indie hacking, whatever you actually follow. This is what lets Muse decide which story is the top story instead of guessing.</li>
 </ul>
           <h2 id="setup">3. Set it up in five minutes</h2>
+<p>The setup is one conversation. Do it once, and every morning after that is a single message.</p>
 <ol>
-<li><strong>Connect Gmail.</strong> In the Muse app, open settings, find connected apps, and add Gmail. Approve only what you are comfortable with.</li>
-<li><strong>Name your newsletters.</strong> Tell Muse something like: here are the newsletters I read, with the sender names. Ignore everything else from these senders like promos and event invites.</li>
-<li><strong>Define the briefing format.</strong> Tell Muse exactly what you want. For example: every morning, give me one bullet per newsletter, one line on why it matters, and a link to the email. Keep the whole thing under 300 words.</li>
-<li><strong>Pick your delivery.</strong> Open Muse each morning and ask for the briefing, or message Muse on WhatsApp with the same ask. Either way it takes one message.</li>
+<li><strong>Connect Gmail.</strong> In the Muse app, open settings, find connected apps, and add Gmail. Approve only what you are comfortable with. If the permission screen asks for more than mail reading, pause and check what each permission does before you accept.</li>
+<li><strong>Name your newsletters.</strong> Tell Muse something like: here are the newsletters I read, with the sender names. Only summarize mail from these senders. Ignore everything else, including promos and event invites from these same senders. The second sentence matters. Newsletter senders also send marketing, and you do not want the briefing full of webinar invites.</li>
+<li><strong>Define the briefing format.</strong> Tell Muse exactly what you want. For example: every morning, give me one bullet per newsletter, one line on why it matters, and a link to the email. Keep the whole thing under 300 words. The word limit is the whole trick. Without it, briefings grow. With it, Muse is forced to choose, and the choosing is the value.</li>
+<li><strong>Pick your delivery.</strong> Open Muse each morning and ask for the briefing, or message Muse on WhatsApp with the same ask. Either way it takes one message. Pick the one you will actually open. The best delivery channel is the one that is already in your morning.</li>
 </ol>
+<h3>Copy this prompt</h3>
+<div class="prompt-block" style="border:1px solid #dfe5f3;border-radius:10px;background:#f8fafe;padding:18px;margin:18px 0;">
+<div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6b7699;margin-bottom:10px;">Copy paste into Muse</div>
+<pre id="prompt-main" style="white-space:pre-wrap;font-family:inherit;font-size:14px;color:#0b1220;margin:0 0 12px;">Set up my morning newsletter briefing.
+
+First, I need to connect Gmail. If Gmail is not connected yet, tell me exactly where to connect it in settings, then wait for me to confirm it is connected before you continue.
+
+My newsletters: [list the sender names, e.g. TechCrunch Daily, Morning Brew, Platformer]
+Ignore everything else from my inbox. Only read mail from these senders.
+
+Every morning when I ask for my briefing, do this:
+1. Read the newsletters that arrived in the last 24 hours from my senders.
+2. Give me one bullet per newsletter: the top story, one line on why it matters to me, and a link to the email.
+3. Keep the whole briefing under 300 words. Cut everything else.
+
+My interests, so you know what matters to me: [startups, AI tools, indie hacking]
+Topics to always skip: [crypto, sports]
+
+Start by confirming Gmail is connected, then give me my first briefing for today.</pre>
+<button type="button" class="prompt-copy" data-target="prompt-main" style="cursor:pointer;border:1px solid #dfe5f3;border-radius:999px;background:#ffffff;color:#0b1220;font-size:14px;font-weight:700;padding:8px 18px;">Copy prompt</button>
+<span class="prompt-status" style="font-size:13px;color:#1a56ff;margin-left:10px;" aria-live="polite"></span>
+</div>
+<script>
+(function(){var b=document.querySelector('.prompt-copy');if(!b)return;b.addEventListener('click',function(){var t=document.getElementById(b.dataset.target);var s=b.parentElement.querySelector('.prompt-status');if(!t)return;function done(){b.textContent='Copied';if(s)s.textContent='Paste it into Muse.';}function fail(){if(s)s.textContent='Select the text and copy it manually.';}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.textContent).then(done,fail);}else{fail();}});})();
+</script>
           <h2 id="good-briefing">4. What a good briefing looks like</h2>
-<p>A briefing that works has three parts: the top story from each newsletter, one line on why it matters to you, and a link so you can read the full piece when something hooks you. Everything else gets cut.</p>
-<p>Be strict about length. A briefing you will actually read every day is short. If Muse gives you too much, say so plainly: shorter, only the top three stories, skip anything about crypto. It adjusts fast.</p>
-<p>You can also ask for themed briefings. Before a big week, ask Muse to pull only the stories about AI funding, or only the pieces relevant to your industry. Same newsletters, different lens.</p>
+<p>A briefing that works has three parts: the top story from each newsletter, one line on why it matters to you, and a link so you can read the full piece when something hooks you. Everything else gets cut. If you finish the briefing and did not click a single link, that is fine. Most mornings the value is knowing what you can skip.</p>
+<p>Be strict about length. A briefing you will actually read every day is short. If Muse gives you too much, say so plainly: shorter, only the top three stories, skip anything about crypto. It adjusts fast, usually in the same conversation.</p>
+<p>You can also ask for themed briefings. Before a big week, ask Muse to pull only the stories about AI funding, or only the pieces relevant to your industry. Same newsletters, different lens. This is where the setup pays off twice: the same connection, a completely different briefing.</p>
           <h2 id="tune-it">5. Tune it over your first week</h2>
-<p>The first briefing is a draft. The fifth one is yours. Each morning, give Muse one line of feedback: skip that sender, I never read those; more depth on startup news; stop including event announcements.</p>
-<p>Muse remembers these preferences inside the conversation, so corrections compound. After a week you stop tuning and just read.</p>
+<p>The first briefing is a draft. The fifth one is yours. Each morning, give Muse one line of feedback: skip that sender, I never read those; more depth on startup news; stop including event announcements. One line is enough. You are steering, not rewriting.</p>
+<p>Muse remembers these preferences inside the conversation, so corrections compound. After a week you stop tuning and just read. If your interests shift later, say so in plain words and the briefing shifts with them. The tuning never really ends, it just gets quieter.</p>
 <p>Our <a href="/use-cases/newsletter-briefing-with-muse">morning newsletter briefing use case</a> shows the same idea as a shorter everyday routine.</p>
           <h2 id="watch-outs">6. What to watch out for</h2>
 <ul>
-<li><strong>Muse summarizes what is in the email.</strong> It cannot reliably open every link inside, especially paywalled ones. Read the original before you quote anything.</li>
-<li><strong>It only reads when you ask.</strong> Connecting Gmail does not mean Muse is constantly scanning your inbox. It looks at your mail when you send it to do a task.</li>
-<li><strong>Keep personal mail separate.</strong> If you want, tell Muse to look only at mail from your newsletter senders and ignore everything else. Explicit boundaries work better than assumptions.</li>
+<li><strong>Muse summarizes what is in the email.</strong> It cannot reliably open every link inside, especially paywalled ones. Read the original before you quote anything or forward it to your team.</li>
+<li><strong>It only reads when you ask.</strong> Connecting Gmail does not mean Muse is constantly scanning your inbox. It looks at your mail when you send it to do a task. If that boundary matters to you, say it out loud in the setup: only read mail from my newsletter senders, nothing else.</li>
+<li><strong>Keep personal mail separate.</strong> If you want, tell Muse to look only at mail from your newsletter senders and ignore everything else. Explicit boundaries work better than assumptions. Review the sender list every few months and prune the ones you stopped opening.</li>
+<li><strong>Check your data sharing setting.</strong> If you prefer your activity not be used to improve Meta models, turn off the data sharing option in the Muse app settings. Your call, your setting.</li>
 </ul>
 
           <h2 id="get-started">Get started</h2>
@@ -270,9 +298,16 @@ body { background-image: none; }
             <dd>Then the briefing matters even more. Tell Muse your top ten and let it scan the rest only for stories matching your topics.</dd>
             <dt>Is my email used to train Meta models?</dt>
             <dd>Check your data sharing settings in the Muse app. You can turn off the option that lets your activity improve Meta models.</dd>
+            <dt>The first briefing was too long. Now what?</dt>
+            <dd>Say so in plain words: shorter, top three stories only, skip the event announcements. Muse adjusts in the same conversation. If it drifts long again next week, say so again. Steering is part of the routine, not a failure of it.</dd>
+            <dt>Can it summarize attachments?</dt>
+            <dd>It works from the email body. If the value is in the attached PDF or deck, open it yourself. Ask Muse to summarize it after you have it open, if you want.</dd>
+            <dt>What if I miss a morning?</dt>
+            <dd>Ask for the last 48 hours instead of 24. The briefing stretches to fit. Do not try to catch up on everything you missed. Skim the combined briefing and move on.</dd>
           </dl>
 
           <p>Built with Muse is an independent community project. Not affiliated with or endorsed by Meta.</p>
+
 
           </article>
           <aside class="rail">

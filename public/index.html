@@ -737,7 +737,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
               <strong>You are in. This code now shows as verified for the next person.</strong>
               <p>Do one real thing with Muse before you close the tab, then add your own invite so the pool keeps moving.</p>
               <div class="card-actions">
-                <a class="button" href="/workflows/recipe-reel-to-groceries">Try this first: recipe reel to grocery list</a>
+                <a class="button" href="/use-cases/recipe-reel-to-groceries">Try this first: recipe reel to grocery list</a>
                 <button class="button ghost" type="button" id="success-share">Add your invite</button> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
               </div>
             </div>
@@ -1231,7 +1231,14 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
 
         let sessionReady = api("/api/session").catch(() => null);
 
+        let claimInFlight = null;
         async function claim(fresh) {
+          if (!fresh && claimInFlight) return claimInFlight;
+          const p = claimOnce(fresh);
+          if (!fresh) { claimInFlight = p; p.finally(() => { if (claimInFlight === p) claimInFlight = null; }); }
+          return p;
+        }
+        async function claimOnce(fresh) {
           await sessionReady;
           try {
             return await api("/api/claim", { fresh });

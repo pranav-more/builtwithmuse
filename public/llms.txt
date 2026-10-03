@@ -81,6 +81,7 @@ Step by step guides for getting real things done with Muse.
 Muse has not launched in every country. These guides cover the workarounds.
 
 - [How to use Meta Muse outside the US](https://builtwithmuse.com/blog/how-to-use-meta-muse-outside-us): The hub guide: status check, laptop and phone paths, what does not work.
+- [Muse available countries](https://builtwithmuse.com/blog/muse-available-countries): The full list of countries where Muse is available right now, with the dates it launched in each one, kept updated as new countries launch.
 - [How to use Muse in India](https://builtwithmuse.com/blog/how-to-use-muse-in-india): India specific guide.
 - [Install the Muse app on iPhone outside the US](https://builtwithmuse.com/blog/install-muse-app-on-iphone-outside-us): iPhone install path.
 - [How to use Muse on Mac outside the US](https://builtwithmuse.com/blog/how-to-use-muse-on-mac-outside-us): Mac install path.
@@ -89,6 +90,22 @@ Muse has not launched in every country. These guides cover the workarounds.
 - [Muse tokens explained](https://builtwithmuse.com/blog/muse-tokens-explained): How Muse tokens work.
 - [Muse vs ChatGPT](https://builtwithmuse.com/blog/muse-vs-chatgpt): How Muse compares with ChatGPT.
 - [How Muse helps creators grow](https://builtwithmuse.com/blog/how-muse-helps-creators-grow): What creators use Muse for.
+
+## Muse news and updates
+
+- [Muse on smart glasses](https://builtwithmuse.com/blog/muse-on-smart-glasses): Meta announced at Connect on October 2, 2026 that Muse is coming to smart glasses, woken by saying Hey Muse. What it will do, who likely gets it first, and what to do now. Announced, not yet released.
+- [Is Muse safe](https://builtwithmuse.com/blog/is-muse-safe): The privacy questions answered straight: the private messages dispute, what Meta says about ads and model training, the data sharing setting to turn off, and the app permissions to check first.
+- [How to get the free Muse Home Link gadget](https://builtwithmuse.com/blog/how-to-get-the-free-muse-home-link): Meta is giving away 5,000 Home Link gadgets free to active US Muse subscribers. Who qualifies, the steps to claim one, and what the open source Gadgets SDK means.
+
+## Guías en español
+
+Spanish language versions of the country, invite and availability guides.
+
+- [Cómo usar Meta Muse fuera de EE. UU.](https://builtwithmuse.com/blog/es/como-usar-meta-muse-fuera-de-eeuu): Todos los métodos que funcionan para usar Muse fuera de Estados Unidos, comparados paso a paso.
+- [Cómo encontrar y compartir tu código de referral de Muse](https://builtwithmuse.com/blog/es/como-encontrar-y-compartir-tu-codigo-de-referral-de-muse): Dónde encontrar tu código en la app y cómo compartirlo para que lo reclamen.
+- [Países donde Muse está disponible](https://builtwithmuse.com/blog/es/muse-paises-disponibles): La lista completa de países donde Muse está disponible ahora mismo, con las fechas de lanzamiento.
+- [Cómo usar Muse en India](https://builtwithmuse.com/blog/es/como-usar-muse-en-india): El estado de Muse en India y las formas que funcionan para usarlo desde allí hoy.
+- [Cómo usar Muse en Australia](https://builtwithmuse.com/blog/es/como-usar-muse-en-australia): El estado de Muse en Australia y las opciones para computadora portátil, iPhone o Mac.
 
 ## Creators
 

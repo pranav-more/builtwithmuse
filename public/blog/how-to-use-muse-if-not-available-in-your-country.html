@@ -136,8 +136,10 @@ body { background-image: none; }
 .topbar.scrolled { background: rgba(255,255,255,.9); box-shadow: 0 10px 30px rgba(11,18,32,.06); }
 .button, .cta, .write-btn, .btn.primary, .icon-button, .case-link, .add { background: var(--blue); color: #fff; border-color: var(--blue); }
 .button:hover, .cta:hover, .write-btn:hover, .btn.primary:hover, .icon-button:hover, .react-btn.muse-link:hover, .case-link:hover, .add:hover { background: var(--blue-deep); border-color: var(--blue-deep); color: #fff; }
-.button.ghost, .cta.ghost, .case-link.quiet { background: transparent; color: var(--blue-deep); border-color: var(--blue); }
-.button.ghost:hover, .cta.ghost:hover, .case-link.quiet:hover { background: var(--tint); color: var(--blue-deep); border-color: var(--blue); }
+.button.ghost, .case-link.quiet { background: transparent; color: var(--blue-deep); border-color: var(--blue); }
+.cta.ghost { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--blue); padding: 11px 18px; }
+.button.ghost:hover, .case-link.quiet:hover { background: var(--tint); color: var(--blue-deep); border-color: var(--blue); }
+.cta.ghost:hover { background: #e0e8ff; color: var(--blue-deep); border: 2px solid var(--blue); padding: 11px 18px; }
 .button.secondary, .button.small.secondary { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--line); }
 .button.secondary:hover { background: #e0e8ff; }
 .button.discord, .cta.discord { background: var(--blue); color: #fff; }
@@ -225,7 +227,7 @@ body { background-image: none; }
         </section>
         <div class="layout">
           <article>
-          <p>Muse has not launched everywhere yet, and the number one question we get is simple: it is not available in my country, what do I do now?</p>
+          <p>Muse has not launched everywhere yet, and the number one question we get is simple: it is not available in my country, what do I do now? Before you start, check the <a href="/blog/muse-available-countries">full list of Muse available countries</a> to see exactly where Muse has launched so far.</p>
           <p>This guide gives you the setup that works, step by step. Then it covers the two errors almost everyone runs into, the region block and the age verification screen, and exactly what to do when they appear.</p>
 
           <h2 id="1-the-setup-that-works">1. The setup that works</h2>
@@ -275,15 +277,20 @@ body { background-image: none; }
 
           <h2 id="7-privacy-setting">7. Turn this setting off</h2>
           <p>Do this before anything else. Open the Muse app, go to <strong>Settings</strong>, then <strong>Data controls</strong>, and turn off <strong>Help improve our AI models</strong>. That switch controls whether Meta may use your chats to train future models.</p>
+          <p>Want the wider picture before you trust it with your chats? Our guide to <a href="/blog/is-muse-safe">is Muse safe, and what happens to your data?</a> walks through the private messages dispute, what Meta says about ads and training, and every permission worth checking.</p>
           <p>One caution: you are using Muse from a country where it has not launched. If Meta ever reviews your account and sees the mismatch, the account can get flagged or banned. Turning this off does not hide your location, but it keeps your chats out of their training data.</p>
 
           <h2 id="on-iphone-instead">On iPhone instead?</h2>
           <p>The steps above are for laptop and desktop. If you want the Muse app on your iPhone, the process is different: you need access to the US App Store. Read our guide to <a href="/blog/install-muse-app-on-iphone-outside-us">installing the Muse app on iPhone when it is not in your country</a>.</p>
 
           <h2 id="get-started">Get started</h2>
-          <p>Need an invite code? Grab one free from the community. Codes get claimed fast, so take yours and redeem it in Settings inside the Muse app or at muse.ai.</p>
-          <p>Prefer to wait for the official launch in your country? <a href="/#waitlist">Join the waitlist</a> and we will send you a fresh code on launch day.</p>
-          <a class="cta" href="/">Get a free code</a>
+          <div class="callout">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);margin-bottom:10px;">Become a creator</div>
+            <p style="margin:0 0 14px;"><strong>Built something with Muse?</strong> Be one of the first to publish your Muse workflow here. Share what you built and become the person people follow.</p>
+            <a class="cta" href="/workflows" style="margin-top:0;">Explore workflows</a>
+            <a class="cta ghost" href="/creator#new" style="margin-top:8px;margin-left:10px;">Publish a workflow</a>
+          </div>
+          <p style="margin-top:16px">Muse has not launched in your country yet? <a href="/#waitlist">Join the waitlist</a> and we will send you a fresh code on launch day.</p>
 
           <h2 id="faq">Frequently asked questions</h2>
           <dl class="faq">

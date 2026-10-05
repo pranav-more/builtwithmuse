@@ -140,10 +140,8 @@ body { background-image: none; }
 .topbar.scrolled { background: rgba(255,255,255,.9); box-shadow: 0 10px 30px rgba(11,18,32,.06); }
 .button, .cta, .write-btn, .btn.primary, .icon-button, .case-link, .add { background: var(--blue); color: #fff; border-color: var(--blue); }
 .button:hover, .cta:hover, .write-btn:hover, .btn.primary:hover, .icon-button:hover, .react-btn.muse-link:hover, .case-link:hover, .add:hover { background: var(--blue-deep); border-color: var(--blue-deep); color: #fff; }
-.button.ghost, .case-link.quiet { background: transparent; color: var(--blue-deep); border-color: var(--blue); }
-.cta.ghost { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--blue); padding: 11px 18px; }
-.button.ghost:hover, .case-link.quiet:hover { background: var(--tint); color: var(--blue-deep); border-color: var(--blue); }
-.cta.ghost:hover { background: #e0e8ff; color: var(--blue-deep); border: 2px solid var(--blue); padding: 11px 18px; }
+.button.ghost, .cta.ghost, .case-link.quiet { background: transparent; color: var(--blue-deep); border-color: var(--blue); }
+.button.ghost:hover, .cta.ghost:hover, .case-link.quiet:hover { background: var(--tint); color: var(--blue-deep); border-color: var(--blue); }
 .button.secondary, .button.small.secondary { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--line); }
 .button.secondary:hover { background: #e0e8ff; }
 .button.discord, .cta.discord { background: var(--blue); color: #fff; }
@@ -223,10 +221,11 @@ body { background-image: none; }
             <div class="meta">September 2026 · 5 min read</div>
           </div>
           <aside class="hero-aside">
-            <div class="k">Become a creator</div>
-            <p>Be one of the first to publish your Muse workflow here. Share what you built and become the person people follow.</p>
-            <a class="cta" href="/workflows">Explore workflows</a>
-            <a class="cta ghost" href="/submit">Publish a workflow</a>
+            <div class="k">Get started</div>
+            <p>Want in today? The community pool holds invite codes shared by members who already have Muse. Grab a free code and follow the path for your device below.</p>
+            <a class="cta" href="/">Get a free code</a>
+            <a class="cta ghost" href="/#waitlist">Join the waitlist</a>
+            <p>Rather wait for the official launch? Join the waitlist and get a fresh code the day Muse launches in Australia.</p>
           </aside>
         </section>
         <div class="layout">
@@ -234,6 +233,7 @@ body { background-image: none; }
           <h2 id="1-the-status">1. The status: not available in Australia</h2>
           <p>As of September 2026, Muse is available in the United States and Canada only. Australia is not on the list, and Meta has not announced a launch date for Australia.</p>
           <p>That is the whole status. Everything below is what you can do about it today.</p>
+          <p>Every path below starts with an invite code. The <a href="/blog/find-and-share-muse-referral-code">guide to finding and sharing your Muse referral code</a> explains where codes come from and how to pass yours on once you are in.</p>
 
           <p>No Australia date has been announced either. The workaround guides below work the same from anywhere outside the launch countries.</p>
 
@@ -280,12 +280,8 @@ body { background-image: none; }
           <p>Fair choice. <a href="/#waitlist">Join the waitlist</a> and you will get a fresh invite code the day Muse launches in Australia. No setup, no workarounds, and the code arrives exactly when you can use it.</p>
 
           <h2 id="get-started">Get started</h2>
-          <div class="callout">
-            <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);margin-bottom:10px;">Become a creator</div>
-            <p style="margin:0 0 14px;"><strong>Built something with Muse?</strong> Be one of the first to publish your Muse workflow here. Share what you built and become the person people follow.</p>
-            <a class="cta" href="/workflows" style="margin-top:0;">Explore workflows</a>
-            <a class="cta ghost" href="/creator#new" style="margin-top:8px;margin-left:10px;">Publish a workflow</a>
-          </div>
+          <p>Muse is not in Australia yet, but you do not have to wait. Pick your path above and grab a free code, or join the waitlist for launch day.</p>
+          <a class="cta" href="/">Get a free code</a>
           <p style="margin-top:16px">Waiting for the official launch? <a href="/#waitlist">Join the waitlist</a>.</p>
 
           <h2 id="faq">Frequently asked questions</h2>
@@ -361,5 +357,6 @@ body { background-image: none; }
       })();
     </script>
   <script src="/js/blog-rating.js" defer></script>
+<script src="/js/help-widget.js" defer></script>
 </body>
 </html>

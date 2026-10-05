@@ -16,7 +16,7 @@
     <meta property="og:description" content="Muse is still invite only. Here is where people are finding working codes." />
     <meta property="og:url" content="https://builtwithmuse.com/" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://builtwithmuse.com/og/homepage-share.png" />
+    <meta property="og:image" content="https://builtwithmuse.com/og/workflow-share-v2.png" />
     <meta property="og:image:width" content="1200" />
 <!-- -->
 <!-- -->
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Active Muse Invite Codes | Built with Muse" />
     <meta name="twitter:description" content="Muse is still invite only. Here is where people are finding working codes." />
-    <meta name="twitter:image" content="https://builtwithmuse.com/og/homepage-share.png" />
+    <meta name="twitter:image" content="https://builtwithmuse.com/og/workflow-share-v2.png" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
     <script async defer src="https://accounts.google.com/gsi/client"></script>
     <script>
@@ -274,6 +274,10 @@
       .tweet-mark { flex: 0 0 auto; color: #0f1419; display: inline-grid; place-items: center; }
       .tweet-mark svg { width: 20px; height: 20px; }
       .tweet-text { margin: 0; font-size: 16px; line-height: 1.5; color: #0f1419; white-space: pre-line; overflow-wrap: anywhere; }
+      .tweet-text-link { color: inherit; text-decoration: none; }
+      .tweet-text-link:hover { text-decoration: underline; }
+      .row .dek a { color: inherit; text-decoration: none; }
+      .row .dek a:hover { text-decoration: underline; }
       img.tweet-avatar { object-fit: cover; background: #eff3f4; }
       .tweet-media { display: grid; gap: 3px; border-radius: 14px; overflow: hidden; border: 1px solid #e3e6ea; position: relative; }
       .tweet-media img { width: 100%; height: 100%; object-fit: cover; display: block; background: #eff3f4; }
@@ -658,10 +662,10 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
                 <div class="card-label"><span>Sponsors</span><span class="live-tag">4 slots</span></div>
                 <h2 id="sponsor-h2">Your product, in front of the people building with Muse.</h2>
                 <ol class="sponsor-slots" id="sponsor-slots">
-                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%231%20on%20Built%20with%20Muse">Claim</a></li>
-                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%232%20on%20Built%20with%20Muse">Claim</a></li>
-                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%233%20on%20Built%20with%20Muse">Claim</a></li>
-                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%234%20on%20Built%20with%20Muse">Claim</a></li>
+                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%231%20on%20Built%20with%20Muse">Email to claim</a></li>
+                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%232%20on%20Built%20with%20Muse">Email to claim</a></li>
+                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%233%20on%20Built%20with%20Muse">Email to claim</a></li>
+                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%234%20on%20Built%20with%20Muse">Email to claim</a></li>
                 </ol>
                 <a class="button sponsor-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20on%20Built%20with%20Muse">Sponsor a slot &#8594;</a>
               </section>
@@ -737,7 +741,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
               <strong>You are in. This code now shows as verified for the next person.</strong>
               <p>Do one real thing with Muse before you close the tab, then add your own invite so the pool keeps moving.</p>
               <div class="card-actions">
-                <a class="button" href="/workflows/recipe-reel-to-groceries">Try this first: recipe reel to grocery list</a>
+                <a class="button" href="/use-cases/recipe-reel-to-groceries">Try this first: recipe reel to grocery list</a>
                 <button class="button ghost" type="button" id="success-share">Add your invite</button> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
               </div>
             </div>
@@ -1231,7 +1235,14 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
 
         let sessionReady = api("/api/session").catch(() => null);
 
+        let claimInFlight = null;
         async function claim(fresh) {
+          if (!fresh && claimInFlight) return claimInFlight;
+          const p = claimOnce(fresh);
+          if (!fresh) { claimInFlight = p; p.finally(() => { if (claimInFlight === p) claimInFlight = null; }); }
+          return p;
+        }
+        async function claimOnce(fresh) {
           await sessionReady;
           try {
             return await api("/api/claim", { fresh });
@@ -1490,7 +1501,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           }, 250);
         });
 
-        const SHARE_COPY = { title: "Built with Muse", text: "Muse is still invite only. Here is where people are finding working codes.", url: "https://builtwithmuse.com/?s=1" }; async function shareLink(button, opts) { const status = button.parentElement.querySelector(".share-status"); trackEvent(opts.clickedEvent); if (navigator.share) { try { await navigator.share({ title: opts.title, text: opts.text, url: opts.url }); trackEvent(opts.sharedEvent); } catch (err) { if (err && err.name === "AbortError") trackEvent(opts.cancelledEvent); } return; } try { await navigator.clipboard.writeText(opts.text + " " + opts.url); trackEvent(opts.copiedEvent); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } function sharePlatform(button) { return shareLink(button, { title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url, clickedEvent: "platform_share_clicked", sharedEvent: "platform_shared", cancelledEvent: "platform_share_cancelled", copiedEvent: "platform_link_copied" }); } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); try { if (new URLSearchParams(location.search).get("s") === "1") trackEvent("share_arrival"); } catch (_) {} const shareForm = document.getElementById("share-form");
+        const SHARE_COPY = { title: "Built with Muse", text: "Muse is still invite only. Here is where people are finding working codes.", url: "https://builtwithmuse.com/share" }; async function shareLink(button, opts) { const status = button.parentElement.querySelector(".share-status"); trackEvent(opts.clickedEvent); if (navigator.share) { try { await navigator.share({ title: opts.title, text: opts.text, url: opts.url }); trackEvent(opts.sharedEvent); } catch (err) { if (err && err.name === "AbortError") trackEvent(opts.cancelledEvent); } return; } try { await navigator.clipboard.writeText(opts.text + " " + opts.url); trackEvent(opts.copiedEvent); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } function sharePlatform(button) { return shareLink(button, { title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url, clickedEvent: "platform_share_clicked", sharedEvent: "platform_shared", cancelledEvent: "platform_share_cancelled", copiedEvent: "platform_link_copied" }); } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); try { if (new URLSearchParams(location.search).get("s") === "1") trackEvent("share_arrival"); } catch (_) {} const shareForm = document.getElementById("share-form");
         const shareSubmit = document.getElementById("share-submit");
         function renderShare() {
           const signed = !!me;
@@ -1741,7 +1752,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           rowsEl.innerHTML = d.workflows.map((w) => {
             const c = w.creator || {};
             const quote = w.latestComment ? '<a class="row-quote" href="/workflows/' + esc(w.slug) + '#comments">' + face(w.latestComment.author, w.latestComment.avatarUrl) + "<span>" + esc(String(w.latestComment.body).slice(0, 140)) + "</span></a>" : "";
-            return '<article class="row"><a class="row-who" href="/creators/' + esc(c.handle) + '">' + face(c.displayName, c.avatarUrl) + "<span>" + esc(c.displayName) + '</span></a><h3><a href="/workflows/' + esc(w.slug) + '">' + esc(w.title) + "</a></h3>" + (w.summary ? '<p class="dek">' + esc(w.summary) + "</p>" : "") + '<div class="row-meta"><span>' + w.readMinutes + " min read</span><span>Useful · " + w.reactionCount + "</span><span>" + w.commentCount + " comment" + (w.commentCount === 1 ? "" : "s") + "</span></div>" + quote + "</article>";
+            return '<article class="row"><a class="row-who" href="/creators/' + esc(c.handle) + '">' + face(c.displayName, c.avatarUrl) + "<span>" + esc(c.displayName) + '</span></a><h3><a href="/workflows/' + esc(w.slug) + '">' + esc(w.title) + "</a></h3>" + (w.summary ? '<p class="dek"><a href="/workflows/' + esc(w.slug) + '">' + esc(w.summary) + "</a></p>" : "") + '<div class="row-meta"><span>' + w.readMinutes + " min read</span><span>Useful · " + w.reactionCount + "</span><span>" + w.commentCount + " comment" + (w.commentCount === 1 ? "" : "s") + "</span></div>" + quote + "</article>";
           }).join("");
         }).catch(() => { rowsEl.innerHTML = '<div class="pool-empty"><a href="/workflows">Browse the workflows.</a></div>'; });
         const wildEl = document.getElementById("home-wild");
@@ -1762,7 +1773,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
             const stats = (p.likes || p.views) ? "<span>" + IC.reply + compact(p.replies) + "</span><span>" + IC.repost + compact(p.reposts) + "</span><span>" + IC.like + compact(p.likes) + "</span><span>" + IC.views + compact(p.views) + "</span>" : '<span style="font-size:12px">Outcome as reported by the poster</span>';
             const subH = p.submitterHandle ? String(p.submitterHandle).replace(/^@/, "") : "";
             const submitter = subH ? '<span class="tweet-submitter">Added by ' + (p.submitterActive ? '<a href="/creators/' + esc(subH) + '">@' + esc(subH) + "</a>" : "@" + esc(subH)) + "</span>" : "";
-            return '<article class="tweet"><header class="tweet-head">' + avatar + '<span class="tweet-names"><b>' + esc(p.name || (p.handle || "").replace(/^@/, "")) + "</b><span>" + esc(p.handle || "") + (p.handle && p.postedAt ? " · " : "") + esc(dl(p.postedAt)) + '</span></span><a class="tweet-mark" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + mark + '</a></header><p class="tweet-text">' + esc(p.text) + "</p>" + mediaHtml + '<footer class="tweet-actions">' + stats + submitter + '<a class="tweet-open" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">View on ' + esc(p.platform) + "</a></footer></article>";
+            return '<article class="tweet"><header class="tweet-head">' + avatar + '<span class="tweet-names"><b>' + esc(p.name || (p.handle || "").replace(/^@/, "")) + "</b><span>" + esc(p.handle || "") + (p.handle && p.postedAt ? " · " : "") + esc(dl(p.postedAt)) + '</span></span><a class="tweet-mark" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + mark + '</a></header><p class="tweet-text"><a class="tweet-text-link" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">' + esc(p.text) + "</a></p>" + mediaHtml + '<footer class="tweet-actions">' + stats + submitter + '<a class="tweet-open" href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer nofollow">View on ' + esc(p.platform) + "</a></footer></article>";
           }).join("");
         }).catch(() => { wildEl.innerHTML = '<div class="pool-empty"><a href="/posts">Browse the posts.</a></div>'; });
         fetch("/api/v1/creators?limit=4", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
@@ -1774,7 +1785,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           const esc = (v) => String(v || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
           list.innerHTML = d.slots.map((sp) => sp.name
             ? '<li class="filled"><span class="n">#' + sp.slot + '</span><a class="slot-link" href="' + esc(sp.url) + '" target="_blank" rel="noopener sponsored" data-slot="' + sp.slot + '">' + (sp.logo ? '<img class="slot-logo" src="' + esc(sp.logo) + '" alt="" />' : "") + '<span class="slot-brand">' + esc(sp.name) + '</span></a><span class="slot-clicks">' + sp.clicks + ' click' + (sp.clicks === 1 ? "" : "s") + '</span></li>'
-            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%23' + sp.slot + '%20on%20Built%20with%20Muse">Claim</a></li>').join("");
+            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%23' + sp.slot + '%20on%20Built%20with%20Muse">Email to claim</a></li>').join("");
           list.querySelectorAll("a[data-slot]").forEach((a) => a.addEventListener("click", () => {
             try { fetch("/api/sponsors/click", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: JSON.stringify({ slot: Number(a.dataset.slot) }) }); } catch (_) {}
             const pill = a.parentElement.querySelector(".slot-clicks"); if (pill) { const n = (parseInt(pill.textContent, 10) || 0) + 1; pill.textContent = n + " click" + (n === 1 ? "" : "s"); }
@@ -1811,5 +1822,6 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         onScroll();
       })();
     </script>
-  </body>
+  <script src="/js/help-widget.js" defer></script>
+</body>
 </html>

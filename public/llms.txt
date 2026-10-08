@@ -93,6 +93,7 @@ Muse has not launched in every country. These guides cover the workarounds.
 
 ## Muse news and updates
 
+- [Muse on Windows](https://builtwithmuse.com/blog/muse-on-windows): Microsoft announced on October 7, 2026 that Muse is coming to Windows as a native app with MXC integration. No release date yet. How to use Muse on a Windows PC today, and what to do now. Announced, not yet released.
 - [Muse on smart glasses](https://builtwithmuse.com/blog/muse-on-smart-glasses): Meta announced at Connect on October 2, 2026 that Muse is coming to smart glasses, woken by saying Hey Muse. What it will do, who likely gets it first, and what to do now. Announced, not yet released.
 - [Is Muse safe](https://builtwithmuse.com/blog/is-muse-safe): The privacy questions answered straight: the private messages dispute, what Meta says about ads and model training, the data sharing setting to turn off, and the app permissions to check first.
 - [How to get the free Muse Home Link gadget](https://builtwithmuse.com/blog/how-to-get-the-free-muse-home-link): Meta is giving away 5,000 Home Link gadgets free to active US Muse subscribers. Who qualifies, the steps to claim one, and what the open source Gadgets SDK means.

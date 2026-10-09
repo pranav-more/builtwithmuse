@@ -330,6 +330,7 @@
       .section-head h2, .workflows-layout h2, .waitlist-layout h2 { margin: 0 0 12px; font-size: clamp(30px, 4.6vw, 52px); line-height: 1; font-weight: 900; text-transform: uppercase; }
       .section-head p { color: var(--muted); font-size: 17px; line-height: 1.55; margin: 0; }
 
+      .feat-pill { display: inline-block; padding: 2px 9px; border-radius: 999px; background: var(--tint); color: var(--blue-deep); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; vertical-align: 2px; margin-left: 8px; }
       .workflow-card { max-width: 720px; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
       .hold-row { display: flex; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid var(--line-soft); margin-bottom: 20px; color: var(--muted); font-size: 14px; line-height: 1.5; }
       .hold-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px rgba(26,86,255,.1); flex: 0 0 auto; }
@@ -674,6 +675,11 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           </div>
 
           <div class="quote-band" id="quote-band"><p>Muse is new and there are no big names yet. Share your workflows and become <em class="hl">the person people follow</em>.</p><a class="button" href="/submit">Become a creator</a></div>
+
+          <section class="home-section" aria-labelledby="featured-heading">
+            <div class="section-row"><div><h2 id="featured-heading">Featured this week</h2><p>One workflow picked by the editors. A real job, a copyable prompt, an honest result.</p></div><a class="see-all" href="/featured">How featuring works</a></div>
+            <div class="rows"><article class="row"><a class="row-who" href="/creators/user_c6542f1d"><i>M</i><span>Mike</span></a><h3><a href="/workflows/get-what-you-need-from-instagram-without-opening-it">Get what you need from Instagram without opening it</a><span class="feat-pill">Featured</span></h3><p class="dek"><a href="/workflows/get-what-you-need-from-instagram-without-opening-it">Muse went and found three reels with yapping frameworks, and I never opened Instagram once. I got the advice I needed, shot my reel, and saved the reels for later.</a></p><div class="row-meta"><span>Week of October 9, 2026</span><span>Picked by the editors</span></div></article></div>
+          </section>
 
           <section class="home-section" aria-labelledby="new-heading">
             <div class="section-row"><div><h2 id="new-heading">New this week</h2><p>Fresh ways people are getting more from Muse.</p></div><a class="see-all" href="/workflows">See the full feed</a></div>

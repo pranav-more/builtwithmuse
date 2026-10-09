@@ -641,6 +641,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
               <div class="code-row"><button class="preview-code blurred" type="button" id="hero-code" aria-label="Your invite code" title="Click to copy">XXXXXX</button><button class="button hero-cta" type="button" id="hero-cta">Get a code</button></div>
               <p class="hero-status" id="hero-status" aria-live="polite"></p>
               <p class="hero-after" id="hero-actions" hidden><button class="linklike" type="button" id="hero-retry">Not working? Try another</button><span aria-hidden="true"> · </span><button class="linklike" type="button" id="hero-redeemed">I redeemed it</button></p>
+              <p class="hero-after" id="hero-publish" hidden>Once you are in, show people what you build. <button class="linklike publish-nudge-btn" type="button">Publish a workflow</button></p>
               <ol class="mini-steps three">
                 <li class="mini-row"><span class="mini-number">1</span><div><strong>Claim</strong><span class="hint">Receive one available code.</span></div></li>
                 <li class="mini-row"><span class="mini-number">2</span><div><strong>Redeem</strong><span class="hint">Use it in your Muse settings.</span></div></li>
@@ -742,7 +743,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
               <p>Do one real thing with Muse before you close the tab, then add your own invite so the pool keeps moving.</p>
               <div class="card-actions">
                 <a class="button" href="/use-cases/recipe-reel-to-groceries">Try this first: recipe reel to grocery list</a>
-                <button class="button ghost" type="button" id="success-share">Add your invite</button> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
+                <button class="button ghost" type="button" id="success-share">Add your invite</button> <a class="button secondary" href="/submit">Publish your workflow</a> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
               </div>
             </div>
           </div>
@@ -1364,13 +1365,14 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         });
 
         /* The hero card claims in place: the code appears in the box, with copy, retry and redeemed actions. */
-        const heroCode = document.getElementById("hero-code"), heroCta = document.getElementById("hero-cta"), heroActions = document.getElementById("hero-actions"), heroStatus = document.getElementById("hero-status");
+        const heroCode = document.getElementById("hero-code"), heroCta = document.getElementById("hero-cta"), heroActions = document.getElementById("hero-actions"), heroStatus = document.getElementById("hero-status"), heroPublish = document.getElementById("hero-publish");
         function heroShow(code, inviteLink) {
           heroCode.textContent = code || "XXXXXX";
           heroCode.classList.toggle("blurred", !code); heroCode.classList.toggle("revealed", Boolean(code));
           heroCode.setAttribute("aria-hidden", code ? "false" : "true");
-          heroCta.textContent = code ? "Copy code" : "Get a code"; heroCta.dataset.mode = code ? "copy" : "claim"; heroActions.hidden = !code;
+          heroCta.textContent = code ? "Copy code" : "Get a code"; heroCta.dataset.mode = code ? "copy" : "claim"; heroActions.hidden = !code; heroPublish.hidden = !code;
         }
+        document.querySelectorAll(".publish-nudge-btn").forEach((b) => b.addEventListener("click", () => { trackEvent("publish_nudge"); location.href = "/submit"; }));
         async function heroClaim(fresh) {
           heroStatus.textContent = fresh ? "Finding you a different code..." : "Finding a code for you...";
           heroCta.disabled = true;

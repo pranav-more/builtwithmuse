@@ -8,8 +8,8 @@
   "https://github.com/everyai-com/muse-use-cases (snapshot 2026-09-14, 257 cases)",
   "Posts read from X on 2026-09-28"
  ],
- "total": 283,
- "with_tweet_text": 42,
+ "total": 282,
+ "with_tweet_text": 41,
  "categories": [
   {
    "id": "paying-bills",
@@ -4858,7 +4858,7 @@
    "id": "work",
    "title": "Work",
    "blurb": "Inbox, research, small-business admin, and tools built for the job.",
-   "count": 39,
+   "count": 38,
    "items": [
     {
      "id": "stock-dashboard",
@@ -5708,30 +5708,6 @@
      "replies": 20,
      "has_media": true,
      "text_source": "field-guide-summary"
-    },
-    {
-     "prompt": null,
-     "library_category": null,
-     "views": null,
-     "id": "2107927248770888034",
-     "title": "Mac, then iPad, now Windows",
-     "category": "work",
-     "tags": [
-      "work"
-     ],
-     "summary": "Mac last month. iPad this morning. Windows this afternoon. Muse is collecting operating systems. A native Windows app is the big one: that is where most of the world's computers live.",
-     "handle": "@Musecases",
-     "name": "Muse Cases",
-     "url": "https://x.com/Musecases/status/2107927248770888034",
-     "platform": "x",
-     "status_id": "2107927248770888034",
-     "posted_at": "2026-10-07T20:13:14.000Z",
-     "tweet_text": "Mac last month. iPad this morning. Windows this afternoon. Muse is collecting operating systems. A native Windows app is the big one: that is where most of the world's computers live.",
-     "likes": 146,
-     "reposts": 10,
-     "replies": 10,
-     "has_media": false,
-     "text_source": "tweet"
     },
     {
      "prompt": null,

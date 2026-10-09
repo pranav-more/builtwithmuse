@@ -13,6 +13,7 @@
 Real things people do with Muse, each with the exact prompt to say and the steps to follow. Browse free, sign in to save and rate.
 
 - [All Muse workflows](https://builtwithmuse.com/workflows): The full collection of community Muse workflows.
+- [Featured workflows](https://builtwithmuse.com/featured): One workflow picked by the editors every week and featured on the homepage. Real jobs, copyable prompts, honest results, plus how featuring works.
 - [Switch car insurance and keep your savings](https://builtwithmuse.com/workflows/switch-car-insurance-with-muse): Upload your policy and get an identical coverage quote for hundreds or thousands less, then buy and cancel in one session.
 - [Shop with live discount codes applied](https://builtwithmuse.com/workflows/shop-with-live-discount-codes): Muse finds the product, hunts live coupon codes, fills the cart, and checks out at the lowest price it can find.
 - [Claim flight delay compensation fast](https://builtwithmuse.com/workflows/claim-flight-delay-compensation): Muse files delay compensation, watches fares for price drops, and chats with airlines to rebook or refund.

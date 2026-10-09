@@ -61,6 +61,7 @@ Real things people do with Muse, each with the exact prompt to say and the steps
 Step by step guides for getting real things done with Muse.
 
 - [Muse for Insurance](https://builtwithmuse.com/tasks/muse-for-insurance): Upload your current policy and ask Muse for the same coverage at a lower price. Real reported results up to $3,500 a year, the exact prompt to copy, the workflow step by step, and where it falls short.
+- [Muse for Getting a Job](https://builtwithmuse.com/tasks/muse-for-getting-a-job): A documented setup where Muse searches every morning and applies on company career sites, with you approving each batch. 17 roles found and 12 applications submitted in one documented day, the setup prompt to copy, and what stays human.
 - [How to Use Muse to Summarize Gmail Newsletters Every Morning](https://builtwithmuse.com/blog/muse-summarize-gmail-newsletters): Your inbox fills with newsletters overnight. Muse can read them all and hand you one short morning briefing. Here is how to set it up in minutes.
 - [How to Use Muse to Find Startup Jobs on X](https://builtwithmuse.com/blog/muse-find-startup-jobs-on-x): Founders post open roles on X before they reach job boards. Muse can watch those posts for you and surface the ones that fit your skills.
 - [How to Use Muse to Monitor Instagram Without Scrolling](https://builtwithmuse.com/blog/muse-monitor-instagram-without-scrolling): You do not need to open Instagram to know what happened there. Connect it to Muse and get a clean digest of the accounts and topics you care about.

@@ -78,6 +78,9 @@ Step by step guides for getting real things done with Muse.
 - [How to Use Muse for Your Instagram Marketing](https://builtwithmuse.com/blog/muse-for-instagram-marketing): Connect your Instagram professional account to Muse and get an honest read on what is working, plus next week of posts drafted in your brand voice.
 - [How to Use Muse for a Small Business Morning Briefing](https://builtwithmuse.com/blog/muse-small-business-morning-briefing): Start each day with Muse triaging your inbox, flagging bills, and briefing your calendar and bookings. Here is how owners set it up.
 - [How to Use Muse to Analyze Customer Reviews](https://builtwithmuse.com/blog/muse-analyze-customer-reviews): Point Muse at your customer reviews and get a strengths and weaknesses breakdown in minutes. Here is the workflow, step by step.
+- [Can Muse call your customers?](https://builtwithmuse.com/blog/can-muse-call-your-customers): Muse calls businesses on your behalf, not your customers, and it refuses personal numbers. What the calling feature does, the waitlist, the unanswered phone menu question, the human contractor story, and what businesses use to answer their own phones.
+- [Muse for Small Business: the complete setup guide](https://builtwithmuse.com/blog/muse-for-small-business-setup-guide): Announced September 29, 2026. Not a separate app or subscription. The 15 connectors, the pricing truth, the approval system, the setup order that makes sense, first jobs worth running, and the honest limits owners are finding.
+- [Muse connectors: the complete list](https://builtwithmuse.com/blog/muse-connectors-list): Every connector wave, dated and checked: the September 8 launch list, the September 23 Connect announcements, the September 29 business list. What is live now, what is announced but not yet live, the Gmail contradiction, custom connectors, and how to check your own account. Last updated October 12, 2026.
 
 ## Using Muse outside the US
 

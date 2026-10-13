@@ -94,6 +94,10 @@ Muse has not launched in every country. These guides cover the workarounds.
 - [How to use Meta Muse outside the US](https://builtwithmuse.com/blog/how-to-use-meta-muse-outside-us): The hub guide: status check, laptop and phone paths, what does not work.
 - [Muse available countries](https://builtwithmuse.com/blog/muse-available-countries): The full list of countries where Muse is available right now, with the dates it launched in each one, kept updated as new countries launch.
 - [How to use Muse in India](https://builtwithmuse.com/blog/how-to-use-muse-in-india): India specific guide.
+- [How to use Muse in Pakistan](https://builtwithmuse.com/blog/how-to-use-muse-in-pakistan): Pakistan specific guide.
+- [How to use Muse in Singapore](https://builtwithmuse.com/blog/how-to-use-muse-in-singapore): Singapore specific guide.
+- [How to use Muse in Indonesia](https://builtwithmuse.com/blog/how-to-use-muse-in-indonesia): Indonesia specific guide.
+- [How to use Muse in the UAE](https://builtwithmuse.com/blog/how-to-use-muse-in-uae): Uae specific guide.
 - [Install the Muse app on iPhone outside the US](https://builtwithmuse.com/blog/install-muse-app-on-iphone-outside-us): iPhone install path.
 - [How to use Muse on Mac outside the US](https://builtwithmuse.com/blog/how-to-use-muse-on-mac-outside-us): Mac install path.
 - [How to use Muse if not available in your country](https://builtwithmuse.com/blog/how-to-use-muse-if-not-available-in-your-country): Country availability and options.

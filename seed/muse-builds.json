@@ -1,14 +1,15 @@
 {
  "title": "Muse builds from public posts",
  "product": "Meta Muse",
- "updated": "2026-09-28",
+ "updated": "2026-10-13",
  "disclaimer": "Outcomes are what the poster reported. Built with Muse did not verify them. Posts with text_source tweet are the author's own words; catalog-summary posts are condensed and link to the original.",
  "sources": [
-  "X posts first catalogued by shipwithmuse.live (Mohith Kumar), read from X on 2026-09-28"
+  "X posts first catalogued by shipwithmuse.live (Mohith Kumar), read from X on 2026-09-28",
+  "First party X posts read on 2026-10-13"
  ],
  "group": "Builds and tools",
- "total": 403,
- "with_tweet_text": 403,
+ "total": 426,
+ "with_tweet_text": 426,
  "categories": [
   {
    "id": "errands-and-personal-agent",
@@ -3104,7 +3105,7 @@
    "id": "coding-and-dev-tools",
    "title": "Coding & dev tools",
    "blurb": "Muse Code, agents in the terminal, and tooling people built around it.",
-   "count": 35,
+   "count": 37,
    "items": [
     {
      "id": "2102672670689275965",
@@ -4078,6 +4079,60 @@
      "text_source": "tweet",
      "via": "shipwithmuse.live",
      "filed": "Jul 9, 2026"
+    },
+    {
+     "id": "2109762887002579245",
+     "title": "Muse Wonder upgrades a library through the Inth CLI",
+     "category": "coding-and-dev-tools",
+     "tags": [
+      "coding",
+      "vercel"
+     ],
+     "summary": "Kaylee used Muse Wonder on the Vercel AI Gateway, with fx, to upgrade usenotra to c15t v3 through the Inth CLI.",
+     "prompt": null,
+     "handle": "@kaylee_dev",
+     "name": "Kaylee",
+     "url": "https://x.com/kaylee_dev/status/2109762887002579245",
+     "platform": "x",
+     "status_id": "2109762887002579245",
+     "posted_at": "2026-10-12T21:47:24.000Z",
+     "tweet_text": "Used Muse Wonder on @vercel AI Gateway with fx to upgrade @usenotra to c15t v3 via the Inth CLI.\n\nTry it yourself with the Inth CLI:\nhttps://inth.com/docs/cli/getting-started",
+     "likes": 11,
+     "reposts": 1,
+     "replies": 3,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109012273901764711",
+     "title": "A theme aware calendar popup for Omarchy",
+     "category": "coding-and-dev-tools",
+     "tags": [
+      "coding",
+      "calendar"
+     ],
+     "summary": "A read only calendar popup for Omarchy that follows the theme, supports several ICS feeds, and browses events from the keyboard. Built with Muse Spark 1.3 and ChatGPT 6 Luna.",
+     "prompt": null,
+     "handle": "@ghostnshells",
+     "name": "ghostnshells",
+     "url": "https://x.com/ghostnshells/status/2109012273901764711",
+     "platform": "x",
+     "status_id": "2109012273901764711",
+     "posted_at": "2026-10-10T20:04:44.000Z",
+     "tweet_text": "Built a little cal plugin for @omarchy, a theme-aware calendar popup that supports ICS/iCal feeds.\nIt follows your theme, supports multiple cals, and lets you browse events with keyboard shortcuts. Read-only!\n\nBuilt with @Muse Spark 1.3 and @ChatGPT 6 Luna\nhttps://github.com/ghostnshells/OmarchyCal",
+     "likes": 3,
+     "reposts": 0,
+     "replies": 0,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
     }
    ]
   },
@@ -4085,7 +4140,7 @@
    "id": "connectors-and-mcp",
    "title": "Connectors & MCP",
    "blurb": "Muse wired into Gmail, GitHub, PayPal and other services through connectors.",
-   "count": 23,
+   "count": 25,
    "items": [
     {
      "id": "2102904992709689681",
@@ -4729,6 +4784,60 @@
      "text_source": "tweet",
      "via": "shipwithmuse.live",
      "filed": "Sep 9, 2026"
+    },
+    {
+     "id": "2108353343089152106",
+     "title": "Live Activities on the lock screen for Muse and other agents",
+     "category": "connectors-and-mcp",
+     "tags": [
+      "mcp",
+      "ios"
+     ],
+     "summary": "He built Agent Activity so his agents, including Muse, ChatGPT, and Codex, can put a live update on the iPhone lock screen: birthdays, what each agent is doing, nearby bikes and trains, and a jump to the logs when a bug is found.",
+     "prompt": null,
+     "handle": "@kunalabcdani",
+     "name": "Kunal Abichandani",
+     "url": "https://x.com/kunalabcdani/status/2108353343089152106",
+     "platform": "x",
+     "status_id": "2108353343089152106",
+     "posted_at": "2026-10-09T00:26:22.000Z",
+     "tweet_text": "I gave my agents a way to create Live Activities on my iPhone lock screen.\n\nTheir notifications were becoming noise, so I built Agent Activity to surface what matters, updating in real time\n\nSome of my fav use cases with @chatgpt, @muse, codex:\n- Birthdays of people I’m close with (from gcal + fb + linkedin), first thing in the morning\n- What each agent is working on and what’s done\n- Closest citibike dock with ebikes + train times before I head home\n- Critical updates like root cause found for a bug, with a button to jump straight to the logs\n\nInstall the iOS app + connect the MCP in your agent(s). Your agents compose the layout and update a shared live activity as they work, or through recurring scheduled tasks.\n\nComment/DM if you want to try on testflight!",
+     "likes": 17,
+     "reposts": 0,
+     "replies": 18,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2108912580270121409",
+     "title": "Aside: a browser Muse, Dot, and ChatGPT can use",
+     "category": "connectors-and-mcp",
+     "tags": [
+      "browser",
+      "connector"
+     ],
+     "summary": "Aside announced that Muse, Dot, and ChatGPT agents can browse through Aside, a browser built for people and agents. Setup is under Settings, then Channels.",
+     "prompt": null,
+     "handle": "@AsideAI",
+     "name": "Aside",
+     "url": "https://x.com/AsideAI/status/2108912580270121409",
+     "platform": "x",
+     "status_id": "2108912580270121409",
+     "posted_at": "2026-10-10T13:28:35.000Z",
+     "tweet_text": "Bots meet Aside. Now your @Muse, @bot, and @ChatGPT dots can use Aside.\n\nThese are easily detected as a bot and they don't know which websites you use. We are fixing that because Aside is a browser made for both humans and agents.\n\nGive your personal assistants better browsing capabilities by using Aside on your local device.\nSet it up in Settings > Channels.",
+     "likes": 552,
+     "reposts": 30,
+     "replies": 39,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
     }
    ]
   },
@@ -4736,7 +4845,7 @@
    "id": "agents-and-automation",
    "title": "Agents & automation",
    "blurb": "Recurring jobs, multi step agents and hands off automations.",
-   "count": 16,
+   "count": 17,
    "items": [
     {
      "id": "2102915571276992875",
@@ -5187,6 +5296,33 @@
      "text_source": "tweet",
      "via": "shipwithmuse.live",
      "filed": "Sep 22, 2026"
+    },
+    {
+     "id": "2108256114018283550",
+     "title": "His Muse agent closed a ZEC short for $75",
+     "category": "agents-and-automation",
+     "tags": [
+      "trading",
+      "agent"
+     ],
+     "summary": "His Muse agent closed a ZEC short at 1167.64 while he was at work. Net result: plus $75.08, or 12.26 percent. He says he did not open the trade and he did not close it.",
+     "prompt": null,
+     "handle": "@andr3barroso",
+     "name": "André",
+     "url": "https://x.com/andr3barroso/status/2108256114018283550",
+     "platform": "x",
+     "status_id": "2108256114018283550",
+     "posted_at": "2026-10-08T18:00:01.000Z",
+     "tweet_text": "My @Muse agent just closed a trade for me.\n\nZEC short. Closed at 1167.64.\n\nNet: +$75.08 (+12.26%).\n\nI didn't open it. I didn't close it.\n\nI built the agent. The agent did the rest.\n\nThat is the dream: trades closing while I fix planes.\n\nWhat would you let an AI agent do for you?",
+     "likes": 16,
+     "reposts": 0,
+     "replies": 12,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
     }
    ]
   },
@@ -5194,7 +5330,7 @@
    "id": "apps-and-websites",
    "title": "Apps & websites",
    "blurb": "Apps and sites people shipped with Muse doing the building.",
-   "count": 22,
+   "count": 25,
    "items": [
     {
      "id": "2102187698127569173",
@@ -5819,6 +5955,87 @@
      "text_source": "tweet",
      "via": "shipwithmuse.live",
      "filed": "Apr 8, 2026"
+    },
+    {
+     "id": "2108072971818676574",
+     "title": "A fasting tracker and a conference planner, built to fit",
+     "category": "apps-and-websites",
+     "tags": [
+      "app",
+      "health"
+     ],
+     "summary": "He did not download either app. He described what he needed and Muse built a fasting tracker and a conference planner, wired to his Apple Health, his schedule, and his targets.",
+     "prompt": null,
+     "handle": "@chakkaradeep",
+     "name": "Chakkaradeep",
+     "url": "https://x.com/chakkaradeep/status/2108072971818676574",
+     "platform": "x",
+     "status_id": "2108072971818676574",
+     "posted_at": "2026-10-08T05:52:17.000Z",
+     "tweet_text": "The app store is becoming obsolete.\n\nI didn't download a fasting tracker or a conference planner. I described what I needed, and @Muse built them - wired to my Apple Health, my schedule, my targets. @Musecases @alexandr_wang \n\nSoftware that knows you beats software you shop for. Demo 👇",
+     "likes": 51,
+     "reposts": 2,
+     "replies": 11,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2108405100700213260",
+     "title": "One app for every AI meetup in Seattle",
+     "category": "apps-and-websites",
+     "tags": [
+      "app",
+      "events"
+     ],
+     "summary": "Muse built him an app that tracks AI meetups across Greater Seattle on Meetup, Luma, Eventbrite, and GeekWire. It refreshes daily and pings him when something new appears. 19 events so far.",
+     "prompt": null,
+     "handle": "@chakkaradeep",
+     "name": "Chakkaradeep",
+     "url": "https://x.com/chakkaradeep/status/2108405100700213260",
+     "platform": "x",
+     "status_id": "2108405100700213260",
+     "posted_at": "2026-10-09T03:52:02.000Z",
+     "tweet_text": "Built with @Muse: my little unfair advantage for staying on top of Seattle AI events. \n\nEvery AI meetup in Greater Seattle - Meetup, Luma, Eventbrite, GeekWire - tracked in one app, refreshed daily, pings me when something new drops.\n\n19 events so far and Muse is watching for more!\n\n@Musecases",
+     "likes": 7,
+     "reposts": 0,
+     "replies": 3,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2110022597723476100",
+     "title": "Palo Alto as a pixel art map, in 10 minutes",
+     "category": "apps-and-websites",
+     "tags": [
+      "map",
+      "pixel"
+     ],
+     "summary": "Asked Muse to turn Palo Alto into an explorable pixel art map. It placed 2,474 real buildings from OpenStreetMap in about 10 minutes.",
+     "prompt": null,
+     "handle": "@VitriaBezerraN1",
+     "name": "vitoria bezerra nunes",
+     "url": "https://x.com/VitriaBezerraN1/status/2110022597723476100",
+     "platform": "x",
+     "status_id": "2110022597723476100",
+     "posted_at": "2026-10-13T14:59:24.000Z",
+     "tweet_text": "asked Muse to turn Palo Alto into an explorable pixel-art map \n\n2,474 real buildings from OpenStreetMap\n\nIn 10 min\n\nhttps://muse.ai/s/palo-alto-pixel-art-xxj6npkxwnshv",
+     "likes": 0,
+     "reposts": 0,
+     "replies": 0,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
     }
    ]
   },
@@ -5826,7 +6043,7 @@
    "id": "games-and-3d",
    "title": "Games & 3D",
    "blurb": "Games, worlds and 3D experiments made with Muse.",
-   "count": 40,
+   "count": 44,
    "items": [
     {
      "id": "2098458652852228441",
@@ -6952,6 +7169,114 @@
      "text_source": "tweet",
      "via": "shipwithmuse.live",
      "filed": "Aug 6, 2026"
+    },
+    {
+     "id": "2109741398840983887",
+     "title": "One shot 3D of the Eiffel Tower and a cathedral",
+     "category": "games-and-3d",
+     "tags": [
+      "3d",
+      "one shot"
+     ],
+     "summary": "Jean one shot this scene with Muse Wonder: a low poly figure in front of the Eiffel Tower, with a cathedral across the green.",
+     "prompt": null,
+     "handle": "@initjean",
+     "name": "Jean P.D. Meijer - 🇪🇺🇳🇱 eu/acc",
+     "url": "https://x.com/initjean/status/2109741398840983887",
+     "platform": "x",
+     "status_id": "2109741398840983887",
+     "posted_at": "2026-10-12T20:22:01.000Z",
+     "tweet_text": "one shot this with Muse Wonder",
+     "likes": 8,
+     "reposts": 0,
+     "replies": 0,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109982830201917783",
+     "title": "A pixel wizard that shoots at a crystal target",
+     "category": "games-and-3d",
+     "tags": [
+      "game",
+      "pixel"
+     ],
+     "summary": "He ran a pixel wizard prompt in Muse Code on Muse Wonder Full. The model added a crystal target on the ground for the wizard to shoot.",
+     "prompt": null,
+     "handle": "@FatalExit",
+     "name": "Fatal Exit",
+     "url": "https://x.com/FatalExit/status/2109982830201917783",
+     "platform": "x",
+     "status_id": "2109982830201917783",
+     "posted_at": "2026-10-13T12:21:22.000Z",
+     "tweet_text": "Using @majidmanzarpour s pixel wizard JS prompt with Muse Wonder Full in Muse Code... interesting it put a crystal target on the ground for him to shoot the projectile at.",
+     "likes": 8,
+     "reposts": 1,
+     "replies": 1,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2110015285713649915",
+     "title": "A racing game on the Athens riviera",
+     "category": "games-and-3d",
+     "tags": [
+      "game",
+      "racing"
+     ],
+     "summary": "He built a racing game set on the Athens riviera, trying Opus, GPT 6.1, Sol, and Muse Wonder Full.",
+     "prompt": null,
+     "handle": "@aflekkas_",
+     "name": "Alexandros Lekkas",
+     "url": "https://x.com/aflekkas_/status/2110015285713649915",
+     "platform": "x",
+     "status_id": "2110015285713649915",
+     "posted_at": "2026-10-13T14:30:20.000Z",
+     "tweet_text": "Built a racing game with Opus, GPT 6.1, Sol, and Meta's new model: Muse Wonder Full.\n\n(set in the Athens riviera lol)",
+     "likes": 0,
+     "reposts": 0,
+     "replies": 1,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2110025547078353249",
+     "title": "Four models walk through a Paris bakery",
+     "category": "games-and-3d",
+     "tags": [
+      "3d",
+      "comparison"
+     ],
+     "summary": "After Muse Wonder shipped, he gave four models the same one shot prompt: walk from the street into Chez Dom, through the bakehouse, until the oven opens on croissants. One run cost $14 and one cost $1.",
+     "prompt": null,
+     "handle": "@domsilvestre",
+     "name": "Dominique Silvestre",
+     "url": "https://x.com/domsilvestre/status/2110025547078353249",
+     "platform": "x",
+     "status_id": "2110025547078353249",
+     "posted_at": "2026-10-13T15:11:07.000Z",
+     "tweet_text": "Meta just shipped Muse Wonder. So I asked 4 AIs to build my Paris bakery in 3D.\n\nSame prompt: from the street into \"Chez Dom\", through the bakehouse, until the oven opens on fresh croissants.\n\nOne shot. No fixes. Max reasoning.\n\nOne cost $14. One cost $1. Watch till the oven 👇",
+     "likes": 0,
+     "reposts": 0,
+     "replies": 1,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
     }
    ]
   },
@@ -8006,7 +8331,7 @@
    "id": "benchmarks-and-research",
    "title": "Benchmarks & research",
    "blurb": "Evals, comparisons and research findings about Muse models.",
-   "count": 56,
+   "count": 61,
    "items": [
     {
      "id": "2101005577665098133",
@@ -9566,6 +9891,141 @@
      "text_source": "tweet",
      "via": "shipwithmuse.live",
      "filed": "Apr 8, 2026"
+    },
+    {
+     "id": "2109782293317611650",
+     "title": "Same prompt, before and after the Muse Wonder fix",
+     "category": "benchmarks-and-research",
+     "tags": [
+      "comparison",
+      "muse wonder"
+     ],
+     "summary": "Tim Jayas ran the same prompt on Muse Wonder right after launch and again after Alexandr Wang said bugs had been fixed. The later output is noticeably better.",
+     "prompt": null,
+     "handle": "@TimJayas",
+     "name": "Tim Jayas",
+     "url": "https://x.com/TimJayas/status/2109782293317611650",
+     "platform": "x",
+     "status_id": "2109782293317611650",
+     "posted_at": "2026-10-12T23:04:31.000Z",
+     "tweet_text": "muse-wonder just got better (before/after)\n\nafter @alexandr_wang acknowledged there were bunch of bugs, there's been a noticeable improvement with muse-wonder\n\nboth outputs are from the same prompt, one taken directly after the model launch and the one after the fix",
+     "likes": 138,
+     "reposts": 5,
+     "replies": 17,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109729884633534917",
+     "title": "A one shot 3D kitchen game: Wonder versus Opus 5.5",
+     "category": "benchmarks-and-research",
+     "tags": [
+      "comparison",
+      "game"
+     ],
+     "summary": "He gave Muse Wonder and Opus 5.5 the same job: a playable first person 3D game of his kitchen in one HTML file, one prompt, no edits. Opus 5.5 took 11 minutes 40 seconds and $2.10. Wonder took 3 minutes 42 seconds and about $1. Both ran on the first try.",
+     "prompt": null,
+     "handle": "@finebutwhy",
+     "name": "Yair",
+     "url": "https://x.com/finebutwhy/status/2109729884633534917",
+     "platform": "x",
+     "status_id": "2109729884633534917",
+     "posted_at": "2026-10-12T19:36:16.000Z",
+     "tweet_text": "meta's muse wonder came out today, so i gave it and opus 5.5 the same job: build a playable 3d game of my kitchen, first person, open the fridge, grab ingredients, cook one dish. one index.html, three.js from a cdn. one prompt, one shot, nobody touched the keyboard\n\nclaude code on opus 5.5 at xhigh, muse code on wonder at xhigh (the api wonder; wonder full needs the bigger muse plan)\n\nopus 5.5: 11m40s, $2.10, ran first try: yes\nwonder: 3m42s, about $1, ran first try: yes\n\nfirst vibes for opus 5.5 xhigh vs meta wonder xhigh? what would you like to see tested next\nhttps://research.meta.ai/blog/muse-wonder",
+     "likes": 13,
+     "reposts": 2,
+     "replies": 11,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109992831498453096",
+     "title": "A security audit that cost $7.50",
+     "category": "benchmarks-and-research",
+     "tags": [
+      "audit",
+      "coding"
+     ],
+     "summary": "He used Muse Wonder for a security audit on a small side project. About four small commits cost $7.50, and he saw virtually no difference from the other frontier models.",
+     "prompt": null,
+     "handle": "@adamisnotroman",
+     "name": "adam roman",
+     "url": "https://x.com/adamisnotroman/status/2109992831498453096",
+     "platform": "x",
+     "status_id": "2109992831498453096",
+     "posted_at": "2026-10-13T13:01:07.000Z",
+     "tweet_text": "I trusted Zuck so you don't have to. \n\nMuse Wonder used for a security audit for a small side project. About 4 small commits ended up costing me $7.50 and there was virtually no difference from the other frontier models. \n\nMaybe the commoditization of frontier models is happening sooner than we thought.",
+     "likes": 3,
+     "reposts": 1,
+     "replies": 0,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109887340814721143",
+     "title": "Four Muse Wonder tests, from a lava game to Swahili",
+     "category": "benchmarks-and-research",
+     "tags": [
+      "benchmark",
+      "muse wonder"
+     ],
+     "summary": "Fahd Mirza ran Muse Wonder through four tests: a 3D floor is lava game in Blender and Godot, a Brazilian skewer animation in one HTML file, a hidden bug in an old Oracle query, and a Swahili headline translated into more than 80 languages.",
+     "prompt": null,
+     "handle": "@fahdmirza",
+     "name": "Fahd Mirza",
+     "url": "https://x.com/fahdmirza/status/2109887340814721143",
+     "platform": "x",
+     "status_id": "2109887340814721143",
+     "posted_at": "2026-10-13T06:01:56.000Z",
+     "tweet_text": "💥 Meta just dropped Muse Wonder\n\n♠ and I put it through 4 real tests with Hermes Agent\n\n🔹Built for personal and professional agents, with Active Memory and Active Focus\n🔹Meta's own charts put it ahead of Claude Opus 5.5 and GPT-6 Astra on DeepSWE and SWE-Marathon\n🔹Test 1: build a 3D \"floor is lava\" game from scratch with Blender and Godot\n🔹Test 2: a Brazilian churrasco picanha skewer animation in one HTML file\n🔹Test 3: find the hidden bug in a nasty Oracle 8i query\n🔹Test 4: read a Swahili headline from an image and translate it into 80+ languages\n\n🔥Watch the full video below:👇\n\nhttps://youtu.be/Be0fUeLhYYY?si=BXnbQcPProOJ7ju5\n\n@alexandr_wang @AIatMeta",
+     "likes": 1,
+     "reposts": 0,
+     "replies": 0,
+     "views": 0,
+     "has_media": false,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109977041168671218",
+     "title": "Wonder polishes a quiz app and catches small bugs",
+     "category": "benchmarks-and-research",
+     "tags": [
+      "muse wonder",
+      "coding"
+     ],
+     "summary": "Simon Smith tried Muse Wonder in the Muse app. Writing felt the same as Spark. It floated a Next button that kept falling off the screen in a quiz, and it caught subtle bugs that needed a close reading of the code.",
+     "prompt": null,
+     "handle": "@_simonsmith",
+     "name": "Simon Smith",
+     "url": "https://x.com/_simonsmith/status/2109977041168671218",
+     "platform": "x",
+     "status_id": "2109977041168671218",
+     "posted_at": "2026-10-13T11:58:22.000Z",
+     "tweet_text": "Very early impressions of Muse Wonder in the Muse app:\n\n1. No regressions I notice. In particular, no personality or writing regressions. Feels like the same entity I was talking to with Spark.\n\n2. Better UI sense. Had it polish an app made with Spark and it found a really elegant way of positioning a footer “Next” button that kept going off screen in a quiz (it floated the button so it always stays in the same place rather than getting pushed down).\n\n3. Caught subtle bugs in that same app. Not major ones, but ones that required a close reading of the code and understanding of how it was supposed to work and actually worked.\n\nOne thing that’s not clear right now is whether Wonder also powers background tasks like goal summaries and the news feed. My current feeling is yes to to the news feed and no to the goal summaries based on how they’re still written (have some of the really bad AI writing tells, like trying too hard to have a voice, and self-referentially calling attention to things that they only need to show rather than also tell).",
+     "likes": 27,
+     "reposts": 0,
+     "replies": 2,
+     "views": 0,
+     "has_media": false,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
     }
    ]
   },
@@ -9573,7 +10033,7 @@
    "id": "content-and-creative",
    "title": "Content & creative",
    "blurb": "Writing, video, music and design work done with Muse.",
-   "count": 28,
+   "count": 33,
    "items": [
     {
      "id": "2101665384856203279",
@@ -10355,6 +10815,141 @@
      "text_source": "tweet",
      "via": "shipwithmuse.live",
      "filed": "Sep 10, 2026"
+    },
+    {
+     "id": "2108861634274091450",
+     "title": "A midnight ride that turns into sunrise",
+     "category": "content-and-creative",
+     "tags": [
+      "video",
+      "muse"
+     ],
+     "summary": "He made a Japanese riding scene with Muse: a midnight ride along the coast that slowly becomes a sunrise ride.",
+     "prompt": null,
+     "handle": "@psypth",
+     "name": "tyr 🐺",
+     "url": "https://x.com/psypth/status/2108861634274091450",
+     "platform": "x",
+     "status_id": "2108861634274091450",
+     "posted_at": "2026-10-10T10:06:09.000Z",
+     "tweet_text": "made this japanese riding scene with @Muse \n\na midnight ride that slowly turns into a sunrise ride along the coast. ngl, the transition from night to morning hits different.",
+     "likes": 15,
+     "reposts": 1,
+     "replies": 13,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2108650126940184608",
+     "title": "A Japanese action sequence: parking lot, train, hideout",
+     "category": "content-and-creative",
+     "tags": [
+      "video",
+      "action"
+     ],
+     "summary": "He made a Japanese action sequence with Muse: a parking lot brawl, a train fight, and a raid on a yakuza hideout.",
+     "prompt": null,
+     "handle": "@psypth",
+     "name": "tyr 🐺",
+     "url": "https://x.com/psypth/status/2108650126940184608",
+     "platform": "x",
+     "status_id": "2108650126940184608",
+     "posted_at": "2026-10-09T20:05:41.000Z",
+     "tweet_text": "made this japanese action sequence with @Muse \n\nparking lot brawl, train fight, and a raid on a yakuza hideout.\n\nngl, adding shootouts to fight scenes would make them even crazier 👀\n\nsoundtrack: Break into the Dark - Valentine, Rui & Afrojack 🎧",
+     "likes": 12,
+     "reposts": 1,
+     "replies": 9,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109850482365890670",
+     "title": "A corrido written with his Muse twin",
+     "category": "content-and-creative",
+     "tags": [
+      "music",
+      "song"
+     ],
+     "summary": "He wrote the lyrics and his Muse twin, Sir LilSnoopy, handled the rest. The song is Se Te Hizo Tarde, made on musebook.",
+     "prompt": null,
+     "handle": "@LilSn00py",
+     "name": "Snoopy²",
+     "url": "https://x.com/LilSn00py/status/2109850482365890670",
+     "platform": "x",
+     "status_id": "2109850482365890670",
+     "posted_at": "2026-10-13T03:35:28.000Z",
+     "tweet_text": "If you like corridos tumbados, I think you’ll vibe with this one. And if you don’t…give it a listen anyway. It’s still something you can just chill to.\n\nMy @Muse twin, Sir LilSnoopy, and I made it together. I wrote the lyrics, and he handled the rest.\n\nMade with @musebooklol at http://musebook.lol 🎶🫡\n\nSe Te Hizo Tarde, by Sir LilSnoopy https://musebook.me/s/song/21e065ec306f4c88e0b4597b49ce69a8",
+     "likes": 11,
+     "reposts": 3,
+     "replies": 3,
+     "views": 0,
+     "has_media": false,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109778026091209087",
+     "title": "A video explaining personal benchmarks",
+     "category": "content-and-creative",
+     "tags": [
+      "video",
+      "muse wonder"
+     ],
+     "summary": "Dan Shipper used Muse Wonder to make a video explaining personal benchmarks. He calls the result rough, and the videos so far are narrated in an Australian accent.",
+     "prompt": null,
+     "handle": "@danshipper",
+     "name": "Dan Shipper",
+     "url": "https://x.com/danshipper/status/2109778026091209087",
+     "platform": "x",
+     "status_id": "2109778026091209087",
+     "posted_at": "2026-10-12T22:47:33.000Z",
+     "tweet_text": "I used muse wonder to make a video explaining personal benchmarks..\n\nthis is ummm pretty rough\n\ninterestingly all of its videos so far are narrated in an Australian accent. I'll leave interpretation to the reader",
+     "likes": 47,
+     "reposts": 1,
+     "replies": 9,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
+    },
+    {
+     "id": "2109755266770387238",
+     "title": "A music video built from the song itself",
+     "category": "content-and-creative",
+     "tags": [
+      "video",
+      "music"
+     ],
+     "summary": "Muse Wonder made the video from the lyrics alone. He told it to build every scene from what it heard in the song.",
+     "prompt": null,
+     "handle": "@Roll1er",
+     "name": "Roll1er",
+     "url": "https://x.com/Roll1er/status/2109755266770387238",
+     "platform": "x",
+     "status_id": "2109755266770387238",
+     "posted_at": "2026-10-12T21:17:07.000Z",
+     "tweet_text": "Muse wonder made this video just based on the lyrics of the song itself. I literally told it to build every scene based on what it heard in the song. \n\n@boneGPT",
+     "likes": 45,
+     "reposts": 6,
+     "replies": 5,
+     "views": 0,
+     "has_media": true,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
     }
    ]
   },
@@ -10362,7 +10957,7 @@
    "id": "business-and-commerce",
    "title": "Business & commerce",
    "blurb": "Muse at work: sales, support, commerce and back office.",
-   "count": 35,
+   "count": 36,
    "items": [
     {
      "id": "2102916088400847300",
@@ -11357,6 +11952,33 @@
      "text_source": "tweet",
      "via": "shipwithmuse.live",
      "filed": "Sep 11, 2026"
+    },
+    {
+     "id": "2107992940018602292",
+     "title": "An outbound sales loop with Muse doing the research",
+     "category": "business-and-commerce",
+     "tags": [
+      "sales",
+      "research"
+     ],
+     "summary": "Trace Cohen built an outbound system with Claude and Muse. A daily script finds companies in his recent posts, Muse researches the decision makers and their emails, and Claude drafts pitches that land in Gmail for his approval. The two models never talk directly. Scripts and a Google Sheet sit between them.",
+     "prompt": null,
+     "handle": "@Trace_Cohen",
+     "name": "Trace Cohen",
+     "url": "https://x.com/Trace_Cohen/status/2107992940018602292",
+     "platform": "x",
+     "status_id": "2107992940018602292",
+     "posted_at": "2026-10-08T00:34:16.000Z",
+     "tweet_text": "Built a pretty cool automated outbound sales system with @ClaudeDevs and @Muse \n\nClaude helped build the entire workflow using a few Python scripts, Google Sheets, Gmail, and Muse for research.\n\nHere’s how it works:\n\nA daily script scans my last 14 days of published content and identifies companies we’ve covered, mentioned frequently, or that recently raised funding.\nIt filters out existing sponsors, previous outreach, and bad leads, then sends qualified companies to Muse through Google Sheets.\n\nMuse researches decision-makers, finds their emails, and returns sources.\nAn hourly script validates the results and feeds them back into our CRM.\n\nClaude picks up the qualified leads, verifies inferred emails through Clay, and writes personalized pitches referencing our actual articles.\n\nEverything lands in Gmail Drafts for my approval. Follow-ups and responses are tracked automatically.\n\nThe cool part is that Claude and Muse aren’t directly connected. The scripts and Google Sheets act as the bridge between them.\n\nWe’ve gone from ~30 Claude steps per email to just 3–5.\n\nContent → Leads → Research → Personalized Outreach → Sponsors → More Content.\n\nAn AI-powered sales flywheel that largely runs itself.",
+     "likes": 13,
+     "reposts": 1,
+     "replies": 10,
+     "views": 0,
+     "has_media": false,
+     "library_category": null,
+     "text_source": "tweet",
+     "via": null,
+     "filed": "Oct 13, 2026"
     }
    ]
   }

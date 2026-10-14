@@ -195,6 +195,17 @@ body { background-image: none; }
       .sp-plan small { color: var(--muted); font-size: 13px; font-weight: 600; }
       .sp-plan input:checked + span { border-color: var(--blue); box-shadow: 0 6px 18px rgba(26,86,255,.14); }
       .sp-plan input:focus-visible + span { outline: 2px solid var(--blue); outline-offset: 2px; }
+      .sp-logo { display: grid; gap: 8px; }
+      .sp-logo-head { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; font-size: 13px; font-weight: 700; color: var(--ink); }
+      .sp-logo-head .hint { font-weight: 500; color: var(--muted-2); }
+      .sp-logo-row { display: flex; align-items: center; gap: 14px; }
+      .sp-logo-preview { width: 56px; height: 56px; flex: 0 0 auto; border-radius: 50%; border: 1px dashed var(--line); background: var(--tint) center / cover no-repeat; display: grid; place-items: center; color: var(--muted-2); font-size: 22px; }
+      .sp-logo-preview.has { border-style: solid; color: transparent; }
+      .sp-logo-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+      .sp-upload { position: relative; display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--blue-deep); padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px; background: #fff; cursor: pointer; }
+      .sp-upload:hover { border-color: var(--blue); }
+      .sp-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+      .sp-linkbtn { font: inherit; font-size: 13px; font-weight: 600; color: var(--muted); background: none; border: 0; padding: 4px 2px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
       .sp-submit { font: inherit; font-weight: 700; font-size: 16px; padding: 14px 18px; border: 0; border-radius: 10px; background: var(--blue); color: #fff; cursor: pointer; }
       .sp-submit:hover { background: var(--blue-deep); }
       .sp-submit:disabled { opacity: .6; cursor: wait; }
@@ -276,7 +287,18 @@ body { background-image: none; }
               </div>
               <label>Product name<input type="text" name="name" maxlength="60" required autocomplete="organization" placeholder="staywith.pet" /></label>
               <label>Link<input type="url" name="url" required inputmode="url" placeholder="https://yourproduct.com" /></label>
-              <label>Logo link <span class="hint">Optional, a square image. We use your site's icon if empty.</span><input type="url" name="logo" inputmode="url" placeholder="https://yourproduct.com/logo.png" /></label>
+              <div class="sp-logo">
+                <div class="sp-logo-head"><span>Logo</span><span class="hint">Optional. We use your site's icon if you skip it.</span></div>
+                <div class="sp-logo-row">
+                  <span class="sp-logo-preview" id="sp-logo-preview" aria-hidden="true">+</span>
+                  <div class="sp-logo-actions">
+                    <label class="sp-upload">Upload a logo<input type="file" id="sp-logo-file" accept="image/png,image/jpeg,image/webp" /></label>
+                    <button type="button" class="sp-linkbtn" id="sp-logo-linkbtn">or paste a link</button>
+                    <button type="button" class="sp-linkbtn" id="sp-logo-clear" hidden>Remove</button>
+                  </div>
+                </div>
+                <input type="url" name="logo" id="sp-logo-url" inputmode="url" placeholder="https://yourproduct.com/logo.png" aria-label="Logo link" hidden />
+              </div>
               <label>Email for the receipt<input type="email" name="email" required autocomplete="email" placeholder="you@yourproduct.com" /></label>
               <p class="sp-err" id="sp-err" role="alert" hidden></p>
               <button class="sp-submit" id="sp-submit" type="submit">Continue to checkout</button>
@@ -335,6 +357,39 @@ body { background-image: none; }
             ? d.open + " of " + d.slots.length + " slots open. Yours goes up as soon as you pay."
             : "All slots are taken. Yours starts on " + new Date(d.nextOpening).toLocaleDateString(undefined, { month: "long", day: "numeric" }) + ", when the next one frees up.";
         }).catch(function () {});
+        var uploaded = "";
+        var preview = document.getElementById("sp-logo-preview");
+        var fileIn = document.getElementById("sp-logo-file");
+        var urlIn = document.getElementById("sp-logo-url");
+        var clearBtn = document.getElementById("sp-logo-clear");
+        function showPreview(src) {
+          preview.style.backgroundImage = src ? 'url("' + src.replace(/"/g, "%22") + '")' : "";
+          preview.classList.toggle("has", Boolean(src));
+          clearBtn.hidden = !src;
+        }
+        document.getElementById("sp-logo-linkbtn").addEventListener("click", function () { urlIn.hidden = false; urlIn.focus(); });
+        urlIn.addEventListener("input", function () { uploaded = ""; fileIn.value = ""; showPreview(/^https?:\/\//.test(urlIn.value.trim()) ? urlIn.value.trim() : ""); });
+        clearBtn.addEventListener("click", function () { uploaded = ""; fileIn.value = ""; urlIn.value = ""; showPreview(""); });
+        // Square-crop and shrink to 128 px in the browser, the way creator
+        // photos are handled, so the upload is a few kilobytes.
+        fileIn.addEventListener("change", function () {
+          var file = fileIn.files && fileIn.files[0];
+          if (!file) return;
+          if (!/^image\/(png|jpeg|webp)$/.test(file.type)) { err.textContent = "Use a PNG, JPEG or WebP image."; err.hidden = false; fileIn.value = ""; return; }
+          var img = new Image();
+          img.onload = function () {
+            var size = 128, c = document.createElement("canvas"); c.width = size; c.height = size;
+            var side = Math.min(img.naturalWidth, img.naturalHeight);
+            c.getContext("2d").drawImage(img, (img.naturalWidth - side) / 2, (img.naturalHeight - side) / 2, side, side, 0, 0, size, size);
+            uploaded = c.toDataURL("image/png");
+            if (uploaded.length > 200000) uploaded = c.toDataURL("image/jpeg", 0.9);
+            urlIn.value = ""; urlIn.hidden = true; err.hidden = true;
+            showPreview(uploaded);
+            URL.revokeObjectURL(img.src);
+          };
+          img.onerror = function () { err.textContent = "That image could not be read."; err.hidden = false; };
+          img.src = URL.createObjectURL(file);
+        });
         var form = document.getElementById("sp-form");
         var err = document.getElementById("sp-err");
         var btn = document.getElementById("sp-submit");
@@ -343,7 +398,7 @@ body { background-image: none; }
           err.hidden = true;
           var f = new FormData(form);
           var body = { sku: f.get("sku"), name: f.get("name"), url: f.get("url"), email: f.get("email") };
-          var logo = String(f.get("logo") || "").trim();
+          var logo = uploaded || String(f.get("logo") || "").trim();
           if (logo) body.logo = logo;
           else { try { body.logo = "https://www.google.com/s2/favicons?sz=128&domain=" + new URL(String(f.get("url"))).hostname; } catch (_) {} }
           btn.disabled = true; btn.textContent = "Opening checkout\u2026";

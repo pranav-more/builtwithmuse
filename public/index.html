@@ -628,7 +628,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         <nav class="nav" id="site-nav" aria-label="Site">
           <a href="/" aria-current="page">Home</a>
           <a href="/workflows">Feed</a>
-          <a href="/posts">Social <span class="nav-count">708</span></a>
+          <a href="/posts">Social</a>
           <a href="/creators">Creators</a>
           <a href="/blog">Blog</a>
           <a href="/creator">Profile</a>
@@ -671,10 +671,10 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
                 <div class="card-label"><span>Sponsors</span><span class="live-tag">4 slots</span></div>
                 <h2 id="sponsor-h2">Your product, in front of the people building with Muse.</h2>
                 <ol class="sponsor-slots" id="sponsor-slots">
-                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim from $50</a></li>
-                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim from $50</a></li>
-                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim from $50</a></li>
-                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim from $50</a></li>
+                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>
+                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>
+                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>
+                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>
                 </ol>
                 <a class="button sponsor-cta" href="/sponsor">Sponsor a slot &#8594;</a>
               </section>
@@ -1829,12 +1829,20 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           const list = document.getElementById("sponsor-slots"); if (!list || !d.ok || !Array.isArray(d.slots)) return;
           const esc = (v) => String(v || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
           list.innerHTML = d.slots.map((sp) => sp.name
-            ? '<li class="filled"><span class="n">#' + sp.slot + '</span><a class="slot-link" href="' + esc(sp.url) + '" target="_blank" rel="noopener sponsored" data-slot="' + sp.slot + '">' + (sp.logo ? '<img class="slot-logo" src="' + esc(sp.logo) + '" alt="" />' : "") + '<span class="slot-brand">' + esc(sp.name) + '</span></a><span class="slot-clicks">' + sp.clicks + ' click' + (sp.clicks === 1 ? "" : "s") + '</span></li>'
-            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim from $50</a></li>').join("");
+            ? '<li class="filled"><span class="n">#' + sp.slot + '</span><a class="slot-link" href="' + esc(sp.url) + '" target="_blank" rel="noopener sponsored" data-slot="' + sp.slot + '">' + (sp.logo ? '<img class="slot-logo" src="' + esc(sp.logo) + '" alt="" />' : "") + '<span class="slot-brand">' + esc(sp.name) + '</span></a></li>'
+            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>').join("");
           list.querySelectorAll("a[data-slot]").forEach((a) => a.addEventListener("click", () => {
             try { fetch("/api/sponsors/click", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: JSON.stringify({ slot: Number(a.dataset.slot) }) }); } catch (_) {}
-            const pill = a.parentElement.querySelector(".slot-clicks"); if (pill) { const n = (parseInt(pill.textContent, 10) || 0) + 1; pill.textContent = n + " click" + (n === 1 ? "" : "s"); }
           }));
+          // One impression per visitor per day, when the box is actually seen.
+          if ("IntersectionObserver" in window && d.slots.some((x) => x.name)) {
+            const io = new IntersectionObserver((entries) => {
+              if (!entries.some((e) => e.isIntersecting)) return;
+              io.disconnect();
+              try { fetch("/api/sponsors/seen", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: "{}" }); } catch (_) {}
+            }, { threshold: 0.5 });
+            io.observe(list);
+          }
         }).catch(() => {});
         fetch("/api/stats", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           const el = document.getElementById("home-active"); if (!el || !d.ok) return;

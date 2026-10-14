@@ -249,7 +249,7 @@ body { background-image: none; }
         <nav class="nav" id="site-nav" aria-label="Site">
           <a href="/">Home</a>
           <a href="/workflows">Feed</a>
-          <a href="/posts">Social <span class="nav-count">675</span></a>
+          <a href="/posts">Social</a>
           <a href="/creators">Creators</a>
           <a href="/blog">Blog</a>
           <a href="/creator">Profile</a>
@@ -271,7 +271,7 @@ body { background-image: none; }
             <ol class="sp-slots" id="sp-slots"></ol>
             <ul class="sp-facts">
               <li>Shown on the homepage of builtwithmuse.com</li>
-              <li>A live click count next to your name, the same number we see</li>
+              <li>Your own private stats page: impressions, clicks and click-through, day by day</li>
               <li>Labeled as a sponsor, linked with rel="sponsored"</li>
               <li>If every slot is taken, yours starts the moment one frees up</li>
             </ul>
@@ -350,7 +350,7 @@ body { background-image: none; }
           if (!d.ok) return;
           document.getElementById("sp-slots").innerHTML = d.slots.map(function (s) {
             return s.name
-              ? '<li class="filled"><span class="n">#' + s.slot + '</span>' + (s.logo ? '<img src="' + esc(s.logo) + '" alt="" />' : "") + '<span class="nm">' + esc(s.name) + '</span><span class="clk">' + s.clicks + ' click' + (s.clicks === 1 ? "" : "s") + '</span></li>'
+              ? '<li class="filled"><span class="n">#' + s.slot + '</span>' + (s.logo ? '<img src="' + esc(s.logo) + '" alt="" />' : "") + '<span class="nm">' + esc(s.name) + '</span></li>'
               : '<li><span class="n">#' + s.slot + '</span><span class="open-txt">Open slot</span></li>';
           }).join("");
           document.getElementById("sp-open-line").textContent = d.open

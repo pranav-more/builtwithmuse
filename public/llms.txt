@@ -87,6 +87,10 @@ Step by step guides for getting real things done with Muse.
 - [What Muse actually did for small businesses](https://builtwithmuse.com/blog/what-muse-did-for-small-businesses): The documented runs in one place, labelled by evidence: payroll time cards in Iowa, an email automation audit in Ohio, orchard paperwork in Delaware, an independent Facebook test scored out of ten, and five money tests from one Reddit user, with the limits beside the results.
 - [Before you connect Muse to your business: the risk checklist](https://builtwithmuse.com/blog/muse-for-business-risk-checklist): A three part checklist grounded in the documented record: the Sentinel approval system, the incidents owners and reviewers have reported, and the practical defenses, starting with the least sensitive account and keeping approvals on for money and publishing.
 
+- [Muse voice chat](https://builtwithmuse.com/blog/muse-voice-chat): Voice chat means you talk to Muse out loud inside the app and it answers in voice. Who has it as of October 15, 2026, how it differs from Muse calling businesses, how to check your account, and what to do while you wait.
+- [Muse account locked, suspended or disconnected](https://builtwithmuse.com/blog/muse-account-locked): The three account states users hit, the October 14, 2026 wave of disconnections, the steps that get accounts back through support, what not to do, and how to protect your invite code and workflows.
+- [How to make Muse sound like you](https://builtwithmuse.com/blog/make-muse-sound-like-you): Muse drafts messages in one corporate voice until you teach it yours. Style profiles built from your sent messages, one per audience, the hard rules prompt, and the draft, correct, teach loop.
+
 ## Using Muse outside the US
 
 Muse has not launched in every country. These guides cover the workarounds.

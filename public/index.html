@@ -360,6 +360,8 @@
       .success-panel strong { display: block; color: var(--ink); line-height: 1.4; }
       .success-panel p { margin: 6px 0 14px; color: var(--muted); font-size: 14px; line-height: 1.55; }
       .success-panel a.button { text-decoration: none; }
+      .digest-optin { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 14px; color: var(--muted); cursor: pointer; }
+      .digest-optin input { width: 16px; height: 16px; margin: 0; accent-color: var(--blue); cursor: pointer; }
 
       .form-stack { display: grid; gap: 18px; }
       .field { display: grid; gap: 8px; }
@@ -633,7 +635,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         <nav class="nav" id="site-nav" aria-label="Site">
           <a href="/" aria-current="page">Home</a>
           <a href="/workflows">Feed</a>
-          <a href="/posts">Social <span class="nav-count">675</span></a>
+          <a href="/posts">Social</a>
           <a href="/creators">Creators</a>
           <a href="/blog">Blog</a>
           <a href="/creator">Profile</a>
@@ -676,12 +678,12 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
                 <div class="card-label"><span>Sponsors</span><span class="live-tag">4 slots</span></div>
                 <h2 id="sponsor-h2">Your product, in front of the people building with Muse.</h2>
                 <ol class="sponsor-slots" id="sponsor-slots">
-                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%231%20on%20Built%20with%20Muse">Email to claim</a></li>
-                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%232%20on%20Built%20with%20Muse">Email to claim</a></li>
-                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%233%20on%20Built%20with%20Muse">Email to claim</a></li>
-                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%234%20on%20Built%20with%20Muse">Email to claim</a></li>
+                  <li class="open"><span class="n">#1</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>
+                  <li class="open"><span class="n">#2</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>
+                  <li class="open"><span class="n">#3</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>
+                  <li class="open"><span class="n">#4</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>
                 </ol>
-                <a class="button sponsor-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20on%20Built%20with%20Muse">Sponsor a slot &#8594;</a>
+                <a class="button sponsor-cta" href="/sponsor">Sponsor a slot &#8594;</a>
               </section>
             </div>
           </div>
@@ -699,7 +701,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           </section>
 
           <section class="home-section" aria-labelledby="wild-heading">
-            <div class="section-row"><div><h2 id="wild-heading">What people are posting</h2><p>Real posts from X and Threads where people say what Muse did for them. Outcomes as the posters reported them.</p></div><a class="see-all" id="wild-see-all" href="/posts">All 685 posts</a></div>
+            <div class="section-row"><div><h2 id="wild-heading">What people are posting</h2><p>Real posts from X and Threads where people say what Muse did for them. Outcomes as the posters reported them.</p></div><a class="see-all" id="wild-see-all" href="/posts">All 708 posts</a></div>
             <div class="wild-grid" id="home-wild"><div class="pool-empty">Loading posts.</div></div>
           </section>
 
@@ -760,6 +762,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
             <div class="success-panel" id="success-panel" aria-live="polite">
               <strong>You are in. This code now shows as verified for the next person.</strong>
               <p>Do one real thing with Muse before you close the tab, then add your own invite so the pool keeps moving.</p>
+              <label class="digest-optin"><input type="checkbox" id="digest-optin"> Email me the weekly digest</label>
               <div class="card-actions">
                 <a class="button" href="/use-cases/recipe-reel-to-groceries">Try this first: recipe reel to grocery list</a>
                 <button class="button ghost" type="button" id="success-share">Add your invite</button> <a class="button secondary" href="/submit">Publish your workflow</a> <button class="button secondary" type="button" data-share-platform><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button> <span class="share-status" aria-live="polite"></span>
@@ -954,7 +957,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         <div class="footer-col footer-about">
           <h3>About</h3>
           <p>A community pool of Muse invite codes, and the workflows people build with Muse, Meta&#8217;s personal AI agent. Codes come from members who pass their invites on. Every post links to its source.</p>
-          <div class="footer-two"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/blog/what-is-meta-muse">What is Meta Muse</a><a href="/blog/free-muse-invite-code">Free Muse invite code</a><a href="/blog/how-to-use-meta-muse-outside-us">Muse outside the US</a><a href="/blog/muse-vs-chatgpt">Muse vs ChatGPT</a><a href="/blog/muse-tokens-explained">Muse tokens explained</a><a href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Sponsor</a><a href="mailto:polostudio.brand@gmail.com">Contact</a><a href="https://usesundog.com/muse">Sundog workflow library &#8599;</a></div>
+          <div class="footer-two"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/blog/what-is-meta-muse">What is Meta Muse</a><a href="/blog/free-muse-invite-code">Free Muse invite code</a><a href="/blog/how-to-use-meta-muse-outside-us">Muse outside the US</a><a href="/blog/muse-vs-chatgpt">Muse vs ChatGPT</a><a href="/blog/muse-tokens-explained">Muse tokens explained</a><a href="/sponsor">Sponsor</a><a href="mailto:polostudio.brand@gmail.com">Contact</a><a href="https://usesundog.com/muse">Sundog workflow library &#8599;</a></div>
           <p class="footer-fine">Independent community project. Not affiliated with or endorsed by Meta. Token amounts are as Muse announced them.</p>
           <div class="footer-meta"><span>&#169; 2026 Built with Muse</span></div>
         </div>
@@ -963,7 +966,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
         <h3>Ask AI about Built with Muse</h3>
         <div class="askai-links"><a href="https://chatgpt.com/?prompt=Built%20with%20Muse%20%28builtwithmuse.com%29%20is%20a%20community%20where%20people%20share%20Muse%20invite%20codes%20and%20publish%20real%20workflows%20and%20step%20by%20step%20guides%20for%20Muse%2C%20Meta%27s%20personal%20AI%20agent.%20Search%20the%20site%2C%20confirm%20what%20it%20offers%2C%20and%20explain%20it%20to%20me%20in%20plain%20words.%20Then%20ask%20me%20one%20question%3A%20do%20I%20already%20have%20Muse%2C%20or%20do%20I%20still%20need%20an%20invite%20code%3F%20If%20I%20need%20a%20code%2C%20link%20me%20to%20the%20page%20on%20builtwithmuse.com%20where%20I%20can%20get%20one.%20If%20I%20have%20Muse%2C%20ask%20me%20what%20I%20want%20to%20get%20done%2C%20then%20recommend%20the%20guide%20or%20workflow%20on%20builtwithmuse.com%20that%20fits%20me%20best%20and%20why%2C%20and%20link%20me%20to%20it%20so%20I%20can%20start." target="_blank" rel="noopener">ChatGPT</a><a href="https://claude.ai/new?q=What%20is%20Built%20with%20Muse%20%28builtwithmuse.com%29%3F%20It%20is%20a%20community%20where%20people%20share%20Muse%20invite%20codes%20and%20publish%20real%20workflows%20and%20step%20by%20step%20guides%20for%20Muse%2C%20Meta%27s%20personal%20AI%20agent.%20Explain%20what%20I%20can%20do%20there.%20Then%20ask%20me%20one%20question%3A%20do%20I%20already%20have%20Muse%2C%20or%20do%20I%20still%20need%20an%20invite%20code%3F%20If%20I%20need%20a%20code%2C%20link%20me%20to%20the%20page%20on%20builtwithmuse.com%20where%20I%20can%20get%20one.%20If%20I%20have%20Muse%2C%20ask%20me%20what%20I%20want%20to%20get%20done%2C%20then%20recommend%20the%20guide%20or%20workflow%20on%20builtwithmuse.com%20that%20fits%20me%20best%20and%20why%2C%20and%20link%20me%20to%20it%20so%20I%20can%20start." target="_blank" rel="noopener">Claude</a><a href="https://www.perplexity.ai/search/new?q=Search%20for%20Built%20with%20Muse%20%28builtwithmuse.com%29%20and%20explain%20what%20it%20is%2C%20with%20sources%20from%20builtwithmuse.com.%20It%20is%20a%20community%20where%20people%20share%20Muse%20invite%20codes%20and%20publish%20real%20workflows%20and%20step%20by%20step%20guides%20for%20Muse%2C%20Meta%27s%20personal%20AI%20agent.%20Then%20ask%20me%20one%20question%3A%20do%20I%20already%20have%20Muse%2C%20or%20do%20I%20still%20need%20an%20invite%20code%3F%20If%20I%20need%20a%20code%2C%20link%20me%20to%20the%20page%20on%20builtwithmuse.com%20where%20I%20can%20get%20one.%20If%20I%20have%20Muse%2C%20ask%20me%20what%20I%20want%20to%20get%20done%2C%20then%20recommend%20the%20guide%20or%20workflow%20on%20builtwithmuse.com%20that%20fits%20me%20best%20and%20why%2C%20and%20link%20me%20to%20it%20so%20I%20can%20start." target="_blank" rel="noopener">Perplexity</a><a href="https://aistudio.google.com/prompts/new_chat?prompt=What%20is%20Built%20with%20Muse%20%28builtwithmuse.com%29%3F%20It%20is%20a%20community%20where%20people%20share%20Muse%20invite%20codes%20and%20publish%20real%20workflows%20and%20step%20by%20step%20guides%20for%20Muse%2C%20Meta%27s%20personal%20AI%20agent.%20Explain%20what%20I%20can%20do%20there.%20Then%20ask%20me%20one%20question%3A%20do%20I%20already%20have%20Muse%2C%20or%20do%20I%20still%20need%20an%20invite%20code%3F%20If%20I%20need%20a%20code%2C%20link%20me%20to%20the%20page%20on%20builtwithmuse.com%20where%20I%20can%20get%20one.%20If%20I%20have%20Muse%2C%20ask%20me%20what%20I%20want%20to%20get%20done%2C%20then%20recommend%20the%20guide%20or%20workflow%20on%20builtwithmuse.com%20that%20fits%20me%20best%20and%20why%2C%20and%20link%20me%20to%20it%20so%20I%20can%20start." target="_blank" rel="noopener">Gemini</a></div>
       </div>
-</footer>
+    </footer>
     </div>
 
     <script>
@@ -1552,6 +1555,12 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           }, 250);
         });
 
+        document.getElementById("digest-optin").addEventListener("change", async (event) => {
+          const box = event.target;
+          try { await api("/api/digest-optin", { optIn: box.checked }); }
+          catch (_) { box.checked = !box.checked; }
+        });
+
         const SHARE_COPY = { title: "Built with Muse", text: "Muse is still invite only. Here is where people are finding working codes.", url: "https://builtwithmuse.com/share" }; async function shareLink(button, opts) { const status = button.parentElement.querySelector(".share-status"); trackEvent(opts.clickedEvent); if (navigator.share) { try { await navigator.share({ title: opts.title, text: opts.text, url: opts.url }); trackEvent(opts.sharedEvent); } catch (err) { if (err && err.name === "AbortError") trackEvent(opts.cancelledEvent); } return; } try { await navigator.clipboard.writeText(opts.text + " " + opts.url); trackEvent(opts.copiedEvent); if (status) { status.textContent = "Link copied"; setTimeout(() => { status.textContent = ""; }, 2500); } } catch (_) {} } function sharePlatform(button) { return shareLink(button, { title: SHARE_COPY.title, text: SHARE_COPY.text, url: SHARE_COPY.url, clickedEvent: "platform_share_clicked", sharedEvent: "platform_shared", cancelledEvent: "platform_share_cancelled", copiedEvent: "platform_link_copied" }); } document.querySelectorAll("[data-share-platform]").forEach((button) => { button.addEventListener("click", () => sharePlatform(button)); }); try { if (new URLSearchParams(location.search).get("s") === "1") trackEvent("share_arrival"); } catch (_) {} const shareForm = document.getElementById("share-form");
         const shareSubmit = document.getElementById("share-submit");
         function renderShare() {
@@ -1838,12 +1847,20 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           const list = document.getElementById("sponsor-slots"); if (!list || !d.ok || !Array.isArray(d.slots)) return;
           const esc = (v) => String(v || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
           list.innerHTML = d.slots.map((sp) => sp.name
-            ? '<li class="filled"><span class="n">#' + sp.slot + '</span><a class="slot-link" href="' + esc(sp.url) + '" target="_blank" rel="noopener sponsored" data-slot="' + sp.slot + '">' + (sp.logo ? '<img class="slot-logo" src="' + esc(sp.logo) + '" alt="" />' : "") + '<span class="slot-brand">' + esc(sp.name) + '</span></a><span class="slot-clicks">' + sp.clicks + ' click' + (sp.clicks === 1 ? "" : "s") + '</span></li>'
-            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="mailto:polostudio.brand@gmail.com?subject=Sponsor%20slot%20%23' + sp.slot + '%20on%20Built%20with%20Muse">Email to claim</a></li>').join("");
+            ? '<li class="filled"><span class="n">#' + sp.slot + '</span><a class="slot-link" href="' + esc(sp.url) + '" target="_blank" rel="noopener sponsored" data-slot="' + sp.slot + '">' + (sp.logo ? '<img class="slot-logo" src="' + esc(sp.logo) + '" alt="" />' : "") + '<span class="slot-brand">' + esc(sp.name) + '</span></a></li>'
+            : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>').join("");
           list.querySelectorAll("a[data-slot]").forEach((a) => a.addEventListener("click", () => {
             try { fetch("/api/sponsors/click", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: JSON.stringify({ slot: Number(a.dataset.slot) }) }); } catch (_) {}
-            const pill = a.parentElement.querySelector(".slot-clicks"); if (pill) { const n = (parseInt(pill.textContent, 10) || 0) + 1; pill.textContent = n + " click" + (n === 1 ? "" : "s"); }
           }));
+          // One impression per visitor per day, when the box is actually seen.
+          if ("IntersectionObserver" in window && d.slots.some((x) => x.name)) {
+            const io = new IntersectionObserver((entries) => {
+              if (!entries.some((e) => e.isIntersecting)) return;
+              io.disconnect();
+              try { fetch("/api/sponsors/seen", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: "{}" }); } catch (_) {}
+            }, { threshold: 0.5 });
+            io.observe(list);
+          }
         }).catch(() => {});
         fetch("/api/stats", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           const el = document.getElementById("home-active"); if (!el || !d.ok) return;

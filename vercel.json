@@ -30,9 +30,22 @@
       "source": "/use-cases",
       "destination": "/workflows",
       "statusCode": 301
+    },
+    {
+      "source": "/workflows/recipe-reel-to-groceries",
+      "destination": "/use-cases/recipe-reel-to-groceries",
+      "statusCode": 301
     }
   ],
   "rewrites": [
+    {
+      "source": "/share",
+      "destination": "/api/index?__path=pages/share"
+    },
+    {
+      "source": "/unsubscribe",
+      "destination": "/api/index?__path=pages/unsubscribe"
+    },
     {
       "source": "/posts",
       "destination": "/api/index?__path=pages/posts"

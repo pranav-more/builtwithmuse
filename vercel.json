@@ -43,6 +43,10 @@
       "destination": "/api/index?__path=pages/share"
     },
     {
+      "source": "/unsubscribe",
+      "destination": "/api/index?__path=pages/unsubscribe"
+    },
+    {
       "source": "/posts",
       "destination": "/api/index?__path=pages/posts"
     },

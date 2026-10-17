@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get the free skill: Remix Proven Formats · Second Order</title>
+<style>
+  :root { --bg:#111111; --gold:#C9A227; --ink:#F2EFE9; --muted:#B9B3A8; --card:#1A1A1A; --line:#2C2C2C; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family: Georgia, 'Times New Roman', serif; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 56px 22px 72px; }
+  .brand { font-size: 15px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 0 0 10px; }
+  h1 { font-size: 40px; line-height: 1.12; font-weight: 400; margin: 0 0 14px; }
+  .sub { font-size: 18px; line-height: 1.55; color: var(--muted); margin: 0 0 30px; font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
+  .card h2 { font-size: 21px; font-weight: 400; margin: 0 0 12px; }
+  ul { margin: 0 0 6px; padding-left: 20px; font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.65; color: var(--ink); }
+  form { margin-top: 22px; }
+  label { display:block; font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  input[type=email] { width: 100%; padding: 14px 16px; font-size: 17px; border-radius: 10px; border: 1px solid var(--line); background:#0D0D0D; color: var(--ink); }
+  button { width: 100%; margin-top: 14px; padding: 15px 16px; font-size: 17px; border: 0; border-radius: 10px; background: var(--gold); color: #111; font-weight: 700; cursor: pointer; font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  button:disabled { opacity: .55; cursor: default; }
+  .fine { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+  .err { color: #E08A8A; font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 14px; margin-top: 10px; display:none; }
+  #done { display:none; text-align: center; padding: 10px 0 2px; }
+  #done .dl { display: inline-block; margin-top: 8px; padding: 15px 28px; background: var(--gold); color:#111; font-weight: 700; border-radius: 10px; text-decoration: none; font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 17px; }
+  .steps { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 14px; color: var(--muted); line-height: 1.6; margin-top: 18px; text-align:left; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="brand">Second Order</p>
+    <h1>Remix Proven Formats: the Claude Skill</h1>
+    <p class="sub">The working version of the article "Steal the Format, Not the Video." Install it once, give Claude your inputs once, and it runs the whole system with you, without pasting five prompts every week.</p>
+
+    <div class="card">
+      <div id="gate">
+        <h2>What the skill does for you</h2>
+        <ul>
+          <li>Ranks your candidate videos by outlier multiple, not raw views</li>
+          <li>Breaks a winning video into a reusable format formula</li>
+          <li>Writes your 7 clone scripts, one change at a time</li>
+          <li>Judges your results and updates the formula for the next round</li>
+        </ul>
+        <form id="gateForm" novalidate>
+          <label for="email">Where should we note your download?</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <button type="submit" id="submitBtn">Get the free skill</button>
+          <p class="err" id="errMsg">That email doesn't look complete. Check it and try again.</p>
+          <p class="fine">Free. Your email is saved so we can send you future Second Order skills and strategy guides. No spam, unsubscribe anytime.</p>
+        </form>
+      </div>
+      <div id="done">
+        <h2>It's yours.</h2>
+        <a class="dl" id="downloadBtn" href="#" download>Download the skill (.zip)</a>
+        <p class="steps"><strong>Install:</strong> unzip it, then in Claude go to Settings → Capabilities → Skills → Upload skill and pick the <strong>remix-proven-formats</strong> folder. Full instructions are in the INSTALL.md inside the zip. Then just tell Claude: "Use the remix-proven-formats skill."</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // === WIRING (set at deploy time) ===
+  var WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbz8-KKhA3XP6REX4Fuu4G4ToNIJHkG83r75eVjULjMbqIqp7mV0hmx59JCIdOY0CJui/exec"; // builtwithmuse Apps Script endpoint; leads land on the waitlist sheet, tagged in the country field
+  var DOWNLOAD_URL = "remix-proven-formats.zip"; // the zip sits next to this page, so this link survives any host move
+  var SKILL_ID = "remix-proven-formats";
+
+  var form = document.getElementById('gateForm');
+  var emailEl = document.getElementById('email');
+  var btn = document.getElementById('submitBtn');
+  var err = document.getElementById('errMsg');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = (emailEl.value || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.style.display = 'block'; return; }
+    err.style.display = 'none';
+    btn.disabled = true; btn.textContent = 'One moment…';
+
+    function reveal() {
+      document.getElementById('downloadBtn').href = DOWNLOAD_URL;
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+    }
+
+    // Save the lead, then reveal the download on THIS screen either way.
+    // the reader's reward never waits on our bookkeeping.
+    if (WEBHOOK_URL.indexOf('http') === 0) {
+      fetch(WEBHOOK_URL, {
+        method: 'POST', redirect: 'follow',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ form: 'waitlist', email: email, country: 'Skill download: ' + SKILL_ID })
+      }).then(reveal).catch(reveal);
+    } else {
+      reveal();
+    }
+  });
+</script>
+</body>
+</html>

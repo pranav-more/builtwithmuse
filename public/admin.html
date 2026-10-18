@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
+    <script>(function(){try{var t=localStorage.getItem("bwm-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content","#0d1b3d");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content","dark");}}}catch(e){}})();</script>
     <title>Built with Muse moderation</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
@@ -131,6 +132,17 @@
         .bar { grid-template-columns: 90px 1fr 40px; }
         input[type="search"] { min-width: 0; flex: 1; }
       }
+
+      /* Dark theme (batch 29): admin keeps its own palette; the tokens swap here. */
+      :root[data-theme="dark"] { color-scheme: dark; --bg: #101815; --surface: #182420; --surface-2: #1f2f29; --ink: #e8efec; --muted: #9db3ab; --line: #2b3d36; --accent: #f0704a; --accent-soft: #3a231c; --teal: #3ec6b4; --teal-soft: #14332e; --amber: #f0a35e; --amber-soft: #38270f; --danger: #ff9d8f; --danger-soft: #3d1d18; --side: #0b120e; --side-ink: #d9e3df; --side-active: #223730; --shadow: 0 10px 30px rgba(0,0,0,.4); }
+      :root[data-theme="dark"] th { background: #1f2f29; }
+      :root[data-theme="dark"] tbody tr:hover { background: #1c2a25; }
+      :root[data-theme="dark"] svg line[stroke="#e6ebe8"] { stroke: #2b3d36; }
+      .theme-toggle { display: flex; align-items: center; justify-content: center; gap: 8px; }
+      .theme-toggle svg { width: 16px; height: 16px; }
+      .theme-toggle .icon-sun { display: none; }
+      :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+      :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     </style>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
@@ -161,6 +173,7 @@
         <div class="foot">
           <div class="email" id="who"></div>
           <a href="/" target="_blank" rel="noopener">Open the site</a>
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><span>Theme</span></button>
           <button type="button" id="logout">Sign out</button>
         </div>
       </aside>
@@ -601,5 +614,6 @@
         })();
       })();
     </script>
-  </body>
+      <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
+</body>
 </html>

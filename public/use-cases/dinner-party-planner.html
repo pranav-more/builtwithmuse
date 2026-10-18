@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="light" />
 <meta name="theme-color" content="#ffffff" />
+    <script>(function(){try{var t=localStorage.getItem("bwm-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content","#0d1b3d");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content","dark");}}}catch(e){}})();</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -370,7 +371,46 @@ body { background-image: none; }
 .footer-meta a { color: #fff; text-decoration: none; }
 .footer-meta a:hover { text-decoration: underline; }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-about { grid-column: 1 / -1; } }
-@media (max-width: 560px) { .site-footer { padding-top: 40px; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-two { grid-template-columns: 1fr; } }</style>
+@media (max-width: 560px) { .site-footer { padding-top: 40px; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-two { grid-template-columns: 1fr; } }
+
+/* Dark theme (batch 29). Canonical copy: bwm-batch29/dark.css */
+/* Theme toggle button (both modes; the icon swap is keyed to the attribute). */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-left: 8px; padding: 0; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; font-family: inherit; }
+.theme-toggle:hover { color: var(--ink); border-color: var(--muted-2); }
+.theme-toggle svg { width: 19px; height: 19px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (max-width: 900px) { .theme-toggle { order: 2; width: 34px; height: 34px; margin-left: 4px; } }
+
+/* Tokens */
+:root[data-theme="dark"] { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --bg: #0d1b3d; --tint: #16295a; --navy: #0d1b3d; --navy-2: #16295a; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --coral-ink: #ffffff; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --paper-line: #c9d4f2; --shadow: 0 30px 60px rgba(0,0,0,.35); }
+
+/* Body pattern: grid lines flip from ink based to white based. */
+:root[data-theme="dark"] body { background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%), linear-gradient(-45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%); }
+:root[data-theme="dark"] .topbar.scrolled { background: rgba(13,27,61,.88); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+
+/* White card surfaces become the raised navy panel. */
+:root[data-theme="dark"] .preview-strip, :root[data-theme="dark"] .strip, :root[data-theme="dark"] .pool-list, :root[data-theme="dark"] .signin-card, :root[data-theme="dark"] .invite-card, :root[data-theme="dark"] .home-card, :root[data-theme="dark"] .workflow-card, :root[data-theme="dark"] .rail-box, :root[data-theme="dark"] .card, :root[data-theme="dark"] .post, :root[data-theme="dark"] article, :root[data-theme="dark"] .panel, :root[data-theme="dark"] .item, :root[data-theme="dark"] .footer-cta, :root[data-theme="dark"] .nudge-card, :root[data-theme="dark"] .hero-aside, :root[data-theme="dark"] .stat, :root[data-theme="dark"] .comment, :root[data-theme="dark"] .acct-btn, :root[data-theme="dark"] .acct-menu, :root[data-theme="dark"] .wild-tile, :root[data-theme="dark"] .tweet, :root[data-theme="dark"] .chip, :root[data-theme="dark"] .share-modal, :root[data-theme="dark"] .share-close, :root[data-theme="dark"] .sponsor-card, :root[data-theme="dark"] .sponsor-slots .slot-cta, :root[data-theme="dark"] .sponsor-slots li.filled, :root[data-theme="dark"] .sp-card, :root[data-theme="dark"] .sp-slots li.filled, :root[data-theme="dark"] .st-tile, :root[data-theme="dark"] .codes-box, :root[data-theme="dark"] .submit-card, :root[data-theme="dark"] .side-box, :root[data-theme="dark"] .sp-upload { background: #12234d; }
+
+/* Pale inset surfaces (was #f6f8fe and friends) become the tint step. */
+:root[data-theme="dark"] .prompt, :root[data-theme="dark"] .row-quote, :root[data-theme="dark"] .steps li, :root[data-theme="dark"] .code-row .preview-code, :root[data-theme="dark"] .assigned-code, :root[data-theme="dark"] .pool-health span, :root[data-theme="dark"] .top3-card, :root[data-theme="dark"] .creator-cell, :root[data-theme="dark"] .creator-chip, :root[data-theme="dark"] .about-box, :root[data-theme="dark"] .react-btn, :root[data-theme="dark"] .sharekit, :root[data-theme="dark"] .save-icon, :root[data-theme="dark"] .proof-box, :root[data-theme="dark"] .tweet-prompt, :root[data-theme="dark"] .tint-panel, :root[data-theme="dark"] .quote-band, :root[data-theme="dark"] .mycode, :root[data-theme="dark"] .promptpack pre, :root[data-theme="dark"] .sp-plan span { background: #16295a; }
+
+/* Pale blue chips (was #e6edff / #eef3ff) become the deep chip step. */
+:root[data-theme="dark"] .nav a[aria-current="page"], :root[data-theme="dark"] .nav button[aria-selected="true"], :root[data-theme="dark"] .menu-toggle, :root[data-theme="dark"] .follow-btn, :root[data-theme="dark"] .badge, :root[data-theme="dark"] .pool-tag, :root[data-theme="dark"] .pool-legend i, :root[data-theme="dark"] .case-tag, :root[data-theme="dark"] .home-card.tint { background: #1d3469; }
+
+/* Form controls. */
+:root[data-theme="dark"] form :where(input:not([type=file]):not([type=checkbox]):not([type=radio]):not([type=hidden]):not([type=submit]):not([type=button]), textarea, select), :root[data-theme="dark"] .field input, :root[data-theme="dark"] .field select, :root[data-theme="dark"] .field textarea, :root[data-theme="dark"] .toolbar input, :root[data-theme="dark"] .search-row input, :root[data-theme="dark"] .report-box select, :root[data-theme="dark"] .report-box textarea, :root[data-theme="dark"] .browse-search input, :root[data-theme="dark"] .mycode-row input, :root[data-theme="dark"] .done input, :root[data-theme="dark"] .sp-form input, :root[data-theme="dark"] .file-pick, :root[data-theme="dark"] .file-btn { background: #12234d; }
+:root[data-theme="dark"] input::placeholder, :root[data-theme="dark"] textarea::placeholder { color: #7d8dbd; }
+:root[data-theme="dark"] select option { background: #12234d; color: var(--ink); }
+:root[data-theme="dark"] form select, :root[data-theme="dark"] .field select, :root[data-theme="dark"] .report-box select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%239fb6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
+
+/* Hover fills that were pale blue go to the deep brand blue. */
+:root[data-theme="dark"] .cta:hover, :root[data-theme="dark"] .button:hover, :root[data-theme="dark"] .write-btn:hover, :root[data-theme="dark"] .row-quote:hover, :root[data-theme="dark"] .react-btn.muse-link:hover, :root[data-theme="dark"] .button.ghost:hover, :root[data-theme="dark"] .cta.ghost:hover, :root[data-theme="dark"] .btn:hover, :root[data-theme="dark"] .btn.primary:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+
+/* Text set in --blue-deep (a fill value in dark) is re-pointed to a readable light blue. */
+:root[data-theme="dark"] .eyebrow, :root[data-theme="dark"] .card-label, :root[data-theme="dark"] .k, :root[data-theme="dark"] .live-tag, :root[data-theme="dark"] .nav-count, :root[data-theme="dark"] .profile-links a, :root[data-theme="dark"] .post-cat, :root[data-theme="dark"] .wild-tile small, :root[data-theme="dark"] .post-caption h3 a:hover, :root[data-theme="dark"] .tweet-summary-note a, :root[data-theme="dark"] .tweet-prompt summary, :root[data-theme="dark"] .tweet-open, :root[data-theme="dark"] .row.wild-row .wild-label, :root[data-theme="dark"] .button.ghost, :root[data-theme="dark"] .cta.ghost, :root[data-theme="dark"] .button.secondary, :root[data-theme="dark"] .chip:hover, :root[data-theme="dark"] .badge.editorial, :root[data-theme="dark"] .badge.soft, :root[data-theme="dark"] .rating .new, :root[data-theme="dark"] .fmeta .new, :root[data-theme="dark"] .pool-tag.open, :root[data-theme="dark"] .case-tag, :root[data-theme="dark"] .avatar, :root[data-theme="dark"] .file-thumb, :root[data-theme="dark"] .feat-pill, :root[data-theme="dark"] .nav a[aria-current="page"], :root[data-theme="dark"] .nav a:hover, :root[data-theme="dark"] .nav button:hover, :root[data-theme="dark"] .nav button[aria-selected="true"], :root[data-theme="dark"] .acct-menu a:hover, :root[data-theme="dark"] .acct-menu button:hover, :root[data-theme="dark"] .file-pick:hover .file-btn { color: #9db8ff; }
+</style>
 </head>
 <body>
 <div class="shell">
@@ -379,13 +419,14 @@ body { background-image: none; }
 <nav class="nav" id="site-nav" aria-label="Site">
           <a href="/">Home</a>
           <a href="/workflows">Feed</a>
-          <a href="/posts">Social <span class="nav-count">675</span></a>
+          <a href="/posts">Social</a>
           <a href="/creators">Creators</a>
           <a href="/blog">Blog</a>
           <a href="/creator">Profile</a>
         </nav>
         <a class="write-btn" href="/submit">Publish<span class="write-long">&nbsp;a workflow</span></a>
-</header>
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+      </header>
 <main class="article">
 <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> · <a href="/use-cases">Use cases</a> · Dinner party planner</nav>
 <div class="eyebrow">Use case · Food &amp; Home</div>
@@ -425,7 +466,7 @@ body { background-image: none; }
         <div class="footer-col footer-about">
           <h3>About</h3>
           <p>A community pool of Muse invite codes, and the workflows people build with Muse, Meta&#8217;s personal AI agent. Codes come from members who pass their invites on. Every post links to its source.</p>
-          <div class="footer-two"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/blog/what-is-meta-muse">What is Meta Muse</a><a href="/blog/free-muse-invite-code">Free Muse invite code</a><a href="/blog/how-to-use-meta-muse-outside-us">Muse outside the US</a><a href="/blog/muse-vs-chatgpt">Muse vs ChatGPT</a><a href="/blog/muse-tokens-explained">Muse tokens explained</a><a href="mailto:polostudio.brand@gmail.com?subject=Sponsoring%20Built%20with%20Muse">Sponsor</a><a href="mailto:polostudio.brand@gmail.com">Contact</a><a href="https://usesundog.com/muse">Sundog workflow library &#8599;</a></div>
+          <div class="footer-two"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/blog/what-is-meta-muse">What is Meta Muse</a><a href="/blog/free-muse-invite-code">Free Muse invite code</a><a href="/blog/how-to-use-meta-muse-outside-us">Muse outside the US</a><a href="/blog/muse-vs-chatgpt">Muse vs ChatGPT</a><a href="/blog/muse-tokens-explained">Muse tokens explained</a><a href="/sponsor">Sponsor</a><a href="mailto:polostudio.brand@gmail.com">Contact</a><a href="https://usesundog.com/muse">Sundog workflow library &#8599;</a></div>
           <p class="footer-fine">Independent community project. Not affiliated with or endorsed by Meta. Token amounts are as Muse announced them.</p>
           <div class="footer-meta"><span>&#169; 2026 Built with Muse</span></div>
         </div>
@@ -441,5 +482,7 @@ body { background-image: none; }
     onScroll();
   })();
 </script>
+<script src="/js/help-widget.js" defer></script>
+    <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
 </body>
 </html>

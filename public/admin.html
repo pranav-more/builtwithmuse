@@ -262,7 +262,7 @@
             </div>
             <div class="box">
               <h2>Feed posts <span>newest first; remove takes a post out of the feed, restore puts it back</span></h2>
-              <div class="tablewrap"><table id="pool-feed"><thead><tr><th>When</th><th>Post</th><th>Creator</th><th>Kind</th><th>Likes</th><th>State</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+              <div class="tablewrap"><table id="pool-feed"><thead><tr><th>When</th><th>Post</th><th>Creator</th><th>Kind</th><th>Likes</th><th>Replies</th><th>Reposts</th><th>State</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
             </div>
           </section>
 
@@ -460,7 +460,7 @@
           const feedLive = await api("/api/admin/pool/feed?status=published");
           const feedGone = await api("/api/admin/pool/feed?status=removed");
           const feedRows = feedLive.rows.map((r) => ({ ...r, state: "published" })).concat(feedGone.rows.map((r) => ({ ...r, state: "removed" })));
-          $("pool-feed").querySelector("tbody").innerHTML = feedRows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="/feed/${esc(r.id)}" target="_blank" rel="noopener">${esc(r.title || (r.body || "").slice(0, 80) || "Post")}</a><br /><span class="muted">${esc((r.body || "").slice(0, 120))}</span></td><td>@${esc(r.handle)}</td><td>${esc(r.kind)}</td><td>${esc(r.like_count || 0)}</td><td>${r.state === "removed" ? '<span class="pill bad">Removed</span>' : '<span class="pill ok">Live</span>'}</td><td>${r.state === "removed" ? `<button class="btn sm" data-pool="feed-restore" data-id="${esc(r.id)}">Restore</button>` : `<button class="btn sm danger" data-pool="feed-remove" data-id="${esc(r.id)}">Remove</button>`}</td></tr>`).join("") || '<tr><td colspan="7" class="empty">No feed posts yet</td></tr>';
+          $("pool-feed").querySelector("tbody").innerHTML = feedRows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="/feed/${esc(r.id)}" target="_blank" rel="noopener">${esc(r.title || (r.body || "").slice(0, 80) || "Post")}</a><br /><span class="muted">${esc((r.body || "").slice(0, 120))}</span></td><td>@${esc(r.handle)}</td><td>${esc(r.kind)}</td><td>${esc(r.like_count || 0)}</td><td>${esc(r.comment_count || 0)}</td><td>${esc(r.repost_count || 0)}</td><td>${r.state === "removed" ? '<span class="pill bad">Removed</span>' : '<span class="pill ok">Live</span>'}</td><td>${r.state === "removed" ? `<button class="btn sm" data-pool="feed-restore" data-id="${esc(r.id)}">Restore</button>` : `<button class="btn sm danger" data-pool="feed-remove" data-id="${esc(r.id)}">Remove</button>`}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">No feed posts yet</td></tr>';
         }
         document.body.addEventListener("click", async (event) => {
           const button = event.target.closest("[data-pool]");

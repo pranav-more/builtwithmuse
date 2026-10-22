@@ -1,0 +1,261 @@
+{
+ "updated": "2026-10-22T18:38:26.611Z",
+ "source": "Vercel Web Analytics, production",
+ "visitors30": 6429,
+ "pageviews30": 13681,
+ "visitors7": 1490,
+ "pageviews7": 3171,
+ "daily": [
+  {
+   "day": "2026-09-22",
+   "visitors": 114,
+   "pageviews": 247
+  },
+  {
+   "day": "2026-09-23",
+   "visitors": 133,
+   "pageviews": 246
+  },
+  {
+   "day": "2026-09-24",
+   "visitors": 240,
+   "pageviews": 434
+  },
+  {
+   "day": "2026-09-25",
+   "visitors": 256,
+   "pageviews": 456
+  },
+  {
+   "day": "2026-09-26",
+   "visitors": 257,
+   "pageviews": 631
+  },
+  {
+   "day": "2026-09-27",
+   "visitors": 337,
+   "pageviews": 734
+  },
+  {
+   "day": "2026-09-28",
+   "visitors": 394,
+   "pageviews": 1075
+  },
+  {
+   "day": "2026-09-29",
+   "visitors": 277,
+   "pageviews": 728
+  },
+  {
+   "day": "2026-09-30",
+   "visitors": 212,
+   "pageviews": 383
+  },
+  {
+   "day": "2026-10-01",
+   "visitors": 204,
+   "pageviews": 407
+  },
+  {
+   "day": "2026-10-02",
+   "visitors": 133,
+   "pageviews": 223
+  },
+  {
+   "day": "2026-10-03",
+   "visitors": 136,
+   "pageviews": 264
+  },
+  {
+   "day": "2026-10-04",
+   "visitors": 148,
+   "pageviews": 265
+  },
+  {
+   "day": "2026-10-05",
+   "visitors": 205,
+   "pageviews": 355
+  },
+  {
+   "day": "2026-10-06",
+   "visitors": 212,
+   "pageviews": 437
+  },
+  {
+   "day": "2026-10-07",
+   "visitors": 232,
+   "pageviews": 476
+  },
+  {
+   "day": "2026-10-08",
+   "visitors": 238,
+   "pageviews": 458
+  },
+  {
+   "day": "2026-10-09",
+   "visitors": 200,
+   "pageviews": 393
+  },
+  {
+   "day": "2026-10-10",
+   "visitors": 183,
+   "pageviews": 527
+  },
+  {
+   "day": "2026-10-11",
+   "visitors": 155,
+   "pageviews": 288
+  },
+  {
+   "day": "2026-10-12",
+   "visitors": 188,
+   "pageviews": 393
+  },
+  {
+   "day": "2026-10-13",
+   "visitors": 228,
+   "pageviews": 522
+  },
+  {
+   "day": "2026-10-14",
+   "visitors": 223,
+   "pageviews": 497
+  },
+  {
+   "day": "2026-10-15",
+   "visitors": 166,
+   "pageviews": 322
+  },
+  {
+   "day": "2026-10-16",
+   "visitors": 178,
+   "pageviews": 400
+  },
+  {
+   "day": "2026-10-17",
+   "visitors": 183,
+   "pageviews": 326
+  },
+  {
+   "day": "2026-10-18",
+   "visitors": 199,
+   "pageviews": 362
+  },
+  {
+   "day": "2026-10-19",
+   "visitors": 175,
+   "pageviews": 286
+  },
+  {
+   "day": "2026-10-20",
+   "visitors": 224,
+   "pageviews": 400
+  },
+  {
+   "day": "2026-10-21",
+   "visitors": 261,
+   "pageviews": 643
+  },
+  {
+   "day": "2026-10-22",
+   "visitors": 218,
+   "pageviews": 657
+  }
+ ],
+ "countries": [
+  {
+   "code": "US",
+   "name": "United States",
+   "visitors": 3082
+  },
+  {
+   "code": "IN",
+   "name": "India",
+   "visitors": 411
+  },
+  {
+   "code": "SG",
+   "name": "Singapore",
+   "visitors": 275
+  },
+  {
+   "code": "CA",
+   "name": "Canada",
+   "visitors": 241
+  },
+  {
+   "code": "CN",
+   "name": "China",
+   "visitors": 166
+  },
+  {
+   "code": "AU",
+   "name": "Australia",
+   "visitors": 150
+  }
+ ],
+ "countriesTotal": 6429,
+ "sources": [
+  {
+   "name": "Direct",
+   "visitors": 4325,
+   "share": 0.5958120953299353
+  },
+  {
+   "name": "Search",
+   "visitors": 2818,
+   "share": 0.3882077421132387
+  },
+  {
+   "name": "Social",
+   "visitors": 58,
+   "share": 0.007990081278413004
+  },
+  {
+   "name": "AI assistants",
+   "visitors": 44,
+   "share": 0.006061440969830555
+  },
+  {
+   "name": "Other sites",
+   "visitors": 14,
+   "share": 0.0019286403085824494
+  }
+ ],
+ "devices": [
+  {
+   "type": "desktop",
+   "share": 0.5985378752527609
+  },
+  {
+   "type": "mobile",
+   "share": 0.39088505210763724
+  },
+  {
+   "type": "tablet",
+   "share": 0.005755171877430394
+  }
+ ],
+ "topSites": [
+  {
+   "host": "apkpure.com",
+   "visitors": 3
+  },
+  {
+   "host": "vercel.com",
+   "visitors": 3
+  },
+  {
+   "host": "com.slack",
+   "visitors": 1
+  },
+  {
+   "host": "alohafind.com",
+   "visitors": 1
+  },
+  {
+   "host": "builtwithmuse.substack.com",
+   "visitors": 1
+  }
+ ]
+}

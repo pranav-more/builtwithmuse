@@ -63,6 +63,10 @@
       "destination": "/api/index?__path=pages/submit"
     },
     {
+      "source": "/artifacts",
+      "destination": "/api/index?__path=pages/artifacts"
+    },
+    {
       "source": "/feed",
       "destination": "/api/index?__path=pages/feed"
     },

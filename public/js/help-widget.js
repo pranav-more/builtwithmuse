@@ -42,6 +42,22 @@
 .hw-done button{justify-self:start;padding:9px 14px;border:1px solid #dfe5f3;border-radius:10px;background:#fff;font:700 13px "IBM Plex Sans",system-ui,sans-serif;cursor:pointer}
 @media (max-width:640px){.hw-fab{right:14px;bottom:14px}.hw-panel{right:12px;left:12px;width:auto;bottom:78px}}
 @media print{.hw-fab,.hw-panel{display:none!important}}
+:root[data-theme="dark"] .hw-panel{background:#12234d;color:#ffffff;border-color:rgba(255,255,255,.22);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+:root[data-theme="dark"] .hw-tabs{border-bottom-color:rgba(255,255,255,.12)}
+:root[data-theme="dark"] .hw-tabs button{color:#c7d6ff}
+:root[data-theme="dark"] .hw-tabs button[aria-selected="true"]{color:#9db8ff;border-bottom-color:#1a56ff}
+:root[data-theme="dark"] .hw-faq details{border-color:rgba(255,255,255,.14);background:#16295a}
+:root[data-theme="dark"] .hw-faq p{color:#c7d6ff}
+:root[data-theme="dark"] .hw-faq a{color:#9db8ff}
+:root[data-theme="dark"] .hw-sub{color:#c7d6ff}
+:root[data-theme="dark"] .hw-sub b{color:#ffffff}
+:root[data-theme="dark"] .hw-form label{color:#9fb6ff}
+:root[data-theme="dark"] .hw-form input,:root[data-theme="dark"] .hw-form textarea{border-color:rgba(255,255,255,.22);color:#ffffff;background:#0d1b3d}
+:root[data-theme="dark"] .hw-form .hw-opt{color:#9fb6ff}
+:root[data-theme="dark"] .hw-status{color:#c7d6ff}
+:root[data-theme="dark"] .hw-status.ok{color:#9db8ff}
+:root[data-theme="dark"] .hw-done p{color:#c7d6ff}
+:root[data-theme="dark"] .hw-done button{border-color:rgba(255,255,255,.22);background:#16295a;color:#ffffff}
 `;
   const FAQ = [
     ["How do I get a Muse invite code?", 'Open the <a href="/">homepage</a>, press Get a code, sign in with Google, and copy the code. Redeem it in the Muse app under Settings within 48 hours.'],

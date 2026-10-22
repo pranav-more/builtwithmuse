@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
+    <script>(function(){try{var t=localStorage.getItem("bwm-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content","#0d1b3d");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content","dark");}}}catch(e){}})();</script>
     <title>Built with Muse moderation</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
@@ -131,6 +132,17 @@
         .bar { grid-template-columns: 90px 1fr 40px; }
         input[type="search"] { min-width: 0; flex: 1; }
       }
+
+      /* Dark theme (batch 29): admin keeps its own palette; the tokens swap here. */
+      :root[data-theme="dark"] { color-scheme: dark; --bg: #101815; --surface: #182420; --surface-2: #1f2f29; --ink: #e8efec; --muted: #9db3ab; --line: #2b3d36; --accent: #f0704a; --accent-soft: #3a231c; --teal: #3ec6b4; --teal-soft: #14332e; --amber: #f0a35e; --amber-soft: #38270f; --danger: #ff9d8f; --danger-soft: #3d1d18; --side: #0b120e; --side-ink: #d9e3df; --side-active: #223730; --shadow: 0 10px 30px rgba(0,0,0,.4); }
+      :root[data-theme="dark"] th { background: #1f2f29; }
+      :root[data-theme="dark"] tbody tr:hover { background: #1c2a25; }
+      :root[data-theme="dark"] svg line[stroke="#e6ebe8"] { stroke: #2b3d36; }
+      .theme-toggle { display: flex; align-items: center; justify-content: center; gap: 8px; }
+      .theme-toggle svg { width: 16px; height: 16px; }
+      .theme-toggle .icon-sun { display: none; }
+      :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+      :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     </style>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
@@ -161,6 +173,7 @@
         <div class="foot">
           <div class="email" id="who"></div>
           <a href="/" target="_blank" rel="noopener">Open the site</a>
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><span>Theme</span></button>
           <button type="button" id="logout">Sign out</button>
         </div>
       </aside>
@@ -259,6 +272,10 @@
             <div class="box">
               <h2>Creators <span>newest first</span></h2>
               <div class="tablewrap"><table id="pool-creators"><thead><tr><th>Joined</th><th>Handle</th><th>Name</th><th>Email</th><th>Published</th><th>Useful</th><th>Followers</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+            </div>
+            <div class="box">
+              <h2>Feed posts <span>newest first; remove takes a post out of the feed, restore puts it back</span></h2>
+              <div class="tablewrap"><table id="pool-feed"><thead><tr><th>When</th><th>Post</th><th>Creator</th><th>Kind</th><th>Likes</th><th>Replies</th><th>Reposts</th><th>State</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
             </div>
           </section>
 
@@ -453,6 +470,10 @@
           $("pool-hidden").querySelector("tbody").innerHTML = rows.map((r) => `<tr><td>${esc(when(r.updated_at))}</td><td><a href="/workflows/${esc(r.slug)}" target="_blank" rel="noopener">${esc(r.title)}</a></td><td>@${esc(r.handle)}</td><td>${r.state === "hidden" ? '<span class="pill warn">Hidden</span>' : '<span class="pill bad">Removed</span>'}${r.exclude_from_reputation ? ' <span class="pill">Excluded</span>' : ""}</td><td>${esc(r.reaction_count || 0)}</td><td>${esc(r.open_reports || 0)}</td><td><button class="btn sm" data-pool="restore" data-id="${esc(r.id)}">Restore</button>${r.state === "hidden" ? ` <button class="btn sm danger" data-pool="remove" data-id="${esc(r.id)}">Remove</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="6" class="empty">Nothing hidden or removed</td></tr>';
           const creators = await api("/api/admin/pool/creators");
           $("pool-creators").querySelector("tbody").innerHTML = creators.rows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="/creators/${esc(r.handle)}" target="_blank" rel="noopener">@${esc(r.handle)}</a>${r.is_editorial ? ' <span class="pill">Editorial</span>' : ""}</td><td>${esc(r.display_name)}</td><td class="muted">${esc(r.email)}</td><td>${esc(r.workflow_count || 0)}</td><td>${esc(r.useful || 0)}</td><td>${esc(r.followers || 0)}</td><td>${r.status === "active" ? '<span class="pill ok">Active</span>' : r.status === "deactivated" ? '<span class="pill warn">Deactivated</span>' : '<span class="pill bad">Removed</span>'}</td><td>${r.status !== "active" ? `<button class="btn sm" data-pool="creator-active" data-id="${esc(r.id)}">Restore</button> ` : `<button class="btn sm" data-pool="creator-deactivated" data-id="${esc(r.id)}">Deactivate</button> `}${r.status !== "removed" && !r.is_editorial ? `<button class="btn sm danger" data-pool="creator-removed" data-id="${esc(r.id)}">Remove</button>` : ""}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">No creators yet</td></tr>';
+          const feedLive = await api("/api/admin/pool/feed?status=published");
+          const feedGone = await api("/api/admin/pool/feed?status=removed");
+          const feedRows = feedLive.rows.map((r) => ({ ...r, state: "published" })).concat(feedGone.rows.map((r) => ({ ...r, state: "removed" })));
+          $("pool-feed").querySelector("tbody").innerHTML = feedRows.map((r) => `<tr><td>${esc(when(r.created_at))}</td><td><a href="/feed/${esc(r.id)}" target="_blank" rel="noopener">${esc(r.title || (r.body || "").slice(0, 80) || "Post")}</a><br /><span class="muted">${esc((r.body || "").slice(0, 120))}</span></td><td>@${esc(r.handle)}</td><td>${esc(r.kind)}</td><td>${esc(r.like_count || 0)}</td><td>${esc(r.comment_count || 0)}</td><td>${esc(r.repost_count || 0)}</td><td>${r.state === "removed" ? '<span class="pill bad">Removed</span>' : '<span class="pill ok">Live</span>'}</td><td>${r.state === "removed" ? `<button class="btn sm" data-pool="feed-restore" data-id="${esc(r.id)}">Restore</button>` : `<button class="btn sm danger" data-pool="feed-remove" data-id="${esc(r.id)}">Remove</button>`}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">No feed posts yet</td></tr>';
         }
         document.body.addEventListener("click", async (event) => {
           const button = event.target.closest("[data-pool]");
@@ -463,6 +484,7 @@
             else if (act === "remove") { const reason = window.prompt("Reason for removal (kept on record):"); if (!reason) return; const exclude = window.confirm("Exclude its ratings from the creator's reputation? OK only when the removal is unrelated to the work itself."); await api(`/api/admin/pool/workflows/${id}/remove`, { method: "POST", body: { reason, excludeFromReputation: exclude } }); }
             else if (act === "dismiss") await api(`/api/admin/pool/reports/${id}/dismiss`, { method: "POST", body: {} });
             else if (act.startsWith("creator-")) await api(`/api/admin/pool/creators/${id}/status`, { method: "POST", body: { status: act.replace("creator-", "") } });
+            else if (act === "feed-remove" || act === "feed-restore") await api(`/api/admin/pool/feed/${id}/${act.replace("feed-", "")}`, { method: "POST", body: {} });
             toast("Done");
             await loadPool();
           } catch (error) { if (error.message !== "signed_out") toast("Failed: " + error.message); }
@@ -592,5 +614,6 @@
         })();
       })();
     </script>
-  </body>
+      <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
+</body>
 </html>

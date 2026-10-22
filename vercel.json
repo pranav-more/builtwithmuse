@@ -63,6 +63,18 @@
       "destination": "/api/index?__path=pages/submit"
     },
     {
+      "source": "/feed",
+      "destination": "/api/index?__path=pages/feed"
+    },
+    {
+      "source": "/feed/new",
+      "destination": "/api/index?__path=pages/feed/new"
+    },
+    {
+      "source": "/feed/:id",
+      "destination": "/api/index?__path=pages/feed/:id"
+    },
+    {
       "source": "/workflows",
       "destination": "/api/index?__path=pages/workflows"
     },

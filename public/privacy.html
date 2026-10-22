@@ -298,7 +298,7 @@ body { background-image: none; }
 
           <h2 id="cookies">Cookies</h2>
           <ul>
-            <li><strong>bwm_d</strong>: a random, signed device id that lasts one year. It is HttpOnly and it is what makes one code per person possible without a sign in.</li>
+            <li><strong>bwm_d</strong>: a random, signed device id that lasts one year. It is HttpOnly and it is what makes one code per person possible without a sign in. We also note which days that id loads a page, and nothing more, to count how many visitors come back.</li>
             <li><strong>bwm_admin</strong>: set only for the moderators who sign in to the admin dashboard with Google.</li>
             <li>Analytics cookies set by Google Analytics, Microsoft Clarity and Vercel Web Analytics.</li>
             <li>Advertising cookies set by Google AdSense on pages that show ads. Google and its partners use these cookies to serve ads based on your visits to this site and other sites. You can opt out of personalised advertising in your Google Ads Settings.</li>
@@ -365,5 +365,6 @@ body { background-image: none; }
     </script>
   <script src="/js/help-widget.js" defer></script>
     <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
+<script src="/js/visit.js" defer></script>
 </body>
 </html>

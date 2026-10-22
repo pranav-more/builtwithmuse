@@ -162,6 +162,7 @@
         <nav aria-label="Sections">
           <button data-tab="overview" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>Overview</button>
           <button data-tab="analytics" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 15v-4M12 15V8M16 15v-6"/></svg>Analytics</button>
+          <button data-tab="retention" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Retention</button>
           <button data-tab="codes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M7 12h.01M11 12h.01M15 12h.01"/></svg>Codes</button>
           <button data-tab="claims" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M6 9l6 6 6-6M5 21h14"/></svg>Claims</button>
           <button data-tab="reports" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V4h12l-1 4 1 4H4"/></svg>Reports</button>
@@ -213,6 +214,20 @@
               <div class="box"><h2>Where codes come from <span>top countries, user submissions</span></h2><div class="bars" id="b-subs"></div></div>
               <div class="box"><h2>Waitlist by detected country</h2><div class="bars" id="b-wl"></div></div>
               <div class="box"><h2>Waitlist by chosen country</h2><div class="bars" id="b-wlc"></div></div>
+            </div>
+          </section>
+
+          <section class="panel" id="panel-retention">
+            <div class="toolbar"><span class="muted" id="r-since">Visitors are anonymous devices, counted once per day on any page.</span></div>
+            <div class="cards" id="r-cards"></div>
+            <div class="box"><h2>Visitors per day <span>last 30 days</span></h2><div class="chart" id="c-visits"></div><div class="legend"><span><i style="background:#0c766b"></i>Returning</span><span><i style="background:#9fb3c8"></i>New</span></div></div>
+            <div class="box">
+              <h2>Weekly cohorts <span>share of each week's new visitors who came back in a later week</span></h2>
+              <div class="tablewrap"><table id="cohorts"><thead><tr><th>First visit week</th><th>New visitors</th><th>Week 1</th><th>Week 2</th><th>Week 3</th><th>Week 4</th></tr></thead><tbody></tbody></table></div>
+            </div>
+            <div class="box">
+              <h2>Members <span>signed in accounts, editorial excluded; history from before visit tracking</span></h2>
+              <div class="cards" id="r-members" style="margin-bottom:0"></div>
             </div>
           </section>
 
@@ -293,7 +308,7 @@
     <script>
       (() => {
         const $ = (id) => document.getElementById(id);
-        const titles = { overview: "Overview", analytics: "Analytics", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist", inbox: "Inbox", pool: "Creator pool", community: "Community posts" };
+        const titles = { overview: "Overview", analytics: "Analytics", retention: "Retention", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist", inbox: "Inbox", pool: "Creator pool", community: "Community posts" };
         let refreshTimer = null;
 
         async function api(path, options = {}) {
@@ -335,7 +350,7 @@
           for (let i = 0; i <= 4; i++) { const v = Math.round(max * i / 4); const yy = y(v); out += `<line x1="${padL}" x2="${w}" y1="${yy}" y2="${yy}" stroke="#e6ebe8"/><text class="axis" x="${padL - 6}" y="${yy + 3}" text-anchor="end">${v}</text>`; }
           series.forEach((s, si) => s.forEach((v, i) => { const x = padL + i * groupW + 3 + si * barW; out += `<rect x="${x}" y="${y(v)}" width="${barW - 1}" height="${h - padB - y(v)}" rx="2" fill="${colors[si]}"><title>${esc(labels[i])}: ${v}</title></rect>`; }));
           const step = Math.ceil(n / 8);
-          labels.forEach((l, i) => { if (i % step === 0 || i === n - 1) out += `<text class="axis" x="${padL + i * groupW + groupW / 2}" y="${h - 8}" text-anchor="middle">${esc(l)}</text>`; });
+          labels.forEach((l, i) => { if (i % step === 0 || (i === n - 1 && (n - 1) % step >= step / 2)) out += `<text class="axis" x="${padL + i * groupW + groupW / 2}" y="${h - 8}" text-anchor="middle">${esc(l)}</text>`; });
           el.innerHTML = out + "</svg>";
         }
         function stackChart(el, parts) {
@@ -403,6 +418,40 @@
           $("cards").innerHTML = cards.map(([l, n, cls, dd]) => `<div class="card ${cls}"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div>${dd ? `<div class="d">${esc(dd)}</div>` : ""}</div>`).join("");
           const labels = { claim: "Code given out", report: "Marked not working", code: "Code submitted", waitlist: "Joined waitlist" };
           $("activity").querySelector("tbody").innerHTML = d.activity.map((a) => `<tr><td>${esc(when(a.created_at))}</td><td>${esc(labels[a.kind] || a.kind)}</td><td><code>${esc(a.code || "")}</code></td><td class="muted">${esc(a.who || "")}</td><td>${esc(a.country || "")}</td><td class="muted">${esc(a.detail || "")}</td></tr>`).join("") || '<tr><td colspan="6" class="empty">Nothing yet</td></tr>';
+        }
+
+        // Retention: returning share, come back rates, daily new versus
+        // returning, weekly cohorts and member activity.
+        async function loadRetention() {
+          const ymd = (v) => new Date(v + "T00:00:00Z").toLocaleDateString(undefined, { month: "short", day: "numeric", timeZone: "UTC" });
+          const d = await api("/api/admin/retention?days=30");
+          const w = d.windows, m = d.members;
+          const pct = (a, b) => b ? Math.round(100 * a / b) + "%" : "n/a";
+          const rateCard = (label, r, n) => r.cohort
+            ? [label, pct(r.returned, r.cohort), "", `${r.returned} of ${r.cohort} first seen ${n === 1 ? "1 day" : n + " days"}+ ago`]
+            : [label, "n/a", "", `needs visitors first seen ${n} days ago`];
+          $("r-since").textContent = w.since
+            ? `Tracking since ${ymd(w.since)}. Visitors are anonymous devices, counted once per day on any page; a returning visitor came on 2 or more different days.`
+            : "Tracking starts with the next page view. Visitors are anonymous devices, counted once per day on any page.";
+          $("r-cards").innerHTML = [
+            ["Returning visitors, 7 days", pct(w.returning_7d, w.visitors_7d), w.returning_7d ? "good" : "", `${w.returning_7d} of ${w.visitors_7d} visitors`],
+            ["Returning visitors, 30 days", pct(w.returning_30d, w.visitors_30d), "", `${w.returning_30d} of ${w.visitors_30d} visitors`],
+            rateCard("Came back within 1 day", d.rates.d1, 1),
+            rateCard("Came back within 7 days", d.rates.d7, 7),
+            rateCard("Came back within 30 days", d.rates.d30, 30),
+            ["Visitors tracked", w.visitors_total, "", `${w.returning_total} have come back at least once`],
+          ].map(([l, n, cls, dd]) => `<div class="card ${cls}"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div><div class="d">${esc(dd)}</div></div>`).join("");
+          barChart($("c-visits"), [d.daily.map((r) => r.visitors - r.new_visitors), d.daily.map((r) => r.new_visitors)], d.daily.map((r) => ymd(r.day)), ["#0c766b", "#9fb3c8"]);
+          const cell = (n, size, k, age) => k > age ? '<td class="muted">not yet</td>' : `<td>${pct(n, size)} <span class="muted">${n}</span></td>`;
+          $("cohorts").querySelector("tbody").innerHTML = d.cohorts.length
+            ? d.cohorts.map((c) => `<tr><td>${esc(ymd(c.week))}</td><td>${esc(c.size)}</td>${cell(c.w1, c.size, 1, c.age)}${cell(c.w2, c.size, 2, c.age)}${cell(c.w3, c.size, 3, c.age)}${cell(c.w4, c.size, 4, c.age)}</tr>`).join("")
+            : '<tr><td colspan="6" class="muted">No cohorts yet. The first one forms this week.</td></tr>';
+          $("r-members").innerHTML = [
+            ["Members who came back", pct(m.came_back, m.total), m.came_back ? "good" : "", `${m.came_back} of ${m.total} were active on a later day than they joined`],
+            ["Active, last 7 days", m.active_7d, "", pct(m.active_7d, m.total) + " of members"],
+            ["Active, last 30 days", m.active_30d, "", pct(m.active_30d, m.total) + " of members"],
+            ["Joined, last 30 days", m.joined_30d, "", `${m.total} members in total`],
+          ].map(([l, n, cls, dd]) => `<div class="card ${cls}"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div><div class="d">${esc(dd)}</div></div>`).join("");
         }
 
         async function loadAnalytics() {
@@ -513,6 +562,7 @@
           try {
             if (tab === "overview") await loadOverview();
             else if (tab === "analytics") await loadAnalytics();
+            else if (tab === "retention") await loadRetention();
             else if (tab === "codes") await loadCodes();
             else if (tab === "pool") await loadPool();
             else if (tab === "community") await loadCommunity();

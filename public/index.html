@@ -259,6 +259,7 @@
       .row-quote { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 12px 16px; border-radius: 8px; background: #f3f6fd; color: var(--muted); font-size: 14px; text-decoration: none; max-width: 68ch; }
       .row-quote:hover { background: #e6edff; color: var(--ink); }
       .creators-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-top: 18px; }
+      .creator-cell { position: relative; } .feat-ribbon { position: absolute; top: 8px; right: 10px; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--blue-deep); background: var(--tint); border: 1px solid var(--line); padding: 2px 7px; border-radius: 999px; }
       .creator-cell { display: flex; align-items: center; gap: 12px; padding: 20px; background: var(--navy); text-decoration: none; border-left: 1px solid var(--line-soft); }
       .creator-cell:first-child { border-left: 0; }
       .creator-cell:hover { background: var(--navy-2); }
@@ -691,6 +692,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
           <a href="/" aria-current="page">Home</a>
           <a href="/feed">Feed</a>
           <a href="/workflows">Workflows</a>
+          <a href="/artifacts">Artifacts</a>
           <a href="/posts">Social</a>
           <a href="/creators">Creators</a>
           <a href="/blog">Blog</a>
@@ -711,7 +713,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
               <div class="code-row"><button class="preview-code blurred" type="button" id="hero-code" aria-label="Your invite code" title="Click to copy">XXXXXX</button><button class="button hero-cta" type="button" id="hero-cta">Get a code</button></div>
               <p class="hero-note" id="hero-signin-note">Sign in with Google to reveal your code. Ten seconds, no password, and the code stays saved to your account.</p>
               <p class="hero-status" id="hero-status" aria-live="polite"></p>
-              <p class="hero-after" id="hero-empty" hidden>The pool just ran dry. <button type="button" class="linklike" data-view="waitlist">Join the waitlist</button> and we will email you a fresh code, or <button type="button" class="linklike" data-view="share">add your own code</button> if you are already in.</p>
+              <p class="hero-after" id="hero-empty" hidden>The pool just ran dry. <a class="linklike" href="#waitlist">Join the waitlist</a> and we will email you a fresh code, or <button type="button" class="linklike" data-view="share">add your own code</button> if you are already in.</p>
               <p class="hero-after" id="hero-actions" hidden><button class="linklike" type="button" id="hero-retry">Not working? Try another</button><span aria-hidden="true"> · </span><button class="linklike" type="button" id="hero-redeemed">I redeemed it</button></p>
               <p class="hero-after" id="hero-publish" hidden>Once you are in, show people what you build. <button class="linklike publish-nudge-btn" type="button">Publish a workflow</button></p>
               <ol class="mini-steps three">
@@ -724,7 +726,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
                 <div><b id="home-submitted">389</b><span>Codes shared</span></div>
                 <div><b id="home-waitlist">44</b><span>On the waitlist</span></div>
               </div>
-              <p class="waitlist-nudge">Muse not in your country yet? <button type="button" class="linklike" data-view="waitlist">Join the waitlist</button> and we will send you a fresh code on launch day.</p>
+              <p class="waitlist-nudge">Muse not in your country yet? <a class="linklike" href="#waitlist">Join the waitlist</a> and we will send you a fresh code on launch day.</p>
             </section>
             <div class="home-side">
               <section class="home-card tint compact share-card-click" id="share-card-home" aria-labelledby="share-h2">
@@ -769,8 +771,8 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
           </section>
 
           <section class="home-section" aria-labelledby="creators-heading">
-            <div class="section-row"><div><h2 id="creators-heading">Top creators this week</h2><p>People sharing the workflows others find most useful.</p></div><a class="see-all" href="/creators">All creators</a></div>
-            <div class="creators-grid" id="home-creators"><a class="creator-cell" href="/creators/JDAC"><i><img src="https://lh3.googleusercontent.com/a/ACg8ocL99ky-SFIPL2Qm2OTRj7EfvJrT4sXmTcU0AqSl4WLku65rN9qhkQ=s96-c" alt="" referrerpolicy="no-referrer" /></i><div><b>Jonathan Schafer</b><span>2 workflows</span></div></a><a class="creator-cell" href="/creators/user_c6542f1d"><i><img src="https://lh3.googleusercontent.com/a/ACg8ocIEBQNOedZTbiNfKmHezR9NzZZCVu3XAn_XCTIcr6nYEy5Ykg=s96-c" alt="" referrerpolicy="no-referrer" /></i><div><b>Mike</b><span>6 workflows</span></div></a><a class="creator-cell" href="/creators/tson1982"><i><img src="https://lh3.googleusercontent.com/a/ACg8ocIBaalSOxxqyCJzjpMh-KpiryZL6xRLUQSpprDFXAQAGZ0oCkU=s96-c" alt="" referrerpolicy="no-referrer" /></i><div><b>Thái Sơn Phạm (Gioan Phạm)</b><span>1 workflow</span></div></a><a class="creator-cell" href="/creators/Gumby"><i><img src="https://lh3.googleusercontent.com/a/ACg8ocKV1ny6IDWGWwnUwh00a_SAkix19bZ_Kql_IhEBiXeak9szZhKsOA=s96-c" alt="" referrerpolicy="no-referrer" /></i><div><b>Thomas Gaume</b><span>4 workflows</span></div></a></div>
+            <div class="section-row"><div><h2 id="creators-heading">Top creators this week</h2><p>People sharing the workflows others find most useful. <span id="home-members-line"></span></p></div><a class="see-all" href="/creators">All creators</a></div>
+            <div class="creators-grid" id="home-creators"><a class="creator-cell" href="/creators/JDAC"><i><img src="https://lh3.googleusercontent.com/a/ACg8ocL99ky-SFIPL2Qm2OTRj7EfvJrT4sXmTcU0AqSl4WLku65rN9qhkQ=s96-c" alt="" referrerpolicy="no-referrer" /></i><div><b>Jonathan Schafer</b><span>2 workflows</span></div><span class="feat-ribbon">Featured this week</span></a><a class="creator-cell" href="/creators/user_c6542f1d"><i><img src="https://lh3.googleusercontent.com/a/ACg8ocIEBQNOedZTbiNfKmHezR9NzZZCVu3XAn_XCTIcr6nYEy5Ykg=s96-c" alt="" referrerpolicy="no-referrer" /></i><div><b>Mike</b><span>6 workflows</span></div></a><a class="creator-cell" href="/creators/tson1982"><i><img src="https://lh3.googleusercontent.com/a/ACg8ocIBaalSOxxqyCJzjpMh-KpiryZL6xRLUQSpprDFXAQAGZ0oCkU=s96-c" alt="" referrerpolicy="no-referrer" /></i><div><b>Thái Sơn Phạm (Gioan Phạm)</b><span>1 workflow</span></div></a><a class="creator-cell" href="/creators/Gumby"><i><img src="https://lh3.googleusercontent.com/a/ACg8ocKV1ny6IDWGWwnUwh00a_SAkix19bZ_Kql_IhEBiXeak9szZhKsOA=s96-c" alt="" referrerpolicy="no-referrer" /></i><div><b>Thomas Gaume</b><span>4 workflows</span></div></a></div>
           </section>
 
           <section class="pool" id="pool-section" aria-labelledby="pool-heading" hidden>
@@ -806,7 +808,7 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
               </button>
             </div>
             <div class="copy-status" id="copy-status" aria-live="polite"></div>
-            <div class="card-actions" id="claim-empty" hidden><button class="button secondary" type="button" data-view="waitlist">Join the waitlist</button><button class="button ghost" type="button" data-view="share">Add your own code</button></div> <div class="creator-nudge" style="margin-top:24px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,0.05);text-align:center"> <h3 style="margin:0 0 8px;font-size:20px">Become one of the first Muse creators.</h3> <p style="margin:0 0 16px;color:var(--muted)">Add your workflow and become the person people follow.</p> <a href="/creator" style="display:inline-block;padding:12px 24px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Publish a workflow</a> </div>
+            <div class="card-actions" id="claim-empty" hidden><a class="button secondary" href="#waitlist">Join the waitlist</a><button class="button ghost" type="button" data-view="share">Add your own code</button></div> <div class="creator-nudge" style="margin-top:24px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,0.05);text-align:center"> <h3 style="margin:0 0 8px;font-size:20px">Become one of the first Muse creators.</h3> <p style="margin:0 0 16px;color:var(--muted)">Add your workflow and become the person people follow.</p> <a href="/creator" style="display:inline-block;padding:12px 24px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Publish a workflow</a> </div>
             <div class="invite-link-row" id="invite-link-row" hidden>
               <span>Or use your invite link:</span>
               <a id="claim-invite-link" href="" target="_blank" rel="noopener noreferrer"></a>
@@ -1873,7 +1875,7 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
         const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
         const initials = (n) => String(n || "?").split(/\s+/).map((p) => p[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
         const face = (name, url) => "<i>" + (url ? '<img src="' + esc(url) + '" alt="" referrerpolicy="no-referrer" />' : esc(initials(name))) + "</i>";
-        fetch("/api/v1/workflows?sort=new&limit=3", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
+        fetch("/api/v1/workflows?sort=new&limit=3&kind=workflow", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           if (!d.ok || !d.workflows.length) { rowsEl.innerHTML = '<div class="pool-empty">No workflows yet. <a href="/submit">Publish the first one.</a></div>'; return; }
           rowsEl.innerHTML = d.workflows.map((w) => {
             const c = w.creator || {};
@@ -1905,6 +1907,7 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
         fetch("/api/v1/creators?limit=4", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           if (!d.ok || !d.creators.length) { creatorsEl.innerHTML = '<div class="pool-empty" style="grid-column:1/-1">No creators yet. <a href="/creator">Be the first.</a></div>'; return; }
           creatorsEl.innerHTML = d.creators.map((c) => '<a class="creator-cell" href="/creators/' + esc(c.handle) + '">' + face(c.displayName, c.avatarUrl) + "<div><b>" + esc(c.displayName) + "</b><span>" + c.workflowCount + " workflow" + (c.workflowCount === 1 ? "" : "s") + "</span></div></a>").join("");
+          const firstCell = creatorsEl.querySelector(".creator-cell"); if (firstCell) { const rb = document.createElement("span"); rb.className = "feat-ribbon"; rb.textContent = "Featured this week"; firstCell.appendChild(rb); }
         }).catch(() => { creatorsEl.innerHTML = ""; });
         fetch("/api/sponsors", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           const list = document.getElementById("sponsor-slots"); if (!list || !d.ok || !Array.isArray(d.slots)) return;
@@ -1930,6 +1933,7 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
           el.textContent = String(Number(d.live ?? d.available ?? 0));
           const sub = document.getElementById("home-submitted"); if (sub) sub.textContent = String(Number(d.submitted || 0));
           const wl = document.getElementById("home-waitlist"); if (wl) wl.textContent = String(Number(d.waitlist || 0));
+          const ml = document.getElementById("home-members-line"); if (ml && d.members) ml.textContent = "Join " + Number(d.members) + " members building with Muse.";
         }).catch(() => {});
       })();
     </script>

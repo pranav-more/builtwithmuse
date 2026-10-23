@@ -457,9 +457,15 @@ body { background-image: none; }
           }).join("");
         };
         var setText = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
+        /* The totals come live from /api/audience; the chart, countries and sources from the daily snapshot. */
+        var applyTotals = function (t) {
+          setText("ah-v30", fmt(t.visitors30)); setText("ah-p30", fmt(t.pageviews30)); setText("ah-v7", fmt(t.visitors7));
+          setText("a-v30", fmt(t.visitors30)); setText("a-p30", fmt(t.pageviews30)); setText("a-v7", fmt(t.visitors7));
+        };
+        var liveTotals = fetch("/api/audience").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
         fetch("/data/audience.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (a) {
-          setText("ah-v30", fmt(a.visitors30)); setText("ah-p30", fmt(a.pageviews30)); setText("ah-v7", fmt(a.visitors7));
-          setText("a-v30", fmt(a.visitors30)); setText("a-p30", fmt(a.pageviews30)); setText("a-v7", fmt(a.visitors7));
+          applyTotals(a);
+          liveTotals.then(function (t) { if (t && t.ok && t.visitors7) applyTotals(t); });
           var days = (a.daily || []).slice(-30);
           var max = Math.max.apply(null, days.map(function (x) { return x.visitors; }).concat([1]));
           var peak = days.reduce(function (b, x) { return x.visitors > b.visitors ? x : b; }, { visitors: 0 });

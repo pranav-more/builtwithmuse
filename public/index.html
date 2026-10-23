@@ -1969,10 +1969,19 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
   <script src="/js/help-widget.js" defer></script>
     <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
   <script>
-    fetch("/data/audience.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) {
+    /* Live from Vercel Web Analytics through /api/audience (cached 5 minutes), refreshed
+       every 5 minutes while the page is open; the daily snapshot is only the fallback. */
+    (function () {
       var el = document.getElementById("live-weekly");
-      if (el && d && d.visitors7) el.textContent = Number(d.visitors7).toLocaleString("en-US") + " visitors this week \u00B7 " + Number(d.pageviews7 || 0).toLocaleString("en-US") + " pageviews";
-    }).catch(function () {});
+      var show = function (d) { if (el && d && d.visitors7) el.textContent = Number(d.visitors7).toLocaleString("en-US") + " visitors this week \u00B7 " + Number(d.pageviews7 || 0).toLocaleString("en-US") + " pageviews"; };
+      var load = function () {
+        return fetch("/api/audience").then(function (r) { if (!r.ok) throw new Error(); return r.json(); }).then(show);
+      };
+      load().catch(function () {
+        fetch("/data/audience.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(show).catch(function () {});
+      });
+      setInterval(function () { if (!document.hidden) load().catch(function () {}); }, 5 * 60 * 1000);
+    })();
   </script>
 </body>
 </html>

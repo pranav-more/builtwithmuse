@@ -175,6 +175,17 @@ body { background-image: none; }
       .sp-card { border: 1px solid var(--line); border-radius: 16px; background: #fff; padding: 24px; box-shadow: var(--shadow); }
       .sp-card h2 { margin: 0 0 6px; font-size: 20px; letter-spacing: -0.01em; color: var(--ink); }
       .sp-card p.sub { margin: 0 0 18px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+      .st-edit { margin-top: 20px; }
+      .st-edit form { display: grid; gap: 14px; }
+      .st-edit label { display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: var(--ink); }
+      .st-edit label span { font-weight: 500; color: var(--muted-2); }
+      .st-edit input { font: inherit; font-size: 15px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); }
+      .st-edit input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,255,.12); }
+      .st-edit .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .st-edit .msg { font-size: 14px; font-weight: 600; }
+      .st-edit .msg.ok { color: #1a7f37; } .st-edit .msg.bad { color: #c9454b; }
+      .st-again { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+      .st-again p { margin: 0; color: var(--muted); font-size: 15px; }
       .sp-slots { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
       .sp-slots li { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 10px; background: var(--tint); font-size: 14px; }
       .sp-slots li.filled { border-style: solid; background: #fff; }
@@ -323,6 +334,21 @@ body { background-image: none; }
         <section class="sp-card" id="st-card">
           <p class="sub" id="st-loading">Loading your stats&hellip;</p>
         </section>
+        <section class="sp-card st-edit" id="st-edit" hidden>
+          <h2>Edit your slot</h2>
+          <p class="sub">Fix the name, link or logo any time while your slot runs. The homepage shows the change within a minute.</p>
+          <form id="st-form" novalidate>
+            <label>Product name<input type="text" name="name" maxlength="60" required /></label>
+            <label>Link<input type="url" name="url" required inputmode="url" placeholder="https://yourproduct.com" /></label>
+            <label>Logo link <span>optional; leave as is to keep your current logo</span><input type="text" name="logo" inputmode="url" placeholder="https://yourproduct.com/logo.png" /></label>
+            <label>Email for receipts<input type="email" name="email" required /></label>
+            <div class="row"><button class="button" type="submit" id="st-save">Save changes</button><span class="msg" id="st-msg" aria-live="polite"></span></div>
+          </form>
+        </section>
+        <section class="sp-card st-again" id="st-again" hidden>
+          <p>Want more time on the homepage? Book your next week or month.</p>
+          <a class="button" id="st-again-link" href="/sponsor">Book another slot</a>
+        </section>
       </main>
       <footer class="site-footer">
       <div class="footer-grid">
@@ -391,6 +417,33 @@ body { background-image: none; }
               '<div class="st-tile"><div class="k">Days left</div><div class="v">' + (left == null ? "-" : left) + '</div></div></div>' +
               (rows ? '<table class="st-table"><thead><tr><th>Day</th><th>Impressions</th><th>Clicks</th></tr></thead><tbody>' + rows + "</tbody></table>" : '<p class="st-note">Numbers appear here once your slot is live.</p>') +
               '<p class="st-note">An impression is one visitor seeing the sponsor box on the homepage, counted once per visitor per day. Clicks are counted every time someone opens your link from the slot.</p>';
+            var again = document.getElementById("st-again-link");
+            again.href = "/sponsor?again=1&name=" + encodeURIComponent(d.name || "") + "&url=" + encodeURIComponent(d.url || "") + "&email=" + encodeURIComponent(d.email || "");
+            document.getElementById("st-again").hidden = false;
+            if (d.state !== "ended") {
+              var form = document.getElementById("st-form");
+              form.name.value = d.name || ""; form.url.value = d.url || ""; form.email.value = d.email || "";
+              var currentLogo = d.logo || "";
+              form.logo.value = currentLogo.indexOf("data:") === 0 ? "" : currentLogo;
+              form.logo.placeholder = currentLogo.indexOf("data:") === 0 ? "Your uploaded logo is kept unless you paste a new link" : form.logo.placeholder;
+              document.getElementById("st-edit").hidden = false;
+              form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                var msg = document.getElementById("st-msg"); var btn = document.getElementById("st-save");
+                var logo = form.logo.value.trim() || (currentLogo.indexOf("data:") === 0 ? currentLogo : "");
+                btn.disabled = true; msg.className = "msg"; msg.textContent = "Saving...";
+                fetch("/api/sponsors/update", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin",
+                  body: JSON.stringify({ s: q.get("s"), t: q.get("t"), name: form.name.value, url: form.url.value, logo: logo, email: form.email.value }) })
+                  .then(function (r) { return r.json(); })
+                  .then(function (r) {
+                    btn.disabled = false;
+                    if (!r.ok) { msg.className = "msg bad"; msg.textContent = r.error || "Could not save. Try again."; return; }
+                    msg.className = "msg ok"; msg.textContent = "Saved. Your slot shows the new details within a minute.";
+                    setTimeout(function () { location.reload(); }, 1500);
+                  })
+                  .catch(function () { btn.disabled = false; msg.className = "msg bad"; msg.textContent = "Could not save. Try again."; });
+              });
+            }
           })
           .catch(function () { card.innerHTML = '<p class="sub">Could not load your stats. Refresh to try again.</p>'; });
       })();

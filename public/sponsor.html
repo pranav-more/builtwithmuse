@@ -436,6 +436,15 @@ body { background-image: none; }
     <script>
       (function () {
         if (new URLSearchParams(location.search).get("paid") === "1") document.getElementById("sp-paid").hidden = false;
+        /* Coming back from a sponsor's stats page to book again: fill in what we know. */
+        (function () {
+          var q = new URLSearchParams(location.search);
+          ["name", "url", "email"].forEach(function (k) {
+            var v = q.get(k); var el = document.querySelector('.sp-form input[name="' + k + '"]');
+            if (v && el && !el.value) el.value = v.slice(0, 200);
+          });
+          if (q.get("again") === "1") { var f = document.querySelector(".sp-form"); if (f) setTimeout(function () { f.scrollIntoView({ block: "start", behavior: "smooth" }); }, 300); }
+        })();
         var esc = function (v) { return String(v || "").replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
         var fmt = function (n) { return Number(n || 0).toLocaleString("en-US"); };
         var pct = function (x) { var p = Math.round(x * 100); return (p < 1 && x > 0 ? "<1" : p) + "%"; };

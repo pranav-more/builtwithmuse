@@ -178,6 +178,10 @@
       .write-btn { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; margin-left: 8px; }
       .write-btn:hover { background: #e6edff; }
       .home-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 8px 0 8px; }
+      .live-strip { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 2px 0 14px; color: var(--muted); font-size: 13.5px; font-weight: 600; }
+      .live-strip .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #f97316; animation: live-pulse 2s infinite; }
+      @keyframes live-pulse { 0% { box-shadow: 0 0 0 0 rgba(249,115,22,.45); } 70% { box-shadow: 0 0 0 7px rgba(249,115,22,0); } 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); } }
+      .live-strip .live-cta { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 3px; margin-left: 4px; }
       .home-side { display: grid; gap: 24px; align-content: start; }
       .home-card { position: relative; display: flex; flex-direction: column; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); }
       .home-card.tint { background: #eef3ff; }
@@ -705,6 +709,7 @@ form :where(input[type=search])::-webkit-search-decoration { -webkit-appearance:
 
       <main>
         <section class="view active" id="view-home">
+          <div class="live-strip"><span class="live-dot" aria-hidden="true"></span><span id="live-weekly">1,490 visitors this week · 3,171 pageviews</span><a class="live-cta" href="/sponsor">Put your product here</a></div>
           <div class="home-cards">
             <section class="home-card" aria-labelledby="hero-h1">
               <div class="card-label"><span>Your invite</span><span class="live-tag">Ready</span></div>
@@ -1962,5 +1967,11 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
     </script>
   <script src="/js/help-widget.js" defer></script>
     <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
+  <script>
+    fetch("/data/audience.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) {
+      var el = document.getElementById("live-weekly");
+      if (el && d && d.visitors7) el.textContent = Number(d.visitors7).toLocaleString("en-US") + " visitors this week \u00B7 " + Number(d.pageviews7 || 0).toLocaleString("en-US") + " pageviews";
+    }).catch(function () {});
+  </script>
 </body>
 </html>

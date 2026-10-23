@@ -1,16 +1,11 @@
 {
- "updated": "2026-10-22T18:38:26.611Z",
+ "updated": "2026-10-23T16:12:06.433Z",
  "source": "Vercel Web Analytics, production",
- "visitors30": 6429,
- "pageviews30": 13681,
- "visitors7": 1490,
- "pageviews7": 3171,
+ "visitors30": 6563,
+ "pageviews30": 14300,
+ "visitors7": 1586,
+ "pageviews7": 3678,
  "daily": [
-  {
-   "day": "2026-09-22",
-   "visitors": 114,
-   "pageviews": 247
-  },
   {
    "day": "2026-09-23",
    "visitors": 133,
@@ -158,82 +153,87 @@
   },
   {
    "day": "2026-10-22",
-   "visitors": 218,
-   "pageviews": 657
+   "visitors": 258,
+   "pageviews": 763
+  },
+  {
+   "day": "2026-10-23",
+   "visitors": 225,
+   "pageviews": 790
   }
  ],
  "countries": [
   {
    "code": "US",
    "name": "United States",
-   "visitors": 3082
+   "visitors": 3173
   },
   {
    "code": "IN",
    "name": "India",
-   "visitors": 411
+   "visitors": 400
   },
   {
    "code": "SG",
    "name": "Singapore",
-   "visitors": 275
+   "visitors": 282
   },
   {
    "code": "CA",
    "name": "Canada",
-   "visitors": 241
+   "visitors": 248
   },
   {
    "code": "CN",
    "name": "China",
-   "visitors": 166
+   "visitors": 186
   },
   {
-   "code": "AU",
-   "name": "Australia",
-   "visitors": 150
+   "code": "JP",
+   "name": "Japan",
+   "visitors": 128
   }
  ],
- "countriesTotal": 6429,
+ "countriesTotal": 6563,
  "sources": [
   {
    "name": "Direct",
-   "visitors": 4325,
-   "share": 0.5958120953299353
+   "visitors": 4445,
+   "share": 0.600270087778528
   },
   {
    "name": "Search",
-   "visitors": 2818,
-   "share": 0.3882077421132387
+   "visitors": 2832,
+   "share": 0.3824442943956786
   },
   {
    "name": "Social",
-   "visitors": 58,
-   "share": 0.007990081278413004
+   "visitors": 61,
+   "share": 0.00823767724510466
   },
   {
    "name": "AI assistants",
-   "visitors": 44,
-   "share": 0.006061440969830555
+   "visitors": 52,
+   "share": 0.007022282241728562
   },
   {
    "name": "Other sites",
-   "visitors": 14,
-   "share": 0.0019286403085824494
+   "visitors": 15,
+   "share": 0.002025658338960162
   }
  ],
  "devices": [
   {
    "type": "desktop",
-   "share": 0.5985378752527609
+   "share": 0.6026812918951858
   },
   {
    "type": "mobile",
-   "share": 0.39088505210763724
+   "share": 0.3869591712370506
   },
   {
    "type": "tablet",
-   "share": 0.005755171877430394
+   "share": 0.005636806825106642
   }
  ],
  "topSites": [
@@ -246,15 +246,15 @@
    "visitors": 3
   },
   {
+   "host": "checkout.dodopayments.com",
+   "visitors": 1
+  },
+  {
    "host": "com.slack",
    "visitors": 1
   },
   {
    "host": "alohafind.com",
-   "visitors": 1
-  },
-  {
-   "host": "builtwithmuse.substack.com",
    "visitors": 1
   }
  ]

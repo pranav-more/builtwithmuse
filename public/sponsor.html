@@ -209,6 +209,17 @@ body { background-image: none; }
       .sp-slots .nm { flex: 1; font-weight: 700; color: var(--ink); }
       .sp-slots .open-txt { flex: 1; font-weight: 600; color: var(--muted); }
       .sp-slots .clk { font-size: 12px; font-weight: 700; color: var(--blue-deep); }
+      .sp-history { margin-top: 24px; }
+      .sp-hist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+      .sp-hist li a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
+      .sp-hist li a:hover { border-color: var(--blue); }
+      .sp-hist img, .sp-hist .ph { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); object-fit: cover; flex: 0 0 32px; }
+      .sp-hist .ph { display: grid; place-items: center; background: var(--tint); font-weight: 700; font-size: 13px; color: var(--muted); }
+      .sp-hist .nm { flex: 1; min-width: 0; font-weight: 700; font-size: 14px; }
+      .sp-hist .when { font-size: 13px; color: var(--muted); white-space: nowrap; }
+      .sp-hist .st { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--tint); color: var(--muted); }
+      .sp-hist .st.live { background: #e3f3ea; color: #1a7f37; }
+      @media (max-width: 560px) { .sp-hist .when { display: none; } }
       .sp-form { display: grid; gap: 14px; }
       .sp-form label { display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: var(--ink); }
       .sp-form label span.hint { font-weight: 500; color: var(--muted-2); }
@@ -396,6 +407,11 @@ body { background-image: none; }
           </div>
           <p class="aud-note" id="a-note"></p>
         </section>
+        <section class="sp-card sp-history" aria-labelledby="sp-hist-h" id="sp-history" hidden>
+          <h2 id="sp-hist-h">Sponsor history</h2>
+          <p class="sub">Everyone who has sponsored Built with Muse, newest first.</p>
+          <ol class="sp-hist" id="sp-hist"></ol>
+        </section>
       </main>
       <footer class="site-footer">
       <div class="footer-grid">
@@ -489,6 +505,18 @@ body { background-image: none; }
               ? '<li class="filled"><span class="n">#' + s.slot + '</span>' + (s.logo ? '<img src="' + esc(s.logo) + '" alt="" />' : "") + '<span class="nm">' + esc(s.name) + '</span></li>'
               : '<li><span class="n">#' + s.slot + '</span><span class="open-txt">Open slot</span></li>';
           }).join("");
+          if (d.history && d.history.length) {
+            var md = function (v) { return new Date(v).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }); };
+            var ST = { live: "Live", upcoming: "Upcoming", ended: "Ended" };
+            document.getElementById("sp-hist").innerHTML = d.history.map(function (h) {
+              return '<li><a href="' + esc(h.url) + '" target="_blank" rel="sponsored noopener">' +
+                (h.logo ? '<img src="' + esc(h.logo) + '" alt="" />' : '<span class="ph">' + esc((h.name || "?").slice(0, 1)) + '</span>') +
+                '<span class="nm">' + esc(h.name) + '</span>' +
+                '<span class="when">' + md(h.startsAt) + ' to ' + md(h.endsAt) + (h.plan ? ' &middot; ' + esc(h.plan) : '') + '</span>' +
+                '<span class="st' + (h.state === "live" ? " live" : "") + '">' + (ST[h.state] || h.state) + '</span></a></li>';
+            }).join("");
+            document.getElementById("sp-history").hidden = false;
+          }
           document.getElementById("sp-open-line").textContent = d.open
             ? d.open + " of " + d.slots.length + " slots open. Yours goes up as soon as you pay."
             : "All slots are taken. Yours starts on " + new Date(d.nextOpening).toLocaleDateString(undefined, { month: "long", day: "numeric" }) + ", when the next one frees up.";

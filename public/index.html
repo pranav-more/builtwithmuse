@@ -1045,16 +1045,19 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
         let currentCode = "";
         const forbiddenDash = /[\u002D\u058A\u05BE\u1400\u1806\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2E17\u2E1A\u2E3A\u2E3B\u2E40\u2E5D\u301C\u3030\u30A0\uFE31\uFE32\uFE58\uFE63\uFF0D]/;
 
+        /* A copy lint for our own text. It only warns: user content (workflow titles,
+           quoted posts) often has hyphens, and throwing here once killed every
+           script on the page, the invite form included. */
         function assertDashFreeVisibleCopy() {
           document.querySelectorAll("body *:not(script):not(style)").forEach((node) => {
             for (const child of node.childNodes) {
               if (child.nodeType === Node.TEXT_NODE && forbiddenDash.test(child.textContent)) {
-                throw new Error("Visible copy contains forbidden punctuation.");
+                console.warn("Visible copy contains a dash:", node); return;
               }
             }
             for (const attribute of ["aria-label", "alt", "placeholder", "title", "value"]) {
               if (node.hasAttribute(attribute) && forbiddenDash.test(node.getAttribute(attribute))) {
-                throw new Error("Visible copy contains forbidden punctuation.");
+                console.warn("Visible copy contains a dash:", node); return;
               }
             }
           });

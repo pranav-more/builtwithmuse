@@ -99,6 +99,7 @@ Muse has not launched in every country. These guides cover the workarounds.
 - [Muse available countries](https://builtwithmuse.com/blog/muse-available-countries): The full list of countries where Muse is available right now, with the dates it launched in each one, kept updated as new countries launch.
 - [How to use Muse in India](https://builtwithmuse.com/blog/how-to-use-muse-in-india): India specific guide.
 - [How to use Muse in Pakistan](https://builtwithmuse.com/blog/how-to-use-muse-in-pakistan): Pakistan specific guide.
+- [How to use Muse in Japan](https://builtwithmuse.com/blog/how-to-use-muse-in-japan): Japan specific guide. Muse launched in Japan on October 23, 2026.
 - [How to use Muse in Singapore](https://builtwithmuse.com/blog/how-to-use-muse-in-singapore): Singapore specific guide.
 - [How to use Muse in Indonesia](https://builtwithmuse.com/blog/how-to-use-muse-in-indonesia): Indonesia specific guide.
 - [How to use Muse in the UAE](https://builtwithmuse.com/blog/how-to-use-muse-in-uae): Uae specific guide.

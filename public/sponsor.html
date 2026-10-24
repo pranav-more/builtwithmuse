@@ -554,12 +554,20 @@ body { background-image: none; }
           img.onerror = function () { err.textContent = "That image could not be read."; err.hidden = false; };
           img.src = URL.createObjectURL(file);
         });
+        /* Sponsor funnel for /admin: this visit, and each press of Continue to checkout. */
+        var spEvent = function (type, extra) {
+          var body = { type: type, page: location.pathname + location.search, ref: document.referrer || "" };
+          for (var k in extra) { body[k] = extra[k]; }
+          try { fetch("/api/sponsors/event", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); } catch (_) {}
+        };
+        spEvent("page_view", { utm_source: new URLSearchParams(location.search).get("utm_source") || "" });
         var form = document.getElementById("sp-form");
         var err = document.getElementById("sp-err");
         var btn = document.getElementById("sp-submit");
         form.addEventListener("submit", function (e) {
           e.preventDefault();
           err.hidden = true;
+          spEvent("cta", { cta: "checkout_submit" });
           var f = new FormData(form);
           var body = { sku: f.get("sku"), name: f.get("name"), url: f.get("url"), email: f.get("email") };
           var logo = uploaded || String(f.get("logo") || "").trim();

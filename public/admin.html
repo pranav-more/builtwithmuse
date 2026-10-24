@@ -161,6 +161,7 @@
         <div class="brand"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse<small>Moderation</small></div>
         <nav aria-label="Sections">
           <button data-tab="overview" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>Overview</button>
+          <button data-tab="sponsors" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-7-7 18-2.5-8.5z"/></svg>Sponsors</button>
           <button data-tab="analytics" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 15v-4M12 15V8M16 15v-6"/></svg>Analytics</button>
           <button data-tab="retention" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Retention</button>
           <button data-tab="codes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M7 12h.01M11 12h.01M15 12h.01"/></svg>Codes</button>
@@ -194,12 +195,34 @@
           <section class="panel active" id="panel-overview">
             <div class="cards" id="cards"></div>
             <div class="box">
-              <h2>Sponsors <span>clicks on the homepage slots</span></h2>
+              <h2>Sponsors <span>clicks on the homepage slots &middot; <a href="#" id="open-sponsors">funnel, leads and every sponsor</a></span></h2>
               <div class="tablewrap"><table id="sponsors"><thead><tr><th>Slot</th><th>Sponsor</th><th>Clicks</th><th>Last 24h</th><th>Last 7 days</th><th>Unique visitors</th><th>Last click</th></tr></thead><tbody><tr><td colspan="7" class="muted">Loading.</td></tr></tbody></table></div>
             </div>
             <div class="box">
               <h2>Latest activity <span>most recent 40 events</span></h2>
               <div class="tablewrap"><table id="activity"><thead><tr><th>When</th><th>Event</th><th>Code</th><th>Who</th><th>Country</th><th>Detail</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </section>
+
+          <section class="panel" id="panel-sponsors">
+            <div class="toolbar"><span class="muted">Our own records, people only (crawlers skipped). Page views and button clicks are counted from Oct 24, 2026; checkouts, payments, impressions and sponsor clicks go back to the start.</span><span class="spacer"></span><select id="sp-days" aria-label="Window"><option value="30">Last 30 days</option><option value="7">Last 7 days</option></select></div>
+            <div class="cards" id="sp-funnel"></div>
+            <div class="grid2">
+              <div class="box"><h2>Sponsor page views <span>per day</span></h2><div class="chart" id="sp-chart-views"></div></div>
+              <div class="box"><h2>Checkout button clicks <span>per day</span></h2><div class="chart" id="sp-chart-ctas"></div></div>
+              <div class="box"><h2>Checkouts started <span>per day</span></h2><div class="chart" id="sp-chart-checkouts"></div></div>
+              <div class="box"><h2>Paid <span>per day</span></h2><div class="chart" id="sp-chart-paid"></div></div>
+              <div class="box"><h2>Sponsor clicks <span>per day, all slots</span></h2><div class="chart" id="sp-chart-clicks"></div></div>
+              <div class="box"><h2>Where clicks and visits came from</h2><div class="tablewrap"><table id="sp-sources"><thead><tr><th>Kind</th><th>Source</th><th>Count</th></tr></thead><tbody></tbody></table></div></div>
+            </div>
+            <div class="box" style="margin-bottom:22px">
+              <h2>Leads <span id="sp-leads-sub"></span></h2>
+              <div class="toolbar"><span class="muted">Started a sponsor checkout and did not pay it, newest first.</span><span class="spacer"></span><button class="btn" type="button" id="sp-copy">Copy all emails</button></div>
+              <div class="tablewrap"><table id="sp-leads"><thead><tr><th>Last try</th><th>Name</th><th>Email</th><th>Plan</th><th>Link</th><th>Attempts</th><th>Status</th><th></th></tr></thead><tbody></tbody></table></div>
+            </div>
+            <div class="box">
+              <h2>Sponsors, live and past</h2>
+              <div class="tablewrap"><table id="sp-runs"><thead><tr><th>Sponsor</th><th>Plan</th><th>State</th><th>Run</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Revenue</th><th>Top countries</th><th>Devices</th><th>Clicks by day</th></tr></thead><tbody></tbody></table></div>
             </div>
           </section>
 
@@ -308,7 +331,7 @@
     <script>
       (() => {
         const $ = (id) => document.getElementById(id);
-        const titles = { overview: "Overview", analytics: "Analytics", retention: "Retention", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist", inbox: "Inbox", pool: "Creator pool", community: "Community posts" };
+        const titles = { overview: "Overview", sponsors: "Sponsors", analytics: "Analytics", retention: "Retention", codes: "Codes", claims: "Claims", reports: "Reports", waitlist: "Waitlist", inbox: "Inbox", pool: "Creator pool", community: "Community posts" };
         let refreshTimer = null;
 
         async function api(path, options = {}) {
@@ -373,6 +396,44 @@
           clearInterval(refreshTimer);
           refreshTimer = setInterval(() => { if (document.visibilityState === "visible" && currentTab() === "overview") loadOverview(); }, 30000);
         }
+
+        // The Sponsors tab: funnel, daily charts, leads and every paid run.
+        let spLeadEmails = [];
+        async function loadSponsorReport() {
+          const d = await api("/api/admin/sponsors/report?days=" + $("sp-days").value);
+          const f = d.funnel;
+          const rate = (a, b) => (b ? (Math.round((a / b) * 1000) / 10) + "% of the step before" : "step before had none");
+          const money = (c) => "$" + (c / 100).toLocaleString("en-US", { maximumFractionDigits: 2 });
+          $("sp-funnel").innerHTML = [
+            ["1. Sponsor page views", f.views, f.view_visitors + " visitors"],
+            ["2. Checkout button clicks", f.checkout_clicks, f.checkout_click_visitors + " visitors · " + rate(f.checkout_clicks, f.views)],
+            ["3. Checkouts started", f.checkouts, rate(f.checkouts, f.checkout_clicks)],
+            ["4. Paid", f.paid, money(f.revenue_cents) + " · " + rate(f.paid, f.checkouts)],
+            ["Sponsor impressions", f.impressions, "one per visitor per day"],
+            ["Sponsor clicks", f.sponsor_clicks, "CTR " + (f.impressions ? Math.round((f.sponsor_clicks / f.impressions) * 1000) / 10 : 0) + "%"],
+            ["Clicks toward /sponsor", f.entry_clicks, "Claim, Sponsor a slot and the like"],
+          ].map(([l, n, sub]) => `<div class="card"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div><div class="d">${esc(sub)}</div></div>`).join("");
+          const labels = d.daily.map((x) => x.day.slice(5));
+          barChart($("sp-chart-views"), [d.daily.map((x) => x.views)], labels, ["#0c766b"]);
+          barChart($("sp-chart-ctas"), [d.daily.map((x) => x.ctas)], labels, ["#0c766b"]);
+          barChart($("sp-chart-checkouts"), [d.daily.map((x) => x.checkouts)], labels, ["#0c766b"]);
+          barChart($("sp-chart-paid"), [d.daily.map((x) => x.paid)], labels, ["#0c766b"]);
+          barChart($("sp-chart-clicks"), [d.daily.map((x) => x.clicks)], labels, ["#0c766b"]);
+          const src = [...d.ctas.map((c) => ["Button", c.key, c.n]), ...d.refs.map((r) => ["Visit from", r.key, r.n])];
+          $("sp-sources").querySelector("tbody").innerHTML = src.length ? src.map((r) => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td><b>${esc(r[2])}</b></td></tr>`).join("") : '<tr><td colspan="3" class="muted">Nothing recorded yet.</td></tr>';
+          spLeadEmails = [...new Set(d.leads.map((l) => l.email).filter(Boolean))];
+          $("sp-leads-sub").textContent = d.leads.length + " leads · " + d.leads.filter((l) => l.paidLater).length + " paid later";
+          const follow = (l) => "mailto:" + encodeURIComponent(l.email) + "?subject=" + encodeURIComponent("Your Built with Muse sponsor slot") + "&body=" + encodeURIComponent("Hi,\n\nI saw you started booking a sponsor slot on builtwithmuse.com for " + (l.name || "your product") + " and did not finish. Did something get in the way? Happy to help.\n\nPranav");
+          $("sp-leads").querySelector("tbody").innerHTML = d.leads.length ? d.leads.map((l) => `<tr><td class="muted">${esc(when(l.lastAt))}</td><td>${esc(l.name)}</td><td>${esc(l.email)}</td><td>${esc(l.products.join(", "))}</td><td>${l.url ? `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.url)}</a>` : ""}</td><td>${esc(l.attempts)}</td><td>${l.paidLater ? '<span class="pill ok">Paid later</span>' : '<span class="pill warn">Not paid</span>'}</td><td><a class="btn sm" href="${follow(l)}">Follow up</a></td></tr>`).join("") : '<tr><td colspan="8" class="muted">No unpaid checkouts.</td></tr>';
+          const list = (rows) => rows.map((r) => esc(r.key) + " " + esc(r.n)).join(", ") || '<span class="muted">none</span>';
+          const stateP = (s) => (s === "live" ? '<span class="pill ok">Live</span>' : s === "queued" ? '<span class="pill warn">Queued</span>' : '<span class="pill">Ended</span>');
+          $("sp-runs").querySelector("tbody").innerHTML = d.sponsors.length ? d.sponsors.map((r) => `<tr><td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}${r.statsUrl ? ` <a class="muted" href="${esc(r.statsUrl)}" target="_blank" rel="noopener">stats</a>` : ""}</td><td>${esc(r.plan)}</td><td>${stateP(r.state)}</td><td class="muted">${r.startsAt ? esc(new Date(r.startsAt).toLocaleDateString("en-GB", { day: "numeric", month: "short" })) : ""} to ${r.endsAt ? esc(new Date(r.endsAt).toLocaleDateString("en-GB", { day: "numeric", month: "short" })) : ""}</td><td>${esc(r.impressions)}</td><td><b>${esc(r.clicks)}</b></td><td>${esc(r.ctr)}%</td><td>${esc(money(r.revenueCents))}</td><td>${list(r.countries)}</td><td>${list(r.devices)}</td><td class="muted">${r.clicksByDay.map((x) => esc(x.day.slice(5)) + " " + esc(x.n)).join(", ")}</td></tr>`).join("") : '<tr><td colspan="11" class="muted">No sponsors yet.</td></tr>';
+        }
+        $("sp-days").addEventListener("change", () => loadTab("sponsors"));
+        $("sp-copy").addEventListener("click", async () => {
+          try { await navigator.clipboard.writeText(spLeadEmails.join(", ")); toast("Copied " + spLeadEmails.length + " emails"); } catch (_) { toast("Could not copy"); }
+        });
+        $("open-sponsors").addEventListener("click", (e) => { e.preventDefault(); document.querySelector('[data-tab="sponsors"]').click(); });
 
         async function loadSponsors() {
           try {
@@ -561,6 +622,7 @@
           $("status").textContent = "Loading";
           try {
             if (tab === "overview") await loadOverview();
+            else if (tab === "sponsors") await loadSponsorReport();
             else if (tab === "analytics") await loadAnalytics();
             else if (tab === "retention") await loadRetention();
             else if (tab === "codes") await loadCodes();

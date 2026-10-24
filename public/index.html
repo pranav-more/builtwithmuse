@@ -1922,7 +1922,7 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
             ? '<li class="filled"><span class="n">#' + sp.slot + '</span><a class="slot-link" href="' + esc(sp.url) + '" target="_blank" rel="noopener sponsored" data-slot="' + sp.slot + '">' + (sp.logo ? '<img class="slot-logo" src="' + esc(sp.logo) + '" alt="" />' : "") + '<span class="slot-brand">' + esc(sp.name) + '</span></a></li>'
             : '<li class="open"><span class="n">#' + sp.slot + '</span><span class="slot-name">Open slot</span><a class="slot-cta" href="/sponsor">Claim</a></li>').join("");
           list.querySelectorAll("a[data-slot]").forEach((a) => a.addEventListener("click", () => {
-            try { fetch("/api/sponsors/click", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: JSON.stringify({ slot: Number(a.dataset.slot) }) }); } catch (_) {}
+            try { fetch("/api/sponsors/click", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" }, body: JSON.stringify({ slot: Number(a.dataset.slot), page: location.pathname + location.search, ref: document.referrer || "" }) }); } catch (_) {}
           }));
           // One impression per visitor per day, when the box is actually seen.
           if ("IntersectionObserver" in window && d.slots.some((x) => x.name)) {
@@ -1934,6 +1934,13 @@ we also are releasing muse glimmer, a 30B agentic model with open weights under 
             io.observe(list);
           }
         }).catch(() => {});
+        // Clicks toward /sponsor (Claim, Sponsor a slot, Put your product here), for the admin funnel.
+        document.addEventListener("click", (e) => {
+          const a = e.target && e.target.closest ? e.target.closest('a[href="/sponsor"]') : null;
+          if (!a) { return; }
+          const cta = a.classList.contains("slot-cta") ? "home_claim" : a.classList.contains("sponsor-cta") ? "home_sponsor_button" : a.classList.contains("live-cta") ? "home_live_strip" : "home_link";
+          try { fetch("/api/sponsors/event", { method: "POST", keepalive: true, credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "cta", cta: cta, page: location.pathname }) }); } catch (_) {}
+        });
         fetch("/api/stats", { credentials: "same-origin" }).then((r) => r.json()).then((d) => {
           const el = document.getElementById("home-active"); if (!el || !d.ok) return;
           el.textContent = String(Number(d.live ?? d.available ?? 0));

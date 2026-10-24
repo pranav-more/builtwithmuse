@@ -232,6 +232,8 @@ body { background-image: none; }
       .st-tile .v { margin-top: 6px; font-size: 26px; font-weight: 800; color: var(--ink); }
       .st-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
       .st-table th, .st-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line-soft); }
+      .st-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      @media (max-width: 720px) { .st-split { grid-template-columns: 1fr; } }
       .st-table th { font-size: 12px; color: var(--muted-2); text-transform: uppercase; letter-spacing: .04em; }
       .st-note { margin-top: 14px; color: var(--muted-2); font-size: 13px; line-height: 1.5; }
       .sp-submit { font: inherit; font-weight: 700; font-size: 16px; padding: 14px 18px; border: 0; border-radius: 10px; background: var(--blue); color: #fff; cursor: pointer; }
@@ -404,7 +406,18 @@ body { background-image: none; }
               : d.state === "queued" ? "Starts " + day(d.startsAt) + ", when a slot frees up"
               : d.state === "ended" ? "Ran " + day(d.startsAt) + " to " + day(d.endsAt)
               : "";
-            var rows = d.daily.slice(-14).reverse().map(function (r) { return "<tr><td>" + day(r.day) + "</td><td>" + r.impressions + "</td><td>" + r.clicks + "</td></tr>"; }).join("");
+            var rate = function (c, i) { return i ? (Math.round((c / i) * 1000) / 10) + "%" : "-"; };
+            var rows = d.daily.slice(-14).reverse().map(function (r) { return "<tr><td>" + day(r.day) + "</td><td>" + r.impressions + "</td><td>" + r.clicks + "</td><td>" + rate(r.clicks, r.impressions) + "</td></tr>"; }).join("");
+            var names = null;
+            try { names = new Intl.DisplayNames(["en"], { type: "region" }); } catch (_) { names = null; }
+            var countryName = function (k) { if (!k || k === "Unknown") { return "Not recorded"; } try { return names ? names.of(k) : k; } catch (_) { return k; } };
+            var deviceName = function (k) { return !k || k === "Unknown" ? "Not recorded" : k.charAt(0).toUpperCase() + k.slice(1); };
+            var share = function (list, nameOf, title) {
+              var total = (list || []).reduce(function (t, x) { return t + x.n; }, 0);
+              if (!total) { return ""; }
+              return '<table class="st-table"><thead><tr><th>' + title + '</th><th>Clicks</th><th>Share</th></tr></thead><tbody>' + list.map(function (x) { return "<tr><td>" + esc(nameOf(x.key)) + "</td><td>" + x.n + "</td><td>" + Math.round((x.n / total) * 100) + "%</td></tr>"; }).join("") + "</tbody></table>";
+            };
+            var breakdowns = share(d.countries, countryName, "Country") + share(d.devices, deviceName, "Device");
             card.innerHTML =
               '<div class="st-head">' + (d.logo ? '<img src="' + esc(d.logo) + '" alt="" />' : "") +
               '<div><h2>' + esc(d.name) + '</h2><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(d.url) + '</a></div>' +
@@ -415,8 +428,9 @@ body { background-image: none; }
               '<div class="st-tile"><div class="k">Clicks</div><div class="v">' + d.clicks + '</div></div>' +
               '<div class="st-tile"><div class="k">Click-through</div><div class="v">' + d.ctr + '%</div></div>' +
               '<div class="st-tile"><div class="k">Days left</div><div class="v">' + (left == null ? "-" : left) + '</div></div></div>' +
-              (rows ? '<table class="st-table"><thead><tr><th>Day</th><th>Impressions</th><th>Clicks</th></tr></thead><tbody>' + rows + "</tbody></table>" : '<p class="st-note">Numbers appear here once your slot is live.</p>') +
-              '<p class="st-note">An impression is one visitor seeing the sponsor box on the homepage, counted once per visitor per day. Clicks are counted every time someone opens your link from the slot.</p>';
+              (rows ? '<table class="st-table"><thead><tr><th>Day</th><th>Impressions</th><th>Clicks</th><th>Click-through</th></tr></thead><tbody>' + rows + "</tbody></table>" : '<p class="st-note">Numbers appear here once your slot is live.</p>') +
+              (breakdowns ? '<div class="st-split">' + breakdowns + "</div>" : "") +
+              '<p class="st-note">An impression is one visitor seeing the sponsor box on the homepage, counted once per visitor per day. Clicks are counted every time someone opens your link from the slot; crawlers are left out. Country and device are recorded for clicks from October 24, 2026 on, earlier ones show as not recorded.</p>';
             var again = document.getElementById("st-again-link");
             again.href = "/sponsor?again=1&name=" + encodeURIComponent(d.name || "") + "&url=" + encodeURIComponent(d.url || "") + "&email=" + encodeURIComponent(d.email || "");
             document.getElementById("st-again").hidden = false;

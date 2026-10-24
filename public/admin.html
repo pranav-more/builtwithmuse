@@ -402,11 +402,12 @@
         async function loadSponsorReport() {
           const d = await api("/api/admin/sponsors/report?days=" + $("sp-days").value);
           const f = d.funnel;
+          const people = (n) => n + (n === 1 ? " visitor" : " visitors");
           const rate = (a, b) => (b ? (Math.round((a / b) * 1000) / 10) + "% of the step before" : "step before had none");
           const money = (c) => "$" + (c / 100).toLocaleString("en-US", { maximumFractionDigits: 2 });
           $("sp-funnel").innerHTML = [
-            ["1. Sponsor page views", f.views, f.view_visitors + " visitors"],
-            ["2. Checkout button clicks", f.checkout_clicks, f.checkout_click_visitors + " visitors · " + rate(f.checkout_clicks, f.views)],
+            ["1. Sponsor page views", f.views, people(f.view_visitors)],
+            ["2. Checkout button clicks", f.checkout_clicks, people(f.checkout_click_visitors) + " · " + rate(f.checkout_clicks, f.views)],
             ["3. Checkouts started", f.checkouts, rate(f.checkouts, f.checkout_clicks)],
             ["4. Paid", f.paid, money(f.revenue_cents) + " · " + rate(f.paid, f.checkouts)],
             ["Sponsor impressions", f.impressions, "one per visitor per day"],

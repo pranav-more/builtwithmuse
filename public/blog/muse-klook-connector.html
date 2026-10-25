@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
+    <script>(function(){try{var t=localStorage.getItem("bwm-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content","#0d1b3d");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content","dark");}}}catch(e){}})();</script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>How to Use the Klook Connector in Muse (2026) | Built with Muse</title>
+    <meta name="description" content="Connect Klook to Muse and discover and book travel activities across Asia in plain words. How it launched with Muse in Japan, what it can book, and the approval step that protects every order." />
+    <link rel="canonical" href="https://builtwithmuse.com/blog/muse-klook-connector" />
+    <meta property="og:title" content="How to Use the Klook Connector in Muse (2026) | Built with Muse" />
+    <meta property="og:description" content="Connect Klook to Muse and discover and book travel activities across Asia in plain words. How it launched with Muse in Japan, what it can book, and the approval step that protects every order." />
+    <meta property="og:url" content="https://builtwithmuse.com/blog/muse-klook-connector" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://builtwithmuse.com/og/blog.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://builtwithmuse.com/og/blog.png" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "inLanguage": "en", "headline": "How to Use the Klook Connector in Muse", "description": "Connect Klook to Muse and discover and book travel activities across Asia in plain words. How it launched with Muse in Japan, what it can book, and the approval step that protects every order.", "datePublished": "2026-10-25", "dateModified": "2026-10-25", "author": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com/"}, "publisher": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com/"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://builtwithmuse.com/blog/muse-klook-connector"}, "image": "https://builtwithmuse.com/og/blog.png"}</script>
+    <meta name="keywords" content="muse klook, klook connector muse, connect klook to muse, muse travel activities" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "Is the Klook connector live everywhere Muse is?", "acceptedAnswer": {"@type": "Answer", "text": "It launched with Muse's debut in Japan on October 23, 2026. Check your own Connectors screen to confirm it is live in your account, and do not assume a Japan launch means a launch everywhere."}}, {"@type": "Question", "name": "Does Muse pay for my Klook booking?", "acceptedAnswer": {"@type": "Answer", "text": "No. Muse places the order with your approval, then directs you to Klook's secure payment page to complete the purchase. Muse cannot see your payment details, and the payment stays with Klook."}}, {"@type": "Question", "name": "Can Muse cancel or reschedule a Klook booking?", "acceptedAnswer": {"@type": "Answer", "text": "Muse can check the cancellation and rescheduling terms for you before you book. The change itself runs through Klook, under the terms of the booking, so confirm the terms before you approve anything."}}, {"@type": "Question", "name": "What does Muse need to find activities for me?", "acceptedAnswer": {"@type": "Answer", "text": "Your destination, your dates, who is going, and what you like. The more specific you are, the better the recommendations, and Muse can draw from 426,000 bookable offerings across 4,600 destinations."}}, {"@type": "Question", "name": "Can Muse book flights and hotels through Klook?", "acceptedAnswer": {"@type": "Answer", "text": "No. Klook covers activities, tickets, tours, and experiences. For flights and hotels, use Trip.com, and for hotels, use Agoda. The three together cover the whole trip."}}, {"@type": "Question", "name": "Can I use the Klook connector outside the United States, Canada, and Japan?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. Muse itself has launched in the United States, Canada, and Japan only. Join the waitlist and we will send you a fresh code on launch day in your country."}}]}</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C94847V6DS');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
+    <style>
+      :root { color-scheme: light; --blue: #1a56ff; --blue-deep: #0f3fc4; --bg: #ffffff; --tint: #eef3ff; --navy: #ffffff; --navy-2: #eef3ff; --ink: #0b1220; --muted: #4b5675; --muted-2: #6b7699; --line: #dfe5f3; --line-soft: #eceff8; --mint: #1a56ff; --mint-ink: #ffffff; --coral: #d92d20; --coral-ink: #ffffff; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --paper-line: #c9d4f2; --shadow: 0 8px 24px rgba(11,18,32,.06); --radius: 10px; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; color: var(--ink); background-color: var(--bg);
+        background-image: linear-gradient(rgba(11,18,32,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(11,18,32,.045) 1px, transparent 1px), linear-gradient(45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%), linear-gradient(-45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%);
+        background-size: 48px 48px, 48px 48px, 6px 6px, 6px 6px; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+      a { color: inherit; }
+      h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
+      .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: transparent; transition: background .25s ease, backdrop-filter .25s ease, box-shadow .25s ease; }
+      .topbar.scrolled { background: rgba(255,255,255,.88); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); box-shadow: 0 10px 30px rgba(11,18,32,.08); }
+      .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; }
+      .brand .mark { width: 22px; height: 22px; flex: 0 0 auto; }
+      .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav a { flex: 0 0 auto; border: 1px solid transparent; border-radius: 8px; padding: 9px 13px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+      .nav a:hover { color: var(--ink); border-color: var(--line); }
+      .nav a[aria-current="page"] { background: #e6edff; color: var(--ink); border-color: var(--line); }
+      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: #eef3ff; padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
+      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
+      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 40px; align-items: end; padding: 12px 0 44px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .hero h1 { font-size: clamp(36px, 6vw, 76px); line-height: .98; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
+      .hero .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0; }
+      .hero .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 18px; }
+      .hero-aside { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .hero-aside .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .hero-aside p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
+      article { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 48px); box-shadow: var(--shadow); min-width: 0; }
+      article > * { max-width: 72ch; }
+      article p, article li { font-size: 17px; line-height: 1.7; color: var(--muted); }
+      article p strong, article li strong { color: var(--ink); }
+      article p { margin: 0 0 20px; }
+      article h2 { font-size: 28px; margin: 40px 0 12px; color: var(--ink); }
+      article h2:first-child { margin-top: 0; }
+      article h3 { font-size: 20px; margin: 28px 0 8px; color: var(--ink); }
+      article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
+      article li { margin-bottom: 8px; }
+      article a { color: var(--mint); }
+      .callout { padding: 18px 22px; border: 1px solid rgba(26,86,255,.35); border-radius: 8px; background: rgba(26,86,255,.08); margin: 28px 0; color: var(--ink); }
+      .callout strong { display: block; margin-bottom: 4px; }
+      .paths { display: grid; gap: 14px; margin: 24px 0 28px; }
+      .path { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; background: #f8fafe; }
+      .path h3 { margin: 0 0 6px; font-size: 20px; }
+      .path h3 a { color: var(--ink); text-decoration: none; }
+      .path h3 a:hover { color: var(--mint); }
+      .path p { margin: 0 0 10px; font-size: 16px; }
+      .path .go { color: var(--mint); font-weight: 700; font-size: 15px; text-decoration: none; }
+      .faq dt { font-weight: 700; color: var(--ink); margin-top: 18px; font-size: 17px; }
+      .faq dd { margin: 6px 0 0; color: var(--muted); line-height: 1.65; font-size: 16px; }
+      .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 700; }
+      .cta:hover { background: #e6edff; }
+      .back { display: inline-block; margin-top: 36px; color: var(--muted-2); font-weight: 600; }
+      .rail { position: sticky; top: 92px; display: grid; gap: 16px; }
+      .rail-box { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .rail-box .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .rail-box h3 { margin: 0 0 8px; font-size: 20px; }
+      .rail-box p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; font-size: 15px; }
+      .rail-box ol { margin: 0; padding: 0; list-style: none; color: var(--muted); line-height: 1.6; font-size: 14px; display: grid; gap: 6px; }
+      .rail-box ol a { color: var(--ink); text-decoration: none; }
+      .rail-box ol a:hover { color: var(--mint); }
+      .rail-box .cta { width: 100%; justify-content: center; margin-top: 4px; }
+      .rail-box .link { display: block; color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 14px; }
+      .rail-box .link:hover { color: var(--mint); }
+      .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
+      .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
+      .footer-cta h2 { margin: 0 0 8px; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.05; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+      .footer-cta p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 52ch; }
+      .footer-cta .eyebrow { margin-bottom: 10px; }
+      .cta.discord { white-space: nowrap; margin: 0; }
+      .cta.discord svg { width: 20px; height: 20px; }
+      .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 8px; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+      .footer-links a:hover { color: var(--ink); }
+      .strip { width: max-content; max-width: calc(100% - 24px); margin: 44px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: #f6f8fe; color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+      @media (max-width: 640px) { .strip { white-space: normal; } }
+      @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .cta.discord { width: 100%; } }
+      @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .rail { position: static; } .hero { grid-template-columns: 1fr; } }
+      @media (max-width: 640px) {
+        .shell { width: calc(100% - 32px); }
+        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px calc(50vw - 50%); margin: 0 calc(50% - 50vw) 28px; }
+        .menu-toggle { display: flex; }
+        .topbar { gap: 8px; } .brand { order: 0; font-size: 15px; gap: 8px; } .brand .mark { width: 18px; height: 18px; } .menu-toggle { width: 38px; height: 38px; } .acct-btn { padding: 3px; gap: 0; } .acct-btn img, .acct-btn i { width: 24px; height: 24px; } .signin-btn { padding: 7px 10px; font-size: 13px; } .write-btn { order: 1; margin-left: auto; padding: 7px 10px; font-size: 13px; } .acct { order: 2; margin-left: 0; } .acct-btn svg { display: none; } .account { order: 2; } .menu-toggle { order: 3; margin-left: 4px; } #account-slot, .signin-btn { order: 2; } .nav { order: 5; }
+        .nav { display: none; flex-direction: column; width: 100%; flex-basis: 100%; margin: 4px 0 0; padding: 8px 0 4px; border-top: 1px solid var(--line-soft); overflow: visible; }
+        .topbar.open .nav { display: flex; }
+        .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+      }
+      
+      .nav-count { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: var(--tint); color: var(--blue-deep); font-size: 11px; font-weight: 700; vertical-align: 1px; }
+      .write-btn { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; margin-left: 8px; }
+      .write-btn:hover { background: var(--blue-deep); }
+      @media (max-width: 640px) { .write-btn { order: 3; margin-left: auto; } }
+/* Light theme: white ground, ink text, blue for actions and active states. */
+body { background-image: none; }
+.topbar { border-bottom-color: var(--line); }
+.topbar.scrolled { background: rgba(255,255,255,.9); box-shadow: 0 10px 30px rgba(11,18,32,.06); }
+.button, .cta, .write-btn, .btn.primary, .icon-button, .case-link, .add { background: var(--blue); color: #fff; border-color: var(--blue); }
+.button:hover, .cta:hover, .write-btn:hover, .btn.primary:hover, .icon-button:hover, .react-btn.muse-link:hover, .case-link:hover, .add:hover { background: var(--blue-deep); border-color: var(--blue-deep); color: #fff; }
+.button.ghost, .case-link.quiet { background: transparent; color: var(--blue-deep); border-color: var(--blue); }
+.cta.ghost { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--blue); padding: 11px 18px; }
+.button.ghost:hover, .case-link.quiet:hover { background: var(--tint); color: var(--blue-deep); border-color: var(--blue); }
+.cta.ghost:hover { background: #e0e8ff; color: var(--blue-deep); border: 2px solid var(--blue); padding: 11px 18px; }
+.button.secondary, .button.small.secondary { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--line); }
+.button.secondary:hover { background: #e0e8ff; }
+.button.discord, .cta.discord { background: var(--blue); color: #fff; }
+.case-study { border: 1px solid var(--line); }
+.nav a[aria-current="page"], .nav button[aria-selected="true"] { background: var(--tint); color: var(--blue-deep); border-color: transparent; }
+.nav a:hover, .nav button:hover { color: var(--blue-deep); border-color: var(--line); }
+.chip[aria-current="true"], .chip.solid[aria-current="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.chip { background: #fff; border-color: var(--line); color: var(--muted); }
+.chip:hover { color: var(--blue-deep); border-color: var(--blue); }
+.follow-btn.on, .react-btn.on, .star.picked, .pill.published { background: var(--blue); color: #fff; border-color: var(--blue); }
+.follow-btn.on b, .react-btn.on b { color: #fff; }
+.save-icon.on { color: var(--blue); border-color: var(--blue); }
+.badge.editorial, .badge.soft, .rating .new, .fmeta .new, .pool-tag.open, .case-tag { background: var(--tint); color: var(--blue-deep); }
+.badge.off, .pool-tag.pulled { background: rgba(217,45,32,.1); color: var(--coral); }
+.eyebrow, .card-label, .k, .live-tag { color: var(--blue-deep); }
+.mini-number, .steps li::before { color: #fff; }
+.quote-band, .tint-panel, .home-card.tint, .rail-box.tint, .callout { background: var(--tint); }
+.preview-strip, .strip, .pool-list, .signin-card, .field input, .field select, .field textarea, .toolbar input, .search-row input, .report-box select, .report-box textarea, .invite-card, .home-card, .workflow-card, .rail-box, .card, .post, article, .panel, .item, .footer-cta, .nudge-card, .hero-aside, .stat, .comment { background: #fff; }
+.field input::placeholder, .field textarea::placeholder, .toolbar input::placeholder, .search-row input::placeholder { color: #98a2c3; }
+.prompt, .row-quote, .steps li, .code-row .preview-code, .assigned-code, .pool-health span, .top3-card, .creator-cell, .creator-chip, .about-box, .react-btn, .sharekit { background: #f6f8fe; }
+.react-btn.muse-link { background: var(--blue); color: #fff; }
+.nudge-backdrop { background: rgba(11,18,32,.5); }
+.account-chip .who, .account .linklike, .account-slot a, .account-slot button { color: var(--muted); }
+.message, .success-panel { background: rgba(26,86,255,.08); border-color: rgba(26,86,255,.35); }
+.avatar { background: var(--tint); color: var(--blue-deep); border-color: var(--line); }
+.brand { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
+    .ad-slot{margin:30px 0;}.hero-col{display:flex;flex-direction:column;justify-content:space-between;gap:20px;align-self:stretch;}.hero-col .ad-slot{margin:0;}
+
+/* Dark theme (batch 29). Canonical copy: bwm-batch29/dark.css */
+/* Theme toggle button (both modes; the icon swap is keyed to the attribute). */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-left: 8px; padding: 0; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; font-family: inherit; }
+.theme-toggle:hover { color: var(--ink); border-color: var(--muted-2); }
+.theme-toggle svg { width: 19px; height: 19px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (max-width: 900px) { .theme-toggle { order: 2; width: 34px; height: 34px; margin-left: 4px; } }
+
+/* Tokens */
+:root[data-theme="dark"] { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --bg: #0d1b3d; --tint: #16295a; --navy: #0d1b3d; --navy-2: #16295a; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --coral-ink: #ffffff; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --paper-line: #c9d4f2; --shadow: 0 30px 60px rgba(0,0,0,.35); }
+
+/* Body pattern: grid lines flip from ink based to white based. */
+:root[data-theme="dark"] body { background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%), linear-gradient(-45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%); }
+:root[data-theme="dark"] .topbar.scrolled { background: rgba(13,27,61,.88); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+
+/* White card surfaces become the raised navy panel. */
+:root[data-theme="dark"] .preview-strip, :root[data-theme="dark"] .strip, :root[data-theme="dark"] .pool-list, :root[data-theme="dark"] .signin-card, :root[data-theme="dark"] .invite-card, :root[data-theme="dark"] .home-card, :root[data-theme="dark"] .workflow-card, :root[data-theme="dark"] .rail-box, :root[data-theme="dark"] .card, :root[data-theme="dark"] .post, :root[data-theme="dark"] article, :root[data-theme="dark"] .panel, :root[data-theme="dark"] .item, :root[data-theme="dark"] .footer-cta, :root[data-theme="dark"] .nudge-card, :root[data-theme="dark"] .hero-aside, :root[data-theme="dark"] .stat, :root[data-theme="dark"] .comment, :root[data-theme="dark"] .acct-btn, :root[data-theme="dark"] .acct-menu, :root[data-theme="dark"] .wild-tile, :root[data-theme="dark"] .tweet, :root[data-theme="dark"] .chip, :root[data-theme="dark"] .share-modal, :root[data-theme="dark"] .share-close, :root[data-theme="dark"] .sponsor-card, :root[data-theme="dark"] .sponsor-slots .slot-cta, :root[data-theme="dark"] .sponsor-slots li.filled, :root[data-theme="dark"] .sp-card, :root[data-theme="dark"] .sp-slots li.filled, :root[data-theme="dark"] .st-tile, :root[data-theme="dark"] .codes-box, :root[data-theme="dark"] .submit-card, :root[data-theme="dark"] .side-box, :root[data-theme="dark"] .sp-upload { background: #12234d; }
+
+/* Pale inset surfaces (was #f6f8fe and friends) become the tint step. */
+:root[data-theme="dark"] .prompt, :root[data-theme="dark"] .row-quote, :root[data-theme="dark"] .steps li, :root[data-theme="dark"] .code-row .preview-code, :root[data-theme="dark"] .assigned-code, :root[data-theme="dark"] .pool-health span, :root[data-theme="dark"] .top3-card, :root[data-theme="dark"] .creator-cell, :root[data-theme="dark"] .creator-chip, :root[data-theme="dark"] .about-box, :root[data-theme="dark"] .react-btn, :root[data-theme="dark"] .sharekit, :root[data-theme="dark"] .save-icon, :root[data-theme="dark"] .proof-box, :root[data-theme="dark"] .tweet-prompt, :root[data-theme="dark"] .tint-panel, :root[data-theme="dark"] .quote-band, :root[data-theme="dark"] .mycode, :root[data-theme="dark"] .promptpack pre, :root[data-theme="dark"] .sp-plan span { background: #16295a; }
+
+/* Pale blue chips (was #e6edff / #eef3ff) become the deep chip step. */
+:root[data-theme="dark"] .nav a[aria-current="page"], :root[data-theme="dark"] .nav button[aria-selected="true"], :root[data-theme="dark"] .menu-toggle, :root[data-theme="dark"] .follow-btn, :root[data-theme="dark"] .badge, :root[data-theme="dark"] .pool-tag, :root[data-theme="dark"] .pool-legend i, :root[data-theme="dark"] .case-tag, :root[data-theme="dark"] .home-card.tint { background: #1d3469; }
+
+/* Form controls. */
+:root[data-theme="dark"] form :where(input:not([type=file]):not([type=checkbox]):not([type=radio]):not([type=hidden]):not([type=submit]):not([type=button]), textarea, select), :root[data-theme="dark"] .field input, :root[data-theme="dark"] .field select, :root[data-theme="dark"] .field textarea, :root[data-theme="dark"] .toolbar input, :root[data-theme="dark"] .search-row input, :root[data-theme="dark"] .report-box select, :root[data-theme="dark"] .report-box textarea, :root[data-theme="dark"] .browse-search input, :root[data-theme="dark"] .mycode-row input, :root[data-theme="dark"] .done input, :root[data-theme="dark"] .sp-form input, :root[data-theme="dark"] .file-pick, :root[data-theme="dark"] .file-btn { background: #12234d; }
+:root[data-theme="dark"] input::placeholder, :root[data-theme="dark"] textarea::placeholder { color: #7d8dbd; }
+:root[data-theme="dark"] select option { background: #12234d; color: var(--ink); }
+:root[data-theme="dark"] form select, :root[data-theme="dark"] .field select, :root[data-theme="dark"] .report-box select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%239fb6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
+
+/* Hover fills that were pale blue go to the deep brand blue. */
+:root[data-theme="dark"] .cta:hover, :root[data-theme="dark"] .button:hover, :root[data-theme="dark"] .write-btn:hover, :root[data-theme="dark"] .row-quote:hover, :root[data-theme="dark"] .react-btn.muse-link:hover, :root[data-theme="dark"] .button.ghost:hover, :root[data-theme="dark"] .cta.ghost:hover, :root[data-theme="dark"] .btn:hover, :root[data-theme="dark"] .btn.primary:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+
+/* Text set in --blue-deep (a fill value in dark) is re-pointed to a readable light blue. */
+:root[data-theme="dark"] .eyebrow, :root[data-theme="dark"] .card-label, :root[data-theme="dark"] .k, :root[data-theme="dark"] .live-tag, :root[data-theme="dark"] .nav-count, :root[data-theme="dark"] .profile-links a, :root[data-theme="dark"] .post-cat, :root[data-theme="dark"] .wild-tile small, :root[data-theme="dark"] .post-caption h3 a:hover, :root[data-theme="dark"] .tweet-summary-note a, :root[data-theme="dark"] .tweet-prompt summary, :root[data-theme="dark"] .tweet-open, :root[data-theme="dark"] .row.wild-row .wild-label, :root[data-theme="dark"] .button.ghost, :root[data-theme="dark"] .cta.ghost, :root[data-theme="dark"] .button.secondary, :root[data-theme="dark"] .chip:hover, :root[data-theme="dark"] .badge.editorial, :root[data-theme="dark"] .badge.soft, :root[data-theme="dark"] .rating .new, :root[data-theme="dark"] .fmeta .new, :root[data-theme="dark"] .pool-tag.open, :root[data-theme="dark"] .case-tag, :root[data-theme="dark"] .avatar, :root[data-theme="dark"] .file-thumb, :root[data-theme="dark"] .feat-pill, :root[data-theme="dark"] .nav a[aria-current="page"], :root[data-theme="dark"] .nav a:hover, :root[data-theme="dark"] .nav button:hover, :root[data-theme="dark"] .nav button[aria-selected="true"], :root[data-theme="dark"] .acct-menu a:hover, :root[data-theme="dark"] .acct-menu button:hover, :root[data-theme="dark"] .file-pick:hover .file-btn { color: #9db8ff; }
+</style>
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ylnjyde5d9");
+    </script>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4297888430160202" crossorigin="anonymous"></script>
+</head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <nav class="nav" id="site-nav" aria-label="Site">
+          <a href="/">Home</a>
+          <a href="/workflows">Feed</a>
+          <a href="/creators">Creators</a>
+          <a href="/creator">Profile</a>
+        </nav>
+        <a class="write-btn" href="/creator#new">Publish a workflow</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+      </header>
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">Guides</div>
+            <h1>How to Use the Klook Connector in Muse</h1>
+            <p class="lead">Connect Klook to Muse and planning the fun part of a trip turns into a conversation: what to do, what it costs, and a booking Muse places with your approval. Here is how it works, what it can book, and what to check before you pay.</p>
+            <div class="meta">October 2026 · 14 min read</div>
+          </div>
+          <div class="hero-col"><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4297888430160202" data-ad-slot="9949101572" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><aside class="hero-aside">
+            <div class="k">Want in today?</div>
+            <p>Every connector on this page needs a Muse account first, and access still runs on invite codes. Get a free code from the community pool, or join the waitlist and be ready on launch day in your country.</p>
+            <a class="cta" href="/">Get a code</a>
+            <a class="cta ghost" href="/#waitlist">Join the waitlist</a>
+          </aside></div>
+        </section>
+        <div class="layout">
+          <article>
+<h2 id="short-answer">1. The short answer</h2>
+<p>As of October 25, 2026, Klook is a live connector in Muse. It launched with Muse's debut in Japan on October 23, 2026, when Klook announced its partnership with Meta. Klook's inventory is 426,000 bookable experiences across 4,600 destinations, and Muse can search it, compare options, check cancellation and rescheduling terms, and place an order with your approval. You then pay on Klook's own payment page, Muse confirms the booking in the chat, and the details stay there for reference. Our <a href="/blog/muse-connectors-list">Muse connectors list</a> keeps the dated count of every connector, including the Japan wave.</p>
+<p>Here is what that means in practice. You tell Muse where you are going, when, and what you like, and it comes back with things to do that fit, instead of a search page you have to filter yourself. Pick one, approve the order, pay on Klook's page, and the booking is confirmed in the same conversation. Muse asks before every sensitive action, so nothing is ordered or paid without your say.</p>
+<p>The September background is short. Muse launched September 8, 2026 in the United States and Canada, with flight booking through Duffel from day one. Japan followed on October 23, 2026, as the first market outside North America, and Klook launched with it. Meta also said its integrations with global services including Stripe, Shopify, Trip.com, and Agoda are available in Japan as well. So Klook is the activities half of the Japan travel set, Trip.com covers flights and hotels, and Agoda covers hotels.</p>
+<p>Muse is invite only right now. Need an invite code? <a href="/">Click here</a> to grab one free from the community pool. Waiting on a launch in your country? <a href="/#waitlist">Join the waitlist</a> and we will send you a fresh code on launch day. Muse is available in the United States, Canada, and Japan.</p>
+<h2 id="what-you-need">2. What you need</h2>
+<ul><li><strong>Muse access.</strong> You need an account with access first, in the United States, Canada, or Japan, where Muse has launched. Klook launched with the Japan debut, so check your own Connectors screen to confirm it is live in your account.</li><li><strong>A Klook account.</strong> You connect with your Klook account, the same way you sign in to Klook itself. Bookings and payment run through that account.</li><li><strong>Your trip details.</strong> Destination, dates, who is going, and what you like. The more specific you are, the better the recommendations. A city and a date beats a vague idea every time.</li><li><strong>A payment method on Klook.</strong> Payment happens on Klook's own payment page, not inside the Muse chat. Have your card ready there. Muse cannot see your payment details.</li><li><strong>Approvals set to ask me.</strong> Before you connect anything that can place an order, set approvals so nothing is booked without your tap. This is the single most important step on this page.</li><li><strong>Trip.com or Agoda, optional but useful.</strong> Klook covers activities, not flights or hotels. Pair it with Trip.com for flights and hotels, or Agoda for hotels, and the whole trip lives in one conversation. Our <a href="/blog/muse-trip-com-connector">Trip.com connector guide</a> and our <a href="/blog/muse-agoda-connector">Agoda connector guide</a> cover those halves.</li></ul>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4297888430160202" data-ad-slot="1456368035" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<h2 id="the-method">3. How to connect it, step by step</h2>
+<p>The connection itself takes a few minutes. The booking habit around it matters more, so run the steps in order and do not skip the approvals step at the end.</p>
+<ol><li><strong>Open Muse and go to Settings, then Connectors.</strong> Find Klook in the list. If you do not see it, check that your Muse app is current, then check again. The connector launched October 23, 2026, so an up to date app should show it in Japan, and check your own screen elsewhere.</li><li><strong>Connect your Klook account.</strong> Sign in with your Klook account when prompted. This is the account your bookings and payment will run through, so use the one with your travel history, not a spare.</li><li><strong>Set approvals to ask me.</strong> Do this before your first booking question. Ordering an activity is a purchase, and a purchase should never happen without your tap. Keep this setting on while you learn what the connector does, and keep it on after.</li><li><strong>Describe the trip, not just the activity.</strong> Tell Muse where you are going, when, who is going, and what you like. A goal lets Muse connect dots: it can suggest a food tour on your free afternoon instead of a ticket for a morning you already filled.</li><li><strong>Compare before you approve.</strong> Ask about the options side by side: price, what is included, and the cancellation and rescheduling terms. The cheapest ticket with no cancellation is not always the best ticket. Read the terms Muse shows you, and ask it to check anything unclear before you approve.</li><li><strong>Approve the order, then pay on Klook's page.</strong> Muse places the order with your approval, then directs you to Klook's secure payment page to complete the purchase. Pay there. Once payment is processed, Muse confirms the booking in the chat, and the details stay there for reference.</li></ol>
+<h2 id="what-it-does">4. What it actually does</h2>
+<p>The value of this connector is not that Muse can list activities. Klook already does that. The value is that Muse can plan the fun part of a trip the way a good travel agent would: from your dates, your interests, and your free time, not from a search box.</p>
+<p>Discovery is the use most people will actually keep. Tell Muse where you are going and what you like, and it draws from 426,000 bookable offerings across more than 4,600 destinations to recommend options that fit. That scale is the point: you do not have to know what exists before you search for it. Muse surfaces things you would not have thought to look for, including options beyond the big tourist attractions, which is where Klook says smaller and independent merchants gain visibility.</p>
+<p>Comparison is the second solid use. Ask follow up questions, compare different experiences, and check booking conditions, including cancellation and rescheduling policies. Two tours can look identical until you see that one allows free cancellation and the other does not. That difference is worth more than a small price gap, and it is the kind of detail a plain listing hides.</p>
+<p>Booking is the third use, and the one with the clearest flow. Once you decide, tell Muse to proceed. With your approval, the agent places the order, directs you to Klook's payment page, and confirms the booking in the chat once payment is processed. The details stay in the conversation, so you are not hunting through email for a confirmation the morning of the activity.</p>
+<p>It also pairs well with the rest of the trip. Klook is activities, Trip.com is flights and hotels, Agoda is hotels, and Google Calendar is the schedule underneath them all. Tell Muse the whole trip once, and it can fit an activity into a free afternoon instead of clashing with a flight. That is the difference between four separate bookings and one planned trip.</p>
+<h2 id="what-it-cannot-do">5. What it cannot do</h2>
+<p>It cannot book flights or hotels. Klook is activities, tickets, tours, and experiences. If you need a flight, that is Trip.com or Duffel. If you need a hotel, that is Trip.com or Agoda. Asking Klook for a flight is asking the wrong connector, and Muse should tell you so rather than forcing an answer.</p>
+<p>It cannot take your payment inside the chat. Payment happens on Klook's secure payment page, and that is a feature, not a flaw. Muse cannot see your payment details, and the payment stays with Klook, where your card and your buyer protections already live. If Muse ever asks for card details in the chat, stop: that is not how this connector works.</p>
+<p>It cannot change Klook's cancellation policy. It can read the terms and show them to you, and it can check whether an experience allows rescheduling, but the terms are Klook's and the operator's. A non refundable ticket stays non refundable no matter how nicely you ask. Check the terms before you approve, not after.</p>
+<p>It cannot guarantee availability in every destination. The inventory is 426,000 offerings across 4,600 destinations, which is large, but it is Asia heavy, and coverage outside Asia is thinner. If Muse finds little in a small town, that is a coverage gap, not a failure. Check Klook itself before you assume nothing exists.</p>
+<p>It cannot handle visas, entry rules, or travel documents for you. It can look things up, but entry requirements change, and a wrong answer here costs a trip. Verify visas and entry rules against an official source before you travel, and treat anything Muse says on the subject as a starting point, not a verdict.</p>
+<h2 id="watch-for">6. What to watch for</h2>
+<p>Verify the price and the terms on Klook's page before you pay. Muse shows you what it found, but the payment page is the source of truth. Check the final price, what is included, and the cancellation window, and only then complete the purchase. A booking confirmed in a hurry is the one you regret.</p>
+<p>Check the start time against your time zone. Activities run on local time, and a tour that starts at 9 in the morning in Tokyo is not 9 in the morning where you are. Confirm the local start time in the booking details Muse saves in the chat, and put it on your calendar with the right zone attached.</p>
+<p>Keep approvals on for every order. The temptation, once the connector works well, is to let Muse book freely. Do not. Every order is a purchase, and every purchase deserves your tap. The failure mode you want is an order waiting for approval, not a booking you did not ask for.</p>
+<p>Check that Klook is live in your account. It launched with Muse's Japan debut on October 23, 2026, and Meta has said its global travel integrations are available in Japan as well. If you are in the United States or Canada, open your Connectors screen and confirm Klook is there before you plan around it. Do not assume a Japan launch means a launch everywhere.</p>
+<p>Finally, save the booking details where you can find them. Muse keeps the confirmation in the chat, which is convenient, but a trip has many moving parts. Copy the confirmation number and the meeting point into your calendar event for the activity, so the details are where you will actually look on the day.</p>
+<h2 id="get-started">Get started</h2>
+<div class="callout">
+<div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);margin-bottom:10px;">Get a code</div>
+<p style="margin:0 0 14px;"><strong>Connectors need Muse first.</strong> Every tool on this page plugs into a Muse account, and accounts still open with an invite code in the United States, Canada, and Japan. Get a code from the pool, open your settings, and connect Klook first. Outside the launch countries, the waitlist holds your place.</p>
+<a class="cta" href="/" style="margin-top:0;">Get a code</a>
+<a class="cta ghost" href="/#waitlist" style="margin-top:8px;margin-left:10px;">Join the waitlist</a>
+</div>
+<h2 id="faq">Frequently asked questions</h2>
+<dl class="faq">
+<dt>Is the Klook connector live everywhere Muse is?</dt>
+<dd>It launched with Muse's debut in Japan on October 23, 2026. Check your own Connectors screen to confirm it is live in your account, and do not assume a Japan launch means a launch everywhere.</dd>
+<dt>Does Muse pay for my Klook booking?</dt>
+<dd>No. Muse places the order with your approval, then directs you to Klook's secure payment page to complete the purchase. Muse cannot see your payment details, and the payment stays with Klook.</dd>
+<dt>Can Muse cancel or reschedule a Klook booking?</dt>
+<dd>Muse can check the cancellation and rescheduling terms for you before you book. The change itself runs through Klook, under the terms of the booking, so confirm the terms before you approve anything.</dd>
+<dt>What does Muse need to find activities for me?</dt>
+<dd>Your destination, your dates, who is going, and what you like. The more specific you are, the better the recommendations, and Muse can draw from 426,000 bookable offerings across 4,600 destinations.</dd>
+<dt>Can Muse book flights and hotels through Klook?</dt>
+<dd>No. Klook covers activities, tickets, tours, and experiences. For flights and hotels, use Trip.com, and for hotels, use Agoda. The three together cover the whole trip.</dd>
+<dt>Can I use the Klook connector outside the United States, Canada, and Japan?</dt>
+<dd>Not yet. Muse itself has launched in the United States, Canada, and Japan only. Join the waitlist and we will send you a fresh code on launch day in your country.</dd>
+</dl>
+<p>Built with Muse is an independent community project. Not affiliated with or endorsed by Meta.</p>
+          </article>
+          <aside class="rail">
+            <div class="rail-box">
+              <div class="k">In this article</div>
+              <ol><li><a href="#short-answer">1. The short answer</a></li><li><a href="#what-you-need">2. What you need</a></li><li><a href="#the-method">3. How to connect it, step by step</a></li><li><a href="#what-it-does">4. What it actually does</a></li><li><a href="#what-it-cannot-do">5. What it cannot do</a></li><li><a href="#watch-for">6. What to watch for</a></li><li><a href="#get-started">Get started</a></li><li><a href="#faq">Frequently asked questions</a></li></ol>
+            </div>
+            <div class="rail-box">
+              <div class="k">Keep reading</div>
+              <a class="link" href="/blog/muse-trip-com-connector">How to use the Trip.com connector in Muse</a><a class="link" href="/blog/muse-agoda-connector">How to use the Agoda connector in Muse</a><a class="link" href="/blog/muse-connectors-list">Muse connectors: the complete list</a><a class="link" href="/blog/muse-google-calendar-connector">How to use the Google Calendar connector in Muse</a><a class="link" href="/blog">All posts</a>
+            </div>
+          </aside>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer-row">
+          <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="/">Get a code</a>
+            <a href="/use-cases">Use cases</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+            <a href="/privacy">Privacy</a>
+            <a href="mailto:polostudio.brand@gmail.com">Contact</a>          </nav>
+        </div>
+        <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+      </footer>
+    </div>
+    <script>
+      (() => {
+        const bar = document.querySelector(".topbar");
+        const toggle = document.getElementById("menu-toggle");
+        if (!bar || !toggle) return;
+        const set = (open) => { bar.classList.toggle("open", open); toggle.setAttribute("aria-expanded", String(open)); toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+        toggle.addEventListener("click", () => set(!bar.classList.contains("open")));
+        bar.querySelectorAll(".nav button, .nav a").forEach((item) => item.addEventListener("click", () => set(false)));
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape") set(false); });
+        const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
+  <script src="/js/blog-rating.js" defer></script>
+    <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
+<script src="/js/visit.js" defer></script>
+</body>
+</html>

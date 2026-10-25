@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
+    <script>(function(){try{var t=localStorage.getItem("bwm-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content","#0d1b3d");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content","dark");}}}catch(e){}})();</script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>How to Use the Linear Connector in Muse (2026) | Built with Muse</title>
+    <meta name="description" content="Connect Linear to Muse and your issues and projects become questions you can ask in plain words: what is blocked, what is due, and what slipped. How to connect it and the honest limits of what is published about it." />
+    <link rel="canonical" href="https://builtwithmuse.com/blog/muse-linear-connector" />
+    <meta property="og:title" content="How to Use the Linear Connector in Muse (2026) | Built with Muse" />
+    <meta property="og:description" content="Connect Linear to Muse and your issues and projects become questions you can ask in plain words: what is blocked, what is due, and what slipped. How to connect it and the honest limits of what is published about it." />
+    <meta property="og:url" content="https://builtwithmuse.com/blog/muse-linear-connector" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://builtwithmuse.com/og/blog.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://builtwithmuse.com/og/blog.png" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "inLanguage": "en", "headline": "How to Use the Linear Connector in Muse", "description": "Connect Linear to Muse and your issues and projects become questions you can ask in plain words: what is blocked, what is due, and what slipped. How to connect it and the honest limits of what is published about it.", "datePublished": "2026-10-25", "dateModified": "2026-10-25", "author": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com/"}, "publisher": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com/"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://builtwithmuse.com/blog/muse-linear-connector"}, "image": "https://builtwithmuse.com/og/blog.png"}</script>
+    <meta name="keywords" content="muse linear, linear connector muse, connect linear to muse, muse issues" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What can Muse do with my Linear issues?", "acceptedAnswer": {"@type": "Answer", "text": "Muse can find issues by meaning, triage the backlog, list what is blocked and what is due, and brief you before a team check in. The exact list of actions on your account is shown in the connector settings, because Meta has not published a full public list for Linear. Read that screen before you plan around any action."}}, {"@type": "Question", "name": "Which Linear workspace does Muse see?", "acceptedAnswer": {"@type": "Answer", "text": "Only the one you connect. Muse works with the issues available through that Linear workspace and the access you authorize. Work in another workspace stays invisible to it, and you can manage or disconnect the integration at any time."}}, {"@type": "Question", "name": "Can Muse close an issue for me?", "acceptedAnswer": {"@type": "Answer", "text": "Not without your approval when your approvals are set to ask me. Set anything that creates, changes, or closes issues to ask first, and read every change before you approve it, because the whole team sees the tracker."}}, {"@type": "Question", "name": "What if Linear is not in my connectors list?", "acceptedAnswer": {"@type": "Answer", "text": "Check again in a few days, because rollout is staged. As a fallback, you can ask Muse to build a custom Linear connector from the Linear API, which one user demoed in under a minute. That is a separate route from the directory connector, with its own permission screen."}}, {"@type": "Question", "name": "Can I use the Linear connector outside the United States, Canada, and Japan?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. Muse itself has launched in the United States, Canada, and Japan only. Join the waitlist and we will send you a fresh code on launch day in your country."}}, {"@type": "Question", "name": "What happens if I disconnect Linear?", "acceptedAnswer": {"@type": "Answer", "text": "Muse loses access to those issues. Your work stays in Linear, and nothing Muse planned is carried out after you disconnect. You can reconnect the same workspace or a different one later."}}]}</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C94847V6DS');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
+    <style>
+      :root { color-scheme: light; --blue: #1a56ff; --blue-deep: #0f3fc4; --bg: #ffffff; --tint: #eef3ff; --navy: #ffffff; --navy-2: #eef3ff; --ink: #0b1220; --muted: #4b5675; --muted-2: #6b7699; --line: #dfe5f3; --line-soft: #eceff8; --mint: #1a56ff; --mint-ink: #ffffff; --coral: #d92d20; --coral-ink: #ffffff; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --paper-line: #c9d4f2; --shadow: 0 8px 24px rgba(11,18,32,.06); --radius: 10px; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; color: var(--ink); background-color: var(--bg);
+        background-image: linear-gradient(rgba(11,18,32,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(11,18,32,.045) 1px, transparent 1px), linear-gradient(45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%), linear-gradient(-45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%);
+        background-size: 48px 48px, 48px 48px, 6px 6px, 6px 6px; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+      a { color: inherit; }
+      h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
+      .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: transparent; transition: background .25s ease, backdrop-filter .25s ease, box-shadow .25s ease; }
+      .topbar.scrolled { background: rgba(255,255,255,.88); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); box-shadow: 0 10px 30px rgba(11,18,32,.08); }
+      .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; }
+      .brand .mark { width: 22px; height: 22px; flex: 0 0 auto; }
+      .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav a { flex: 0 0 auto; border: 1px solid transparent; border-radius: 8px; padding: 9px 13px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+      .nav a:hover { color: var(--ink); border-color: var(--line); }
+      .nav a[aria-current="page"] { background: #e6edff; color: var(--ink); border-color: var(--line); }
+      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: #eef3ff; padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
+      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
+      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 40px; align-items: end; padding: 12px 0 44px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .hero h1 { font-size: clamp(36px, 6vw, 76px); line-height: .98; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
+      .hero .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0; }
+      .hero .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 18px; }
+      .hero-aside { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .hero-aside .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .hero-aside p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
+      article { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 48px); box-shadow: var(--shadow); min-width: 0; }
+      article > * { max-width: 72ch; }
+      article p, article li { font-size: 17px; line-height: 1.7; color: var(--muted); }
+      article p strong, article li strong { color: var(--ink); }
+      article p { margin: 0 0 20px; }
+      article h2 { font-size: 28px; margin: 40px 0 12px; color: var(--ink); }
+      article h2:first-child { margin-top: 0; }
+      article h3 { font-size: 20px; margin: 28px 0 8px; color: var(--ink); }
+      article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
+      article li { margin-bottom: 8px; }
+      article a { color: var(--mint); }
+      .callout { padding: 18px 22px; border: 1px solid rgba(26,86,255,.35); border-radius: 8px; background: rgba(26,86,255,.08); margin: 28px 0; color: var(--ink); }
+      .callout strong { display: block; margin-bottom: 4px; }
+      .paths { display: grid; gap: 14px; margin: 24px 0 28px; }
+      .path { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; background: #f8fafe; }
+      .path h3 { margin: 0 0 6px; font-size: 20px; }
+      .path h3 a { color: var(--ink); text-decoration: none; }
+      .path h3 a:hover { color: var(--mint); }
+      .path p { margin: 0 0 10px; font-size: 16px; }
+      .path .go { color: var(--mint); font-weight: 700; font-size: 15px; text-decoration: none; }
+      .faq dt { font-weight: 700; color: var(--ink); margin-top: 18px; font-size: 17px; }
+      .faq dd { margin: 6px 0 0; color: var(--muted); line-height: 1.65; font-size: 16px; }
+      .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 700; }
+      .cta:hover { background: #e6edff; }
+      .back { display: inline-block; margin-top: 36px; color: var(--muted-2); font-weight: 600; }
+      .rail { position: sticky; top: 92px; display: grid; gap: 16px; }
+      .rail-box { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .rail-box .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .rail-box h3 { margin: 0 0 8px; font-size: 20px; }
+      .rail-box p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; font-size: 15px; }
+      .rail-box ol { margin: 0; padding: 0; list-style: none; color: var(--muted); line-height: 1.6; font-size: 14px; display: grid; gap: 6px; }
+      .rail-box ol a { color: var(--ink); text-decoration: none; }
+      .rail-box ol a:hover { color: var(--mint); }
+      .rail-box .cta { width: 100%; justify-content: center; margin-top: 4px; }
+      .rail-box .link { display: block; color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 14px; }
+      .rail-box .link:hover { color: var(--mint); }
+      .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
+      .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
+      .footer-cta h2 { margin: 0 0 8px; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.05; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+      .footer-cta p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 52ch; }
+      .footer-cta .eyebrow { margin-bottom: 10px; }
+      .cta.discord { white-space: nowrap; margin: 0; }
+      .cta.discord svg { width: 20px; height: 20px; }
+      .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 8px; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+      .footer-links a:hover { color: var(--ink); }
+      .strip { width: max-content; max-width: calc(100% - 24px); margin: 44px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: #f6f8fe; color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+      @media (max-width: 640px) { .strip { white-space: normal; } }
+      @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .cta.discord { width: 100%; } }
+      @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .rail { position: static; } .hero { grid-template-columns: 1fr; } }
+      @media (max-width: 640px) {
+        .shell { width: calc(100% - 32px); }
+        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px calc(50vw - 50%); margin: 0 calc(50% - 50vw) 28px; }
+        .menu-toggle { display: flex; }
+        .topbar { gap: 8px; } .brand { order: 0; font-size: 15px; gap: 8px; } .brand .mark { width: 18px; height: 18px; } .menu-toggle { width: 38px; height: 38px; } .acct-btn { padding: 3px; gap: 0; } .acct-btn img, .acct-btn i { width: 24px; height: 24px; } .signin-btn { padding: 7px 10px; font-size: 13px; } .write-btn { order: 1; margin-left: auto; padding: 7px 10px; font-size: 13px; } .acct { order: 2; margin-left: 0; } .acct-btn svg { display: none; } .account { order: 2; } .menu-toggle { order: 3; margin-left: 4px; } #account-slot, .signin-btn { order: 2; } .nav { order: 5; }
+        .nav { display: none; flex-direction: column; width: 100%; flex-basis: 100%; margin: 4px 0 0; padding: 8px 0 4px; border-top: 1px solid var(--line-soft); overflow: visible; }
+        .topbar.open .nav { display: flex; }
+        .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+      }
+      
+      .nav-count { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: var(--tint); color: var(--blue-deep); font-size: 11px; font-weight: 700; vertical-align: 1px; }
+      .write-btn { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; margin-left: 8px; }
+      .write-btn:hover { background: var(--blue-deep); }
+      @media (max-width: 640px) { .write-btn { order: 3; margin-left: auto; } }
+/* Light theme: white ground, ink text, blue for actions and active states. */
+body { background-image: none; }
+.topbar { border-bottom-color: var(--line); }
+.topbar.scrolled { background: rgba(255,255,255,.9); box-shadow: 0 10px 30px rgba(11,18,32,.06); }
+.button, .cta, .write-btn, .btn.primary, .icon-button, .case-link, .add { background: var(--blue); color: #fff; border-color: var(--blue); }
+.button:hover, .cta:hover, .write-btn:hover, .btn.primary:hover, .icon-button:hover, .react-btn.muse-link:hover, .case-link:hover, .add:hover { background: var(--blue-deep); border-color: var(--blue-deep); color: #fff; }
+.button.ghost, .case-link.quiet { background: transparent; color: var(--blue-deep); border-color: var(--blue); }
+.cta.ghost { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--blue); padding: 11px 18px; }
+.button.ghost:hover, .case-link.quiet:hover { background: var(--tint); color: var(--blue-deep); border-color: var(--blue); }
+.cta.ghost:hover { background: #e0e8ff; color: var(--blue-deep); border: 2px solid var(--blue); padding: 11px 18px; }
+.button.secondary, .button.small.secondary { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--line); }
+.button.secondary:hover { background: #e0e8ff; }
+.button.discord, .cta.discord { background: var(--blue); color: #fff; }
+.case-study { border: 1px solid var(--line); }
+.nav a[aria-current="page"], .nav button[aria-selected="true"] { background: var(--tint); color: var(--blue-deep); border-color: transparent; }
+.nav a:hover, .nav button:hover { color: var(--blue-deep); border-color: var(--line); }
+.chip[aria-current="true"], .chip.solid[aria-current="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.chip { background: #fff; border-color: var(--line); color: var(--muted); }
+.chip:hover { color: var(--blue-deep); border-color: var(--blue); }
+.follow-btn.on, .react-btn.on, .star.picked, .pill.published { background: var(--blue); color: #fff; border-color: var(--blue); }
+.follow-btn.on b, .react-btn.on b { color: #fff; }
+.save-icon.on { color: var(--blue); border-color: var(--blue); }
+.badge.editorial, .badge.soft, .rating .new, .fmeta .new, .pool-tag.open, .case-tag { background: var(--tint); color: var(--blue-deep); }
+.badge.off, .pool-tag.pulled { background: rgba(217,45,32,.1); color: var(--coral); }
+.eyebrow, .card-label, .k, .live-tag { color: var(--blue-deep); }
+.mini-number, .steps li::before { color: #fff; }
+.quote-band, .tint-panel, .home-card.tint, .rail-box.tint, .callout { background: var(--tint); }
+.preview-strip, .strip, .pool-list, .signin-card, .field input, .field select, .field textarea, .toolbar input, .search-row input, .report-box select, .report-box textarea, .invite-card, .home-card, .workflow-card, .rail-box, .card, .post, article, .panel, .item, .footer-cta, .nudge-card, .hero-aside, .stat, .comment { background: #fff; }
+.field input::placeholder, .field textarea::placeholder, .toolbar input::placeholder, .search-row input::placeholder { color: #98a2c3; }
+.prompt, .row-quote, .steps li, .code-row .preview-code, .assigned-code, .pool-health span, .top3-card, .creator-cell, .creator-chip, .about-box, .react-btn, .sharekit { background: #f6f8fe; }
+.react-btn.muse-link { background: var(--blue); color: #fff; }
+.nudge-backdrop { background: rgba(11,18,32,.5); }
+.account-chip .who, .account .linklike, .account-slot a, .account-slot button { color: var(--muted); }
+.message, .success-panel { background: rgba(26,86,255,.08); border-color: rgba(26,86,255,.35); }
+.avatar { background: var(--tint); color: var(--blue-deep); border-color: var(--line); }
+.brand { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
+    .ad-slot{margin:30px 0;}.hero-col{display:flex;flex-direction:column;justify-content:space-between;gap:20px;align-self:stretch;}.hero-col .ad-slot{margin:0;}
+
+/* Dark theme (batch 29). Canonical copy: bwm-batch29/dark.css */
+/* Theme toggle button (both modes; the icon swap is keyed to the attribute). */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-left: 8px; padding: 0; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; font-family: inherit; }
+.theme-toggle:hover { color: var(--ink); border-color: var(--muted-2); }
+.theme-toggle svg { width: 19px; height: 19px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (max-width: 900px) { .theme-toggle { order: 2; width: 34px; height: 34px; margin-left: 4px; } }
+
+/* Tokens */
+:root[data-theme="dark"] { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --bg: #0d1b3d; --tint: #16295a; --navy: #0d1b3d; --navy-2: #16295a; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --coral-ink: #ffffff; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --paper-line: #c9d4f2; --shadow: 0 30px 60px rgba(0,0,0,.35); }
+
+/* Body pattern: grid lines flip from ink based to white based. */
+:root[data-theme="dark"] body { background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%), linear-gradient(-45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%); }
+:root[data-theme="dark"] .topbar.scrolled { background: rgba(13,27,61,.88); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+
+/* White card surfaces become the raised navy panel. */
+:root[data-theme="dark"] .preview-strip, :root[data-theme="dark"] .strip, :root[data-theme="dark"] .pool-list, :root[data-theme="dark"] .signin-card, :root[data-theme="dark"] .invite-card, :root[data-theme="dark"] .home-card, :root[data-theme="dark"] .workflow-card, :root[data-theme="dark"] .rail-box, :root[data-theme="dark"] .card, :root[data-theme="dark"] .post, :root[data-theme="dark"] article, :root[data-theme="dark"] .panel, :root[data-theme="dark"] .item, :root[data-theme="dark"] .footer-cta, :root[data-theme="dark"] .nudge-card, :root[data-theme="dark"] .hero-aside, :root[data-theme="dark"] .stat, :root[data-theme="dark"] .comment, :root[data-theme="dark"] .acct-btn, :root[data-theme="dark"] .acct-menu, :root[data-theme="dark"] .wild-tile, :root[data-theme="dark"] .tweet, :root[data-theme="dark"] .chip, :root[data-theme="dark"] .share-modal, :root[data-theme="dark"] .share-close, :root[data-theme="dark"] .sponsor-card, :root[data-theme="dark"] .sponsor-slots .slot-cta, :root[data-theme="dark"] .sponsor-slots li.filled, :root[data-theme="dark"] .sp-card, :root[data-theme="dark"] .sp-slots li.filled, :root[data-theme="dark"] .st-tile, :root[data-theme="dark"] .codes-box, :root[data-theme="dark"] .submit-card, :root[data-theme="dark"] .side-box, :root[data-theme="dark"] .sp-upload { background: #12234d; }
+
+/* Pale inset surfaces (was #f6f8fe and friends) become the tint step. */
+:root[data-theme="dark"] .prompt, :root[data-theme="dark"] .row-quote, :root[data-theme="dark"] .steps li, :root[data-theme="dark"] .code-row .preview-code, :root[data-theme="dark"] .assigned-code, :root[data-theme="dark"] .pool-health span, :root[data-theme="dark"] .top3-card, :root[data-theme="dark"] .creator-cell, :root[data-theme="dark"] .creator-chip, :root[data-theme="dark"] .about-box, :root[data-theme="dark"] .react-btn, :root[data-theme="dark"] .sharekit, :root[data-theme="dark"] .save-icon, :root[data-theme="dark"] .proof-box, :root[data-theme="dark"] .tweet-prompt, :root[data-theme="dark"] .tint-panel, :root[data-theme="dark"] .quote-band, :root[data-theme="dark"] .mycode, :root[data-theme="dark"] .promptpack pre, :root[data-theme="dark"] .sp-plan span { background: #16295a; }
+
+/* Pale blue chips (was #e6edff / #eef3ff) become the deep chip step. */
+:root[data-theme="dark"] .nav a[aria-current="page"], :root[data-theme="dark"] .nav button[aria-selected="true"], :root[data-theme="dark"] .menu-toggle, :root[data-theme="dark"] .follow-btn, :root[data-theme="dark"] .badge, :root[data-theme="dark"] .pool-tag, :root[data-theme="dark"] .pool-legend i, :root[data-theme="dark"] .case-tag, :root[data-theme="dark"] .home-card.tint { background: #1d3469; }
+
+/* Form controls. */
+:root[data-theme="dark"] form :where(input:not([type=file]):not([type=checkbox]):not([type=radio]):not([type=hidden]):not([type=submit]):not([type=button]), textarea, select), :root[data-theme="dark"] .field input, :root[data-theme="dark"] .field select, :root[data-theme="dark"] .field textarea, :root[data-theme="dark"] .toolbar input, :root[data-theme="dark"] .search-row input, :root[data-theme="dark"] .report-box select, :root[data-theme="dark"] .report-box textarea, :root[data-theme="dark"] .browse-search input, :root[data-theme="dark"] .mycode-row input, :root[data-theme="dark"] .done input, :root[data-theme="dark"] .sp-form input, :root[data-theme="dark"] .file-pick, :root[data-theme="dark"] .file-btn { background: #12234d; }
+:root[data-theme="dark"] input::placeholder, :root[data-theme="dark"] textarea::placeholder { color: #7d8dbd; }
+:root[data-theme="dark"] select option { background: #12234d; color: var(--ink); }
+:root[data-theme="dark"] form select, :root[data-theme="dark"] .field select, :root[data-theme="dark"] .report-box select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%239fb6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
+
+/* Hover fills that were pale blue go to the deep brand blue. */
+:root[data-theme="dark"] .cta:hover, :root[data-theme="dark"] .button:hover, :root[data-theme="dark"] .write-btn:hover, :root[data-theme="dark"] .row-quote:hover, :root[data-theme="dark"] .react-btn.muse-link:hover, :root[data-theme="dark"] .button.ghost:hover, :root[data-theme="dark"] .cta.ghost:hover, :root[data-theme="dark"] .btn:hover, :root[data-theme="dark"] .btn.primary:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+
+/* Text set in --blue-deep (a fill value in dark) is re-pointed to a readable light blue. */
+:root[data-theme="dark"] .eyebrow, :root[data-theme="dark"] .card-label, :root[data-theme="dark"] .k, :root[data-theme="dark"] .live-tag, :root[data-theme="dark"] .nav-count, :root[data-theme="dark"] .profile-links a, :root[data-theme="dark"] .post-cat, :root[data-theme="dark"] .wild-tile small, :root[data-theme="dark"] .post-caption h3 a:hover, :root[data-theme="dark"] .tweet-summary-note a, :root[data-theme="dark"] .tweet-prompt summary, :root[data-theme="dark"] .tweet-open, :root[data-theme="dark"] .row.wild-row .wild-label, :root[data-theme="dark"] .button.ghost, :root[data-theme="dark"] .cta.ghost, :root[data-theme="dark"] .button.secondary, :root[data-theme="dark"] .chip:hover, :root[data-theme="dark"] .badge.editorial, :root[data-theme="dark"] .badge.soft, :root[data-theme="dark"] .rating .new, :root[data-theme="dark"] .fmeta .new, :root[data-theme="dark"] .pool-tag.open, :root[data-theme="dark"] .case-tag, :root[data-theme="dark"] .avatar, :root[data-theme="dark"] .file-thumb, :root[data-theme="dark"] .feat-pill, :root[data-theme="dark"] .nav a[aria-current="page"], :root[data-theme="dark"] .nav a:hover, :root[data-theme="dark"] .nav button:hover, :root[data-theme="dark"] .nav button[aria-selected="true"], :root[data-theme="dark"] .acct-menu a:hover, :root[data-theme="dark"] .acct-menu button:hover, :root[data-theme="dark"] .file-pick:hover .file-btn { color: #9db8ff; }
+</style>
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ylnjyde5d9");
+    </script>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4297888430160202" crossorigin="anonymous"></script>
+</head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <nav class="nav" id="site-nav" aria-label="Site">
+          <a href="/">Home</a>
+          <a href="/workflows">Feed</a>
+          <a href="/creators">Creators</a>
+          <a href="/creator">Profile</a>
+        </nav>
+        <a class="write-btn" href="/creator#new">Publish a workflow</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+      </header>
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">Guides</div>
+            <h1>How to Use the Linear Connector in Muse</h1>
+            <p class="lead">Connect Linear to Muse and your backlog stops being a list you scroll and starts being a briefing: what is blocked, what is due this week, and what slipped without anyone noticing. Here is how to connect it and what to expect.</p>
+            <div class="meta">October 2026 · 14 min read</div>
+          </div>
+          <div class="hero-col"><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4297888430160202" data-ad-slot="9949101572" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><aside class="hero-aside">
+            <div class="k">Want in today?</div>
+            <p>Every connector on this page needs a Muse account first, and access still runs on invite codes. Get a free code from the community pool, or join the waitlist and be ready on launch day in your country.</p>
+            <a class="cta" href="/">Get a code</a>
+            <a class="cta ghost" href="/#waitlist">Join the waitlist</a>
+          </aside></div>
+        </section>
+        <div class="layout">
+          <article>
+<h2 id="short-answer">1. The short answer</h2>
+<p>As of October 25, 2026, Linear is a live connector in Muse. Linear is the issue tracker: teams plan work as issues, group them into projects, and move them through states from backlog to done. The connector was in the in app list by September 29, 2026, as one of the business tools Meta named that day, and it was still listed in the October 15 in app check, which counted 54 connectors in the web app. There is no October change to how it works. One honest caveat belongs right here at the top: Meta has not published a detailed list of what the connector can do inside Linear, so this guide describes issue tracking in plain terms, tells you exactly what is confirmed and what is not, and shows you how to read the permission screen on your own account before you trust it with anything important.</p>
+<p>Here is the honest version. The Linear connector matters because your backlog is where your plans already live, and most teams lose the thread of it. Issues get written, triaged, started, and then forgotten. Priorities shift in a meeting and nobody updates the tracker. By Friday, nobody can say what is blocked, what is due, or what slipped without anyone noticing. A connector that lets you ask those questions in plain words turns the tracker from a list you scroll into a briefing you read. The rest of this guide covers how to connect it, the triage prompt to run first, and the uses that are actually worth your time, with the limits stated plainly where the published record runs out.</p>
+<p>Muse is invite only right now. Need an invite code? <a href="/">Click here</a> to grab one free from the community pool. Waiting on a launch in your country? <a href="/#waitlist">Join the waitlist</a> and we will send you a fresh code on launch day. Muse is available in the United States, Canada, and Japan.</p>
+<h2 id="what-you-need">2. What you need</h2>
+<ul><li><strong>Muse access.</strong> You need an account with access first, in the United States, Canada, or Japan, where Muse has launched.</li><li><strong>One Linear workspace.</strong> The connector works with the Linear workspace you connect, and only that workspace. Pick the one where your team plans its work.</li><li><strong>Your Linear sign in.</strong> You connect with your Linear account, the same way you sign in to Linear itself.</li><li><strong>Approvals set to ask me.</strong> Before you connect anything, set approvals so nothing is created, changed, or closed without your tap. This is the single most important step on this page, because an issue tracker is a shared record, and a change there is visible to the whole team.</li><li><strong>Team and project names.</strong> Know the names of your teams and projects as Linear spells them. Muse works from what you name, so a wrong name gets you the wrong project, and a vague name gets you a vague answer.</li></ul>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4297888430160202" data-ad-slot="1456368035" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<h2 id="the-method">3. How to connect it, step by step</h2>
+<p>The connection itself takes a few minutes. The setup around it matters more, because neither vendor has published a full action list, so run the steps in order and read every screen before you accept it.</p>
+<ol><li><strong>Open Muse and go to Settings.</strong> The connectors list lives there. What is printed there is what your account has, because rollout is staged and two accounts can see different lists on the same day.</li><li><strong>Find Linear in the connectors list and open it.</strong> If Linear is not listed, your account has not received it yet. There is nothing to install and nothing you broke. Check again in a few days.</li><li><strong>Click Connect and review the connection details.</strong> Read what Muse is asking for before you accept it. This screen is your source of truth for what the connector can do on your account, so read it slowly. If a scope surprises you, stop and check what it covers before continuing.</li><li><strong>Sign in to Linear and authorize Muse.</strong> Use the Linear account tied to the workspace where your team works. Remember this is the one workspace the connector will use, so sign in with the right one the first time.</li><li><strong>Open the connector settings and check each action.</strong> After you connect, look at the per action settings in Muse. Set anything that creates, changes, or closes issues to ask you first. If an action is listed that you do not want Muse to have at all, turn it off here rather than hoping you will remember later.</li><li><strong>Set approvals to ask me.</strong> In Muse settings, set approvals so that anything that touches your issues waits for you. This is what stops Muse from ever closing an issue you have not reviewed.</li><li><strong>Test with a read only request.</strong> Ask Muse to find an issue you know is there and describe its state. Read the answer against Linear. If it matches, the connection is good. Do not ask it to change anything on the first day.</li><li><strong>Use it read only for a week.</strong> Finding, reading, and summarizing only. Once you trust what it reads and how it describes your work, start approving one small change at a time.</li></ol>
+<h3>Copy this prompt</h3>
+<div class="prompt-block" style="border:1px solid #dfe5f3;border-radius:10px;background:#f8fafe;padding:18px;margin:18px 0;">
+<div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6b7699;margin-bottom:10px;">Copy paste into Muse</div>
+<pre id="prompt-main" style="white-space:pre-wrap;font-family:inherit;font-size:14px;color:#0b1220;margin:0 0 12px;">You are my planning assistant. Use my Linear connector only.
+Rules: you never create, change, or close an issue without my explicit approval. You find, read, and summarize. I approve every change.
+My team: [team name]. My projects: [project names].
+Every morning, do this in order.
+1. List what is blocked, with the issue name, the owner, and what it is blocked on.
+2. List what is due this week, with the owner and the due date.
+3. List what slipped last week: issues that were due and are still open.
+4. Flag anything with no owner or no date, and say so plainly.
+5. End with the 3 issues I should look at first today, in order.
+6. If a status looks wrong, say so and show me what Linear says. Do not guess.</pre>
+<button type="button" class="prompt-copy" data-target="prompt-main" style="cursor:pointer;border:1px solid #dfe5f3;border-radius:999px;background:#ffffff;color:#0b1220;font-size:14px;font-weight:700;padding:8px 18px;">Copy prompt</button>
+<span class="prompt-status" style="font-size:13px;color:#1a56ff;margin-left:10px;" aria-live="polite"></span>
+</div>
+<script>
+(function(){var b=document.querySelector('.prompt-copy');if(!b)return;b.addEventListener('click',function(){var t=document.getElementById(b.dataset.target);var s=b.parentElement.querySelector('.prompt-status');if(!t)return;function done(){b.textContent='Copied';if(s)s.textContent='Paste it into Muse.';}function fail(){if(s)s.textContent='Select the text and copy it manually.';}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.textContent).then(done,fail);}else{fail();}});})();
+</script>
+
+<h2 id="what-it-does">4. What it actually does</h2>
+<p>The connector earns its place with five uses. Everything else is a variation on one of them. One note of honesty runs through all five: the exact list of actions on your account is the one shown in your connector settings, because Meta has not published a full list for Linear. The uses below describe issue tracking as it works in practice, and the permission screen is the final word on your account.</p>
+<h3>Find an issue without scrolling the backlog</h3>
+<p>Ask Muse to find the issue about a named bug, the request from a named customer, or the task that mentions a deadline. This beats scrolling the backlog yourself when you remember what an issue is about but not its number, because Muse reads for meaning. It also beats searching by keyword when the words in the issue are not the words you would use to describe it. Use it when someone asks you for a status in a meeting and you need the answer in seconds, not after a search through three projects. Our <a href="/blog/muse-gmail-connector">Gmail connector guide</a> covers the other half of this habit, finding the message that created the issue in the first place.</p>
+<h3>Triage the backlog before the week starts</h3>
+<p>Ask Muse on Monday for the shape of the backlog: what is new, what is blocked, what has no owner, and what has been sitting untouched the longest. This is the use that pays off before planning, because a backlog you have not looked at in a month holds surprises, and surprises found on Monday are cheaper than surprises found on Friday. A good triage tells you what to discuss, what to close, and what to push back on. It does not make those calls for you. Priorities are a team decision, and Muse can lay out the facts for it, but the call stays yours. Run the triage, read it, and then decide with the team, not before.</p>
+<h3>See what is blocked, and what it is blocked on</h3>
+<p>Ask Muse for every blocked issue, with the owner and the thing it is waiting on. This is the single most useful question in issue tracking, because blocked work is invisible work: it sits in a state that looks like progress and quietly eats the week. A blocked list with reasons tells you where to unblock, who to chase, and what to escalate. Run it daily if you run a team, and twice a week if you work solo. The follow up question is the one that matters: for each blocked issue, what is the next action, and who owns it. An issue that is blocked with no next action is not blocked. It is abandoned, and the honest thing is to say so.</p>
+<h3>Prep for the team check in from the tracker</h3>
+<p>Before a team check in, ask Muse what changed since the last one: what moved, what slipped, and what is due before the next one. This turns the check in from a round of memory into a review of facts, which is what it is supposed to be. Pair this with the notes side: our <a href="/blog/muse-notion-connector">Notion connector guide</a> covers project context in docs, and Linear covers the state of the work itself. The combination is a prep note that takes a minute to read and makes you the person who knows where things stand, which is a rarer skill than it sounds.</p>
+<h3>Link the work to the context around it</h3>
+<p>An issue on its own is a title and a state. The context lives elsewhere: the email that asked for it, the doc that scoped it, the meeting where it was agreed. Ask Muse to pull those threads together for one issue, using the connectors you have already added. The value is not in any single source. It is in the join: what was asked, what was decided, and what is the state now, in one short brief. Our <a href="/blog/muse-connectors-list">connectors list</a> shows the other tools Muse can reach when the context for an issue lives in more than one place. Keep the brief short, check it against Linear before you share it, and treat it as a starting point for the conversation, not the last word on it.</p>
+<h2 id="what-it-cannot-do">5. What it cannot do</h2>
+<p>The limits are honest and worth knowing before you lean on the connector.</p>
+<ul><li><strong>It cannot tell you its full action list from a public page.</strong> Meta has not published a detailed list of what the connector can do inside Linear. The permission screen on your own account is the source of truth. If an action matters to you, check that screen before you plan around it, and do not assume a use exists because another connector has it.</li><li><strong>It cannot see workspaces outside the one you connected.</strong> Issues in another Linear workspace, another tracker, or a spreadsheet are invisible to it. It reasons from what you connected, nothing more.</li><li><strong>It cannot guarantee a status is right.</strong> A status can be out of date, an owner can have changed, and a due date can have moved without the issue being updated. Check anything you plan to report to someone else against Linear itself before you say it out loud or put it in writing.</li><li><strong>It cannot replace the team agreeing on priorities.</strong> Muse can lay out what is blocked, what is due, and what slipped, but the call about what matters most is a human one. A triage that nobody discusses is a list. A triage the team argues about for ten minutes is a plan.</li><li><strong>It cannot fix a tracker nobody updates.</strong> If issues sit in the wrong state for weeks and nobody closes what is done, Muse will summarize the mess faithfully. The answers get dramatically better once the team keeps states honest. A tracker you trust beats a tracker you have to double check every time.</li></ul>
+<h2 id="watch-for">6. What to watch for</h2>
+<p>As of October 25, 2026, Linear is a settled connector: in the in app list by September 29, and still listed in the October 15 in app check. There is no October update to how it works, so the habits around it still matter. The most important habit is the verification habit. An issue tracker is a shared record, and a wrong status reported with confidence is worse than no status at all, because the team acts on it. Check the answer against Linear for the first week, especially any state, owner, or date. A wrong date acted on fast is worse than a slow read you verified.</p>
+<p>There is also a second route worth knowing about, and it is worth stating clearly so the two do not get confused. A Reddit user showed Muse building a custom Linear connector in under a minute, using a Linear API key, that could list teams, search and create issues, and update their status, with the key going into secure storage and the agent never seeing it. That was a custom connector Muse built on the spot, not the directory connector this guide covers. If the directory connector is not on your account yet, the custom route is a real fallback, and any service with a public API can be connected that way. But do not quote the demo as proof of what the directory connector does. They are two different doors into the same app, and the permission screen on your account tells you which one you are using.</p>
+<p>Be careful with sensitive work. Roadmap plans, hiring issues, security work, and anything with customer data deserve a human read before any change goes out, even a small one. A status change is a small change with a visible audience, because the whole team sees the tracker. Set a rule for yourself: Muse finds and drafts, you read, you approve. The moment you start approving without reading is the moment the connector stops being an assistant and starts being a risk.</p>
+<p>Check your data controls. In Muse settings, open Data controls and look at the switch for helping improve the models. If you do not want your chats used for training, turn it off before you start asking Muse to read your issues. That switch controls whether Meta may use your chats to train future models. And keep the tracker honest, because the connector rewards honesty more than any other connector on this site. States that match reality, owners that are real people, and dates that mean something. A tidy tracker turns Muse from a search box into a colleague who knows where the work stands. A stale tracker turns it into a colleague who keeps reporting last month as this week.</p>
+<h2 id="get-started">Get started</h2>
+<div class="callout">
+<div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);margin-bottom:10px;">Get a code</div>
+<p style="margin:0 0 14px;"><strong>Connectors need Muse first.</strong> Every tool on this page plugs into a Muse account, and accounts still open with an invite code in the United States, Canada, and Japan. Get a code from the pool, open your settings, and connect Linear first. Outside the launch countries, the waitlist holds your place.</p>
+<a class="cta" href="/" style="margin-top:0;">Get a code</a>
+<a class="cta ghost" href="/#waitlist" style="margin-top:8px;margin-left:10px;">Join the waitlist</a>
+</div>
+<h2 id="faq">Frequently asked questions</h2>
+<dl class="faq">
+<dt>What can Muse do with my Linear issues?</dt>
+<dd>Muse can find issues by meaning, triage the backlog, list what is blocked and what is due, and brief you before a team check in. The exact list of actions on your account is shown in the connector settings, because Meta has not published a full public list for Linear. Read that screen before you plan around any action.</dd>
+<dt>Which Linear workspace does Muse see?</dt>
+<dd>Only the one you connect. Muse works with the issues available through that Linear workspace and the access you authorize. Work in another workspace stays invisible to it, and you can manage or disconnect the integration at any time.</dd>
+<dt>Can Muse close an issue for me?</dt>
+<dd>Not without your approval when your approvals are set to ask me. Set anything that creates, changes, or closes issues to ask first, and read every change before you approve it, because the whole team sees the tracker.</dd>
+<dt>What if Linear is not in my connectors list?</dt>
+<dd>Check again in a few days, because rollout is staged. As a fallback, you can ask Muse to build a custom Linear connector from the Linear API, which one user demoed in under a minute. That is a separate route from the directory connector, with its own permission screen.</dd>
+<dt>Can I use the Linear connector outside the United States, Canada, and Japan?</dt>
+<dd>Not yet. Muse itself has launched in the United States, Canada, and Japan only. Join the waitlist and we will send you a fresh code on launch day in your country.</dd>
+<dt>What happens if I disconnect Linear?</dt>
+<dd>Muse loses access to those issues. Your work stays in Linear, and nothing Muse planned is carried out after you disconnect. You can reconnect the same workspace or a different one later.</dd>
+</dl>
+<p>Built with Muse is an independent community project. Not affiliated with or endorsed by Meta.</p>
+          </article>
+          <aside class="rail">
+            <div class="rail-box">
+              <div class="k">In this article</div>
+              <ol><li><a href="#short-answer">1. The short answer</a></li><li><a href="#what-you-need">2. What you need</a></li><li><a href="#the-method">3. How to connect it, step by step</a></li><li><a href="#what-it-does">4. What it actually does</a></li><li><a href="#what-it-cannot-do">5. What it cannot do</a></li><li><a href="#watch-for">6. What to watch for</a></li><li><a href="#get-started">Get started</a></li><li><a href="#faq">Frequently asked questions</a></li></ol>
+            </div>
+            <div class="rail-box">
+              <div class="k">Keep reading</div>
+              <a class="link" href="/blog/muse-connectors-list">Muse connectors: the complete list</a><a class="link" href="/blog/muse-zapier-connector">How to use the Zapier connector in Muse</a><a class="link" href="/blog/muse-notion-connector">How to use the Notion connector in Muse</a><a class="link" href="/blog/muse-for-small-business-setup-guide">Muse for Small Business: the complete setup guide</a><a class="link" href="/blog">All posts</a>
+            </div>
+          </aside>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer-row">
+          <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="/">Get a code</a>
+            <a href="/use-cases">Use cases</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+            <a href="/privacy">Privacy</a>
+            <a href="mailto:polostudio.brand@gmail.com">Contact</a>          </nav>
+        </div>
+        <div class="strip">Independent community project. Not affiliated with or endorsed by Meta.</div>
+      </footer>
+    </div>
+    <script>
+      (() => {
+        const bar = document.querySelector(".topbar");
+        const toggle = document.getElementById("menu-toggle");
+        if (!bar || !toggle) return;
+        const set = (open) => { bar.classList.toggle("open", open); toggle.setAttribute("aria-expanded", String(open)); toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+        toggle.addEventListener("click", () => set(!bar.classList.contains("open")));
+        bar.querySelectorAll(".nav button, .nav a").forEach((item) => item.addEventListener("click", () => set(false)));
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape") set(false); });
+        const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
+  <script src="/js/blog-rating.js" defer></script>
+    <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
+<script src="/js/visit.js" defer></script>
+</body>
+</html>

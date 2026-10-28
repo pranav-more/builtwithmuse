@@ -170,7 +170,7 @@ Muse has not launched in every country. These guides cover the workarounds.
 - [How to use Muse in Japan](https://builtwithmuse.com/blog/how-to-use-muse-in-japan): Japan specific guide. Muse launched in Japan on October 23, 2026.
 - [How to use Muse in Singapore](https://builtwithmuse.com/blog/how-to-use-muse-in-singapore): Singapore specific guide.
 - [Is Muse Available in South Korea? Not Yet, No Date Announced (2026)](https://builtwithmuse.com/blog/muse-available-in-south-korea): Muse has not launched in South Korea yet, and Meta has not announced a date. What is known, what to do while you wait, what to prepare now, and what will work on day one.
-- [Is Muse Available in Singapore? Not Yet, No Date Announced (2026)](https://builtwithmuse.com/blog/muse-available-in-singapore): Muse has not launched in Singapore yet, and Meta has not announced a date. What is known, what to do while you wait, what to prepare now, and what will work on day one.
+- [Is Muse Available in Singapore? Yes, Launched October 28, 2026](https://builtwithmuse.com/blog/muse-available-in-singapore): Muse launched in Singapore on October 28, 2026, the fourth country after the US, Canada, and Japan. How to get it, the launch connectors, and what is still rolling out.
 - [How to use Muse in Indonesia](https://builtwithmuse.com/blog/how-to-use-muse-in-indonesia): Indonesia specific guide.
 - [How to use Muse in the UAE](https://builtwithmuse.com/blog/how-to-use-muse-in-uae): Uae specific guide.
 - [Install the Muse app on iPhone outside the US](https://builtwithmuse.com/blog/install-muse-app-on-iphone-outside-us): iPhone install path.
@@ -183,6 +183,7 @@ Muse has not launched in every country. These guides cover the workarounds.
 
 ## Muse news and updates
 
+- [Nvidia Invests $3 Billion in the Meta Muse Partnership](https://builtwithmuse.com/blog/nvidia-muse-partnership-3-billion): Nvidia invested $3 billion in Meta's equity offering on October 27, 2026 and deepened the Muse partnership. What the money buys, the hardware behind it, and what the deal does not change for Muse users.
 - [Muse Spark Open](https://builtwithmuse.com/blog/muse-spark-open): Meta released the weights for Muse Spark Open on October 15, 2026, an 816 billion parameter open weight model anyone can download free under the Muse Model License. The specs, the three ways to use it, the license rules including the revenue line for model services, the terabyte hardware catch, the hosted API providers, and why developers outside the United States can build with a Muse model today even where the Muse app has not launched.
 - [Muse Wonder and Wonder Full](https://builtwithmuse.com/blog/muse-wonder): Meta announced its first frontier class models on October 12, 2026. Wonder is live now on the Meta Model API at $4 per million input tokens and inside Muse Code. Wonder Full has no API and lives in the top two Muse Code plans. Neither model is in the Muse app yet. Pricing, benchmarks checked against the independent index, the two plan families, and what is still unknown.
 - [Muse on Windows](https://builtwithmuse.com/blog/muse-on-windows): Microsoft announced on October 7, 2026 that Muse is coming to Windows as a native app with MXC integration. No release date yet. How to use Muse on a Windows PC today, and what to do now. Announced, not yet released.

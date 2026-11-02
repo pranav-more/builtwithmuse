@@ -171,6 +171,9 @@ Muse has not launched in every country. These guides cover the workarounds.
 - [How to use Muse in Singapore](https://builtwithmuse.com/blog/how-to-use-muse-in-singapore): Singapore specific guide.
 - [Is Muse Available in South Korea? Not Yet, No Date Announced (2026)](https://builtwithmuse.com/blog/muse-available-in-south-korea): Muse has not launched in South Korea yet, and Meta has not announced a date. What is known, what to do while you wait, what to prepare now, and what will work on day one.
 - [Is Muse Available in Singapore? Yes, Launched October 28, 2026](https://builtwithmuse.com/blog/muse-available-in-singapore): Muse launched in Singapore on October 28, 2026, the fourth country after the US, Canada, and Japan. How to get it, the launch connectors, and what is still rolling out.
+- [Is Muse Available in Australia? (2026)](https://builtwithmuse.com/blog/how-to-use-muse-in-australia): Australia specific guide. Muse has not launched in Australia yet, and Meta has not announced a date.
+- [Is Muse Available in the UK? How to Use It Right Now (2026)](https://builtwithmuse.com/blog/how-to-use-muse-in-uk): United Kingdom specific guide. Muse has not launched in the UK yet, and Meta has not announced a date.
+- [When Is Muse Launching in India? (2026)](https://builtwithmuse.com/blog/muse-india-launch-date): No launch date announced yet. What is known, which rumors to ignore, and what to do while you wait.
 - [How to use Muse in Indonesia](https://builtwithmuse.com/blog/how-to-use-muse-in-indonesia): Indonesia specific guide.
 - [How to use Muse in the UAE](https://builtwithmuse.com/blog/how-to-use-muse-in-uae): Uae specific guide.
 - [Install the Muse app on iPhone outside the US](https://builtwithmuse.com/blog/install-muse-app-on-iphone-outside-us): iPhone install path.

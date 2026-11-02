@@ -7,6 +7,7 @@
 - [Get a free Muse invite code](https://builtwithmuse.com/): Live pool of free Muse invite codes shared by the community. Sign in with Google to claim a code. Have a code to share? Add it to the pool.
 - [Free Muse invite code guide](https://builtwithmuse.com/blog/free-muse-invite-code): How invite codes work and how to get one.
 - [Find and share a Muse referral code](https://builtwithmuse.com/blog/find-and-share-muse-referral-code): Where to find working codes and how to share your own.
+- [Why is my Muse invite code not working?](https://builtwithmuse.com/blog/muse-invite-code-not-working): Why codes fail: the 48 hour window, use limits, typing errors, and region locks, with the fix for each cause.
 
 ## Muse workflows
 
@@ -47,6 +48,8 @@ Real things people do with Muse, each with the exact prompt to say and the steps
 - [Watch a price and buy at the right moment](https://builtwithmuse.com/workflows/watch-a-price-and-buy-at-the-right-moment): Watch a price and buy at the right moment.
 - [Handle buyer messages when selling your car](https://builtwithmuse.com/workflows/handle-buyer-messages-when-selling-your-car): Handle buyer messages when selling your car.
 - [Plan a dinner party with a menu timeline and invites](https://builtwithmuse.com/workflows/plan-a-dinner-party-with-a-menu-timeline-and-invites): Plan a dinner party with menu, timeline, and invites.
+- [Muse problems and mistakes](https://builtwithmuse.com/blog/muse-problems-and-mistakes): Reported false confirmations, made up numbers, stale memory, and three disputed incidents, with Meta responses and how to check its work.
+- [Muse for Mac computer use and permissions](https://builtwithmuse.com/blog/muse-for-mac-computer-use): What Muse does on a Mac, what Full Disk Access actually allows, and how to check or limit every permission.
 
 ## Use cases
 
@@ -158,6 +161,7 @@ Step by step guides for getting real things done with Muse.
 - [Muse voice chat](https://builtwithmuse.com/blog/muse-voice-chat): Voice chat means you talk to Muse out loud inside the app and it answers in voice. Who has it as of October 15, 2026, how it differs from Muse calling businesses, how to check your account, and what to do while you wait.
 - [Muse account locked, suspended or disconnected](https://builtwithmuse.com/blog/muse-account-locked): The three account states users hit, the October 14, 2026 wave of disconnections, the steps that get accounts back through support, what not to do, and how to protect your invite code and workflows.
 - [How to make Muse sound like you](https://builtwithmuse.com/blog/make-muse-sound-like-you): Muse drafts messages in one corporate voice until you teach it yours. Style profiles built from your sent messages, one per audience, the hard rules prompt, and the draft, correct, teach loop.
+- [Can Muse shop on Amazon?](https://builtwithmuse.com/blog/can-muse-shop-on-amazon): Amazon blocked Muse checkout on September 20, 2026. Where shopping actually works, and the partners added September 23, 2026.
 
 ## Using Muse outside the US
 
@@ -182,6 +186,7 @@ Muse has not launched in every country. These guides cover the workarounds.
 - [What is Meta Muse](https://builtwithmuse.com/blog/what-is-meta-muse): What Muse is and what it can do.
 - [Muse tokens explained](https://builtwithmuse.com/blog/muse-tokens-explained): How Muse tokens work.
 - [Muse vs ChatGPT](https://builtwithmuse.com/blog/muse-vs-chatgpt): How Muse compares with ChatGPT.
+- [Muse vs Claude](https://builtwithmuse.com/blog/muse-vs-claude): How Muse compares with Claude: where each wins and who should pick which.
 - [How Muse helps creators grow](https://builtwithmuse.com/blog/how-muse-helps-creators-grow): What creators use Muse for.
 
 ## Muse news and updates

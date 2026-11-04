@@ -131,6 +131,18 @@ test("Mac Apps Library bundle cards", { skip: !DB && "set BUNDLE_TEST_DATABASE_U
     }
   });
 
+  await t.test("a 30-day card runs 30 days; other lengths are refused", async () => {
+    await pool.query("UPDATE sponsorships SET status = 'ended', ends_at = now() WHERE status = 'paid'");
+    const month = await bundle.provision(pool, { ...order(300), days: 30 });
+    assert.equal(month.status, 201);
+    assert.equal(Math.round((new Date(month.body.ends_at) - new Date(month.body.starts_at)) / 86400000), 30);
+    const row = (await pool.query("SELECT sku, days FROM sponsorships WHERE id = $1", [month.body.sponsor_card_id])).rows[0];
+    assert.deepEqual(row, { sku: "mal_bundle_30d", days: 30 });
+    assert.equal((await bundle.provision(pool, { ...order(301), days: 14 })).status, 400);
+    assert.equal((await bundle.availability(pool, "30")).body.days, 30);
+    assert.equal((await bundle.availability(pool, "9")).status, 400);
+  });
+
   await t.test("a regular Dodo sponsor still books around bundle cards", async () => {
     const start = await sponsors.earliestStart(pool, 7);
     assert.ok(start instanceof Date);

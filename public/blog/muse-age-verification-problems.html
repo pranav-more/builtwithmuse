@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
+    <script>(function(){try{var t=localStorage.getItem("bwm-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content","#0d1b3d");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content","dark");}}}catch(e){}})();</script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Muse Age Verification Problems and How to Fix Them (2026) | Built with Muse</title>
+    <meta name="description" content="Muse is 18 and older only, and the age check stops a lot of sign ups. Why Meta asks for a card, what the $1 hold is, and fixes for each failure mode." />
+    <link rel="canonical" href="https://builtwithmuse.com/blog/muse-age-verification-problems" />
+    <meta property="og:title" content="Muse Age Verification Problems and How to Fix Them (2026) | Built with Muse" />
+    <meta property="og:description" content="Muse is 18 and older only, and the age check stops a lot of sign ups. Why Meta asks for a card, what the $1 hold is, and fixes for each failure mode." />
+    <meta property="og:url" content="https://builtwithmuse.com/blog/muse-age-verification-problems" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://builtwithmuse.com/og/blog.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://builtwithmuse.com/og/blog.png" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "inLanguage": "en", "headline": "Muse Age Verification Problems and How to Fix Them", "description": "Muse is 18 and older only, and the age check stops a lot of sign ups. Why Meta asks for a card, what the $1 hold is, and fixes for each failure mode.", "datePublished": "2026-11-13", "dateModified": "2026-11-13", "author": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com/"}, "publisher": {"@type": "Organization", "name": "Built with Muse", "url": "https://builtwithmuse.com/"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://builtwithmuse.com/blog/muse-age-verification-problems"}, "image": "https://builtwithmuse.com/og/blog.png"}</script>
+    <meta name="keywords" content="Muse age verification, Muse age verification problems, Muse $1 hold, Muse card declined, Muse verify age, Muse 18+, Muse prepaid card" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "Why does Muse ask for a payment card if the free tier costs nothing?", "acceptedAnswer": {"@type": "Answer", "text": "The card is for age verification, not payment. Meta places a temporary $1 authorization to confirm the card is real and belongs to an adult, then releases it. The free tier costs nothing, and the check does not start a subscription."}}, {"@type": "Question", "name": "Is the $1 hold a real charge?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a temporary authorization, the same mechanism hotels and gas stations use to check a card, and the sign up page says it is returned within 5 to 7 business days, though some users report it dropping off in 2 to 3 days. If it lingers on your statement, that is usually your bank's display lag."}}, {"@type": "Question", "name": "Why was my card declined?", "acceptedAnswer": {"@type": "Answer", "text": "The most common reasons are details that do not match your Meta account, a prepaid or gift card that is not tied to your identity, a card in someone else's name, or a billing country mismatch. Checks have also become stricter since October 2026. Correct the details, use a bank issued card in your own name, wait a day, and try once more."}}, {"@type": "Question", "name": "Can I use a prepaid or gift card for age verification?", "acceptedAnswer": {"@type": "Answer", "text": "Usually not. Prepaid and gift cards are often not tied to your identity, so they cannot confirm you are an adult, which is the whole point of the check. Use a standard debit or credit card in your own name, or the Facebook or Instagram option if the page offers it."}}, {"@type": "Question", "name": "Can I verify my age with Facebook or Instagram instead of a card?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, when the verification page offers it. Link an existing account you own and can access normally, and Meta uses the age information on that account as part of the check. Older established accounts work better than newly created ones, which may be asked to verify again."}}, {"@type": "Question", "name": "What if I am under 18?", "acceptedAnswer": {"@type": "Answer", "text": "You cannot use Muse. There is no parent permission option and no teen mode, and lying about your age breaks the terms and can get your account closed. Meta blocks people it detects may be under 18 from creating accounts, and it applies checks beyond the birth date you enter."}}]}</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C94847V6DS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C94847V6DS');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
+    <style>
+      :root { color-scheme: light; --blue: #1a56ff; --blue-deep: #0f3fc4; --bg: #ffffff; --tint: #eef3ff; --navy: #ffffff; --navy-2: #eef3ff; --ink: #0b1220; --muted: #4b5675; --muted-2: #6b7699; --line: #dfe5f3; --line-soft: #eceff8; --mint: #1a56ff; --mint-ink: #ffffff; --coral: #d92d20; --coral-ink: #ffffff; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --paper-line: #c9d4f2; --shadow: 0 8px 24px rgba(11,18,32,.06); --radius: 10px; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; color: var(--ink); background-color: var(--bg);
+        background-image: linear-gradient(rgba(11,18,32,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(11,18,32,.045) 1px, transparent 1px), linear-gradient(45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%), linear-gradient(-45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%);
+        background-size: 48px 48px, 48px 48px, 6px 6px, 6px 6px; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+      a { color: inherit; }
+      h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
+      .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 0 0 48px; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .topbar { position: sticky; top: 0; z-index: 30; margin: 0 calc(50% - 50vw) 40px; padding: 16px calc(50vw - 50%); background: transparent; transition: background .25s ease, backdrop-filter .25s ease, box-shadow .25s ease; }
+      .topbar.scrolled { background: rgba(255,255,255,.88); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); box-shadow: 0 10px 30px rgba(11,18,32,.08); }
+      .brand { font: 900 18px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; }
+      .brand .mark { width: 22px; height: 22px; flex: 0 0 auto; }
+      .nav { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav a { flex: 0 0 auto; border: 1px solid transparent; border-radius: 8px; padding: 9px 13px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+      .nav a:hover { color: var(--ink); border-color: var(--line); }
+      .nav a[aria-current="page"] { background: #e6edff; color: var(--ink); border-color: var(--line); }
+      .nav a:focus-visible, .cta:focus-visible, .post:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+      .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: #eef3ff; padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+      .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .18s ease, opacity .18s ease; }
+      .topbar.open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .topbar.open .menu-toggle span:nth-child(2) { opacity: 0; }
+      .topbar.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .eyebrow { color: var(--muted-2); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 40px; align-items: end; padding: 12px 0 44px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+      .hero h1 { font-size: clamp(36px, 6vw, 76px); line-height: .98; font-weight: 900; text-transform: uppercase; letter-spacing: -0.035em; margin: 0 0 14px; }
+      .hero .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 60ch; margin: 0; }
+      .hero .meta { color: var(--muted-2); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 18px; }
+      .hero-aside { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .hero-aside .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .hero-aside p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
+      article { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 48px); box-shadow: var(--shadow); min-width: 0; }
+      article > * { max-width: 72ch; }
+      article p, article li { font-size: 17px; line-height: 1.7; color: var(--muted); }
+      article p strong, article li strong { color: var(--ink); }
+      article p { margin: 0 0 20px; }
+      article h2 { font-size: 28px; margin: 40px 0 12px; color: var(--ink); }
+      article h2:first-child { margin-top: 0; }
+      article h3 { font-size: 20px; margin: 28px 0 8px; color: var(--ink); }
+      article ul, article ol { padding-left: 22px; margin: 0 0 20px; }
+      article li { margin-bottom: 8px; }
+      article a { color: var(--mint); }
+      .callout { padding: 18px 22px; border: 1px solid rgba(26,86,255,.35); border-radius: 8px; background: rgba(26,86,255,.08); margin: 28px 0; color: var(--ink); }
+      .callout strong { display: block; margin-bottom: 4px; }
+      .faq dt { font-weight: 700; color: var(--ink); margin-top: 18px; font-size: 17px; }
+      .faq dd { margin: 6px 0 0; color: var(--muted); line-height: 1.65; font-size: 16px; }
+      .cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 13px 20px; border-radius: 8px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 700; }
+      .cta:hover { background: #e6edff; }
+      .back { display: inline-block; margin-top: 36px; color: var(--muted-2); font-weight: 600; }
+      .rail { position: sticky; top: 92px; display: grid; gap: 16px; }
+      .rail-box { background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+      .rail-box .k { color: var(--muted-2); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .rail-box h3 { margin: 0 0 8px; font-size: 20px; }
+      .rail-box p { margin: 0 0 14px; color: var(--muted); line-height: 1.5; font-size: 15px; }
+      .rail-box ol { margin: 0; padding: 0; list-style: none; color: var(--muted); line-height: 1.6; font-size: 14px; display: grid; gap: 6px; }
+      .rail-box ol a { color: var(--ink); text-decoration: none; }
+      .rail-box ol a:hover { color: var(--mint); }
+      .rail-box .cta { width: 100%; justify-content: center; margin-top: 4px; }
+      .rail-box .link { display: block; color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 14px; }
+      .rail-box .link:hover { color: var(--mint); }
+      .footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 40px; }
+      .footer-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; background: var(--navy); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow); }
+      .footer-cta h2 { margin: 0 0 8px; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.05; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+      .footer-cta p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 52ch; }
+      .footer-cta .eyebrow { margin-bottom: 10px; }
+      .cta.discord { white-space: nowrap; margin: 0; }
+      .cta.discord svg { width: 20px; height: 20px; }
+      .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 8px; }
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+      .footer-links a:hover { color: var(--ink); }
+      .strip { width: max-content; max-width: calc(100% - 24px); margin: 44px auto 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; background: #f6f8fe; color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+      @media (max-width: 640px) { .strip { white-space: normal; } }
+      @media (max-width: 720px) { .footer-cta { grid-template-columns: 1fr; padding: 24px; } .cta.discord { width: 100%; } }
+      @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .rail { position: static; } .hero { grid-template-columns: 1fr; } }
+      @media (max-width: 640px) {
+        .shell { width: calc(100% - 32px); }
+        .topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px calc(50vw - 50%); margin: 0 calc(50% - 50vw) 28px; }
+        .menu-toggle { display: flex; } .write-long { display: none; }
+        .topbar { gap: 8px; } .brand { order: 0; font-size: 15px; gap: 8px; } .brand .mark { width: 18px; height: 18px; } .menu-toggle { width: 38px; height: 38px; } .acct-btn { padding: 3px; gap: 0; } .acct-btn img, .acct-btn i { width: 24px; height: 24px; } .signin-btn { padding: 7px 10px; font-size: 13px; } .write-btn { order: 1; margin-left: auto; padding: 7px 10px; font-size: 13px; } .acct { order: 2; margin-left: 0; } .acct-btn svg { display: none; } .account { order: 2; } .menu-toggle { order: 3; margin-left: 4px; } #account-slot, .signin-btn { order: 2; } .nav { order: 5; }
+        .nav { display: none; flex-direction: column; width: 100%; flex-basis: 100%; margin: 4px 0 0; padding: 8px 0 4px; border-top: 1px solid var(--line-soft); overflow: visible; }
+        .topbar.open .nav { display: flex; }
+        .nav a { width: 100%; text-align: left; padding: 12px 10px; font-size: 16px; }
+      }
+      
+      .nav-count { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: var(--tint); color: var(--blue-deep); font-size: 11px; font-weight: 700; vertical-align: 1px; }
+      .write-btn { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; margin-left: 8px; }
+      .write-btn:hover { background: var(--blue-deep); }
+      @media (max-width: 640px) { .write-btn { order: 3; margin-left: auto; } }
+/* Light theme: white ground, ink text, blue for actions and active states. */
+body { background-image: none; }
+.topbar { border-bottom-color: var(--line); }
+.topbar.scrolled { background: rgba(255,255,255,.9); box-shadow: 0 10px 30px rgba(11,18,32,.06); }
+.button, .cta, .write-btn, .btn.primary, .icon-button, .case-link, .add { background: var(--blue); color: #fff; border-color: var(--blue); }
+.button:hover, .cta:hover, .write-btn:hover, .btn.primary:hover, .icon-button:hover, .react-btn.muse-link:hover, .case-link:hover, .add:hover { background: var(--blue-deep); border-color: var(--blue-deep); color: #fff; }
+.button.ghost, .cta.ghost, .case-link.quiet { background: transparent; color: var(--blue-deep); border-color: var(--blue); }
+.button.ghost:hover, .cta.ghost:hover, .case-link.quiet:hover { background: var(--tint); color: var(--blue-deep); border-color: var(--blue); }
+.button.secondary, .button.small.secondary { background: var(--tint); color: var(--blue-deep); border: 2px solid var(--line); }
+.button.secondary:hover { background: #e0e8ff; }
+.button.discord, .cta.discord { background: var(--blue); color: #fff; }
+.case-study { border: 1px solid var(--line); }
+.nav a[aria-current="page"], .nav button[aria-selected="true"] { background: var(--tint); color: var(--blue-deep); border-color: transparent; }
+.nav a:hover, .nav button:hover { color: var(--blue-deep); border-color: var(--line); }
+.chip[aria-current="true"], .chip.solid[aria-current="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.chip { background: #fff; border-color: var(--line); color: var(--muted); }
+.chip:hover { color: var(--blue-deep); border-color: var(--blue); }
+.follow-btn.on, .react-btn.on, .star.picked, .pill.published { background: var(--blue); color: #fff; border-color: var(--blue); }
+.follow-btn.on b, .react-btn.on b { color: #fff; }
+.save-icon.on { color: var(--blue); border-color: var(--blue); }
+.badge.editorial, .badge.soft, .rating .new, .fmeta .new, .pool-tag.open, .case-tag { background: var(--tint); color: var(--blue-deep); }
+.badge.off, .pool-tag.pulled { background: rgba(217,45,32,.1); color: var(--coral); }
+.eyebrow, .card-label, .k, .live-tag { color: var(--blue-deep); }
+.mini-number, .steps li::before { color: #fff; }
+.quote-band, .tint-panel, .home-card.tint, .rail-box.tint, .callout { background: var(--tint); }
+.preview-strip, .strip, .pool-list, .signin-card, .field input, .field select, .field textarea, .toolbar input, .search-row input, .report-box select, .report-box textarea, .invite-card, .home-card, .workflow-card, .rail-box, .card, .post, article, .panel, .item, .footer-cta, .nudge-card, .hero-aside, .stat, .comment { background: #fff; }
+.field input::placeholder, .field textarea::placeholder, .toolbar input::placeholder, .search-row input::placeholder { color: #98a2c3; }
+.prompt, .row-quote, .steps li, .code-row .preview-code, .assigned-code, .pool-health span, .top3-card, .creator-cell, .creator-chip, .about-box, .react-btn, .sharekit { background: #f6f8fe; }
+.react-btn.muse-link { background: var(--blue); color: #fff; }
+.nudge-backdrop { background: rgba(11,18,32,.5); }
+.account-chip .who, .account .linklike, .account-slot a, .account-slot button { color: var(--muted); }
+.message, .success-panel { background: rgba(26,86,255,.08); border-color: rgba(26,86,255,.35); }
+.avatar { background: var(--tint); color: var(--blue-deep); border-color: var(--line); }
+.brand { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .menu-toggle span { transition: none; } }
+    .ad-slot{margin:30px 0;}.hero-col{display:flex;flex-direction:column;justify-content:space-between;gap:20px;align-self:stretch;}.hero-col .ad-slot{margin:0;}</style>
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ylnjyde5d9");
+    </script>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  <style>.site-footer { margin: 72px calc(50% - 50vw) -48px; padding: 56px calc(50vw - 50%) 36px; background: #0b1220; color: #fff; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1.15fr 2fr; gap: 40px 48px; max-width: 1180px; margin: 0 auto; }
+.footer-col h3 { margin: 0 0 12px; font: 600 13px/1 "IBM Plex Sans", system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #8e98b3; }
+.footer-col > a:not(.footer-brand), .footer-two a { display: block; padding: 5px 0; color: #d7deee; text-decoration: none; font-size: 15px; line-height: 1.4; }
+.footer-col > a:hover, .footer-two a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.footer-brand { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 24px; color: #fff; text-decoration: none; font: 900 16px/1 "Archivo", sans-serif; letter-spacing: -0.02em; text-transform: uppercase; }
+.footer-brand .mark { width: 20px; height: 20px; }
+.footer-about p { margin: 0 0 16px; color: #c9d1e3; font-size: 15px; line-height: 1.6; max-width: 60ch; }
+.footer-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+.footer-fine { font-size: 13px !important; color: #8e98b3 !important; margin: 20px 0 10px !important; }
+.footer-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 13px; color: #aab3c8; }
+.footer-meta a { color: #fff; text-decoration: none; }
+.footer-meta a:hover { text-decoration: underline; }
+@media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-about { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .site-footer { padding-top: 40px; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-two { grid-template-columns: 1fr; } }
+
+/* Dark theme (batch 29). Canonical copy: bwm-batch29/dark.css */
+/* Theme toggle button (both modes; the icon swap is keyed to the attribute). */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-left: 8px; padding: 0; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; font-family: inherit; }
+.theme-toggle:hover { color: var(--ink); border-color: var(--muted-2); }
+.theme-toggle svg { width: 19px; height: 19px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (max-width: 900px) { .theme-toggle { order: 2; width: 34px; height: 34px; margin-left: 4px; } }
+
+/* Tokens */
+:root[data-theme="dark"] { color-scheme: dark; --blue: #1a56ff; --blue-deep: #0b2a8a; --bg: #0d1b3d; --tint: #16295a; --navy: #0d1b3d; --navy-2: #16295a; --ink: #ffffff; --muted: #c7d6ff; --muted-2: #9fb6ff; --line: rgba(255,255,255,.22); --line-soft: rgba(255,255,255,.12); --mint: #7dffc6; --mint-ink: #06331f; --coral: #ff8f8f; --coral-ink: #ffffff; --paper: #ffffff; --paper-ink: #0b1b4d; --paper-muted: #45538a; --paper-line: #c9d4f2; --shadow: 0 30px 60px rgba(0,0,0,.35); }
+
+/* Body pattern: grid lines flip from ink based to white based. */
+:root[data-theme="dark"] body { background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%), linear-gradient(-45deg, transparent 25%, transparent 25%, transparent 50%, transparent 50%, transparent 75%, transparent 75%); }
+:root[data-theme="dark"] .topbar.scrolled { background: rgba(13,27,61,.88); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+
+/* White card surfaces become the raised navy panel. */
+:root[data-theme="dark"] .preview-strip, :root[data-theme="dark"] .strip, :root[data-theme="dark"] .pool-list, :root[data-theme="dark"] .signin-card, :root[data-theme="dark"] .invite-card, :root[data-theme="dark"] .home-card, :root[data-theme="dark"] .workflow-card, :root[data-theme="dark"] .rail-box, :root[data-theme="dark"] .card, :root[data-theme="dark"] .post, :root[data-theme="dark"] article, :root[data-theme="dark"] .panel, :root[data-theme="dark"] .item, :root[data-theme="dark"] .footer-cta, :root[data-theme="dark"] .nudge-card, :root[data-theme="dark"] .hero-aside, :root[data-theme="dark"] .stat, :root[data-theme="dark"] .comment, :root[data-theme="dark"] .acct-btn, :root[data-theme="dark"] .acct-menu, :root[data-theme="dark"] .wild-tile, :root[data-theme="dark"] .tweet, :root[data-theme="dark"] .chip, :root[data-theme="dark"] .share-modal, :root[data-theme="dark"] .share-close, :root[data-theme="dark"] .sponsor-card, :root[data-theme="dark"] .sponsor-slots .slot-cta, :root[data-theme="dark"] .sponsor-slots li.filled, :root[data-theme="dark"] .sp-card, :root[data-theme="dark"] .sp-slots li.filled, :root[data-theme="dark"] .st-tile, :root[data-theme="dark"] .codes-box, :root[data-theme="dark"] .submit-card, :root[data-theme="dark"] .side-box, :root[data-theme="dark"] .sp-upload { background: #12234d; }
+
+/* Pale inset surfaces (was #f6f8fe and friends) become the tint step. */
+:root[data-theme="dark"] .prompt, :root[data-theme="dark"] .row-quote, :root[data-theme="dark"] .steps li, :root[data-theme="dark"] .code-row .preview-code, :root[data-theme="dark"] .assigned-code, :root[data-theme="dark"] .pool-health span, :root[data-theme="dark"] .top3-card, :root[data-theme="dark"] .creator-cell, :root[data-theme="dark"] .creator-chip, :root[data-theme="dark"] .about-box, :root[data-theme="dark"] .react-btn, :root[data-theme="dark"] .sharekit, :root[data-theme="dark"] .save-icon, :root[data-theme="dark"] .proof-box, :root[data-theme="dark"] .tweet-prompt, :root[data-theme="dark"] .tint-panel, :root[data-theme="dark"] .quote-band, :root[data-theme="dark"] .mycode, :root[data-theme="dark"] .promptpack pre, :root[data-theme="dark"] .sp-plan span { background: #16295a; }
+
+/* Pale blue chips (was #e6edff / #eef3ff) become the deep chip step. */
+:root[data-theme="dark"] .nav a[aria-current="page"], :root[data-theme="dark"] .nav button[aria-selected="true"], :root[data-theme="dark"] .menu-toggle, :root[data-theme="dark"] .follow-btn, :root[data-theme="dark"] .badge, :root[data-theme="dark"] .pool-tag, :root[data-theme="dark"] .pool-legend i, :root[data-theme="dark"] .case-tag, :root[data-theme="dark"] .home-card.tint { background: #1d3469; }
+
+/* Form controls. */
+:root[data-theme="dark"] form :where(input:not([type=file]):not([type=checkbox]):not([type=radio]):not([type=hidden]):not([type=submit]):not([type=button]), textarea, select), :root[data-theme="dark"] .field input, :root[data-theme="dark"] .field select, :root[data-theme="dark"] .field textarea, :root[data-theme="dark"] .toolbar input, :root[data-theme="dark"] .search-row input, :root[data-theme="dark"] .report-box select, :root[data-theme="dark"] .report-box textarea, :root[data-theme="dark"] .browse-search input, :root[data-theme="dark"] .mycode-row input, :root[data-theme="dark"] .done input, :root[data-theme="dark"] .sp-form input, :root[data-theme="dark"] .file-pick, :root[data-theme="dark"] .file-btn { background: #12234d; }
+:root[data-theme="dark"] input::placeholder, :root[data-theme="dark"] textarea::placeholder { color: #7d8dbd; }
+:root[data-theme="dark"] select option { background: #12234d; color: var(--ink); }
+:root[data-theme="dark"] form select, :root[data-theme="dark"] .field select, :root[data-theme="dark"] .report-box select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%239fb6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
+
+/* Hover fills that were pale blue go to the deep brand blue. */
+:root[data-theme="dark"] .cta:hover, :root[data-theme="dark"] .button:hover, :root[data-theme="dark"] .write-btn:hover, :root[data-theme="dark"] .row-quote:hover, :root[data-theme="dark"] .react-btn.muse-link:hover, :root[data-theme="dark"] .button.ghost:hover, :root[data-theme="dark"] .cta.ghost:hover, :root[data-theme="dark"] .btn:hover, :root[data-theme="dark"] .btn.primary:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+
+/* Text set in --blue-deep (a fill value in dark) is re-pointed to a readable light blue. */
+:root[data-theme="dark"] .eyebrow, :root[data-theme="dark"] .card-label, :root[data-theme="dark"] .k, :root[data-theme="dark"] .live-tag, :root[data-theme="dark"] .nav-count, :root[data-theme="dark"] .profile-links a, :root[data-theme="dark"] .post-cat, :root[data-theme="dark"] .wild-tile small, :root[data-theme="dark"] .post-caption h3 a:hover, :root[data-theme="dark"] .tweet-summary-note a, :root[data-theme="dark"] .tweet-prompt summary, :root[data-theme="dark"] .tweet-open, :root[data-theme="dark"] .row.wild-row .wild-label, :root[data-theme="dark"] .button.ghost, :root[data-theme="dark"] .cta.ghost, :root[data-theme="dark"] .button.secondary, :root[data-theme="dark"] .chip:hover, :root[data-theme="dark"] .badge.editorial, :root[data-theme="dark"] .badge.soft, :root[data-theme="dark"] .rating .new, :root[data-theme="dark"] .fmeta .new, :root[data-theme="dark"] .pool-tag.open, :root[data-theme="dark"] .case-tag, :root[data-theme="dark"] .avatar, :root[data-theme="dark"] .file-thumb, :root[data-theme="dark"] .feat-pill, :root[data-theme="dark"] .nav a[aria-current="page"], :root[data-theme="dark"] .nav a:hover, :root[data-theme="dark"] .nav button:hover, :root[data-theme="dark"] .nav button[aria-selected="true"], :root[data-theme="dark"] .acct-menu a:hover, :root[data-theme="dark"] .acct-menu button:hover, :root[data-theme="dark"] .file-pick:hover .file-btn { color: #9db8ff; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4297888430160202" crossorigin="anonymous"></script>
+<script data-grow-initializer="">!(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTo1OGJjZjk4NS1jM2YzLTRhYjctODNkZS1jNjVjOGMxOGQ0YWY=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();</script>
+</head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <nav class="nav" id="site-nav" aria-label="Site">
+          <a href="/">Home</a>
+          <a href="/workflows">Feed</a>
+          <a href="/creators">Creators</a>
+          <a href="/creator">Profile</a>
+        </nav>
+        <a class="write-btn" href="/submit">Publish<span class="write-long">&nbsp;a workflow</span></a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+      </header>
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">Guides</div>
+            <h1>Muse Age Verification Problems and How to Fix Them</h1>
+            <p class="lead">Muse is for adults 18 and older, and Meta checks age before it lets you in. The check usually asks for a payment card or a linked Facebook or Instagram account, and it fails more often than it should. This guide explains why Meta asks, what the temporary $1 card hold is, and how to fix each failure mode, from a declined card to a name that does not match.</p>
+            <div class="meta">November 2026 · 19 min read</div>
+          </div>
+          <div class="hero-col"><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4297888430160202" data-ad-slot="9949101572" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><aside class="hero-aside">
+            <div class="k">Get started</div>
+            <p>Stuck at the age check? The fix is usually a detail mismatch or the wrong card type. Once you are in, grab a free code from the community pool and redeem it within 48 hours of joining for the token reward.</p>
+            <a class="cta" href="/">Get a free code</a>
+          </aside></div>
+        </section>
+        <div class="layout">
+          <article>
+
+          <div class="callout">
+            <strong>Muse is for adults 18 and older, and Meta checks before it lets you in.</strong>
+            Most age verification failures come down to three things: a card that is not in your name, details that do not match your Meta account, or a prepaid or gift card the check will not accept. Fix the details, try a different card, or use the Facebook or Instagram option when the page offers it, and most people get through.
+          </div>
+
+          <h2 id="why-age-check">Why does Muse ask you to prove your age?</h2>
+          <p>Muse is an 18 and older product, with no exceptions and no teen mode. Meta's supplemental terms, updated September 8, 2026, prohibit anyone under 18 from using Muse, and a higher minimum age applies where a country or territory requires it. A Meta spokesperson confirmed to WIRED that Muse uses verification systems designed to block minors from using the product, and the Associated Press reported at launch that Muse is available to U.S. adults ages 18 and older. The App Store listing carries a 17+ age rating, which is Apple's highest tier, while Muse's own rule is 18 and older. <a href="https://www.neoteo.com/en/zuckerberg-presented-muse-charm-meta-bars-minors-from-muse">NeoTeo summarized the terms</a>, and <a href="https://adiidigital.com/muse-ai-age-verification/">a detailed guide to the age check</a> collects the WIRED and Associated Press reporting in one place.</p>
+          <p>The reason is what Muse can do. Muse is not a chatbot that only answers questions. It is an agent that can book travel, buy things, send messages, and spend money on your behalf, with your approval. An agent with that kind of power needs an adult behind it, and Meta checks age at the door rather than after something goes wrong. If you are new to what Muse is, <a href="/blog/what-is-meta-muse">our guide to Muse</a> covers the basics.</p>
+          <p>Meta says Muse asks users for their date of birth, blocks people it detects may be under 18 from creating accounts, and applies additional checks to help confirm that users who say they are adults are over 18. Those additional checks are the card check and the Facebook or Instagram check this guide covers. Meta has not published a detailed walkthrough of the age check process, so the exact screens can vary, and any guide that claims to know every screen is guessing at the details.</p>
+
+          <h2 id="methods">What age verification methods does Muse use?</h2>
+          <p>Most people meet the age check during sign up at muse.ai/join or in the app, after signing in with a Meta account. Not everyone sees the same screens. Some accounts are asked to confirm age before the final step, and some are not. The check appears to depend on the account, the region, and signals Meta does not explain in public.</p>
+          <p>Three methods have been reported on the verification screen:</p>
+          <ul>
+            <li><strong>A payment card.</strong> Enter a credit or debit card in your own name. Meta's processor places a temporary $1 authorization on the card to confirm it is real and belongs to an adult. The hold is released and never captured as a payment.</li>
+            <li><strong>A Facebook account.</strong> Link an existing Facebook account and Meta uses the age information on that account as part of the check.</li>
+            <li><strong>An Instagram account.</strong> The same idea: link an existing Instagram account so Meta can corroborate your age from an established account with history.</li>
+          </ul>
+          <p>The page you see may offer one, two, or all three. If it offers the Facebook or Instagram option, that is often the easier path, especially if your card keeps failing. If it offers only the card, the card is the only way through on that attempt.</p>
+          <p>One important note: you do not need a Facebook account to create a Meta account. Email or phone works for the Meta account itself. The Facebook or Instagram option only matters if the age check offers it and you choose it.</p>
+
+          <h2 id="dollar-hold">What is the $1 card hold, and when does the money come back?</h2>
+          <p>The $1 hold is an authorization, not a charge. It works the same way hotels and gas stations check a card: the processor places a temporary hold to confirm the card is valid, then releases it. Your bank may show it as a pending $1 transaction while it is active. Once verification completes, the hold is released and refunded. It is never captured as a payment, and it does not start a subscription. <a href="https://americanchinese.top/blogs/guides/muse-card-hold-age-verification">A guide to the $1 hold</a> walks through the mechanism in detail.</p>
+          <p>The sign up page says the $1 will be returned within 5 to 7 business days. Some users report seeing it drop off in 2 to 3 days. The difference is mostly your bank: some banks clear pending authorizations fast, others hold the display line for days after Meta has released it. If the pending $1 is still showing after several days, that is usually a bank display lag, not a charge.</p>
+          <p>If anything beyond a temporary $1 authorization ever appears on your statement, that is different, and it is the moment to check Meta's official billing pages and your bank. The age check itself should never take money from you.</p>
+          <p>The free tier costs nothing. The card check is about age, not payment. That distinction matters because a lot of people meet the card screen, assume they are being charged for a free product, and abandon sign up. You are not being charged. You are being asked to prove you are an adult. <a href="/blog/is-meta-muse-free">Our guide to Muse pricing</a> explains what the free tier includes and what the paid plans buy.</p>
+
+          <h2 id="why-card-free-tier">Why does Muse ask for a card on the free tier?</h2>
+          <p>Meta has not published a detailed explanation of why the card check appears even for people who only want the free tier. What is reported, consistently, is two reasons that fit together.</p>
+          <p>First, a payment card in your own name is a strong adult signal. You generally cannot get a credit or debit card in your own name until you are 18, so a valid card in your name corroborates the birth date you entered. That is why the name on the card matters so much, and why cards that are not tied to your identity struggle to pass.</p>
+          <p>Second, Muse can spend money for you. When you ask it to book a flight or buy something, it needs a payment method to complete the purchase you approve. Having a card on file from the start means the agent can act when you ask it to, instead of stopping to collect payment details in the middle of a task. Read the payment terms carefully during sign up, and never connect a card you are not comfortable with.</p>
+          <p>Neither reason means the free tier is secretly paid. Muse is free with a weekly usage limit, and the paid plans buy more usage, not more features. The card check and the subscription are separate things, even though they share the same card form.</p>
+
+          <div class="callout">
+            <strong>Need a <a href="/blog/find-and-share-muse-referral-code">muse referral code</a>?</strong>
+            <a href="/">Get one from the Built with Muse community pool</a>.
+          </div>
+
+          <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4297888430160202" data-ad-slot="1456368035" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+
+          <h2 id="why-declined">Why was my card declined?</h2>
+          <p>Card declines at the Muse age check became more common in October 2026, as checks became stricter, according to user reports collected in <a href="https://www.ipfoxy.com/blog/ideas-inspiration/7738">a guide to waitlist and age verification issues</a>. The decline rarely comes with a useful reason on screen. These are the causes reported most often, in rough order of how common they are:</p>
+          <ul>
+            <li><strong>Details do not match.</strong> The name, billing address, or ZIP code you entered does not line up with the card or with your Meta account. This is the most common failure, and the most fixable.</li>
+            <li><strong>The card is prepaid or a gift card.</strong> Prepaid and gift cards are often not tied to your identity, so they fail a check that is designed to confirm who you are.</li>
+            <li><strong>The card is not supported.</strong> Some cards are rejected outright with a message that the card is not supported. The exact list of supported card types is not published.</li>
+            <li><strong>Billing country or region mismatch.</strong> The country or region and ZIP code on the form must match the card's billing details. A mismatch can trigger a failure even when the card itself is fine.</li>
+            <li><strong>The card is in someone else's name.</strong> A card in a parent's, partner's, or friend's name will not pass. The name on the card must match the name on the account.</li>
+            <li><strong>Too many rapid retries.</strong> Repeated failures in a short time can trigger fraud flags that make the problem worse. Hammering the retry button is the one thing not to do.</li>
+            <li><strong>Region problems.</strong> If Muse is not available in your country, the age check can fail for reasons that have nothing to do with your card. A "not available in your country" screen is a different problem from a card decline, and no card will fix it.</li>
+          </ul>
+          <p>One more pattern worth knowing: even with everything correct, results can vary over time. The same card and details that fail today can pass tomorrow, and an age check can appear even when you expected to sail through. Verification systems glitch, and Meta adjusts the checks without announcing it.</p>
+
+          <h2 id="fix-declined-card">How do you fix a declined card?</h2>
+          <p>Work through these in order. Stop after each step and try once. Do not run the same failing card through the form five times in a row.</p>
+          <ol>
+            <li><strong>Check the name first.</strong> The name you enter must match the name on the card and the name on your Meta account, exactly. A nickname, a shortened first name, or a different spelling is enough to fail. Fix the name at the source if your Meta account has it wrong.</li>
+            <li><strong>Check the billing details.</strong> Enter the billing address and ZIP code exactly as your bank has them. Select the country or region that matches the card's billing country. Do not enter a US ZIP code unless the form legitimately calls for US billing details and the card is a US card.</li>
+            <li><strong>Check the card itself.</strong> Make sure the number, expiry date, and CVV are entered correctly, and that the card is active and not expired. Try a different card if you have one, ideally a standard credit or debit card issued by a bank in your name.</li>
+            <li><strong>Drop prepaid and gift cards.</strong> If you are using a prepaid card, a gift card, or a card that is not in your name, switch to a regular bank issued debit or credit card in your name before trying again.</li>
+            <li><strong>Wait before retrying.</strong> If everything is correct and it still fails, wait a day and try once more. Verification systems have bad hours, and a pause also avoids the fraud flags that rapid retries can trigger.</li>
+            <li><strong>Try the other method.</strong> If the page offers Facebook or Instagram verification, use it. An established account with history can satisfy the check when the card path keeps failing.</li>
+          </ol>
+          <p>If you have tried all of this, with correct details, a supported card in your name, and a day of waiting, and it still fails, the next step is Meta's official support channels, not a workaround. Do not share your card details or login with anyone offering to "help" with verification. No legitimate helper needs them.</p>
+
+          <h2 id="prepaid-gift-cards">Why do prepaid and gift cards fail?</h2>
+          <p>Prepaid and gift cards fail because the check is not really about the card. It is about identity. The check uses the card to confirm that a real adult, with a real name and a real billing address, is behind the account. A prepaid card bought with cash, or a gift card with no name attached, carries none of that information, so it cannot confirm anything.</p>
+          <p>The same logic applies to some virtual cards. Several apps issue USD virtual cards, and <a href="https://alphaseotools.com/how-to-create-a-muse-ai-account/">one account creation guide</a> mentions them as an option for people without a US card. Before you use one, check the provider's fees and terms, make sure the card is issued in your own name, and understand that a virtual card may still fail if the check cannot tie it to your identity. This is a reported option, not a recommendation, and Meta publishes no guidance on virtual cards for age verification.</p>
+          <p>The safest card for this check is boring: a standard debit or credit card, issued by a bank, in your own name, with a billing address that matches what you enter. If you have one, use it. If you do not, the Facebook or Instagram path is the better bet.</p>
+
+          <h2 id="name-birthdate-mismatch">What if your name or birth date does not match?</h2>
+          <p>A mismatch between your Meta account and your card is one of the most common reasons verification stalls. It usually comes from one of three places: the birth date on your Meta account is wrong, the name on your Meta account does not match the name on your card, or the billing details you entered do not match what your bank has on file.</p>
+          <p>Fix it at the source first, then try again. If your Meta account has the wrong birth date, correct it in your Meta account settings before retrying the check. If your name differs, make the account name match the card. Do not change your age to get around the restriction: inconsistent information causes problems during further verification, and lying about your age breaks the terms.</p>
+          <p>If your card application or bank record has the wrong birth date, that is a bank problem, not a Muse problem, and it needs fixing with your bank. The same goes for a name change: if your legal name changed and your card still shows the old one, the mismatch will keep failing until one side is updated.</p>
+          <p>After fixing the source, wait before retrying. Account changes can take time to propagate through Meta's systems, and an immediate retry can hit the old data. If your account ends up locked during the process, <a href="/blog/muse-account-locked">our guide to a locked Muse account</a> covers what to do next.</p>
+
+          <h2 id="facebook-instagram-option">How does verification with Facebook or Instagram work?</h2>
+          <p>When the age check page offers a Facebook or Instagram option, it asks you to sign in to an account you own and connect it. Meta then uses the age information on that account as part of the check. An established account with a long history and a consistent birth date is a strong signal. A brand new account is a weak one.</p>
+          <p>Users report that linking an existing older Facebook or Instagram account lets them skip the card step, while newly registered accounts may be asked to verify again. The pattern makes sense: a new account has no history to corroborate anything. If you have a choice, link the older account you actually use, not a fresh one you just created for this purpose.</p>
+          <p>Linking can fail too. The common causes are signing in to the wrong account, an account you cannot access normally because it is locked or its password is forgotten, or an account whose birth date does not show you as 18 or older. Use an account you own, can access normally, and whose details you know. Do not borrow someone else's account: the age on that account is not your age, and the mismatch will cause problems later.</p>
+          <p>One newer complication: Meta is expanding AI powered age detection across Instagram and Facebook, announced globally in November 2026, to identify accounts that may belong to teens even when the registered birth date says 18 or older. If Meta's systems flag a linked account as possibly belonging to a teen, that account may not satisfy the Muse check. This is a separate system from the Muse age check, but it can affect whether a linked account works.</p>
+          <p>If the Facebook or Instagram option is not offered on your verification page, you cannot force it to appear. The options shown vary by account and region. Use the method the page offers.</p>
+
+          <h2 id="no-card-no-account">What if you have no card and no Facebook or Instagram account?</h2>
+          <p>This is the hardest case, and honesty matters more than optimism. If the verification page offers only the card, and you have no card in your name, there is no verified path through that check. Meta publishes no alternative for this situation, and no official help page describes one.</p>
+          <p>What does not work: using someone else's card, using someone else's ID, or borrowing a Facebook or Instagram account. All three create mismatches that fail the check or cause account problems later, and using another person's identity documents breaks the terms. Do not pay anyone who offers to verify your account for you. That is a scam pattern, and no legitimate process needs your login or your card details.</p>
+          <p>What might work: creating a Facebook or Instagram account of your own, with your real birth date, and using it after it has some history. This is slow, and a new account may still be asked to verify again, so it is not a quick fix. A bank issued debit card in your own name is the more reliable route if you can get one.</p>
+          <p>If neither is possible right now, the practical answer is to wait until you have one of them. Muse is not going anywhere, and the account you create with clean, matching details will be far less trouble than one built on borrowed information.</p>
+
+          <h2 id="under-18">What if you are under 18?</h2>
+          <p>You cannot use Muse. There is no "with parent permission" option, no supervised teen mode, and no workaround that follows the rules. Meta built no teen version of Muse as of 2026, and it has announced no change to the 18 and older rule.</p>
+          <p>Lying about your age breaks the terms. If you sign up with a false birth date, Meta can close your account when it finds out, and you lose access to anything connected to it, including connected apps, workflows, and any tokens on the account. Meta says it blocks people it detects may be under 18 from creating accounts, and it applies additional checks beyond the birth date you enter, so a false date is not a reliable way in even in the short term.</p>
+          <p>If you are close to 18, the clean move is to wait. Your birth date is the one detail you cannot fix later without triggering exactly the mismatch problems this guide describes.</p>
+
+          <h2 id="keeps-failing">What if verification keeps failing after everything?</h2>
+          <p>First, make sure you are solving the right problem. If Muse is not available in your country, the sign up page shows a "not available" message or a waitlist, and no card or linked account will change that. <a href="/blog/muse-available-countries">Muse is live in five countries</a>: the US, Canada, Japan, Singapore, and Mexico. If you are outside those five, the age check is not your blocker. Region is. <a href="/blog/how-to-use-muse-if-not-available-in-your-country">Our guide for unlaunched countries</a> covers what you can actually do today.</p>
+          <p>Second, check the basics once more with fresh eyes: the exact name on the card, the exact billing ZIP code, the card's expiry date, and whether the card is active. Small typos cause a large share of failures, and a second look catches them.</p>
+          <p>Third, wait a full day and try once, with the best card and the most established account you have. If the page offers both methods, try the one you have not tried yet.</p>
+          <p>Fourth, contact Meta through official channels. Use the help and support options inside the Muse app or on Meta's help pages, and describe the exact screen and message you see. Do not follow links someone sends you claiming to fix verification. Handle any document request through official Meta channels only.</p>
+          <p>Finally, accept that some failures have no user side fix. Meta adjusts its checks without notice, and a failure that no detail change fixes may be on Meta's side. Waiting a few days and trying again is a legitimate strategy, even if it is an unsatisfying one.</p>
+
+          <h2 id="get-started">Get started</h2>
+          <p>Once you are past the age check, you are in. Open Muse, connect the apps you use, and start with something small. If you are new, redeem a free invite code within 48 hours of joining and both you and the person who shared it get 1 billion Muse tokens.</p>
+          <p><a href="/">Get a free code from the community pool</a>.</p>
+
+          <h2 id="faq">Frequently asked questions</h2>
+<dl class="faq">
+            <dt>Why does Muse ask for a payment card if the free tier costs nothing?</dt>
+            <dd>The card is for age verification, not payment. Meta places a temporary $1 authorization to confirm the card is real and belongs to an adult, then releases it. The free tier costs nothing, and the check does not start a subscription.</dd>
+            <dt>Is the $1 hold a real charge?</dt>
+            <dd>No. It is a temporary authorization, the same mechanism hotels and gas stations use to check a card, and the sign up page says it is returned within 5 to 7 business days, though some users report it dropping off in 2 to 3 days. If it lingers on your statement, that is usually your bank's display lag.</dd>
+            <dt>Why was my card declined?</dt>
+            <dd>The most common reasons are details that do not match your Meta account, a prepaid or gift card that is not tied to your identity, a card in someone else's name, or a billing country mismatch. Checks have also become stricter since October 2026. Correct the details, use a bank issued card in your own name, wait a day, and try once more.</dd>
+            <dt>Can I use a prepaid or gift card for age verification?</dt>
+            <dd>Usually not. Prepaid and gift cards are often not tied to your identity, so they cannot confirm you are an adult, which is the whole point of the check. Use a standard debit or credit card in your own name, or the Facebook or Instagram option if the page offers it.</dd>
+            <dt>Can I verify my age with Facebook or Instagram instead of a card?</dt>
+            <dd>Yes, when the verification page offers it. Link an existing account you own and can access normally, and Meta uses the age information on that account as part of the check. Older established accounts work better than newly created ones, which may be asked to verify again.</dd>
+            <dt>What if I am under 18?</dt>
+            <dd>You cannot use Muse. There is no parent permission option and no teen mode, and lying about your age breaks the terms and can get your account closed. Meta blocks people it detects may be under 18 from creating accounts, and it applies checks beyond the birth date you enter.</dd>
+          </dl>
+
+                    <p>Built with Muse is an independent community project. Not affiliated with or endorsed by Meta.</p>
+          </article>
+          <aside class="rail">
+            <div class="rail-box">
+              <div class="k">In this article</div>
+              <ol><li><a href="#why-age-check">Why does Muse ask you to prove your age?</a></li><li><a href="#methods">What age verification methods does Muse use?</a></li><li><a href="#dollar-hold">What is the $1 card hold, and when does the money come back?</a></li><li><a href="#why-card-free-tier">Why does Muse ask for a card on the free tier?</a></li><li><a href="#why-declined">Why was my card declined?</a></li><li><a href="#fix-declined-card">How do you fix a declined card?</a></li><li><a href="#prepaid-gift-cards">Why do prepaid and gift cards fail?</a></li><li><a href="#name-birthdate-mismatch">What if your name or birth date does not match?</a></li><li><a href="#facebook-instagram-option">How does verification with Facebook or Instagram work?</a></li><li><a href="#no-card-no-account">What if you have no card and no Facebook or Instagram account?</a></li><li><a href="#under-18">What if you are under 18?</a></li><li><a href="#keeps-failing">What if verification keeps failing after everything?</a></li><li><a href="#get-started">Get started</a></li><li><a href="#faq">Frequently asked questions</a></li></ol>
+            </div>
+            <div class="rail-box">
+              <div class="k">Keep reading</div>
+              <a class="link" href="/blog/muse-available-countries">Muse available countries: the full list</a>
+              <a class="link" href="/blog/is-meta-muse-free">Is Meta Muse free?</a>
+              <a class="link" href="/blog/muse-account-locked">Muse account locked: what to do</a>
+              <a class="link" href="/workflows">Muse workflows from the community</a>
+              <a class="link" href="/blog">All posts</a>
+            </div>
+          </aside>
+        </div>
+      </main>
+      <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="footer-brand" href="/"><svg class="mark" viewBox="0 0 9 9" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1H4zM1 1h1v1H1zM4 1h1v1H4zM7 1h1v1H7zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM3 3h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM0 4h1v1H0zM1 4h1v1H1zM2 4h1v1H2zM3 4h1v1H3zM4 4h1v1H4zM5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM3 5h1v1H3zM4 5h1v1H4zM5 5h1v1H5zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM4 7h1v1H4zM7 7h1v1H7zM4 8h1v1H4z"/></svg>Built with Muse</a>
+          <h3>Directory</h3>
+          <a href="/">Get a code</a><a href="/#share">Share a code</a><a href="/workflows">Feed</a><a href="/posts">Social</a><a href="/creators">Creators</a><a href="/workflows">Use cases</a><a href="/blog">Blog</a><a href="/submit">Publish a workflow</a><a href="/#mycodes">My codes</a>
+        </div>
+        <div class="footer-col">
+          <h3>Social posts</h3>
+          <a href="/posts/paying-bills">Paying bills</a><a href="/posts/spending-money">Where people spend money</a><a href="/posts/educational">Educational</a><a href="/posts/job-apply">Job applications</a><a href="/posts/dating">Dating</a><a href="/posts/travel">Travel</a><a href="/posts/food">Food</a><a href="/posts/home-and-family">Home and family</a><a href="/posts/health">Health</a><a href="/posts/work">Work</a><a href="/posts/calls-and-admin">Calls and paperwork</a><a href="/posts/fun">Fun</a>
+        </div>
+        <div class="footer-col footer-about">
+          <h3>About</h3>
+          <p>A community pool of Muse invite codes, and the workflows people build with Muse, Meta&#8217;s personal AI agent. Codes come from members who pass their invites on. Every post links to its source.</p>
+          <div class="footer-two"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/blog/what-is-meta-muse">What is Meta Muse</a><a href="/blog/free-muse-invite-code">Free Muse invite code</a><a href="/blog/how-to-use-meta-muse-outside-us">Muse outside the US</a><a href="/blog/muse-vs-chatgpt">Muse vs ChatGPT</a><a href="/blog/muse-tokens-explained">Muse tokens explained</a><a href="/sponsor">Sponsor</a><a href="mailto:polostudio.brand@gmail.com">Contact</a><a href="https://usesundog.com/muse">Sundog workflow library &#8599;</a></div>
+          <p class="footer-fine">Independent community project. Not affiliated with or endorsed by Meta. Token amounts are as Muse announced them.</p>
+          <div class="footer-meta"><span>&#169; 2026 Built with Muse</span></div>
+        </div>
+      </div>
+    </footer>
+    </div>
+    <script>
+      (() => {
+        const bar = document.querySelector(".topbar");
+        const toggle = document.getElementById("menu-toggle");
+        if (!bar || !toggle) return;
+        const set = (open) => { bar.classList.toggle("open", open); toggle.setAttribute("aria-expanded", String(open)); toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+        toggle.addEventListener("click", () => set(!bar.classList.contains("open")));
+        bar.querySelectorAll(".nav button, .nav a").forEach((item) => item.addEventListener("click", () => set(false)));
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape") set(false); });
+        const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
+  <script src="/js/blog-rating.js" defer></script>
+<script src="/js/help-widget.js" defer></script>
+    <script>(function(){function sync(){var d=document.documentElement.getAttribute("data-theme")==="dark";var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute("content",d?"#0d1b3d":"#ffffff");}var c=document.querySelector('meta[name="color-scheme"]');if(c){c.setAttribute("content",d?"dark":"light");}}document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("#theme-toggle"):null;if(!b){return;}if(document.documentElement.getAttribute("data-theme")==="dark"){document.documentElement.removeAttribute("data-theme");try{localStorage.setItem("bwm-theme","light");}catch(_){}}else{document.documentElement.setAttribute("data-theme","dark");try{localStorage.setItem("bwm-theme","dark");}catch(_){}}sync();});sync();})();</script>
+<script src="/js/visit.js" defer></script>
+</body>
+</html>

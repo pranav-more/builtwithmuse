@@ -474,15 +474,21 @@ body { background-image: none; }
           }).join("");
         };
         var setText = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
-        /* The totals come live from /api/audience; the chart, countries and sources from the daily snapshot. */
+        /* Everything comes live from /api/audience (pushed hourly, breakdowns every 6 hours);
+           the snapshot file is drawn first and stays if the live numbers are unavailable. */
         var applyTotals = function (t) {
           setText("ah-v30", fmt(t.visitors30)); setText("ah-p30", fmt(t.pageviews30)); setText("ah-v7", fmt(t.visitors7));
           setText("a-v30", fmt(t.visitors30)); setText("a-p30", fmt(t.pageviews30)); setText("a-v7", fmt(t.visitors7));
         };
-        var liveTotals = fetch("/api/audience").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
-        fetch("/data/audience.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (a) {
+        var SOURCE = "Vercel Web Analytics, production";
+        var names = null;
+        try { names = new Intl.DisplayNames(["en"], { type: "region" }); } catch (e) {}
+        var shares = function (items) {
+          var total = items.reduce(function (n, x) { return n + (x.visitors || 0); }, 0) || 1;
+          return items.map(function (x) { var o = {}; for (var k in x) o[k] = x[k]; o.share = x.visitors / total; return o; });
+        };
+        var draw = function (a) {
           applyTotals(a);
-          liveTotals.then(function (t) { if (t && t.ok && t.visitors7) applyTotals(t); });
           var days = (a.daily || []).slice(-30);
           var max = Math.max.apply(null, days.map(function (x) { return x.visitors; }).concat([1]));
           var peak = days.reduce(function (b, x) { return x.visitors > b.visitors ? x : b; }, { visitors: 0 });
@@ -494,7 +500,29 @@ body { background-image: none; }
           document.getElementById("a-countries").innerHTML = rows(a.countries || [], function (c) { return c.name; }, function (c) { return c.visitors / (a.countriesTotal || 1); });
           document.getElementById("a-sources").innerHTML = rows(a.sources || [], function (x) { return x.name; }, function (x) { return x.share; });
           document.getElementById("a-devices").innerHTML = rows(a.devices || [], function (x) { return x.type.charAt(0).toUpperCase() + x.type.slice(1); }, function (x) { return x.share; });
-          setText("a-note", "Visitors are unique visitors counted by " + a.source + ". Countries and devices are shares of 30-day visitors. Updated " + new Date(a.updated).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }) + ".");
+          setText("a-note", "Visitors are unique visitors counted by " + (a.source || SOURCE) + ". Countries and devices are shares of 30-day visitors. Updated " + new Date(a.updated).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }) + ".");
+        };
+        /* A live answer in the snapshot's shape. Parts the push did not carry keep the snapshot's. */
+        var merge = function (snap, t) {
+          var a = {}; for (var k in snap) a[k] = snap[k];
+          a.visitors7 = t.visitors7; a.pageviews7 = t.pageviews7; a.visitors30 = t.visitors30; a.pageviews30 = t.pageviews30;
+          var full = t.daily && t.daily.length && t.countries && t.countries.length && t.sources && t.sources.length && t.devices && t.devices.length;
+          if (!full) return a;
+          a.daily = t.daily;
+          a.countries = t.countries.slice().sort(function (x, y) { return y.visitors - x.visitors; }).slice(0, 6).map(function (c) {
+            var name = c.code; try { if (names) name = names.of(c.code) || c.code; } catch (e) {}
+            return { code: c.code, name: name, visitors: c.visitors };
+          });
+          a.countriesTotal = t.visitors30;
+          a.sources = shares(t.sources).sort(function (x, y) { return y.visitors - x.visitors; });
+          a.devices = shares(t.devices).sort(function (x, y) { return y.visitors - x.visitors; });
+          a.updated = t.updated || a.updated;
+          return a;
+        };
+        var liveTotals = fetch("/api/audience").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+        fetch("/data/audience.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (a) {
+          draw(a);
+          liveTotals.then(function (t) { if (t && t.ok && t.visitors7) draw(merge(a, t)); });
           document.getElementById("aud-hero").hidden = false;
           document.getElementById("audience").hidden = false;
         }).catch(function () {});
